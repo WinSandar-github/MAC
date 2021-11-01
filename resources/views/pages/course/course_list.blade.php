@@ -105,7 +105,7 @@
     <div class="modal fade" id="main_course_modal" style="padding-top:80px;">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
-                <!-- <form method="post" action="{{ route('course.store" enctype="multipart/form-data"> -->
+                <!-- <form method="post" action="{{ route('course.store')}}" enctype="multipart/form-data"> -->
                 <form id="main_course_form" method="post" action="javascript:createMainCourse();"
                     enctype="multipart/form-data">
                     @csrf
@@ -168,7 +168,7 @@
     <div class="modal fade" id="create_course_modal" style="padding-top:80px;">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
-                <!-- <form method="post" action="{{ route('course.store" enctype="multipart/form-data"> -->
+                <!-- <form method="post" action="{{ route('course.store')}}" enctype="multipart/form-data"> -->
                 <form id="course_form" method="post" action="javascript:createCourse();" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="course_id">

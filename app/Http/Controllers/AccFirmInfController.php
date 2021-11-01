@@ -276,6 +276,13 @@ class AccFirmInfController extends Controller
         foreach($request->t_s_p_id as $val){
           array_push($t_s_p_ary,$val);
         }
+        // $t_s_p_id = "";
+        // if($request->t_s_p_id!=null){
+        //     foreach($request->t_s_p_id as $t){
+        //         $t_s_p_id = $t_s_p_id . $t . ',';
+
+        //     }
+        // }
 
         //Main Table
         $acc_firm_info = new AccountancyFirmInformation();
@@ -296,6 +303,7 @@ class AccFirmInfController extends Controller
         $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
         $acc_firm_info->type_of_service_provided_id  = json_encode($t_s_p_ary);
+        // $acc_firm_info->type_of_service_provided_id  = rtrim($t_s_p_id, ',');
         $acc_firm_info->other  = $request->other;
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
@@ -962,6 +970,7 @@ class AccFirmInfController extends Controller
            $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
            $audit_file->ppa_certificate    = json_encode($ppa_certi);
            $audit_file->letterhead         = json_encode($letterhead);
+           $audit_file->tax_clearance         = json_encode($tax_clearance);
            //$audit_file->representative     = json_encode($representative);
            $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
            $audit_file->deeds_memo        = json_encode($deeds_memo);
@@ -1475,6 +1484,7 @@ class AccFirmInfController extends Controller
            $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
            $audit_file->ppa_certificate    = json_encode($ppa_certi);
            $audit_file->letterhead         = json_encode($letterhead);
+           $audit_file->tax_clearance         = json_encode($tax_clearance);
            //$audit_file->representative     = json_encode($representative);
            $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
            $audit_file->deeds_memo        = json_encode($deeds_memo);
@@ -4000,7 +4010,7 @@ class AccFirmInfController extends Controller
     public function checkVerify($id,$firm_id)
     {
         $data = array();
-        $acc_firm = AccountancyFirmInformation::where('student_info_id',$id)->latest()->get();
+        $acc_firm = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
         $audit_invoice_status = Invoice::where('invoiceNo','audit_initial'.$firm_id)->select('status')->get();
         $nonaudit_invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$firm_id)->select('status')->get();
 
@@ -4069,8 +4079,9 @@ class AccFirmInfController extends Controller
                   <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
                       <li class='fa fa-eye fa-sm'></li>
                   </button>
-                  <a href='audit_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
-                    <li class='fa fa-file-text-o fa-sm'></li>
+
+                  <a href='" . route('get_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
+                      <li class='fa fa-id-card-o fa-sm'></li>
                   </a>
 
               </div>";
@@ -4089,7 +4100,7 @@ class AccFirmInfController extends Controller
 
               </div>";
               }
-              
+
           })
 
           ->addColumn('accountancy_firm_reg_no', function ($infos){
@@ -4169,8 +4180,8 @@ class AccFirmInfController extends Controller
                                       <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
                                       <li class='fa fa-eye fa-sm'></li>
                                       </a>
-                                      <a href='non_audit_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
-                                        <li class='fa fa-file-text-o fa-sm'></li>
+                                      <a href='" . route('get_non_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
+                                          <li class='fa fa-id-card-o fa-sm'></li>
                                       </a>
 
                                 </div>";
@@ -4195,8 +4206,8 @@ class AccFirmInfController extends Controller
                                   <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
                                   <li class='fa fa-eye fa-sm'></li>
                                   </a>
-                                  <a href='non_audit_foreign_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
-                                    <li class='fa fa-file-text-o fa-sm'></li>
+                                  <a href='" . route('get_non_audit_foreign_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
+                                      <li class='fa fa-id-card-o fa-sm'></li>
                                   </a>
 
                             </div>";
@@ -4213,9 +4224,9 @@ class AccFirmInfController extends Controller
                                   <li class='fa fa-eye fa-sm'></li>
                                   </a>
 
-                            </div>"; 
+                            </div>";
                         }
-                
+
               }  else{
                 return "<div class='btn-group'>
                               <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
@@ -4224,7 +4235,7 @@ class AccFirmInfController extends Controller
 
                         </div>";
               }
-              
+
           })
 
           ->addColumn('local_foreign_type', function ($infos){
@@ -4319,13 +4330,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 
@@ -4465,13 +4476,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 

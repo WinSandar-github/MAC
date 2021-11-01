@@ -106,4 +106,11 @@ class PaymentController extends Controller
         $data = Invoice::where('invoiceNo',$invoiceNo)->first();
         return response()->json($data,200);
     }
+
+    public function getPaymentByInvoiceNoForStudent($invoiceNo,$studentID)
+    {
+        $data = Invoice::where('invoiceNo',$invoiceNo)->
+                        where('student_info_id',$studentID)->first();
+        return response()->json($data,200);
+    }
 }

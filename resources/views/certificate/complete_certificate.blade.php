@@ -24,7 +24,7 @@
         height: 29.7cm;
     }
 
-    page > .border-style {
+    .border-style {
         background-image: url(https://demo.aggademo.me/MAC/public/img/dacpa_certificate.png);
         background-size: 97%;
         background-repeat: no-repeat;
@@ -43,6 +43,7 @@
 </style>
 
 <body>
+    
     <page size="A4" class="{{ $className }}">
         {{-- <table style="margin-right: 100px; margin-left: 100px;">
             <tbody>
@@ -101,6 +102,7 @@
             </tbody>
         </table> --}}
 
+        
         {!! htmlspecialchars_decode($template->cert_data) !!}
 
     </page>

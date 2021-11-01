@@ -407,7 +407,15 @@ class ArticleController extends Controller
     public function filterDoneArticle(Request $request)
     {
         if($request->status == 1){
-            $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->with('student_info')->get();
+            //$article=ApprenticeAccountant::where('done_status',$request->status)->get();
+            //foreach($article as $article){
+                if($request->offline_user==1){
+                    $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
+                }else{
+                 $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->where('offline_user' ,'<>', '1')->with('student_info')->get();
+                }
+            //}
+           
         }else{
             $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
         }
@@ -422,7 +430,7 @@ class ArticleController extends Controller
                 }
             }
         }
-
+        
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>

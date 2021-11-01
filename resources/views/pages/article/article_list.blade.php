@@ -349,9 +349,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#done_link2" role="tablist" aria-expanded="true" style="font-weight:bold">3yrs Article</a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#done_link3" role="tablist" aria-expanded="true" style="font-weight:bold">Resign Article</a>
-                                </li> -->
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#done_link3" role="tablist" aria-expanded="true" style="font-weight:bold">Existing Article</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="card-body">
@@ -427,10 +427,10 @@
                                         </table>
                                     </div>
                                 </div>
-                                <!-- <div class="tab-pane fade" id="done_link3" aria-expanded="true">
+                                <div class="tab-pane fade" id="done_link3" aria-expanded="true">
                                     <div class="card-header"></div>
                                     <div class="card-body">
-                                        <table id="tbl_done_resign_article" class="table table-hover text-nowrap " style="width:100%;">
+                                        <table id="tbl_done_exist_article" class="table table-hover text-nowrap " style="width:100%;">
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight">No</th>
@@ -438,14 +438,15 @@
                                                     <th class="bold-font-weight" >Name</th>
                                                     <th class="bold-font-weight" >Phone</th>
                                                     <th class="bold-font-weight" >Registration No</th>
+                                                    <th class="bold-font-weight" >Form Type</th>
                                                     <th class="bold-font-weight" >Status</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbl_done_resign_article_body" class="hoverTable text-left">
+                                            <tbody id="tbl_done_exist_article_body" class="hoverTable text-left">
                                             </tbody>
                                         </table>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -644,8 +645,9 @@
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        $('#tbl_firm_article_pending').DataTable().column(6).visible(false);
+        //$('#tbl_firm_article_pending').DataTable().column(6).visible(false);
         $('#tbl_firm_article_pending').DataTable().column(8).visible(false);
+
 
         var table_approve =$('#tbl_firm_article_approved').DataTable({
             scrollX: true,
@@ -676,6 +678,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_firm_article_approved').DataTable().column(6).visible(false);
 
         var table_reject =$('#tbl_firm_article_rejected').DataTable({
             scrollX: true,
@@ -741,7 +744,7 @@
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        $('#tbl_gov_article_pending').DataTable().column(6).visible(false);
+        //$('#tbl_gov_article_pending').DataTable().column(6).visible(false);
         $('#tbl_gov_article_pending').DataTable().column(8).visible(false);
 
         var table_approve =$('#tbl_gov_article_approved').DataTable({
@@ -773,6 +776,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_gov_article_approved').DataTable().column(6).visible(false);
 
         var table_reject =$('#tbl_gov_article_rejected').DataTable({
             scrollX: true,
@@ -867,6 +871,8 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_resign_article_approved').DataTable().column(5).visible(false);
+
 
         var table_reject =$('#tbl_resign_article_rejected').DataTable({
             scrollX: true,
@@ -897,6 +903,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_resign_article_rejected').DataTable().column(5).visible(false);
 
         //Issue two yrs form list
         var table_approve =$('#tbl_two_yrs_article_pending').DataTable({
@@ -1044,31 +1051,34 @@
         });
 
         //Resign Done Form
-        // var table_reject =$('#tbl_done_resign_article').DataTable({
-        //     scrollX: true,
-        //     processing: true,
-        //     serverSide: true,
-        //     ajax: {
-        //         url  : BACKEND_URL + "/filter_done_resign_article",
-        //         type : "POST" ,
-        //         data :  function (d) {
-        //             d.name      =  $("input[name=filter_by_name]").val(),
-        //             d.nrc       =  $("input[name=filter_by_nrc]").val()
-        //         }
+        var table_reject =$('#tbl_done_exist_article').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_done_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 1,
+                    d.offline_user=1
+                }
 
-        //     },
-        //     columns: [
-        //         {data: null, render: function (data, type, row, meta) {
-        //             return meta.row + meta.settings._iDisplayStart + 1;
-        //         }},
-        //         {data: 'action', name: 'action', orderable: false, searchable: false},
-        //         {data: 'name_mm', name: 'name_mm'},
-        //         {data: 'phone_no', name: 'phone_no'},
-        //         {data: 'nrc', name: 'nrc'},
-        //         {data: 'status', name: 'status'},
-        //     ],
-        //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        // });
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
+                {data: 'status', name: 'status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $.each($.fn.dataTable.tables(true), function(){
