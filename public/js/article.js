@@ -274,13 +274,9 @@ function loadArticle()
                     let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                     $.each(certificate,function(fileCount,fileName){
                          $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
-    
                     })
                 }
-                
             }
-
-
             $("#address").val(student_info.address);
             $("#current_address").val(student_info.current_address);
             $("#phone_no").val(student_info.phone);
@@ -336,7 +332,7 @@ function loadArticle()
                     $("#previous_papp_start_date").val(data.exp_start_date);
                     $("#previous_papp_end_date").val(data.exp_end_date);
                 }else{
-                    
+
                         $('#exp_row').css('display','none');
                         $('#exp_attach_row').css('display','none');
                         $("#gov_lab").text('၈။');
@@ -352,8 +348,8 @@ function loadArticle()
                         $("#mentor_name").val(data?.mentor?.name_eng);
                     
                 }
-                
-            
+
+
             }else{
                 if(data.apprentice_exp == 1)
                 {
@@ -374,7 +370,7 @@ function loadArticle()
                 $('#exp_attach_row').css('display','none');
                 }
                 if(data.offline_user==1 && data.article_form_type=="c2_pass_1yr"){
-                    
+
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
@@ -389,12 +385,12 @@ function loadArticle()
                     $('#previous_papp_lab').text('၁၄။');
                     $('#previous_lab').text('၁၅။');
                     $('#exam_pass_date_label').text('၁၆။');
-                    
+
                 }else{
                     $("#papp_name").val(data.request_papp);
                     $("#mentor_name").val(data?.mentor?.name_eng);
                 }
-                
+
             }
 
             if(data.gov_staff == 1)
@@ -420,7 +416,7 @@ function loadArticle()
             }else{
                 $('.req-papp_attach').hide();
             }
-            
+
 
             var leave_requests = student_info.leave_requests;
             var r = 1;
@@ -449,14 +445,14 @@ function loadArticle()
 				'autoWidth': true,
 				"scrollX": false,
 			});
-            
+
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
 
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
-                
+
                 if (end_time <= today_time) {
                     console.log(data.yes_done_attach);
                     if(data.yes_done_attach == 0){
@@ -487,15 +483,16 @@ function loadArticle()
             if(data.done_form_attach != null){
                 $("#done_form_row").show();
                 $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
-
-                if(data.done_status == 0){
+                $("#reject_done_attach").show();
+                $("#article_id").val(data.id);
+                if(data.done_status == 0 || data.done_status == 2 ){
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
                 }else{
                     document.getElementById("done_form_approve_reject_btn").style.display = "none";
                 }
 
             }
-            
+
         }
     });
 }
@@ -773,16 +770,14 @@ function loadGovArticle()
 				'autoWidth': true,
 				"scrollX": false,
 			});
-            
+
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
-
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
-                
+
                 if (end_time <= today_time) {
-                    
                     if(data.yes_done_attach == 0){
                         document.getElementById("check_end_date").style.display = "block";
                     }
@@ -798,21 +793,62 @@ function loadGovArticle()
               document.getElementById("approve_reject_btn").style.display = "none";
             }
 
+            if(data.mentor_attach_file != null){
+                $("#attach_file_row").show();
+                let mentor_attach_file = JSON.parse(data.mentor_attach_file);
+                $.each(mentor_attach_file, function (fileCount, fileName) {
+                    $(".mentor_attach_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                })
+            }
+
             if(data.done_form_attach != null){
                 $("#done_form_row").show();
                 $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
-
-                if(data.done_status == 0){
+                $("#reject_done_attach").show();
+                $("#gov_article_id").val(data.id);
+                if(data.done_status == 0 || data.done_status == 2){
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
                 }else{
                     document.getElementById("done_form_approve_reject_btn").style.display = "none";
                 }
-
             }
-
         }
     });
 }
+
+function rejectDoneAttach(){
+    $("#reject_done_attach_modal").modal('toggle');
+}
+
+function rejectArticleDoneAttach(){
+    var id = $("#article_id").val();
+    var reason=$("#reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/reject_article_done_attach",
+        data: 'id='+id+"&reason="+reason,
+        type: 'post',
+        success: function(result){
+            successMessage('You have successfully rejected that done attach!');
+            location.href = FRONTEND_URL + "/article_list";
+        }
+    });
+    
+  }
+
+  function rejectGovArticleDoneAttach(){
+    var id = $("#gov_article_id").val();
+    var reason=$("#reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/reject_gov_article_done_attach",
+        data: 'id='+id+"&reason="+reason,
+        type: 'post',
+        success: function(result){
+            successMessage('You have successfully rejected that done attach!');
+            location.href = FRONTEND_URL + "/article_list";
+        }
+    });
+    
+  }
 
 function autoLoadPayment(gov_id){
   //let student_id=localStorage.getItem("student_id");
@@ -1282,7 +1318,7 @@ function loadEductaionHistoryByArticle(id){
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
             });
-            
+
             createDataTable('#tbl_degree');
         }
     });

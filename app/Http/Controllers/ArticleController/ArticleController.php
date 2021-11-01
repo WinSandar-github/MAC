@@ -12,6 +12,7 @@ use App\Http\Requests\AppAccRequest;
 use App\Invoice;
 use App\StudentInfo;
 use App\Membership;
+use App\Mentor;
 use App\EducationHistroy;
 
 use Illuminate\Support\Str;
@@ -314,6 +315,19 @@ class ArticleController extends Controller
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfoFirm($infos)'>View Payment</button>";
             })
 
+            ->addColumn('payment_status', function ($infos){
+              $invoice_status = Invoice::where('invoiceNo',$infos->article_form_type.$infos->id)->select('status')->get();
+              foreach($invoice_status as $value){
+                if($value->status == '0' ){
+                  return "<span class='pending'>Payment Incomplete</span>";
+                }
+                else{
+                  return "<span class='approve'>Payment Success</span>";
+                }
+              }
+
+            })
+
             ->addColumn('form_type', function ($infos){
                 if($infos->article_form_type == 'c12'){
                     return "CPA I,II";
@@ -384,7 +398,7 @@ class ArticleController extends Controller
                     </div>";
                 }
             });
-            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee'])->make(true);
+            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
             return $datatable;
     }
 
@@ -422,14 +436,14 @@ class ArticleController extends Controller
             //$article=ApprenticeAccountant::where('done_status',$request->status)->get();
             //foreach($article as $article){
                 if($request->offline_user==1){
-                    $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
+                    $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
                 }else{
-                 $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->where('offline_user' ,'<>', '1')->with('student_info')->get();
+                 $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->where('offline_user' ,'<>', '1')->with('student_info')->get();
                 }
             //}
-           
+
         }else{
-            $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
+            $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
         }
 
         $result_article = [];
@@ -442,7 +456,8 @@ class ArticleController extends Controller
                 }
             }
         }
-        
+
+
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
@@ -454,8 +469,30 @@ class ArticleController extends Controller
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('m_email', function ($infos){
-                return $infos->student_info->m_email;
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
+            })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type',$infos->article_form_type)
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
+            })
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              foreach($mentor_name as $val){
+                return $val->name_eng;
+              }
             })
             ->addColumn('phone_no', function ($infos){
                 return $infos->student_info->phone;
@@ -498,7 +535,7 @@ class ArticleController extends Controller
             //                     </button>
             //                 </div>";
             // });
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
@@ -539,7 +576,7 @@ class ArticleController extends Controller
         $end_article = Carbon::parse($firm[count($firm) - 1]->contract_end_date);
 
         $diff_days = $end_article->diffInDays($start_article);
-        
+
 
         if($diff_days > 1095){  // 1095 = 3yrs
             if(count($gov) != 0){
@@ -720,6 +757,7 @@ class ArticleController extends Controller
     public function FilterGovArticle(Request $request)
     {
         $article = ApprenticeAccountantGov::where('status',$request->status)->with('student_info')->get();
+
         $result_article = [];
         $article_type = "gov";
         for($i=0;$i<count($article);$i++){
@@ -769,6 +807,20 @@ class ArticleController extends Controller
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfo($infos)'>View Payment</button>";
             })
 
+
+            ->addColumn('payment_status', function ($infos){
+              $invoice_status = Invoice::where('invoiceNo','gov'.$infos->id)->select('status')->get();
+              foreach($invoice_status as $value){
+                if($value->status == '0' ){
+                  return "<span class='pending'>Payment Incomplete</span>";
+                }
+                else{
+                  return "<span class='approve'>Payment Success</span>";
+                }
+              }
+
+            })
+
             ->addColumn('form_type', function ($infos){
                 return "Gov Form";
             });
@@ -816,7 +868,7 @@ class ArticleController extends Controller
                 </div>";
             }
         });
-        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee'])->make(true);
+        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
         return $datatable;
     }
 
@@ -860,9 +912,9 @@ class ArticleController extends Controller
             //     ->where('apprentice_accountants_gov.done_status','=', 1)
             //     ->get();
 
-            $article = ApprenticeAccountantGov::where('done_status',$request->status)->with('student_info')->get();
+            $article = ApprenticeAccountantGov::where('done_status',$request->status)->orwhere('done_status',2)->with('student_info')->get();
         }else{
-            $article = ApprenticeAccountantGov::where('done_status',$request->status)->where('status' , '=' , 1)->with('student_info')->get();
+            $article = ApprenticeAccountantGov::where('done_status',$request->status)->orwhere('done_status',2)->where('status' , '=' , 1)->with('student_info')->get();
         }
 
         $result_article = [];
@@ -875,6 +927,9 @@ class ArticleController extends Controller
                 }
             }
         }
+
+
+
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
@@ -886,9 +941,26 @@ class ArticleController extends Controller
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('m_email', function ($infos){
-                return $infos->student_info->m_email;
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
             })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type','gov')
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
+            })
+
             ->addColumn('phone_no', function ($infos){
                 return $infos->student_info->phone;
             })
@@ -918,7 +990,7 @@ class ArticleController extends Controller
         //                     </button>
         //                 </div>";
         // });
-        $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+        $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
         return $datatable;
     }
 
@@ -1070,10 +1142,17 @@ class ArticleController extends Controller
         //   }
         //
         // }
-
-
+        $article_resign_result = [];
+        foreach($article as $article_resign){
+            foreach($article_resign->student_info->invoice as $article_invice){
+                if($article_invice->invoiceNo == 'resign'.$article_resign->id && $article_invice->status != '0'){
+                    array_push($article_resign_result , $article_resign);
+                }
+            }
+        }
+        
         $article_type = "resign";
-        $datatable = DataTables::of($article)
+        $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-sm' onclick='showResignArticle($infos->id)'>
@@ -1108,6 +1187,19 @@ class ArticleController extends Controller
                 }
             })
 
+            ->addColumn('payment_status', function ($infos){
+              $invoice_status = Invoice::where('invoiceNo','resign'.$infos->id)->select('status')->get();
+              foreach($invoice_status as $value){
+                if($value->status == '0' ){
+                  return "<span class='pending'>Payment Incomplete</span>";
+                }
+                else{
+                  return "<span class='approve'>Payment Success</span>";
+                }
+              }
+
+            })
+
             ->addColumn('status', function ($infos){
                 if($infos->resign_status == 0){
                     return "PENDING";
@@ -1126,7 +1218,7 @@ class ArticleController extends Controller
                 return $infos->resign_date;
             });
 
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status'])->make(true);
             return $datatable;
     }
 
@@ -1177,11 +1269,40 @@ class ArticleController extends Controller
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('m_email', function ($infos){
-                return $infos->student_info->m_email;
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
+            })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type','gov')
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
             })
             ->addColumn('phone_no', function ($infos){
                 return $infos->student_info->phone;
+            })
+            ->addColumn('mentor_name', function ($infos){
+              if($infos->article_form_type == 'gov' ){
+                return "-";
+              }
+              else{
+                $mentor_name = Mentor::where('id',$infos->mentor_id)
+                                     ->select('name_eng')
+                                     ->get();
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
             })
             ->addColumn('nrc', function ($infos){
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
@@ -1218,7 +1339,7 @@ class ArticleController extends Controller
             // ->setRowClass(function ($infos) {
             //     return $infos->done_form_attach != null ? 'bg-success' : 'bg-warning';
             // });
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
@@ -1316,6 +1437,29 @@ class ArticleController extends Controller
         ],200);
     }
 
+    public function saveGovAttachFile(Request $request)
+    {
+        $article = ApprenticeAccountantGov::find($request->id);
+
+        if($request->hasfile('gov_attach_file'))
+        {
+            foreach($request->file('gov_attach_file') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $gov_attach_file[] = '/storage/student_info/'.$name;
+            }
+        }else{
+            $gov_attach_file = null;
+        }
+
+        $article->mentor_attach_file = $gov_attach_file;
+        $article->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
+    }
+
     public function saveRenewArticle(Request $request)
     {
         $acc_app = new ApprenticeAccountant();
@@ -1371,6 +1515,7 @@ class ArticleController extends Controller
         $acc_app->exp_start_date = $request->exp_start_date;
         $acc_app->exp_end_date = $request->exp_end_date;
         $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->save();
 
         //invoice
         $invoice = new Invoice();
@@ -1387,13 +1532,13 @@ class ArticleController extends Controller
         $invoice->email           = $std_info->email;
         $invoice->phone           = $std_info->phone;
 
-        $invoice->invoiceNo = $request->article_form_type;
+        $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
         $invoice->productDesc     = 'Registration Fee, Article Renew Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
-        $invoice->save();
+        //$invoice->save();
 
-        if($acc_app->save()){
+        if($invoice->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
@@ -1540,6 +1685,28 @@ class ArticleController extends Controller
         $article->save();
         return response()->json([
             'message' => "You have successfully!"
+        ],200);
+    }
+
+    public function rejectDoneAttach(Request $request)
+    {
+        $reject = ApprenticeAccountant::find($request->id);
+        $reject->done_remark = $request->reason;
+        $reject->done_status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that done attach!"
+        ],200);
+    }
+
+    public function rejectGovDoneAttach(Request $request)
+    {
+        $reject = ApprenticeAccountantGov::find($request->id);
+        $reject->done_remark = $request->reason;
+        $reject->done_status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that done attach!"
         ],200);
     }
 

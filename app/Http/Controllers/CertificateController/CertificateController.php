@@ -259,11 +259,9 @@ class CertificateController extends Controller
     public function getNonAuditCard(Request $req, $id){
         
         $audit = AccountancyFirmInformation::where('id', '=', $id)->first();
-        // return $audit;
-        // $foa = $audit->firm_owner_audits;
-        $tos = explode(',', $audit->type_of_service_provided_id);
+        $tos = json_decode($audit->type_of_service_provided_id);
         $template = DB::table('certificates')->where('cert_code', '=', 'non_audit_card')->first();
-        // dd($audit->firm_owner_audits);
+
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
         
@@ -299,6 +297,7 @@ class CertificateController extends Controller
         }
         if(in_array('8', $tos)){
             $template->cert_data = str_replace('{{ ot }}', "checked", $template->cert_data);
+            $template->cert_data = str_replace('{{ other }}', $audit->other , $template->cert_data);
         }
 
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
@@ -315,11 +314,9 @@ class CertificateController extends Controller
     public function getNonAuditForeignCard(Request $req, $id){
         
         $audit = AccountancyFirmInformation::where('id', '=', $id)->first();
-        // return $audit;
-        // $foa = $audit->firm_owner_audits;
-        $tos = explode(',', $audit->type_of_service_provided_id);
+        $tos = json_decode($audit->type_of_service_provided_id);
         $template = DB::table('certificates')->where('cert_code', '=', 'non_audit_foreign_card')->first();
-        // dd($audit->firm_owner_audits);
+
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
         
@@ -337,8 +334,7 @@ class CertificateController extends Controller
                 $template->cert_data = str_replace('{{ p }}', "checked", $template->cert_data);
                 break;
         }
-        // return $tos;
-        // return in_array('5', $tos);
+        
         if(in_array('3', $tos)){
             $template->cert_data = str_replace('{{ ac }}', "checked", $template->cert_data);
         }
@@ -356,6 +352,7 @@ class CertificateController extends Controller
         }
         if(in_array('8', $tos)){
             $template->cert_data = str_replace('{{ ot }}', "checked", $template->cert_data);
+            $template->cert_data = str_replace('{{ other }}', $audit->other , $template->cert_data);
         }
 
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
