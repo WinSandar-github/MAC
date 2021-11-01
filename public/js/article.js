@@ -274,13 +274,9 @@ function loadArticle()
                     let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                     $.each(certificate,function(fileCount,fileName){
                          $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
-
                     })
                 }
-
             }
-
-
             $("#address").val(student_info.address);
             $("#current_address").val(student_info.current_address);
             $("#phone_no").val(student_info.phone);
@@ -289,8 +285,6 @@ function loadArticle()
             }else{
                 $("#m_email").val(data.m_email);
             }
-
-
             if(data.ex_papp == null){
                 document.getElementById("previous_papp_name_row").style.display = "none";
             }else if(data.ex_papp == "undefined" && data.exp_start_date == "undefined" &&  data.exp_end_date == "undefined"){
@@ -331,7 +325,7 @@ function loadArticle()
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data.mentor.name_eng);
+                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
                     $('#previous_papp_name_row').show();
                     $('#previous_papp_date_row').show();
                     $("#previous_papp_name").val(data.ex_papp);
@@ -351,8 +345,8 @@ function loadArticle()
                         $("#previous_lab").text('၁၅။');
                         $("#exam_pass_date_label").text('၁၆။');
                         $("#papp_name").val(data.request_papp);
-                        $("#mentor_name").val(data.mentor?.name_eng);
-
+                        $("#mentor_name").val(data?.mentor?.name_eng);
+                    
                 }
 
 
@@ -380,7 +374,7 @@ function loadArticle()
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data.mentor.name_eng);
+                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
                     $('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
@@ -394,7 +388,7 @@ function loadArticle()
 
                 }else{
                     $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data.mentor.name_eng);
+                    $("#mentor_name").val(data?.mentor?.name_eng);
                 }
 
             }
@@ -780,18 +774,11 @@ function loadGovArticle()
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
-
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
 
                 if (end_time <= today_time) {
-<<<<<<< HEAD
-                    console.log(data.yes_done_attach);
-=======
-
->>>>>>> fb591d8b281eb1f2c5c5420729aa824af603ff78
                     if(data.yes_done_attach == 0){
-                        console.log("Reach");
                         document.getElementById("check_end_date").style.display = "block";
                     }
                     $("#gov_article_id").val(data.id);
@@ -811,7 +798,6 @@ function loadGovArticle()
                 let mentor_attach_file = JSON.parse(data.mentor_attach_file);
                 $.each(mentor_attach_file, function (fileCount, fileName) {
                     $(".mentor_attach_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-
                 })
             }
 
@@ -825,9 +811,7 @@ function loadGovArticle()
                 }else{
                     document.getElementById("done_form_approve_reject_btn").style.display = "none";
                 }
-
             }
-
         }
     });
 }

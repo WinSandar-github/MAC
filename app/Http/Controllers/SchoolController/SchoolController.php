@@ -1652,7 +1652,7 @@ class SchoolController extends Controller
                     ->get();
                 }
                 foreach($invoice as $i){
-                    return $i->status !== "0"
+                    return $i->status == "0"
                         ? ""
                         // : "<div class='btn-group'>
                         //         <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
@@ -1660,7 +1660,7 @@ class SchoolController extends Controller
                         //         </a>
                         //     </div>";
                         : "<div class='btn-group'>
-                                <a href='" . route('get_school_card', ['id' => $infos->id, 'course_code' => 'prv_school']) . "' class='btn btn-primary btn-xs'>
+                                <a href='" . route('get_school_card', ['id' => $infos->id, 'course_code' => 'prv_school']) . "' class='btn btn-primary btn-xs' target='_blank'>
                                     <li class='fa fa-id-card-o fa-sm'></li>
                                 </a>
                             </div>";
