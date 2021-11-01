@@ -273,13 +273,9 @@ function loadArticle() {
                     let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                     $.each(certificate, function (fileCount, fileName) {
                         $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
-
                     })
                 }
-
             }
-
-
             $("#address").val(student_info.address);
             $("#current_address").val(student_info.current_address);
             $("#phone_no").val(student_info.phone);
@@ -288,8 +284,6 @@ function loadArticle() {
             } else {
                 $("#m_email").val(data.m_email);
             }
-
-
             if (data.ex_papp == null) {
                 document.getElementById("previous_papp_name_row").style.display = "none";
             } else if (data.ex_papp == "undefined" && data.exp_start_date == "undefined" && data.exp_end_date == "undefined") {
@@ -330,7 +324,7 @@ function loadArticle() {
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data.mentor.name_eng);
+                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
                     $('#previous_papp_name_row').show();
                     $('#previous_papp_date_row').show();
                     $("#previous_papp_name").val(data.ex_papp);
@@ -350,7 +344,7 @@ function loadArticle() {
                     $("#previous_lab").text('၁၅။');
                     $("#exam_pass_date_label").text('၁၆။');
                     $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data.mentor.name_eng);
+                    $("#mentor_name").val(data?.mentor?.name_eng);
 
                 }
 
@@ -378,7 +372,7 @@ function loadArticle() {
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data.mentor.name_eng);
+                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
                     $('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
@@ -392,7 +386,7 @@ function loadArticle() {
 
                 } else {
                     $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data.mentor.name_eng);
+                    $("#mentor_name").val(data?.mentor?.name_eng);
                 }
 
             }
@@ -486,8 +480,9 @@ function loadArticle() {
             if (data.done_form_attach != null) {
                 $("#done_form_row").show();
                 $(".done_form_attach").append(`<a href='${PDF_URL + data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
-
-                if (data.done_status == 0) {
+                $("#reject_done_attach").show();
+                $("#article_id").val(data.id);
+                if (data.done_status == 0 || data.done_status == 2) {
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
                 } else {
                     document.getElementById("done_form_approve_reject_btn").style.display = "none";
@@ -770,12 +765,10 @@ function loadGovArticle() {
             if (data.contract_end_date != null) {
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
-
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
 
                 if (end_time <= today_time) {
-
                     if (data.yes_done_attach == 0) {
                         document.getElementById("check_end_date").style.display = "block";
                     }
@@ -791,20 +784,61 @@ function loadGovArticle() {
                 document.getElementById("approve_reject_btn").style.display = "none";
             }
 
+            if (data.mentor_attach_file != null) {
+                $("#attach_file_row").show();
+                let mentor_attach_file = JSON.parse(data.mentor_attach_file);
+                $.each(mentor_attach_file, function (fileCount, fileName) {
+                    $(".mentor_attach_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                })
+            }
+
             if (data.done_form_attach != null) {
                 $("#done_form_row").show();
                 $(".done_form_attach").append(`<a href='${PDF_URL + data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
-
-                if (data.done_status == 0) {
+                $("#reject_done_attach").show();
+                $("#gov_article_id").val(data.id);
+                if (data.done_status == 0 || data.done_status == 2) {
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
                 } else {
                     document.getElementById("done_form_approve_reject_btn").style.display = "none";
                 }
-
             }
-
         }
     });
+}
+
+function rejectDoneAttach() {
+    $("#reject_done_attach_modal").modal('toggle');
+}
+
+function rejectArticleDoneAttach() {
+    var id = $("#article_id").val();
+    var reason = $("#reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/reject_article_done_attach",
+        data: 'id=' + id + "&reason=" + reason,
+        type: 'post',
+        success: function (result) {
+            successMessage('You have successfully rejected that done attach!');
+            location.href = FRONTEND_URL + "/article_list";
+        }
+    });
+
+}
+
+function rejectGovArticleDoneAttach() {
+    var id = $("#gov_article_id").val();
+    var reason = $("#reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/reject_gov_article_done_attach",
+        data: 'id=' + id + "&reason=" + reason,
+        type: 'post',
+        success: function (result) {
+            successMessage('You have successfully rejected that done attach!');
+            location.href = FRONTEND_URL + "/article_list";
+        }
+    });
+
 }
 
 function autoLoadPayment(gov_id) {
@@ -833,21 +867,21 @@ function autoLoadPayment(gov_id) {
             console.log(total);
             for (let i = 0; i < amount.length; i++) {
                 $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
+                    < li
+                          class= "list-group-item d-flex justify-content-between lh-condensed" >
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li>
-                  `);
+                      </li >
+                    `);
             }
             $('.fee_list').append(`
-                  <li class="list-group-item d-flex justify-content-between">
+                    < li class= "list-group-item d-flex justify-content-between" >
                       <span>Total (MMK)</span>
                       <span id="total">
                           - <strong>${total}</strong> MMK
                       </span>
-                  </li>
-              `);
+                  </li >
+                    `);
         }
     });
 }
@@ -877,21 +911,21 @@ function autoLoadPaymentResign(firm_id) {
             console.log(total);
             for (let i = 0; i < amount.length; i++) {
                 $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
+                    < li
+                          class= "list-group-item d-flex justify-content-between lh-condensed" >
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li>
-                  `);
+                      </li >
+                    `);
             }
             $('.fee_list').append(`
-                  <li class="list-group-item d-flex justify-content-between">
+                    < li class= "list-group-item d-flex justify-content-between" >
                       <span>Total (MMK)</span>
                       <span id="total">
                           - <strong>${total}</strong> MMK
                       </span>
-                  </li>
-              `);
+                  </li >
+                    `);
         }
     });
 }
@@ -921,21 +955,21 @@ function autoLoadPaymentFirm(firm_id) {
             console.log(total);
             for (let i = 0; i < amount.length; i++) {
                 $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
+                    < li
+                          class= "list-group-item d-flex justify-content-between lh-condensed" >
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li>
-                  `);
+                      </li >
+                    `);
             }
             $('.fee_list').append(`
-                  <li class="list-group-item d-flex justify-content-between">
+                    < li class= "list-group-item d-flex justify-content-between" >
                       <span>Total (MMK)</span>
                       <span id="total">
                           - <strong>${total}</strong> MMK
                       </span>
-                  </li>
-              `);
+                  </li >
+                    `);
         }
     });
 }
@@ -1055,11 +1089,11 @@ function loadResignArticle() {
                 $("#firm_education").hide();
                 $("#qt_education").show();
                 let lcl = JSON.parse(qualified_test.local_education);
-                lcl.map(lcl_edu => $('#add_qt_education').append(`<p>${lcl_edu}</p>`));
+                lcl.map(lcl_edu => $('#add_qt_education').append(`< p > ${lcl_edu}</p > `));
 
                 let certificate = JSON.parse(qualified_test.local_education_certificate);
                 $.each(certificate, function (fileCount, fileName) {
-                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+                    $(".certificate").append(`< a href = '${PDF_URL + fileName}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' > View Attach File</a > `);
 
                 })
             } else {
@@ -1067,7 +1101,7 @@ function loadResignArticle() {
                 let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                 $.each(certificate, function (fileCount, fileName) {
 
-                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+                    $(".certificate").append(`< a href = '${PDF_URL + fileName}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' > View Attach File</a > `);
 
                 })
             }
@@ -1081,13 +1115,13 @@ function loadResignArticle() {
             $("#recent_org").val(data.recent_org);
 
             document.getElementById('image').src = PDF_URL + student_info.image;
-            $(".nrc_front").append(`<a href='${PDF_URL + student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
-            $(".nrc_back").append(`<a href='${PDF_URL + student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            $(".nrc_front").append(`< a href = '${PDF_URL + student_info.nrc_front}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
+            $(".nrc_back").append(`< a href = '${PDF_URL + student_info.nrc_back}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank'  align = "center" > View Photo</a > `);
 
             if (data.resign_approve_file == "") {
                 $(".resign_approve_file").append(``);
             } else {
-                $(".resign_approve_file").append(`<a href='${PDF_URL + data.resign_approve_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+                $(".resign_approve_file").append(`< a href = '${PDF_URL + data.resign_approve_file}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
             }
 
             if (data.resign_status == 0) {
@@ -1262,9 +1296,9 @@ function loadEductaionHistoryByArticle(id) {
         success: function (result) {
             $.each(result.data, function (index, value) {
                 var tr = "<tr>";
-                tr += `<td>${index += 1}</td>`;
-                tr += `<td> ${value.degree_name} </td>`;
-                tr += `<td><a href='${PDF_URL + value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                tr += `< td > ${index += 1}</td > `;
+                tr += `< td > ${value.degree_name} </td > `;
+                tr += `< td > <a href='${PDF_URL + value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td > `;
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
             });
