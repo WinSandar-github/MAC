@@ -1437,8 +1437,8 @@ class CPAFFController extends Controller
                     }
                     foreach($invoice as $i){
                         return $i->status == "0"
-                            ? "Unpaid"
-                            : "Paid";
+                            ? "Incomplete"
+                            : "Complete";
                     }
                   })
                 ->addColumn('degree', function ($infos){

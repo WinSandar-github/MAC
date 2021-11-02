@@ -1009,8 +1009,8 @@ class PAPPController extends Controller
             }
             foreach($invoice as $i){
                 return $i->status == "0"
-                    ? "Unpaid"
-                    : "Paid";
+                    ? "Incomplete"
+                    : "Complete";
             }
           })
             // ->addColumn('type', function ($infos){
