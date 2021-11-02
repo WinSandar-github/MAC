@@ -95,9 +95,9 @@
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Register Date</th>
-                                                                <th class="bold-font-weight" >Expire Period Time</th>
+                                                                <!-- <th class="bold-font-weight" >Expire Period Time</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight" >Payment Status</th>
+                                                                <!-- <th class="bold-font-weight" >Payment Status</th> -->
                                                                 <th class="bold-font-weight" >Remark</th>
                                                             </tr>
                                                         </thead>
@@ -322,9 +322,9 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
-                {data: 'payment_date', name: 'payment_date'},
+                // {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_status', name: 'payment_status'},
+                // {data: 'payment_status', name: 'payment_status'},
                 {data: 'reason', name: 'reason'},
             ],
             

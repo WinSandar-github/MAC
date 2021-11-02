@@ -626,7 +626,7 @@ function loadEductaionHistory(id,status){
                     tr += "</tr>";
                     $("#tbl_degree_body").append(tr);
                 });
-                createDataTable('#tbl_degree');
+                createDataTableWithAsc('#tbl_degree');
             }
         });
     }else{
@@ -644,7 +644,7 @@ function loadEductaionHistory(id,status){
                     $("#tbl_degree_body").append(tr);
                 });
                 
-                createDataTable('#tbl_degree');
+                createDataTableWithAsc('#tbl_degree');
             }
         });
     }
@@ -892,7 +892,7 @@ function loadEductaionHistoryByRenew(id){
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
             });
-            createDataTable('#tbl_degree');
+            createDataTableWithAsc('#tbl_degree');
         }
     });
     

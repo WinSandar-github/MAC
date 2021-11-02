@@ -148,14 +148,25 @@ function updateContractDate(info) {
     $("#article_form_type").val(info.article_form_type);
 }
 
-function showArticle(id) {
-    localStorage.setItem("article_id", id);
-    location.href = FRONTEND_URL + "/article_show";
+function showArticle(id){
+    localStorage.setItem("article_id",id);
+    location.href=FRONTEND_URL+"/article_show";
+    
 }
 
-function loadArticle() {
-    var id = localStorage.getItem("article_id");
+function loadArticle()
+{
+    let result = window.location.href;
+    let url = new URL(result);
+    let offline_user = url.searchParams.get("offline_user");
+    if(offline_user=="true"){
+        var id = url.searchParams.get("id");
+        $('#offline_user').val("true");
+    }else{
+        var id = localStorage.getItem("article_id");
+    }
     $("input[name = article_id]").val(id);
+
     $.ajax({
         url: BACKEND_URL + "/acc_app/" + id,
         type: 'get',
@@ -518,17 +529,32 @@ function approveArticle() {
     if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
-    else {
-        var id = $("input[name = article_id]").val();
-        console.log(id);
+    else{
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+        
         $.ajax({
             url: BACKEND_URL + "/approve_article/" + id,
             type: 'patch',
             success: function (result) {
                 successMessage("You have approved that user!");
-                setInterval(() => {
-                    location.href = FRONTEND_URL + "/article_list";
-                }, 3000);
+                
+                    setInterval(() => {
+                        if(offline_user=="true"){
+                            location.href = FRONTEND_URL + "/offline_user";
+                        }else{
+                            location.href = FRONTEND_URL + "/article_list";
+                        }
+                    }, 3000);
+                
+                    
+                
             }
         });
     }
@@ -561,8 +587,15 @@ function approveDoneArticle() {
     if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
-    else {
-        var id = $("input[name = article_id]").val();
+    else{
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
 
         $.ajax({
             url: BACKEND_URL + "/approve_done_article/" + id,
@@ -570,7 +603,11 @@ function approveDoneArticle() {
             success: function (result) {
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                    location.href = FRONTEND_URL + "/article_list";
+                    if(offline_user=="true"){
+                        location.href = FRONTEND_URL + "/offline_user";
+                    }else{
+                        location.href = FRONTEND_URL + "/article_list";
+                    }
                 }, 3000);
             }
         });
@@ -611,9 +648,9 @@ function showPaymentInfoResign(info) {
     autoLoadPaymentResign(info.id);
 }
 
-function showPaymentInfoFirm(info) {
-    $("#payment_detail_modal").modal('show');
-    autoLoadPaymentFirm(info.id);
+function showPaymentInfoFirm(info){
+  $("#payment_detail_modal").modal('show');
+  autoLoadPaymentFirm(info.article_form_type+info.id);
 }
 
 function updateGovContractDate(info) {
@@ -950,33 +987,33 @@ function autoLoadPaymentResign(firm_id) {
     });
 }
 
-function autoLoadPaymentFirm(firm_id) {
+function autoLoadPaymentFirm(firm_id){
     $("#payment_detail_modal").find(".fee_list").html('');
-    $.ajax({
-        url: BACKEND_URL + "/get_payment_info/" + 'c12',
-        type: 'get',
-        success: function (result) {
-            console.log("firm aricle", result);
+  $.ajax({
+          url: BACKEND_URL + "/get_payment_info/" + firm_id,
+          type: 'get',
+          success: function (result) {
+              console.log("firm aricle",result);
 
-            if (result.status == 0) {
-                $('#payment_status').append("Pending");
-                $('#payment_status').addClass("text-warning");
-            }
-            else {
-                $('#payment_status').append("Paid");
-                $('#payment_status').addClass("text-success");
-            }
-            var productDesc = result.productDesc.split(",");
-            var amount = result.amount.split(",");
-            var total = 0;
-            for (var i in amount) {
-                total += parseInt(amount[i]);
-            }
-            console.log(total);
-            for (let i = 0; i < amount.length; i++) {
-                $('.fee_list').append(`
-                    < li
-                          class= "list-group-item d-flex justify-content-between lh-condensed" >
+              if(result.status==0){
+                  $('#payment_status').append("Pending");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Paid");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
                       </li >
@@ -1303,7 +1340,12 @@ function createDoneFormLink() {
         type: 'patch',
         success: function (result) {
             successMessage("Create download link!");
-            location.href = FRONTEND_URL + "/article_list";
+            if($('#offline_user').val()){
+                location.href = FRONTEND_URL + "/offline_user";
+            }else{
+                location.href = FRONTEND_URL + "/article_list";
+            }
+            
         }
     });
 }
@@ -1335,7 +1377,7 @@ function loadEductaionHistoryByArticle(id) {
                 $("#tbl_degree_body").append(tr);
             });
 
-            createDataTable('#tbl_degree');
+            createDataTableWithAsc('#tbl_degree');
         }
     });
 }
