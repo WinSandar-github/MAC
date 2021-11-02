@@ -32,7 +32,9 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return "index";
+        $app_acc = ApprenticeAccountant::get();
+        return $app_acc[0]->mentor;
+
     }
 
     public function show($id)
@@ -185,11 +187,11 @@ class ArticleController extends Controller
          //invoice
          $invoice = new Invoice();
          $invoice->student_info_id = $std_info->id;
- 
+
          $invoice->name_eng        = $request->name_eng;
          $invoice->email           = $request->email;
          $invoice->phone           = $request->phone;
- 
+
          $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
          $invoice->productDesc     = 'Registration Fee, Article Registration Form';
          $invoice->amount          = '5000';
@@ -319,10 +321,10 @@ class ArticleController extends Controller
               $invoice_status = Invoice::where('invoiceNo',$infos->article_form_type.$infos->id)->select('status')->get();
               foreach($invoice_status as $value){
                 if($value->status == '0' ){
-                  return "<span class='pending'>Payment Incomplete</span>";
+                  return "<span class='pending'>Incomplete</span>";
                 }
                 else{
-                  return "<span class='approve'>Payment Success</span>";
+                  return "<span class='approve'>Complete</span>";
                 }
               }
 
@@ -812,10 +814,10 @@ class ArticleController extends Controller
               $invoice_status = Invoice::where('invoiceNo','gov'.$infos->id)->select('status')->get();
               foreach($invoice_status as $value){
                 if($value->status == '0' ){
-                  return "<span class='pending'>Payment Incomplete</span>";
+                  return "<span class='pending'>Incomplete</span>";
                 }
                 else{
-                  return "<span class='approve'>Payment Success</span>";
+                  return "<span class='approve'>Complete</span>";
                 }
               }
 
@@ -1191,10 +1193,10 @@ class ArticleController extends Controller
               $invoice_status = Invoice::where('invoiceNo','resign'.$infos->id)->select('status')->get();
               foreach($invoice_status as $value){
                 if($value->status == '0' ){
-                  return "<span class='pending'>Payment Incomplete</span>";
+                  return "<span class='pending'>Incomplete</span>";
                 }
                 else{
-                  return "<span class='approve'>Payment Success</span>";
+                  return "<span class='approve'>Complete</span>";
                 }
               }
 

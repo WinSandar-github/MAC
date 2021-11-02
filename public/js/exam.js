@@ -299,3 +299,24 @@ function createExamRoom() {
 
 
 }
+
+function getExcelTitleName() {
+    let student_type = $('#student_type').val();
+
+    switch (student_type) {
+        case "0":
+            return "ကိုယ်တိုင်လေ့လာဖြေဆိုမည့်သင်တန်းသားအဖြစ် စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+            break;
+        case "1":
+            return "ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင် စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+            break;
+        case "2":
+            return "မြန်မာစာရင်းကောင်စီတွင် စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+            break;
+        default:
+            return "စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+
+    }
+
+
+}

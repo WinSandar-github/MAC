@@ -16,7 +16,7 @@
         </div>
 
         <div class="row" id="printdiv">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center cpy_print">
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -190,6 +190,8 @@
     function PrintExamCard(){
         var backup=document.body.innerHTML;
         document.getElementById("print_btn").remove();
+        var $el = $('.cpy_print').clone();
+            $('#printdiv').append($el);
         var divcontent=document.getElementById("printdiv").innerHTML;
         document.body.innerHTML=divcontent;
         window.print();

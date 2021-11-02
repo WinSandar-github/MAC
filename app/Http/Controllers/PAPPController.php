@@ -1009,8 +1009,8 @@ class PAPPController extends Controller
             }
             foreach($invoice as $i){
                 return $i->status == "0"
-                    ? "Unpaid"
-                    : "Paid";
+                    ? "Incomplete"
+                    : "Complete";
             }
           })
             // ->addColumn('type', function ($infos){
@@ -1635,52 +1635,65 @@ class PAPPController extends Controller
             $cpa_ff->old_card_file    =   $cpa_ff->old_card_file;
         }
         $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
-        if ($request->hasfile('cpa')) {
-            $cpa_file = $request->file('cpa');
-            $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
-            $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
-            $cpa = '/storage/student_papp/'.$cpa_name;
-
-            $cpa_ff->cpa              =   $cpa;
-
-            $papp->cpa                          =   $cpa;
-        }
-        else{
-            $cpa_ff->cpa              =   $cpa_ff->cpa  ;
-            
-            $papp->cpa                          =  $papp->cpa     ;
-        }
-
-        if ($request->hasfile('ra')) {
-            $ra_file = $request->file('ra');
-            $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
-            $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
-            $ra = '/storage/student_papp/'.$ra_name;
-
-            $cpa_ff->ra               =   $ra;
-            $papp->ra                           =   $ra;
-        }
-        else{
-            $cpa_ff->ra               =   $cpa_ff->ra   ;
-            $papp->ra                           =   $papp->ra  ;
-        }
-
-        if($request->hasfile('degree_file'))
+        if(!$request->hasfile('cpa') && !$request->hasfile('ra') && !$request->hasfile('degree_file'))
         {
-            foreach($request->file('degree_file') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_papp/',$name);
-                $degree[] = '/storage/student_papp/'.$name;
-            }
-            $papp->foreign_degree     =   json_encode($degree);
-            $cpa_ff->foreign_degree   =   json_encode($degree);
-        }
-        else{
+            // $cpa= $initial_cpaff->cpa;
+            // $ra= $initial_cpaff->ra;
+            // $degree_name=$initial_cpaff->degree_name;
+            // $degree_pass_year=$initial_cpaff->degree_pass_year;
+            // $degree_file_json=$initial_cpaff->foreign_degree;
+            $cpa_ff->cpa              =   $cpa_ff->cpa  ;            
+            $papp->cpa                =  $papp->cpa     ;
+            $cpa_ff->ra               =   $cpa_ff->ra   ;
+            $papp->ra                 =   $papp->ra  ;
             $papp->foreign_degree     =   $papp->foreign_degree ;
             $cpa_ff->foreign_degree   =   $cpa_ff->foreign_degree;
         }
-        
+        else{
+            if ($request->hasfile('cpa')) {
+                $cpa_file = $request->file('cpa');
+                $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
+                $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
+                $cpa = '/storage/student_papp/'.$cpa_name;
+
+                $cpa_ff->cpa              =   $cpa;
+                $papp->cpa                =   $cpa;
+            }
+            else{
+                $cpa_ff->cpa              =   null  ;                
+                $papp->cpa                =  null ;
+            }
+
+            if ($request->hasfile('ra')) {
+                $ra_file = $request->file('ra');
+                $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
+                $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
+                $ra = '/storage/student_papp/'.$ra_name;
+
+                $cpa_ff->ra               =   $ra;
+                $papp->ra                 =   $ra;
+            }
+            else{
+                $cpa_ff->ra               =   null;
+                $papp->ra                 =   null;
+            }
+
+            if($request->hasfile('degree_file'))
+            {
+                foreach($request->file('degree_file') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_papp/',$name);
+                    $degree[] = '/storage/student_papp/'.$name;
+                }
+                $papp->foreign_degree     =   json_encode($degree);
+                $cpa_ff->foreign_degree   =   json_encode($degree);
+            }
+            else{
+                $papp->foreign_degree     =   null ;
+                $cpa_ff->foreign_degree   =   null;
+            }
+        }
         if ($request->hasfile('cpa_certificate')) {
             $file = $request->file('cpa_certificate');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();

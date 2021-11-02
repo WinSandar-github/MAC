@@ -666,13 +666,13 @@
         type: 'get',
         success: function (result) {
             if(result.status==0){
-                $('#payment_status').append("Unpaid");
+                $('#payment_status').append("Incomplete");
             }
             else if(result.status=='AP'){
-                $('#payment_status').append("Paid");
+                $('#payment_status').append("Complete");
             }
             else{
-                $('#payment_status').append("-");
+                $('#payment_status').append("Incomplete");
             }
             var productDesc = result.productDesc.split(",");
             var amount = result.amount.split(",");
