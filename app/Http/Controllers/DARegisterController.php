@@ -589,7 +589,7 @@ class DARegisterController extends Controller
                 }
                 
                 // info of da 2 pass info in da2 existing form
-                if($request->batch_id){ 
+                if($request->batch_id!="null"){ 
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->batch_id;
@@ -632,6 +632,19 @@ class DARegisterController extends Controller
                     // $exam_register->passed_personal_no  = $request->da_two_pass_personal_no;
                     $exam_register->save();
     
+                }
+                else{
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->type_active_da2;
+                    $student_course->mac_type        = $request->da_two_active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
                 }
                 
             }
