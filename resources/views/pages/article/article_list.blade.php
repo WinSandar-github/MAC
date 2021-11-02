@@ -61,6 +61,9 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -82,6 +85,9 @@
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Duty Report Date </th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_firm_article_approved_body" class="hoverTable text-left">
@@ -100,6 +106,9 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight"  style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -138,6 +147,8 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -158,6 +169,8 @@
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -177,6 +190,8 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -215,6 +230,7 @@
                                                             <th class="bold-font-weight" >Resign Fee</th>
                                                             <th class="bold-font-weight" >Resign Date</th>
                                                             <th class="bold-font-weight" >Net Experience</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -235,6 +251,7 @@
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Resign Date</th>
                                                             <th class="bold-font-weight" >Net Experience</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -254,6 +271,7 @@
                                                             <th class="bold-font-weight" >Resign Fee</th>
                                                             <th class="bold-font-weight" >Resign Date</th>
                                                             <th class="bold-font-weight" >Net Experience</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -658,13 +676,16 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         //$('#tbl_firm_article_pending').DataTable().column(6).visible(false);
-        $('#tbl_firm_article_pending').DataTable().column(8).visible(false);
+        //$('#tbl_firm_article_pending').DataTable().column(8).visible(false);
 
 
         var table_approve =$('#tbl_firm_article_approved').DataTable({
@@ -695,6 +716,9 @@
                 {data: 'payment_status', name: 'payment_status'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -726,13 +750,16 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         $('#tbl_firm_article_rejected').DataTable().column(6).visible(false);
-        $('#tbl_firm_article_rejected').DataTable().column(8).visible(false);
+        //$('#tbl_firm_article_rejected').DataTable().column(8).visible(false);
 
         //Gov Article
         var table_pending = $('#tbl_gov_article_pending').DataTable({
@@ -761,13 +788,15 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         //$('#tbl_gov_article_pending').DataTable().column(6).visible(false);
-        $('#tbl_gov_article_pending').DataTable().column(8).visible(false);
+        $('#tbl_gov_article_pending').DataTable().column(10).visible(false);
 
         var table_approve =$('#tbl_gov_article_approved').DataTable({
             scrollX: true,
@@ -796,6 +825,8 @@
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'payment_status', name: 'payment_status'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -828,13 +859,15 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         $('#tbl_gov_article_rejected').DataTable().column(6).visible(false);
-        $('#tbl_gov_article_rejected').DataTable().column(8).visible(false);
+        $('#tbl_gov_article_rejected').DataTable().column(10).visible(false);
 
         //Resign Article
         var table_pending = $('#tbl_resign_article_pending').DataTable({
@@ -863,6 +896,7 @@
                 {data: 'resign_fee', name: 'resign_fee'},
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -895,6 +929,7 @@
                 {data: 'payment_status', name: 'payment_status'},
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -928,6 +963,7 @@
                 {data: 'resign_fee', name: 'resign_fee'},
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
