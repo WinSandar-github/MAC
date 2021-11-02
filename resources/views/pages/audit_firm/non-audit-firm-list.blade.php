@@ -109,6 +109,7 @@
 																											<th class="bold-font-weight">Telephone</th>
 																											<th class="bold-font-weight">Email</th>
 																											<th class="bold-font-weight">Website</th>
+																											<th class="bold-font-weight">Payment Status</th>
 																											<th class="bold-font-weight">Status</th>
 
 																									</tr>
@@ -203,6 +204,7 @@
 																											<th class="bold-font-weight">Telephone</th>
 																											<th class="bold-font-weight">Email</th>
 																											<th class="bold-font-weight">Website</th>
+																											<th class="bold-font-weight">Payment Status</th>
 																											<th class="bold-font-weight">Status</th>
 
 																									</tr>
@@ -335,6 +337,7 @@
 						{data: 'telephones', name: 'Telephone'},
 						{data: 'h_email', name: 'H Email'},
 						{data: 'website', name: 'Website'},
+						{data: 'payment_status', name: 'Payment Status'},
 						{data: 'status', name: 'Status'},
 					],
 					"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -360,6 +363,7 @@
 						{data: 'telephones', name: 'Telephone'},
 						{data: 'h_email', name: 'H Email'},
 						{data: 'website', name: 'Website'},
+						{data: 'payment_status', name: 'Payment Status'},
 						{data: 'status', name: 'Status'},
 					],
 					"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
