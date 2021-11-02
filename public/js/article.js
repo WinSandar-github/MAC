@@ -325,7 +325,12 @@ function loadArticle()
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#c2_mentor_name").val(data.mentor_id);
+                    }
                     $('#previous_papp_name_row').show();
                     $('#previous_papp_date_row').show();
                     $("#previous_papp_name").val(data.ex_papp);
@@ -345,7 +350,12 @@ function loadArticle()
                         $("#previous_lab").text('၁၅။');
                         $("#exam_pass_date_label").text('၁၆။');
                         $("#papp_name").val(data.request_papp);
-                        $("#mentor_name").val(data?.mentor?.name_eng);
+                        if(data.mentor!=null){
+                            $("#mentor_name").val(data?.mentor?.name_eng);
+                        }
+                        else{
+                            $("#mentor_name").val(data.mentor_id);
+                        }
                     
                 }
 
@@ -374,7 +384,12 @@ function loadArticle()
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#c2_mentor_name").val(data.mentor_id);
+                    }
                     $('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
@@ -388,7 +403,12 @@ function loadArticle()
 
                 }else{
                     $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#mentor_name").val(data.mentor_id);
+                    }
                 }
 
             }
