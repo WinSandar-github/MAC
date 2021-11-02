@@ -541,7 +541,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
+                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('get_certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
                                     <li class='fa fa-file-text-o fa-sm'></li>
                                 </a>
                             </div>";
@@ -560,7 +560,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
+                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('get_certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
                                     <li class='fa fa-file-text-o fa-sm'></li>
                                 </a>
                             </div>";
@@ -579,7 +579,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
+                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('get_certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
                                     <li class='fa fa-file-text-o fa-sm'></li>
                                 </a>
                             </div>";
@@ -597,7 +597,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
+                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('get_certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
                                     <li class='fa fa-file-text-o fa-sm'></li>
                                 </a>
                             </div>";

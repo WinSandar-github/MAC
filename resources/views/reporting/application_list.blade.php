@@ -33,16 +33,16 @@
                                         <label class="">
                                             <input class="form-check-input module_one" type="radio" name="filter"
                                                    value="{{ $filter }}">
-                                            <span class="form-check-sign"></span>
+                                            <span class="form-check-sign"></span    >
                                             {{ $filter }}
                                         </label>
                                     </div>
                                 @endforeach
                             @endif
                         </div>
-
+                    
                         <div class="col-md-6 pl-2">
-                            @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
+                            @if($currend_date > $data['batch']->mac_reg_end_date)
                                 
                                     <button onclick="generateAppSrNo('{{$data['course']->code}}')"
                                             class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်

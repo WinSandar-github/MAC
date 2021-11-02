@@ -19,9 +19,10 @@ class CpaQualifiedReportController extends Controller
 {
     public function cpaQualifiedList(Request $request)
     {
-         
+         return $request->date;
         $student = QualifiedTest::with('student_info')
                    ->where('approve_reject_status',0)
+                   ->whereYear('')
                    ->get();
 
         $data = [
