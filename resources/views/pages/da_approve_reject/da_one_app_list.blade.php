@@ -83,12 +83,13 @@
                                         <thead>
                                         <tr>
                                             <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight">Action</th>
+                                            <th class="bold-font-weight">Action</th>                                            
                                             <th class="bold-font-weight">Student Name</th>
                                             <th class="bold-font-weight">Batch Number</th>
                                             <th class="bold-font-weight">Email</th>
                                             <th class="bold-font-weight">Phone Number</th>
                                             <th class="bold-font-weight">NRC</th>
+                                            <th class="bold-font-weight">Payment Status</th>
                                             <th class="bold-font-weight">Status</th>
 
                                         </tr>
@@ -103,12 +104,13 @@
                                         <thead>
                                         <tr>
                                             <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight">Action</th>
+                                            <th class="bold-font-weight">Action</th>                                            
                                             <th class="bold-font-weight">Student Name</th>
                                             <th class="bold-font-weight">Batch Number</th>
                                             <th class="bold-font-weight">Email</th>
                                             <th class="bold-font-weight">Phone Number</th>
                                             <th class="bold-font-weight">NRC</th>
+                                            <th class="bold-font-weight">Payment Status</th>
                                             <th class="bold-font-weight">Status</th>
                                         </tr>
                                         </thead>
@@ -188,6 +190,7 @@
                     {data: 'student_info.email', name: 'Email'},
                     {data: 'student_info.phone', name: 'Phone Number'},
                     {data: 'nrc', name: 'NRC'},
+                    {data: 'payment_status', name: 'Payment Status'},
                     {data: 'status', name: 'Status'},
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

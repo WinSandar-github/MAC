@@ -660,7 +660,7 @@ class CpaTraAddmissionDirectController extends Controller
         $date = date('d-M-Y');;
         $course_date = date('Y-m-d');
         $invoice_date = date('d-M-Y');
-
+       
         try {
             $student_info = new StudentInfo();
             if($request->cpa_one_pass_personal_no || $request->cpa_two_pass_personal_no){
@@ -757,9 +757,9 @@ class CpaTraAddmissionDirectController extends Controller
                     // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                     $exam_register->save();
                 }
-
-                if($request->batch_id){ 
-
+           
+                if($request->batch_id !== "null"){ 
+                   
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->batch_id;
@@ -1067,7 +1067,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->save();
                 }
 
-                if($request->batch_id){ 
+                if($request->batch_id !== "null"){ 
 
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;

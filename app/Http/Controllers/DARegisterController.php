@@ -589,7 +589,7 @@ class DARegisterController extends Controller
                 }
                 
                 // info of da 2 pass info in da2 existing form
-                if($request->batch_id){ 
+                if($request->batch_id !== "null"){ 
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->batch_id;
@@ -1012,8 +1012,9 @@ class DARegisterController extends Controller
                             // }
                             //$q->where('offline_user', 1);
                             $q->where('course_type_id', $request->course_type_id);
+                            $q->where('approve_reject_status','=',$request->status);
                         })
-                        ->where('student_course_regs.approve_reject_status','=', $request->status)  
+                        // ->where('student_course_regs.approve_reject_status','=', $request->status)  
                         ->where('qt_entry','=',0)                      
                         ->where('offline_user','=',1)
                         ->get();
