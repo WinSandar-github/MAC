@@ -4647,27 +4647,5 @@ class AccFirmInfController extends Controller
       ]);
     }
 
-    // public function checkOfflinePAPP($reg_no,$status)
-    // {
-    //   if($status == 0){
-    //     // for initial users
-    //     $papp = Papp::where('papp_reg_no',$reg_no)
-    //                 ->where('offline_user',1)
-    //                 ->with('student_info','student_job', 'student_education_histroy','student_register')
-    //                 ->get();
-    //     return response()->json([
-    //         'data'  => $papp
-    //     ]);
-    //   }
-    //   else{
-    //     // for offline users
-    //     $papp = Papp::where('papp_reg_no',$reg_no)
-    //                 ->where('offline_user',1)
-    //                 ->with('student_info','student_job', 'student_education_histroy','student_register')
-    //                 ->get();
-    //     return response()->json([
-    //         'data'  => $papp
-    //     ]);
-    //   }
-    // }
+
 }

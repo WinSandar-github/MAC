@@ -172,18 +172,22 @@ function loadQualifiedTestDetail(id) {
 
 
 function approveQT() {
-    var id = $("input[name = qt_id]").val();
+    if(!confirm('Are you sure you want to approve this user?')){
+        return;
+    }else{
+        var id = $("input[name = qt_id]").val();
 
-    $.ajax({
-        url: FRONTEND_URL + "/approve_qt/" + id,
-        type: 'PATCH',
-        success: function (result) {
+        $.ajax({
+            url: FRONTEND_URL + "/approve_qt/" + id,
+            type: 'PATCH',
+            success: function (result) {
 
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/qualified_test_list";
-            getExam();
-        }
-    });
+                successMessage("You have approved that form!");
+                location.href = FRONTEND_URL + "/qualified_test_list";
+                getExam();
+            }
+        });
+    } 
 }
 
 function rejectQT() {
