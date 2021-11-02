@@ -36,6 +36,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('resign_date')->nullable();
             $table->string('resign_reason')->nullable();
             $table->string('recent_org')->nullable();
+            $table->text('office_order_attach')->nullable();
             $table->text('resign_approve_file')->nullable();
             $table->boolean('resign_status')->default(0);
             $table->string('approve_resign_date')->nullable();
