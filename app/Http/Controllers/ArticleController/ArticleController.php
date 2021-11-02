@@ -315,6 +315,26 @@ class ArticleController extends Controller
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfoFirm($infos)'>View Payment</button>";
             })
 
+            ->addColumn('contract_start', function ($infos){
+                return $infos->contract_start_date;
+            })
+
+            ->addColumn('contract_end', function ($infos){
+                return $infos->contract_end_date;
+            })
+
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              if($mentor_name){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
+              }
+            })
+
             ->addColumn('payment_status', function ($infos){
               $invoice_status = Invoice::where('invoiceNo',$infos->article_form_type.$infos->id)->select('status')->get();
               foreach($invoice_status as $value){
@@ -398,7 +418,7 @@ class ArticleController extends Controller
                     </div>";
                 }
             });
-            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
+            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end','mentor_name'])->make(true);
             return $datatable;
     }
 
@@ -490,8 +510,13 @@ class ArticleController extends Controller
             })
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              foreach($mentor_name as $val){
-                return $val->name_eng;
+              if($mentor_name){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
               }
             })
             ->addColumn('phone_no', function ($infos){
@@ -807,6 +832,35 @@ class ArticleController extends Controller
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfo($infos)'>View Payment</button>";
             })
 
+            ->addColumn('contract_start', function ($infos){
+                if($infos->contract_start_date){
+                  return $infos->contract_start_date;
+                }
+                else{
+                  return "-";
+                }
+            })
+
+            ->addColumn('contract_end', function ($infos){
+                if($infos->contract_end_date){
+                  return $infos->contract_end_date;
+                }
+                else{
+                  return "-";
+                }
+            })
+
+            // ->addColumn('mentor_name', function ($infos){
+            //   $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+            //   if($mentor_name){
+            //     foreach($mentor_name as $val){
+            //       return $val->name_eng;
+            //     }
+            //   }
+            //   else{
+            //     return $infos->mentor_id;
+            //   }
+            // })
 
             ->addColumn('payment_status', function ($infos){
               $invoice_status = Invoice::where('invoiceNo','gov'.$infos->id)->select('status')->get();
@@ -868,7 +922,7 @@ class ArticleController extends Controller
                 </div>";
             }
         });
-        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
+        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end'])->make(true);
         return $datatable;
     }
 
@@ -1150,7 +1204,7 @@ class ArticleController extends Controller
                 }
             }
         }
-        
+
         $article_type = "resign";
         $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
@@ -1214,11 +1268,31 @@ class ArticleController extends Controller
                 return "N/A";
             })
 
+            // ->addColumn('contract_start', function ($infos){
+            //     return $infos->contract_start_date;
+            // })
+            //
+            // ->addColumn('contract_end', function ($infos){
+            //     return $infos->contract_end_date;
+            // })
+
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              if($mentor_name){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
+              }
+            })
+
             ->addColumn('resign_date', function ($infos){
                 return $infos->resign_date;
             });
 
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status','mentor_name'])->make(true);
             return $datatable;
     }
 
@@ -1299,8 +1373,13 @@ class ArticleController extends Controller
                 $mentor_name = Mentor::where('id',$infos->mentor_id)
                                      ->select('name_eng')
                                      ->get();
-                foreach($mentor_name as $val){
-                  return $val->name_eng;
+                if($mentor_name){
+                  foreach($mentor_name as $val){
+                    return $val->name_eng;
+                  }
+                }
+                else{
+                  return $infos->mentor_id;
                 }
               }
             })

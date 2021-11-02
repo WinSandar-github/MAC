@@ -346,7 +346,7 @@ function loadArticle()
                         $("#exam_pass_date_label").text('၁၆။');
                         $("#papp_name").val(data.request_papp);
                         $("#mentor_name").val(data?.mentor?.name_eng);
-                    
+
                 }
 
 
@@ -435,16 +435,16 @@ function loadArticle()
                     $("#leave_request_body").append(tr);
                 }
             })
-			$('#leave_request_table').DataTable({
-				'destroy': true,
-				'paging': true,
-				'lengthChange': false,
-				"pageLength": 5,
-				'searching': false,
-				'info': false,
-				'autoWidth': true,
-				"scrollX": false,
-			});
+      			$('#leave_request_table').DataTable({
+      				'destroy': true,
+      				'paging': true,
+      				'lengthChange': false,
+      				"pageLength": 5,
+      				'searching': false,
+      				'info': false,
+      				'autoWidth': true,
+      				"scrollX": false,
+      			});
 
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
@@ -493,6 +493,7 @@ function loadArticle()
 
             }
 
+            autoLoadPaymentFirm(data.id,article_form_type); // load firm payment infos
         }
     });
 }
@@ -600,7 +601,7 @@ function showPaymentInfoResign(info){
 
 function showPaymentInfoFirm(info){
   $("#payment_detail_modal").modal('show');
-  autoLoadPaymentFirm(info.id);
+  autoLoadPaymentFirm(info.id,info.article_form_type);
 }
 
 function updateGovContractDate(info){
@@ -832,7 +833,7 @@ function rejectArticleDoneAttach(){
             location.href = FRONTEND_URL + "/article_list";
         }
     });
-    
+
   }
 
   function rejectGovArticleDoneAttach(){
@@ -847,7 +848,7 @@ function rejectArticleDoneAttach(){
             location.href = FRONTEND_URL + "/article_list";
         }
     });
-    
+
   }
 
 function autoLoadPayment(gov_id){
@@ -860,11 +861,11 @@ function autoLoadPayment(gov_id){
               console.log("gov aricle",result);
 
               if(result.status==0){
-                  $('#payment_status').append("Pending");
+                  $('#payment_status').append("Incomplete");
                   $('#payment_status').addClass("text-warning");
               }
               else{
-                  $('#payment_status').append("Paid");
+                  $('#payment_status').append("Complete");
                   $('#payment_status').addClass("text-success");
               }
               var productDesc = result.productDesc.split(",");
@@ -895,20 +896,20 @@ function autoLoadPayment(gov_id){
       });
 }
 
-function autoLoadPaymentResign(firm_id){
+function autoLoadPaymentResign(resign_id){
   $("#payment_detail_modal").find(".fee_list").html('');
   $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + 'resign'+firm_id,
+          url: BACKEND_URL + "/get_payment_info/" + 'resign'+resign_id,
           type: 'get',
           success: function (result) {
               console.log("gov aricle",result);
 
               if(result.status==0){
-                  $('#payment_status').append("Pending");
+                  $('#payment_status').append("Incomplete");
                   $('#payment_status').addClass("text-warning");
               }
               else{
-                  $('#payment_status').append("Paid");
+                  $('#payment_status').append("Complete");
                   $('#payment_status').addClass("text-success");
               }
               var productDesc = result.productDesc.split(",");
@@ -939,20 +940,21 @@ function autoLoadPaymentResign(firm_id){
       });
 }
 
-function autoLoadPaymentFirm(firm_id){
+function autoLoadPaymentFirm(firm_id,form_type){
   $("#payment_detail_modal").find(".fee_list").html('');
   $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + 'c12',
+          url: BACKEND_URL + "/get_payment_info/" + form_type + firm_id,
           type: 'get',
           success: function (result) {
               console.log("firm aricle",result);
 
               if(result.status==0){
-                  $('#payment_status').append("Pending");
+                console.log("****",result.status);
+                  $('#payment_status').append("Incomplete");
                   $('#payment_status').addClass("text-warning");
               }
               else{
-                  $('#payment_status').append("Paid");
+                  $('#payment_status').append("Complete");
                   $('#payment_status').addClass("text-success");
               }
               var productDesc = result.productDesc.split(",");
