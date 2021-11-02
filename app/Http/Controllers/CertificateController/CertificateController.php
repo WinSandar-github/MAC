@@ -375,7 +375,7 @@ class CertificateController extends Controller
                 ->select('st.name_mm','st.name_eng', 'st.nrc_state_region', 'st.nrc_township','b.number as batch_number',
                         'st.nrc_citizen', 'st.nrc_number', 'st.father_name_mm','st.father_name_mm','st.father_name_mm','st.father_name_eng',
                         'ex.result', 'er.date', 'er.grade', 'c.name_mm as course_name_mm','c.name as course_name_eng', 'b.name_mm as batch_name'
-                        ,'er.passed_level','b.number as batch_number','st.gender'
+                        ,'er.passed_level','b.number as batch_number','st.gender','st.personal_no','st.cpersonal_no'
                         )
                 ->first();
  
@@ -384,14 +384,14 @@ class CertificateController extends Controller
             return "<h1 style='color:red;'>Selected User not found in Database.</h1>";
         }
 
-        list($exam_month, $exam_year) = explode('-', $student->date ?? "Jan-2021");
+      
+        list($exam_date,$exam_month, $exam_year) = explode('-', $student->date ?? "02-Jan-2021");
 
         list($curYear, $curMth, $curDay) = explode('-', date('Y-M-d'));
 
-        $da_cpa_card = $req->course_code == "da_2" ? 'da_card' : "cpa_card";
-        $template = DB::table('certificates')->where('cert_code', '=', $da_cpa_card)->first();
-   
-
+        // $da_cpa_card = $req->course_code == "da_2" ? 'da_card' : "cpa_card";
+        $template = DB::table('certificates')->where('cert_code', '=', "da_card")->first();
+        
         $template->cert_data = str_replace('{{ batch_num_mm }}', "<strong> $student->batch_number </strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ batch_num_eng }}', "<strong>". $this->en2mmNumber($student->batch_number)." </strong>", $template->cert_data);
 
@@ -421,8 +421,11 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ child_mm }}', "<strong>". $this->gender2child($student->gender,"mm") . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ child_eng }}', "<strong>". $this->gender2child($student->gender,"eng") . "</strong>", $template->cert_data);
         
-        $template->cert_data = str_replace('{{ roll_number_mm }}', "<strong>". $this->en2mmNumber($student->passed_level) . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ roll_number_eng }}', "<strong>". $student->passed_level . "</strong>", $template->cert_data);
+        $personal_no_mm = $req->course_code == "da_2" ? $this->en2mmNumber($student->personal_no) : $this->en2mmNumber($student->cpersonal_no);
+        $personal_no_eng = $req->course_code == "da_2" ? $student->personal_no : $student->cpersonal_no;
+
+        $template->cert_data = str_replace('{{ roll_number_mm }}', "<strong>". $personal_no_mm . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ roll_number_eng }}', "<strong>". $personal_no_eng . "</strong>", $template->cert_data);
          
 
         
@@ -438,7 +441,7 @@ class CertificateController extends Controller
 
         $className = 'border-style';
 
-        
+                
         return view('certificate.complete_certificate', compact('template', 'className','student'));
     }
 

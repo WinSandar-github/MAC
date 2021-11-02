@@ -831,13 +831,13 @@ class CertificateSeeder extends Seeder
                             {{ father_name_mm }} ၏ {{ child_mm }} {{ studentName_mm }} 
                             (နိုင်ငံသားစိစစ်ရေးကတ်အမှတ် {{ nrcNumber_mm }}) 
                             သည် {{ examYear }} ခုနှစ်၊ {{ examMonth }} အတွင်း ကျင်းပခဲ့သော {{ courseName_mm }}
-                            စာမေးပွဲကို ခုံအမှတ် {{ roll_number_mm }} ဖြင့် ဖြေဆိုအောင်မြင်ပါသဖြင့် 
+                            စာမေးပွဲကို ကိုယ်ပိုင်အမှတ် {{ roll_number_mm }} ဖြင့် ဖြေဆိုအောင်မြင်ပါသဖြင့် 
                             ဤအောင်လက်မှတ်ကို ချီးမြှင့်လိုက်သည်။
                         </p>
                         <p style="font-size:19px; line-height:1.5;letter-spacing:0.4;"> 
                             {{ studentName_eng }} (CSC No. {{ nrcNumber_eng }}) {{ child_eng }} of {{ father_name_eng }},
                             Having passed the {{ courseName_eng }}
-                            Examination held in {{ year_month_eng }} under Roll No. {{ roll_number_eng }} is award this Certificate.   
+                            Examination held in {{ year_month_eng }} under Personal No. {{ roll_number_eng }} is award this Certificate.   
                         </p>
                     </td>
                 </tr>
@@ -857,7 +857,7 @@ class CertificateSeeder extends Seeder
                 </table>')
             ],
             [
-                'cert_code' => 'cpa_card',
+                'cert_code' => 'qt_card',
                 'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
                 <tbody>
                 <tr>
