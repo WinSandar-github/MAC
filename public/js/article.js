@@ -785,11 +785,6 @@ function loadGovArticle()
                 var today_time = today.getTime();
 
                 if (end_time <= today_time) {
-<<<<<<< HEAD
-                    console.log(data.yes_done_attach);
-=======
-
->>>>>>> fb591d8b281eb1f2c5c5420729aa824af603ff78
                     if(data.yes_done_attach == 0){
                         console.log("Reach");
                         document.getElementById("check_end_date").style.display = "block";
