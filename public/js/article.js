@@ -151,12 +151,22 @@ function updateContractDate(info){
 function showArticle(id){
     localStorage.setItem("article_id",id);
     location.href=FRONTEND_URL+"/article_show";
+    
 }
 
 function loadArticle()
 {
-    var id = localStorage.getItem("article_id");
+    let result = window.location.href;
+    let url = new URL(result);
+    let offline_user = url.searchParams.get("offline_user");
+    if(offline_user=="true"){
+        var id = url.searchParams.get("id");
+        $('#offline_user').val("true");
+    }else{
+        var id = localStorage.getItem("article_id");
+    }
     $("input[name = article_id]").val(id);
+
     $.ajax({
         url: BACKEND_URL + "/acc_app/"+id,
         type: 'get',
@@ -503,16 +513,31 @@ function approveArticle(){
         return;
     }
     else{
-        var id = $("input[name = article_id]").val();
-        console.log(id);
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+        
         $.ajax({
             url: BACKEND_URL + "/approve_article/"+id,
             type: 'patch',
             success: function(result){
                 successMessage("You have approved that user!");
-                setInterval(() => {
-                location.href = FRONTEND_URL + "/article_list";
-                }, 3000);
+                
+                    setInterval(() => {
+                        if(offline_user=="true"){
+                            location.href = FRONTEND_URL + "/offline_user";
+                        }else{
+                            location.href = FRONTEND_URL + "/article_list";
+                        }
+                    }, 3000);
+                
+                    
+                
             }
         });
     }
@@ -548,7 +573,14 @@ function approveDoneArticle(){
         return;
     }
     else{
-        var id = $("input[name = article_id]").val();
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
 
         $.ajax({
             url: BACKEND_URL + "/approve_done_article/"+id,
@@ -556,7 +588,11 @@ function approveDoneArticle(){
             success: function(result){
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                location.href = FRONTEND_URL + "/article_list";
+                    if(offline_user=="true"){
+                        location.href = FRONTEND_URL + "/offline_user";
+                    }else{
+                        location.href = FRONTEND_URL + "/article_list";
+                    }
                 }, 3000);
             }
         });
@@ -600,7 +636,7 @@ function showPaymentInfoResign(info){
 
 function showPaymentInfoFirm(info){
   $("#payment_detail_modal").modal('show');
-  autoLoadPaymentFirm(info.id);
+  autoLoadPaymentFirm(info.article_form_type+info.id);
 }
 
 function updateGovContractDate(info){
@@ -940,9 +976,9 @@ function autoLoadPaymentResign(firm_id){
 }
 
 function autoLoadPaymentFirm(firm_id){
-  $("#payment_detail_modal").find(".fee_list").html('');
+    $("#payment_detail_modal").find(".fee_list").html('');
   $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + 'c12',
+          url: BACKEND_URL + "/get_payment_info/" + firm_id,
           type: 'get',
           success: function (result) {
               console.log("firm aricle",result);
@@ -1299,7 +1335,12 @@ function createDoneFormLink(){
         type: 'patch',
         success: function(result){
             successMessage("Create download link!");
-            location.href = FRONTEND_URL + "/article_list";
+            if($('#offline_user').val()){
+                location.href = FRONTEND_URL + "/offline_user";
+            }else{
+                location.href = FRONTEND_URL + "/article_list";
+            }
+            
         }
     });
 }
@@ -1331,7 +1372,7 @@ function loadEductaionHistoryByArticle(id){
                 $("#tbl_degree_body").append(tr);
             });
 
-            createDataTable('#tbl_degree');
+            createDataTableWithAsc('#tbl_degree');
         }
     });
 }
