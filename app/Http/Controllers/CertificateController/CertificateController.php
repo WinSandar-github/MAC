@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\CertificateController;
 
-use DB;
-use App\ExamRegister;
-use App\QualifiedTest;
-use App\SchoolRegister;
-use App\TeacherRegister;
-<<<<<<< HEAD
-use App\tbl_branch_school;
-=======
-use App\AccountancyFirmInformation;
->>>>>>> 6b295d65e07c51a0c4dae2c4dae6695227733ae3
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\CustomClass\Helper;
+use Illuminate\Http\Request;
+use App\ExamRegister;
+use App\TeacherRegister;
+use DB;
+use App\AccountancyFirmInformation;
+use Illuminate\Support\Carbon;
 
 class CertificateController extends Controller
 {
     public function index(Request $req, $id)
     {
+        // return DB::table('student_infos as st')
+                // ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
+                // ->join('exam_register as er', 'er.student_info_id', 'st.id')
+                // ->where('st.id', $id)
+                // ->get();
+
+
+
         $student = DB::table('student_infos as st')
                 ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
                 ->leftJoin('exam_register as er', 'er.student_info_id', 'st.id')
@@ -52,7 +53,7 @@ class CertificateController extends Controller
 
         $template->cert_data = str_replace('{{ examYear }}', "<strong>" . $this->en2mmNumber($exam_year) . "</strong>", $template->cert_data);
         
-        $template->cert_data = str_replace('{{ examMonth }}', "<strong>" . $this->en2mm($exam_month) . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ examMonth }}', "<strong>" . $this->en2mmMonthName($exam_month) . "</strong>", $template->cert_data);
 
         $template->cert_data = str_replace('{{ courseName }}', "<strong>$student->course_name ($student->batch_name)</strong>", $template->cert_data);
         
@@ -62,13 +63,13 @@ class CertificateController extends Controller
         
         $template->cert_data = str_replace('{{ yearMM }}', "<strong>". $this->en2mmNumber($curYear) . "</strong>", $template->cert_data);
         
-        $template->cert_data = str_replace('{{ monthMM }}', "<strong>" . $this->en2mm($curMth) . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ monthMM }}', "<strong>" . $this->en2mmMonthName($curMth) . "</strong>", $template->cert_data);
         
         $template->cert_data = str_replace('{{ dayMM }}', "<strong>" . $this->en2mmNumber($curDay) . "</strong>", $template->cert_data);
 
         $className = 'border-style';
 
-        return view('certificate.complete_certificate', compact('template', 'className'));
+        return view('certificate.complete_certificate', compact('template', 'className','student'));
     }
 
     public function getTeacherCard(Request $req, $id)
@@ -103,7 +104,7 @@ class CertificateController extends Controller
 
         $template = DB::table('certificates')->where('cert_code', '=', 'teacher_card')->first();
 
-        $template->cert_data = str_replace('{{ userImage }}', Helper::$BASE_URL . $teacher->image, $template->cert_data);
+        $template->cert_data = str_replace('{{ userImage }}', $teacher->image, $template->cert_data);
         $template->cert_data = str_replace('{{ serialNo }}', $teacher->t_code, $template->cert_data);
         $template->cert_data = str_replace('{{ dated }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ studentName }}', "<strong>$teacher->name_eng</strong>", $template->cert_data);
@@ -153,9 +154,11 @@ class CertificateController extends Controller
         
         $school = SchoolRegister::where('id', '=', $id)->first();
 
-        $branch_school = tbl_branch_school::where('school_id', '=', $school->id)->get();
-
         $courseType = explode(',', $school->attend_course);
+
+        collect($courseType)->map(function($val){
+            return $val . " helll ";
+        });
 
         $template = DB::table('certificates')->where('cert_code', '=', $req->course_code)->first();
 
@@ -201,22 +204,7 @@ class CertificateController extends Controller
 
         $className = '';
 
-        if(strlen($branch_school) > 0){
-            
-            $branch_template = DB::table('certificates')->where('cert_code', '=', 'branch_school')->first();
-            
-            $branch_row = '';
-            
-            foreach($branch_school as $branch){
-                $branch_row .= "<tr><td>Branch</td><td>" . $branch->branch_school_address . "</td></tr>";
-            }
-
-            $branch_template->cert_data = str_replace('{{ branchRow }}', $branch_row, $branch_template->cert_data);
-        }else{
-            $branch_template = '';
-        }
-
-        return view('certificate.complete_certificate', compact('template', 'className', 'branch_template'));
+        return view('certificate.complete_certificate', compact('template', 'className'));
     }
 
     public function getAuditCard(Request $req, $id){
@@ -366,18 +354,101 @@ class CertificateController extends Controller
         return view('certificate.complete_certificate', compact('template', 'className'));
     }
 
+    public function getCertificate(Request $req, $id)
+    {
+        
+        // return DB::table('student_infos as st')
+                // ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
+                // ->join('exam_register as er', 'er.student_info_id', 'st.id')
+                // ->where('st.id', $id)
+                // ->get();
+
+
+
+        $student = DB::table('student_infos as st')
+                ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
+                ->leftJoin('exam_register as er', 'er.student_info_id', 'st.id')
+                ->leftJoin('batches as b', 'b.id', 'er.batch_id')
+                ->leftJoin('courses as c', 'c.id', 'b.course_id')
+                ->where('st.id', $id)
+                ->where('c.code', '=', $req->course_code)
+                ->select('st.name_mm','st.name_eng', 'st.nrc_state_region', 'st.nrc_township','b.number as batch_number',
+                        'st.nrc_citizen', 'st.nrc_number', 'st.father_name_mm','st.father_name_mm','st.father_name_mm','st.father_name_eng',
+                        'ex.result', 'er.date', 'er.grade', 'c.name_mm as course_name_mm','c.name as course_name_eng', 'b.name_mm as batch_name'
+                        ,'er.passed_level','b.number as batch_number','st.gender','st.personal_no','st.cpersonal_no'
+                        )
+                ->first();
+ 
+
+        if($student == null){
+            return "<h1 style='color:red;'>Selected User not found in Database.</h1>";
+        }
+
+      
+        list($exam_date,$exam_month, $exam_year) = explode('-', $student->date ?? "02-Jan-2021");
+
+        list($curYear, $curMth, $curDay) = explode('-', date('Y-M-d'));
+
+        // $da_cpa_card = $req->course_code == "da_2" ? 'da_card' : "cpa_card";
+        $template = DB::table('certificates')->where('cert_code', '=', "da_card")->first();
+        
+        $template->cert_data = str_replace('{{ batch_num_mm }}', "<strong> $student->batch_number </strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ batch_num_eng }}', "<strong>". $this->en2mmNumber($student->batch_number)." </strong>", $template->cert_data);
+
+        $template->cert_data = str_replace('{{ studentName_mm }}', "<strong>$student->name_mm</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName_eng }}', "<strong>$student->name_eng</strong>", $template->cert_data);
+
+
+        $template->cert_data = str_replace('{{ father_name_mm }}', "<strong>$student->father_name_mm</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ father_name_eng }}', "<strong>$student->father_name_eng</strong>", $template->cert_data);
+
+        $template->cert_data = str_replace('{{ nrcNumber_mm }}', "<strong>$student->nrc_state_region/$student->nrc_township($student->nrc_citizen)$student->nrc_number</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ nrcNumber_eng }}', "<strong>$student->nrc_state_region/$student->nrc_township($student->nrc_citizen)$student->nrc_number</strong>", $template->cert_data);
+        
+        $template->cert_data = str_replace('{{ date_mm }}', "<strong>" . $this->en2mmNumber(date('d-m-Y')) . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ date_eng }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
+
+
+        $template->cert_data = str_replace('{{ examYear }}', "<strong>" . $this->en2mmNumber($exam_year) . "</strong>", $template->cert_data);
+        
+        $template->cert_data = str_replace('{{ examMonth }}', "<strong>" . $this->en2mmMonthName($exam_month) . "</strong>", $template->cert_data);
+
+        $template->cert_data = str_replace('{{ year_month_eng }}', "<strong>" .$exam_month."/".$exam_year . "</strong>", $template->cert_data);
+
+        $template->cert_data = str_replace('{{ courseName_mm }}', "<strong>$student->course_name_mm </strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ courseName_eng }}', "<strong>$student->course_name_eng </strong>", $template->cert_data);
+        
+        $template->cert_data = str_replace('{{ child_mm }}', "<strong>". $this->gender2child($student->gender,"mm") . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ child_eng }}', "<strong>". $this->gender2child($student->gender,"eng") . "</strong>", $template->cert_data);
+        
+        $personal_no_mm = $req->course_code == "da_2" ? $this->en2mmNumber($student->personal_no) : $this->en2mmNumber($student->cpersonal_no);
+        $personal_no_eng = $req->course_code == "da_2" ? $student->personal_no : $student->cpersonal_no;
+
+        $template->cert_data = str_replace('{{ roll_number_mm }}', "<strong>". $personal_no_mm . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ roll_number_eng }}', "<strong>". $personal_no_eng . "</strong>", $template->cert_data);
+         
+
+        
+        $template->cert_data = str_replace('{{ grade }}', "<strong>$student->grade</strong>", $template->cert_data);
+        
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>သန္တာလေး</strong>", $template->cert_data);
+        
+        $template->cert_data = str_replace('{{ yearMM }}', "<strong>". $this->en2mmNumber($curYear) . "</strong>", $template->cert_data);
+        
+        $template->cert_data = str_replace('{{ monthMM }}', "<strong>" . $this->en2mmMonthName($curMth) . "</strong>", $template->cert_data);
+        
+        $template->cert_data = str_replace('{{ dayMM }}', "<strong>" . $this->en2mmNumber($curDay) . "</strong>", $template->cert_data);
+
+        $className = 'border-style';
+
+                
+        return view('certificate.complete_certificate', compact('template', 'className','student'));
+    }
+
+
     private function en2mmMonthName($month)
     {
         $en = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        $mm = ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပရယ်', 'မေ', 'ဂျွန်', 'ဂျူလိုင်', 'သြဂတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'];
-
-        return str_replace($en, $mm, $month);
-    }
-
-    private function en2mmMonthNumber($month)
-    {
-        $en = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
         $mm = ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပရယ်', 'မေ', 'ဂျွန်', 'ဂျူလိုင်', 'သြဂတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'];
 
@@ -401,4 +472,16 @@ class CertificateController extends Controller
 
         return str_replace($en, $roma, $number);
     }
+
+    private function gender2child($gender,$type)
+    {
+        if($type == "mm"){
+            $child = $gender == 1 ? "သား" : "သမီး";
+        }else{
+            $child = $gender == 1 ? "son" : "daughter";
+        }
+        return $child;
+
+    }
+ 
 }

@@ -638,7 +638,7 @@ function loadCPAFFRenewData(){
                 // $("#cpaff_address").append(element.student_info.address);
                 // $("#cpaff_phone").append(element.student_info.phone);
                 $("#contact_mail").append(element.contact_mail);
-                // $("#cpaff_reg_no").append(element.cpaff_reg_no);
+                $("#cpaff_reg_no").append(element.cpaff_reg_no);
                 if(element.papp_reg_no !=null){
                     $("#papp_reg_no").append(element.papp_reg_no);
                 }else{

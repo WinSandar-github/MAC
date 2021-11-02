@@ -423,6 +423,7 @@
                         </div>
 
                         <div id="check_end_date" style="display:none;">
+                            <input type="hidden" id="offline_user">
                             <div class="row">
                                 <div class="col-md-12" align="right">
                                     <button type='button' class='btn btn-warning' onclick='checkEndArticle()'>Check End Date</button>
