@@ -187,7 +187,7 @@ class MentorController extends Controller
      */
     public function show($id)
     {
-        $mentor = Mentor::find($id);
+        $mentor = Mentor::where('id',$id)->with('papp')->first();
         $current_check_service = CurrentCheckService::all();
         return  response()->json([
             'data' => $mentor,

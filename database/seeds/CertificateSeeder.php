@@ -760,19 +760,192 @@ class CertificateSeeder extends Seeder
                 <div style="margin-left: 100px; margin-right: 100px;">
                     <h4 style="text-align: center; padding-top: 20px;">Location of Branch School</h4>
                     <table class="table">
-                        <tr>
-                            <td>
-                                Branch
-                            </td>
-                            <td>
-                                {{ branchName }}
-                            </td>
-                        </tr>
+                        {{ branchRow }}
                     </table>
                 </div>
             </page>
                 ')
-            ]
+            ],
+            [
+                'cert_code' => 'da_card',
+                'cert_data' => htmlspecialchars('
+                <table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800; padding-top: 100px; ">
+                        ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံတော်
+                    </td>
+                  
+                </tr>
+                <tr>    
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        The Republic of the Union of Myanmar
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        မြန်မာနိုင်ငံစာရင်းကောင်စီ
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        Myanmar Accountancy Certificate
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; padding: 20px;">
+                        <img src="http://localhost:8000/img/logo/mac_logo.jpeg" alt="logo" width="150px" height="150px">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 25px; font-weight: 800;">
+                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်စာမေးပွဲအောင်လက်မှတ်
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 25px; font-weight: 600;">
+                        Certificate Public Accountant Examination Certificate
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top:20px;">
+                        <div style="display: flex;justify-content: space-between;" >
+                            <div>
+                                အမှတ်စဥ် &nbsp {{ batch_num_mm }} <br>
+                                Serial No&nbsp {{ batch_num_eng }}
+                            </div>
+                               
+                            <div>
+                                ရက်စွဲ  {{ date_mm }} <br>
+                                Dated  {{ date_eng }}
+                            </div>
+
+                        </div>
+                    </td>     
+                </tr>
+                
+                <tr>
+                    <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;">
+                        <p>
+                            {{ father_name_mm }} ၏ {{ child_mm }} {{ studentName_mm }} 
+                            (နိုင်ငံသားစိစစ်ရေးကတ်အမှတ် {{ nrcNumber_mm }}) 
+                            သည် {{ examYear }} ခုနှစ်၊ {{ examMonth }} အတွင်း ကျင်းပခဲ့သော {{ courseName_mm }}
+                            စာမေးပွဲကို ကိုယ်ပိုင်အမှတ် {{ roll_number_mm }} ဖြင့် ဖြေဆိုအောင်မြင်ပါသဖြင့် 
+                            ဤအောင်လက်မှတ်ကို ချီးမြှင့်လိုက်သည်။
+                        </p>
+                        <p style="font-size:19px; line-height:1.5;letter-spacing:0.4;"> 
+                            {{ studentName_eng }} (CSC No. {{ nrcNumber_eng }}) {{ child_eng }} of {{ father_name_eng }},
+                            Having passed the {{ courseName_eng }}
+                            Examination held in {{ year_month_eng }} under Personal No. {{ roll_number_eng }} is award this Certificate.   
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;padding-top:2%;">
+                        မှတ်ပုံတင်အရာရှိ
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; padding-top: 2%; vertical-align: middle;">
+                        Registara    
+                    </td>
+                </tr>
+               
+            </tbody>
+               
+                </table>')
+            ],
+            [
+                'cert_code' => 'qt_card',
+                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800; padding-top: 100px; ">
+                        ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံတော်
+                    </td>
+                  
+                </tr>
+                <tr>    
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        The Republic of the Union of Myanmar
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        မြန်မာနိုင်ငံစာရင်းကောင်စီ
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        Myanmar Accountancy Certificate
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; padding: 20px;">
+                        <img src="http://localhost:8000/img/logo/mac_logo.jpeg" alt="logo" width="150px" height="150px">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 25px; font-weight: 800;">
+                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်စာမေးပွဲအောင်လက်မှတ်
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 25px; font-weight: 600;">
+                        Certificate Public Accountant Examination Certificate
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top:20px;">
+                        <div style="display: flex;justify-content: space-between;" >
+                            <div>
+                                အမှတ်စဥ် &nbsp {{ batch_num_mm }} <br>
+                                Serial No&nbsp {{ batch_num_eng }}
+                            </div>
+                               
+                            <div>
+                                ရက်စွဲ  {{ date_mm }} <br>
+                                Dated  {{ date_eng }}
+                            </div>
+
+                        </div>
+                    </td>     
+                </tr>
+                
+                <tr>
+                    <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;">
+                        <p>
+                            {{ father_name_mm }} ၏ {{ child_mm }} {{ studentName_mm }} 
+                            (နိုင်ငံသားစိစစ်ရေးကတ်အမှတ် {{ nrcNumber_mm }}) 
+                            သည် {{ examYear }} ခုနှစ်၊ {{ examMonth }} အတွင်း ကျင်းပခဲ့သော {{ courseName_mm }}
+                            စာမေးပွဲကို ခုံအမှတ် {{ roll_number_mm }} ဖြင့် ဖြေဆိုအောင်မြင်ပါသဖြင့် 
+                            ဤအောင်လက်မှတ်ကို ချီးမြှင့်လိုက်သည်။
+                        </p>
+                        <p style="font-size:19px; line-height:1.5;letter-spacing:0.4;"> 
+                            {{ studentName_eng }} (CSC No. {{ nrcNumber_eng }}) {{ child_eng }} of {{ father_name_eng }},
+                            Having passed the Qualifying Test for Registration as Certfied Public Accountant 
+                             held in {{ year_month_eng }} under Roll No. {{ roll_number_eng }} is awarded this Certificate.   
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;padding-top:2%;">
+                        မှတ်ပုံတင်အရာရှိ
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; padding-top: 2%; vertical-align: middle;">
+                        Registara    
+                    </td>
+                </tr>
+               
+            </tbody>
+               
+                </table>')
+            ],
+            
         ]);
     }
 }
