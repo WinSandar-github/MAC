@@ -1178,6 +1178,16 @@ class ArticleController extends Controller
         $acc_app->gov_staff = 0;
         $acc_app->save();
 
+        $gov_article = ApprenticeAccountantGov::where('student_info_id',$request->student_info_id)->get();
+        $article = ApprenticeAccountant::where('student_info_id',$request->student_info_id)->get();
+        if(count($gov_article) != 0){
+            $gov_article[(count($gov_article))-1]->contract_end_date = $request->change_contract_end_date;
+            $gov_article[(count($gov_article))-1]->save();
+        }else{
+            $article[(count($article))-2]->contract_end_date = $request->change_contract_end_date;
+            $article[(count($article))-2]->save();
+        }
+
         //invoice
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
