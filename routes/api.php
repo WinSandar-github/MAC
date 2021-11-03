@@ -42,7 +42,7 @@ Route::patch('/approve_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfControlle
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@rejectRenew');
 Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
-Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
+Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approveNon');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::get('/check_initial_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
 Route::get('/check_offline_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
