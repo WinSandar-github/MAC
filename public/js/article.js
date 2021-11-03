@@ -151,7 +151,7 @@ function updateContractDate(info) {
 function showArticle(id){
     localStorage.setItem("article_id",id);
     location.href=FRONTEND_URL+"/article_show";
-    
+
 }
 
 function loadArticle()
@@ -366,7 +366,7 @@ function loadArticle()
                         else{
                             $("#mentor_name").val(data.mentor_id);
                         }
-                    
+
                 }
 
 
@@ -521,6 +521,7 @@ function loadArticle()
 
             }
 
+            autoLoadPaymentFirm(data.id,article_form_type); // load firm payment infos
         }
     });
 }
@@ -538,13 +539,13 @@ function approveArticle() {
         }else{
             var id = $("input[name = article_id]").val();
         }
-        
+
         $.ajax({
             url: BACKEND_URL + "/approve_article/" + id,
             type: 'patch',
             success: function (result) {
                 successMessage("You have approved that user!");
-                
+
                     setInterval(() => {
                         if(offline_user=="true"){
                             location.href = FRONTEND_URL + "/offline_user";
@@ -552,9 +553,9 @@ function approveArticle() {
                             location.href = FRONTEND_URL + "/article_list";
                         }
                     }, 3000);
-                
-                    
-                
+
+
+
             }
         });
     }
@@ -650,7 +651,7 @@ function showPaymentInfoResign(info) {
 
 function showPaymentInfoFirm(info){
   $("#payment_detail_modal").modal('show');
-  autoLoadPaymentFirm(info.article_form_type+info.id);
+  autoLoadPaymentFirm(info.id,info.article_form_type);
 }
 
 function updateGovContractDate(info) {
@@ -898,34 +899,25 @@ function rejectGovArticleDoneAttach() {
 
 }
 
-function autoLoadPayment(gov_id) {
-    //let student_id=localStorage.getItem("student_id");
-    $("#payment_detail_modal").find(".fee_list").html('');
-    $.ajax({
-        url: BACKEND_URL + "/get_payment_info/" + 'gov' + gov_id,
-        type: 'get',
-        success: function (result) {
-            console.log("gov aricle", result);
-
-            if (result.status == 0) {
-                $('#payment_status').append("Pending");
-                $('#payment_status').addClass("text-warning");
-            }
-            else {
-                $('#payment_status').append("Paid");
-                $('#payment_status').addClass("text-success");
-            }
-            var productDesc = result.productDesc.split(",");
-            var amount = result.amount.split(",");
-            var total = 0;
-            for (var i in amount) {
-                total += parseInt(amount[i]);
-            }
-            console.log(total);
-            for (let i = 0; i < amount.length; i++) {
-                $('.fee_list').append(`
-                    < li
-                          class= "list-group-item d-flex justify-content-between lh-condensed" >
+              if(result.status==0){
+                  $('#payment_status').append("Incomplete");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Complete");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
                       </li >
@@ -943,64 +935,65 @@ function autoLoadPayment(gov_id) {
     });
 }
 
-function autoLoadPaymentResign(firm_id) {
-    $("#payment_detail_modal").find(".fee_list").html('');
-    $.ajax({
-        url: BACKEND_URL + "/get_payment_info/" + 'resign' + firm_id,
-        type: 'get',
-        success: function (result) {
-            console.log("gov aricle", result);
-
-            if (result.status == 0) {
-                $('#payment_status').append("Pending");
-                $('#payment_status').addClass("text-warning");
-            }
-            else {
-                $('#payment_status').append("Paid");
-                $('#payment_status').addClass("text-success");
-            }
-            var productDesc = result.productDesc.split(",");
-            var amount = result.amount.split(",");
-            var total = 0;
-            for (var i in amount) {
-                total += parseInt(amount[i]);
-            }
-            console.log(total);
-            for (let i = 0; i < amount.length; i++) {
-                $('.fee_list').append(`
-                    < li
-                          class= "list-group-item d-flex justify-content-between lh-condensed" >
-                          <h6 class="my-0">${productDesc[i]}</h6>
-                          <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li >
-                    `);
-            }
-            $('.fee_list').append(`
-                    < li class= "list-group-item d-flex justify-content-between" >
-                      <span>Total (MMK)</span>
-                      <span id="total">
-                          - <strong>${total}</strong> MMK
-                      </span>
-                  </li >
-                    `);
-        }
-    });
-}
-
-function autoLoadPaymentFirm(firm_id){
-    $("#payment_detail_modal").find(".fee_list").html('');
+function autoLoadPaymentResign(resign_id){
+  $("#payment_detail_modal").find(".fee_list").html('');
   $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + firm_id,
+          url: BACKEND_URL + "/get_payment_info/" + 'resign'+resign_id,
+          type: 'get',
+          success: function (result) {
+              console.log("gov aricle",result);
+
+              if(result.status==0){
+                  $('#payment_status').append("Incomplete");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Complete");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
+                          <h6 class="my-0">${productDesc[i]}</h6>
+                          <span class="text-muted">- ${amount[i]} MMK</span>
+                      </li >
+                    `);
+            }
+            $('.fee_list').append(`
+                    < li class= "list-group-item d-flex justify-content-between" >
+                      <span>Total (MMK)</span>
+                      <span id="total">
+                          - <strong>${total}</strong> MMK
+                      </span>
+                  </li >
+                    `);
+        }
+    });
+}
+
+function autoLoadPaymentFirm(firm_id,form_type){
+  $("#payment_detail_modal").find(".fee_list").html('');
+  $.ajax({
+          url: BACKEND_URL + "/get_payment_info/" + form_type + firm_id,
           type: 'get',
           success: function (result) {
               console.log("firm aricle",result);
 
               if(result.status==0){
-                  $('#payment_status').append("Pending");
+                console.log("****",result.status);
+                  $('#payment_status').append("Incomplete");
                   $('#payment_status').addClass("text-warning");
               }
               else{
-                  $('#payment_status').append("Paid");
+                  $('#payment_status').append("Complete");
                   $('#payment_status').addClass("text-success");
               }
               var productDesc = result.productDesc.split(",");
@@ -1345,7 +1338,7 @@ function createDoneFormLink() {
             }else{
                 location.href = FRONTEND_URL + "/article_list";
             }
-            
+
         }
     });
 }
