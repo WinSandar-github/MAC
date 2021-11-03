@@ -1231,6 +1231,35 @@
     <script>
         //GetStudentRegistration("da_1");
         //loadBatchData("da_1");
+        $(document).ready(function (e) {
+
+            $("#contractModal").on("hidden.bs.modal", function(){
+                $("#contractForm")[0].reset();
+            });
+
+            $("#endModal").on("hidden.bs.modal", function(){
+                $("#endForm")[0].reset();
+            });
+
+            $("input[name='contract_start_date']").flatpickr({
+                    enableTime: false,
+                    dateFormat: "d-M-Y",
+                    allowInput: true
+            });
+
+            $("input[name='renew_start_date']").flatpickr({
+                    enableTime: false,
+                    dateFormat: "d-M-Y",
+                    allowInput: true
+            });
+
+            $("input[name='renew_end_date']").flatpickr({
+                    enableTime: false,
+                    dateFormat: "d-M-Y",
+                    allowInput: true
+            });
+        });
+
         $(document).ready(function () {
 
             //da cpa offline user
@@ -2211,7 +2240,7 @@
                 $.each($.fn.dataTable.tables(true), function(){
                     $(this).DataTable()
                         .columns.adjust()
-                        .responsive.recalc();
+                        //.responsive.recalc();
                 });
             });
         });

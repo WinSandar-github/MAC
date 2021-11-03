@@ -11,7 +11,7 @@ class ApprenticeAccountant extends Model
                             'accept_policy'];
     
     public function student_info(){
-        return $this->hasOAne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy','student_register','qualified_test','leave_requests','invoice');
+        return $this->hasOne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy','student_register','qualified_test','leave_requests','invoice');
     }
 
     public function mentor(){
