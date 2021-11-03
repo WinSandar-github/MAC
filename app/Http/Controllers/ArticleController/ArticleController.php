@@ -1176,15 +1176,16 @@ class ArticleController extends Controller
         $acc_app->know_policy = $request->know_policy;
         $acc_app->article_form_type = $request->article_form_type;
         $acc_app->gov_staff = 0;
+        $acc_app->offline_user = $request->offline_user;
         $acc_app->save();
 
         $gov_article = ApprenticeAccountantGov::where('student_info_id',$request->student_info_id)->get();
         $article = ApprenticeAccountant::where('student_info_id',$request->student_info_id)->get();
         if(count($gov_article) != 0){
-            $gov_article[(count($gov_article))-1]->contract_end_date = $request->change_contract_end_date;
+            $gov_article[(count($gov_article))-1]->resign_date = $request->resign_date;
             $gov_article[(count($gov_article))-1]->save();
         }else{
-            $article[(count($article))-2]->contract_end_date = $request->change_contract_end_date;
+            $article[(count($article))-2]->resign_date = $request->resign_date;
             $article[(count($article))-2]->save();
         }
 
