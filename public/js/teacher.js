@@ -428,7 +428,17 @@ function getTeacherInfos(){
                     //}
                     
                 }
-                
+                if(value.gender == "male"){
+                    $('input:radio[id="male"]').attr('checked',true);
+                    $('input[id="female"]').attr('disabled', 'disabled');
+                    
+                   
+                }
+                else{
+                    $('input:radio[id="female"]').attr('checked',true);
+                    $('input[id="male"]').attr('disabled', 'disabled');
+                    
+                }
             });
            
             

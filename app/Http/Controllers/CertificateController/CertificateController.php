@@ -8,6 +8,7 @@ use App\ExamRegister;
 use App\TeacherRegister;
 use DB;
 use App\AccountancyFirmInformation;
+use App\SchoolRegister;
 use Illuminate\Support\Carbon;
 
 class CertificateController extends Controller

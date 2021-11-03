@@ -1069,7 +1069,7 @@
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <tbody id="tbl_resign_article_pending_body" class="hoverTable text-left">
+                                                                                <tbody id="tbl_resign_article_pending_body" class="hoverTable">
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
@@ -1081,7 +1081,7 @@
                                                                                         <th class="bold-font-weight" >Action</th>
                                                                                         <th class="bold-font-weight" >Name</th>
                                                                                         <th class="bold-font-weight" >Phone</th>
-                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Resign Fee</th>
                                                                                         <th class="bold-font-weight" >Payment Status</th>
                                                                                         <th class="bold-font-weight" >Resign Date</th>
@@ -1090,7 +1090,7 @@
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <tbody id="tbl_resign_article_approved_body" class="hoverTable text-left">
+                                                                                <tbody id="tbl_resign_article_approved_body" class="hoverTable">
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
@@ -1102,7 +1102,7 @@
                                                                                         <th class="bold-font-weight" >Action</th>
                                                                                         <th class="bold-font-weight" >Name</th>
                                                                                         <th class="bold-font-weight" >Phone</th>
-                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Resign Fee</th>
                                                                                         <th class="bold-font-weight" >Resign Date</th>
                                                                                         <th class="bold-font-weight" >Net Experience</th>
@@ -2308,6 +2308,100 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'status', name: 'status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_resign_article_pending').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_resign_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 0,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'status', name: 'status'},
+            ],
+            
+        });
+        $('#tbl_resign_article_approved').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_resign_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 1,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'payment_status', name: 'payment_status'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'status', name: 'status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_resign_article_rejected').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_resign_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

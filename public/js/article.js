@@ -1200,15 +1200,27 @@ function approveResignArticle() {
         return;
     }
     else {
-        var id = $("input[name = article_id]").val();
-        console.log(id);
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+        
         $.ajax({
             url: BACKEND_URL + "/approve_resign_article/" + id,
             type: 'patch',
             success: function (result) {
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                    location.href = FRONTEND_URL + "/article_list";
+                    if(offline_user=="true"){
+                        location.href = FRONTEND_URL + "/offline_user";
+                    }else{
+                        location.href = FRONTEND_URL + "/article_list";
+                    }
+                    
                 }, 3000);
             }
         });
@@ -1220,7 +1232,15 @@ function rejectResignArticle() {
         return;
     }
     else {
-        var id = $("input[name = article_id]").val();
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+        
         var formData = new FormData();
         formData.append('remark_resign', $('#remark_resign').val());
 
@@ -1232,7 +1252,11 @@ function rejectResignArticle() {
             processData: false,
             success: function (result) {
                 successMessage("You have rejected that user!");
-                location.href = FRONTEND_URL + "/article_list";
+                if(offline_user=="true"){
+                    location.href = FRONTEND_URL + "/offline_user";
+                }else{
+                    location.href = FRONTEND_URL + "/article_list";
+                }
             }
         });
     }
