@@ -894,10 +894,9 @@ function rejectGovArticleDoneAttach() {
         success: function (result) {
             successMessage('You have successfully rejected that done attach!');
             location.href = FRONTEND_URL + "/article_list";
-        }
-    });
+        
 
-}
+
 
               if(result.status==0){
                   $('#payment_status').append("Incomplete");
@@ -922,7 +921,7 @@ function rejectGovArticleDoneAttach() {
                           <span class="text-muted">- ${amount[i]} MMK</span>
                       </li >
                     `);
-            }
+                }
             $('.fee_list').append(`
                     < li class= "list-group-item d-flex justify-content-between" >
                       <span>Total (MMK)</span>

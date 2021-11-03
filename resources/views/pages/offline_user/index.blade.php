@@ -948,9 +948,11 @@
                                                 <div class="card-header">
                                                     <ul class="nav nav-tabs mt-3" role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Article List</a>
+                                                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Firm Article List</a>
                                                         </li>
-                                                        
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="true" style="font-weight:bold">Resign Article</a>
+                                                        </li>
                                                     </ul>
                                                     
 
@@ -1035,7 +1037,86 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        
+                                                            <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                                                <div class="card-header">
+                                                                    <ul class="nav nav-tabs" role="tablist">
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link active" data-toggle="tab" href="#resign1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link" data-toggle="tab" href="#resign2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link" data-toggle="tab" href="#resign3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                                                        <div class="tab-pane fade show active" id="resign1" aria-expanded="true">
+                                                                            <table id="tbl_resign_article_pending" class="table table-hover text-nowrap " style="width:100%;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="bold-font-weight">No</th>
+                                                                                        <th class="bold-font-weight" >Action</th>
+                                                                                        <th class="bold-font-weight" >Name</th>
+                                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >Resign Fee</th>
+                                                                                        <th class="bold-font-weight" >Resign Date</th>
+                                                                                        <th class="bold-font-weight" >Net Experience</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Status</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id="tbl_resign_article_pending_body" class="hoverTable text-left">
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="tab-pane fade show" id="resign2" aria-expanded="true">
+                                                                            <table id="tbl_resign_article_approved" class="table table-hover text-nowrap " style="width:100%;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="bold-font-weight">No</th>
+                                                                                        <th class="bold-font-weight" >Action</th>
+                                                                                        <th class="bold-font-weight" >Name</th>
+                                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >Resign Fee</th>
+                                                                                        <th class="bold-font-weight" >Payment Status</th>
+                                                                                        <th class="bold-font-weight" >Resign Date</th>
+                                                                                        <th class="bold-font-weight" >Net Experience</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Status</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id="tbl_resign_article_approved_body" class="hoverTable text-left">
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="tab-pane fade show" id="resign3" aria-expanded="true">
+                                                                            <table id="tbl_resign_article_rejected" class="table table-hover text-nowrap " style="width:100%;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="bold-font-weight">No</th>
+                                                                                        <th class="bold-font-weight" >Action</th>
+                                                                                        <th class="bold-font-weight" >Name</th>
+                                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >Resign Fee</th>
+                                                                                        <th class="bold-font-weight" >Resign Date</th>
+                                                                                        <th class="bold-font-weight" >Net Experience</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Status</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id="tbl_resign_article_rejected_body" class="hoverTable text-left">
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             
                                                         </div>
                                                     </div>
