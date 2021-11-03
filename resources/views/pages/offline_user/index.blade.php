@@ -37,6 +37,13 @@
                                    role="tab"
                                    aria-controls="v-pills-profile" aria-selected="false">CPA Two Course Register</a>
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
+
+                                   href="#v-pills-article"
+
+                                   role="tab"
+
+                                   aria-controls="v-pills-messages" aria-selected="false">Article</a>
+                                <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-cpa-ff"
                                    role="tab"
                                    aria-controls="v-pills-messages" aria-selected="false">CPA (Full-Fledged) Register</a>
@@ -44,13 +51,7 @@
                                    href="#v-pills-papp"
                                    role="tab"
                                    aria-controls="v-pills-messages" aria-selected="false">PAPP Register</a>
-                                <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
-
-                                   href="#v-pills-article"
-
-                                   role="tab"
-
-                                   aria-controls="v-pills-messages" aria-selected="false">Article</a>
+                                
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-audit"
                                    role="tab"
@@ -947,7 +948,7 @@
                                                 <div class="card-header">
                                                     <ul class="nav nav-tabs mt-3" role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Firm Article</a>
+                                                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Article List</a>
                                                         </li>
                                                         
                                                     </ul>
@@ -1000,7 +1001,7 @@
                                                                                         <th class="bold-font-weight" >Action</th>
                                                                                         <th class="bold-font-weight" >Name</th>
                                                                                         <th class="bold-font-weight" >Phone</th>
-                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                                                         <th class="bold-font-weight" >Payment Status</th>
