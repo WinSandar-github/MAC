@@ -894,9 +894,10 @@ function rejectGovArticleDoneAttach() {
         success: function (result) {
             successMessage('You have successfully rejected that done attach!');
             location.href = FRONTEND_URL + "/article_list";
-        
+//         }
+//     });
 
-
+// }
 
               if(result.status==0){
                   $('#payment_status').append("Incomplete");
@@ -936,44 +937,44 @@ function rejectGovArticleDoneAttach() {
 
 function autoLoadPaymentResign(resign_id){
   $("#payment_detail_modal").find(".fee_list").html('');
-  $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + 'resign'+resign_id,
-          type: 'get',
-          success: function (result) {
-              console.log("gov aricle",result);
+    $.ajax({
+        url: BACKEND_URL + "/get_payment_info/" + 'resign'+resign_id,
+        type: 'get',
+        success: function (result) {
+            console.log("gov aricle",result);
 
-              if(result.status==0){
-                  $('#payment_status').append("Incomplete");
-                  $('#payment_status').addClass("text-warning");
-              }
-              else{
-                  $('#payment_status').append("Complete");
-                  $('#payment_status').addClass("text-success");
-              }
-              var productDesc = result.productDesc.split(",");
-              var amount = result.amount.split(",");
-              var total=0;
-              for(var i in amount) {
-                  total += parseInt(amount[i]);
-              }
-              console.log(total);
-              for(let i=0 ; i<amount.length ; i++){
-                  $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
-                          <h6 class="my-0">${productDesc[i]}</h6>
-                          <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li >
-                    `);
+            if(result.status==0){
+                $('#payment_status').append("Incomplete");
+                $('#payment_status').addClass("text-warning");
+            }
+            else{
+                $('#payment_status').append("Complete");
+                $('#payment_status').addClass("text-success");
+            }
+            var productDesc = result.productDesc.split(",");
+            var amount = result.amount.split(",");
+            var total=0;
+            for(var i in amount) {
+                total += parseInt(amount[i]);
+            }
+            console.log(total);
+            for(let i=0 ; i<amount.length ; i++){
+                $('.fee_list').append(`
+                    <li
+                        class="list-group-item d-flex justify-content-between lh-condensed">
+                        <h6 class="my-0">${productDesc[i]}</h6>
+                        <span class="text-muted">- ${amount[i]} MMK</span>
+                    </li >
+                `);
             }
             $('.fee_list').append(`
-                    < li class= "list-group-item d-flex justify-content-between" >
-                      <span>Total (MMK)</span>
-                      <span id="total">
-                          - <strong>${total}</strong> MMK
-                      </span>
-                  </li >
-                    `);
+                < li class= "list-group-item d-flex justify-content-between" >
+                    <span>Total (MMK)</span>
+                    <span id="total">
+                        - <strong>${total}</strong> MMK
+                    </span>
+                </li >
+                `);
         }
     });
 }
@@ -1142,7 +1143,7 @@ function loadResignArticle() {
 
                 let certificate = JSON.parse(qualified_test.local_education_certificate);
                 $.each(certificate, function (fileCount, fileName) {
-                    $(".certificate").append(`< a href = '${PDF_URL + fileName}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' > View Attach File</a > `);
+                    $(".certificate").append(`<a href = '${PDF_URL + fileName}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' > View Attach File</a > `);
 
                 })
             } else {
@@ -1176,13 +1177,13 @@ function loadResignArticle() {
             $("#recent_org").val(data.recent_org);
 
             document.getElementById('image').src = PDF_URL + student_info.image;
-            $(".nrc_front").append(`< a href = '${PDF_URL + student_info.nrc_front}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
-            $(".nrc_back").append(`< a href = '${PDF_URL + student_info.nrc_back}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank'  align = "center" > View Photo</a > `);
+            $(".nrc_front").append(`<a href = '${PDF_URL + student_info.nrc_front}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
+            $(".nrc_back").append(`<a href = '${PDF_URL + student_info.nrc_back}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank'  align = "center" > View Photo</a > `);
 
             if (data.resign_approve_file == "") {
                 $(".resign_approve_file").append(``);
             } else {
-                $(".resign_approve_file").append(`< a href = '${PDF_URL + data.resign_approve_file}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
+                $(".resign_approve_file").append(`<a href = '${PDF_URL + data.resign_approve_file}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
             }
 
             if (data.resign_status == 0) {
@@ -1362,9 +1363,9 @@ function loadEductaionHistoryByArticle(id) {
         success: function (result) {
             $.each(result.data, function (index, value) {
                 var tr = "<tr>";
-                tr += `< td > ${index += 1}</td > `;
-                tr += `< td > ${value.degree_name} </td > `;
-                tr += `< td > <a href='${PDF_URL + value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td > `;
+                tr += `<td> ${index += 1}</td> `;
+                tr += `<td> ${value.degree_name} </td> `;
+                tr += `<td> <a href='${PDF_URL + value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td> `;
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
             });
