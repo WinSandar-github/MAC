@@ -171,7 +171,7 @@
                     url: BACKEND_URL + "/filter_student_info",
                     type: "POST",
                     data: function (d) {
-                        d.status = 0,
+                            d.status = 0,
                             d.course_code = 'da_1',
                             d.name = "",
                             d.nrc = "",
@@ -224,6 +224,7 @@
                     {data: 'student_info.email', name: 'Email'},
                     {data: 'student_info.phone', name: 'Phone Number'},
                     {data: 'nrc', name: 'NRC'},
+                    {data: 'payment_status', name: 'Payment Status'},
                     {data: 'status', name: 'Status'}
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

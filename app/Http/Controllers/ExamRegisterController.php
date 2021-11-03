@@ -244,6 +244,37 @@ class ExamRegisterController extends Controller
                     return "FAILED";
                 }
             })
+
+            ->addColumn('payment_status', function ($infos){
+                // return $infos->form_type;
+                switch ($infos->form_type) {
+                    case '1':
+                        $course_code = "da_1";
+                        break;
+                    case '2':
+                        $course_code = "da_2";
+                        break;
+                    case '3':
+                        $course_code = "cpa_1";
+                        break;
+                    case '4':
+                        $course_code = "cpa_2";
+                        break;
+                    default:
+                        $course_code = "da_1";
+                        break;
+
+                }
+
+                $invoices = Invoice::where('invoiceNo','exm_'.$course_code)
+                                    ->where('student_info_id',$infos->student_info_id)->get();
+                                    
+                foreach($invoices as $invoice){
+                    return $invoice->status == "AP" ? "Complete" : "Incomplete";
+                }
+                
+            })
+
             ->addColumn('status', function ($infos) {
                 if ($infos->status == 0) {
                     return "PENDING";

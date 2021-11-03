@@ -823,6 +823,7 @@ class CpaTraAddmissionDirectController extends Controller
 
                     $exam_register = new ExamRegister();
                     $exam_register->student_info_id     = $student_info->id;
+                    $exam_register->sr_no               = $request->exam_sr_no;
                     // $exam_register->date                = $date;
                     $exam_register->grade               = 1;                    
                     $exam_register->batch_id            = $request->pass_batch_id;

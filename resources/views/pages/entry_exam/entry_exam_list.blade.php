@@ -93,6 +93,7 @@
                                            {{-- <th class="bold-font-weight" >Exam Type</th> --}}
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
                                             <th class="bold-font-weight" >Remark</th>
+                                            <th class="bold-font-weight" >Payment Status</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
@@ -126,6 +127,7 @@
                                            {{-- <th class="bold-font-weight" >Exam Type</th> --}}
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
                                             <th class="bold-font-weight" >Remark</th>
+                                            <th class="bold-font-weight" >Payment Status</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
@@ -252,6 +254,7 @@
                 {data: 'student_info.name_mm', name: 'Student Name'},
                 {data: 'student_info.email', name: 'Email'},
                 {data: 'remark', name: 'remark'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
 
                 // {data: 'print', name: 'Print',orderable: false, searchable: false},
@@ -280,6 +283,7 @@
                 {data: 'student_info.name_mm', name: 'Student Name'},
                 {data: 'student_info.email', name: 'Email'},
                 {data: 'remark', name: 'remark'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
 
                 // {data: 'print', name: 'Print',orderable: false, searchable: false},

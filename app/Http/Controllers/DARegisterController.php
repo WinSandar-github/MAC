@@ -327,85 +327,51 @@ class DARegisterController extends Controller
     }
 
     public function FilterApplicationList(Request $request)
-    {
-        $course  = Course::where('code',$request->course_code)->first();
-        //  $student_infos = StudentCourseReg::with('student_info','batch')
-        //                     ->where('approve_reject_status','=', 1)
-        //                     ->where('batch_id','=', $batch_id);
-
+    {         
+        $course  = Course::where('code',$request->course_code)->first();       
+        
         $student_infos = StudentCourseReg::with('student_info','batch')
                         ->whereHas('batch', function ($query) use ($course) {
                             $query->where('course_id', $course->id);
                         })
                         ->whereHas('student_info', function($q) use ($request){
                             $q->where('offline_user', 0);
-                            // if($request->name !== ""){
-                            //     $q->where('name_mm', 'like', "%" . $request->name . "%")
-                            //     ->orWhere('name_eng', 'like', "%" . $request->name . "%");
-                            // }
-                            // if($request->nrc != "")
-                            // {
-                            //     $q->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-                            // }
-                            // if($request->batch != "all"){
-                            //     $q->where('batch_id', $request->batch);
-                            // }
                         })
-                        // ->whereHas('student_info', function($q) use ($request){                            
-                        //     $q->where('offline_user', 0);
-                        //     if($request->name !== ""){
-                        //         $q->where('name_mm', 'like', "%" . $request->name . "%")
-                        //         ->orWhere('name_eng', 'like', "%" . $request->name . "%");
-                        //     }
-                        //     if($request->nrc != "")
-                        //     {
-                        //         $query->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-                        //     }
-                        //     if($request->batch != "all"){
-                        //         $query->where('batch_id', $request->batch);
-                        //     }
-                        // })
+
                         ->where('student_course_regs.approve_reject_status','=', $request->status)
                         ->where('qt_entry','=',0)->get();
-                        // ->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id') ;
-        // if($request->batch != "all"){
-        //     $student_infos = $student_infos->where('batch_id', $request->batch);
-        // }
-        // if($request->nrc != "")
-        // {
-        //     $student_infos = $student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        // }
-        // if($request->name != "")
-        // {
-        //     $student_infos = $student_infos->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-        //                                 ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-        // }
-        // $student_infos = $student_infos->get();
+
         return DataTables::of($student_infos)
+
             ->editColumn('name_mm', function ($infos) {
-                // return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('action', function ($infos) {
-                // return $infos->batch->course->code == 'da_1'
-                //         ? "<div class='btn-group'>
-                //                 <a class='btn btn-info btn-xs' href=" . route('da_app_indi', ['id' => $infos->id]) . ">
-                //                     <li class='fa fa-eye fa-sm'></li>
-                //                 </a>
-                //             </div>"
-                //         : "<div class='btn-group'>
-                //                 <a class='btn btn-info btn-xs' href=" . route('cpa_app_indi', ['id' => $infos->id]) . ">
-                //                     <li class='fa fa-eye fa-sm'></li>
-                //                 </a>
-                //             </div>";
+
+            ->addColumn('action', function ($infos) {               
                 return "<button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
                             <li class='fa fa-eye fa-sm'></li>
                         </button>";
             })
+
             ->addColumn('nrc', function ($infos) {
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                 return $nrc_result;
             })
+
+            ->addColumn('payment_status',function ($infos){                
+                if($infos->batch->course->course_type_id == 1){
+                    $invoices = Invoice::where('invoiceNo',"app_form")->where('student_info_id',$infos->student_info_id)->get();
+                    
+                }else{
+                    $invoices = Invoice::where('invoiceNo',"cpa_app")->where('student_info_id',$infos->student_info_id)->get();                    
+                }
+
+                foreach($invoices as $invoice){
+                    return $invoice->status == "AP" ? "Complete" : "Incomplete";
+                }
+
+            })
+
             ->addColumn('status', function ($infos) {
                 if ($infos->approve_reject_status == 0) {
                     // return "PENDING";
@@ -418,6 +384,7 @@ class DARegisterController extends Controller
                     return "<span class='reject'>Rejected</span>";
                 }
             })
+
             ->rawColumns(['name_mm', 'action', 'status'])
             ->make(true);
     }
