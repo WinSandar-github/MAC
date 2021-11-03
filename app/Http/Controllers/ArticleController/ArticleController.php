@@ -121,6 +121,14 @@ class ArticleController extends Controller
         }else{
             $experience_file=null;
         }
+        if ($request->hasfile('office_order_attach')) {
+            $file = $request->file('office_order_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $office_order_attach = '/storage/student_info/'.$name;
+        }else{
+            $office_order_attach = "";
+        }
         if($request->offline_user=="true"){
 
             //Student Info
@@ -162,6 +170,7 @@ class ArticleController extends Controller
             $acc_app->exam_pass_date = $request->pass_date;
             $acc_app->exam_pass_batch = $request->pass_no;
             $acc_app->current_address = $request->current_address;
+            $acc_app->office_order_attach = $office_order_attach;
             //$acc_app->m_email = $request->email;
             $acc_app->ex_papp = $request->previous_papp_name;
             $acc_app->exp_start_date = $request->previous_papp_start_date;
@@ -1168,6 +1177,16 @@ class ArticleController extends Controller
         $acc_app->article_form_type = $request->article_form_type;
         $acc_app->gov_staff = 0;
         $acc_app->save();
+
+        $gov_article = ApprenticeAccountantGov::where('student_info_id',$request->student_info_id)->get();
+        $article = ApprenticeAccountant::where('student_info_id',$request->student_info_id)->get();
+        if(count($gov_article) != 0){
+            $gov_article[(count($gov_article))-1]->contract_end_date = $request->change_contract_end_date;
+            $gov_article[(count($gov_article))-1]->save();
+        }else{
+            $article[(count($article))-2]->contract_end_date = $request->change_contract_end_date;
+            $article[(count($article))-2]->save();
+        }
 
         //invoice
         $invoice = new Invoice();

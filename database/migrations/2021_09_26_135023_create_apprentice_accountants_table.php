@@ -36,6 +36,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('resign_date')->nullable();
             $table->string('resign_reason')->nullable();
             $table->string('recent_org')->nullable();
+            $table->text('office_order_attach')->nullable();
             $table->text('resign_approve_file')->nullable();
             $table->boolean('resign_status')->default(0);
             $table->string('approve_resign_date')->nullable();
@@ -51,7 +52,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('remark')->nullable();
             $table->boolean('done_status')->default(0);
             $table->timestamps();
-            $table->string('offline_user')->nullable();
+            $table->boolean('offline_user')->default(0);
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
         });
     }
