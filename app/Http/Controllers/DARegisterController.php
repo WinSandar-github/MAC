@@ -657,7 +657,7 @@ class DARegisterController extends Controller
                 $student_course->date            = $course_date;
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
-                $student_course->approve_reject_status  = 0;
+                $student_course->approve_reject_status  = 1;
                 $student_course->offline_user  = 1;
                 $student_course->save();
 
@@ -678,23 +678,31 @@ class DARegisterController extends Controller
                 $exam_register = new ExamRegister();
                 $exam_register->student_info_id     = $student_info->id;
                 $exam_register->date                = $date;
-                if($request->module!=0){
+                if($request->module==1 || $request->module==2){                    
+                    $exam_register->is_full_module      = $request->module;
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
                 } 
-                // $exam_register->grade               = 1;
                 $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->is_full_module      = $request->module;
                 $exam_register->exam_type_id        = $request->type;
                 $exam_register->form_type           = 1;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->da_one_pass_exam_date;
                 $exam_register->passed_level        = $request->da_one_pass_level;
-                // $exam_register->passed_personal_no  = $request->da_one_pass_personal_no;
                 $exam_register->save();
     
-                
+                $student_course = new StudentCourseReg();                
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->active_batch_id;
+                $student_course->type            = $request->type_active_da2;
+                $student_course->mac_type        = $request->da_two_active_mac_type;
+                $student_course->date            = $course_date;
+                $student_course->is_finished     = 1;
+                $student_course->status          = 0;
+                $student_course->approve_reject_status  = 0;
+                $student_course->offline_user  = 1;
+                $student_course->save();
             }
 
 
