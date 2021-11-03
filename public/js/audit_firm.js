@@ -1240,11 +1240,11 @@ function autoLoadPayment(offline_user,is_renew){
               success: function (result) {
                   console.log("firm invoice",result);
                   if(result.status==0){
-                      $('#payment_status').append("Pending");
+                      $('#payment_status').append("Incomplete");
                       $('#payment_status').addClass("text-warning");
                   }
                   else{
-                      $('#payment_status').append("Paid");
+                      $('#payment_status').append("Complete");
                       $('#payment_status').addClass("text-success");
                   }
                   var productDesc = result.productDesc.split(",");
@@ -1281,11 +1281,11 @@ function autoLoadPayment(offline_user,is_renew){
               success: function (result) {
                   console.log("firm invoice",result);
                   if(result.status==0){
-                      $('#payment_status').append("Pending");
+                      $('#payment_status').append("Incomplete");
                       $('#payment_status').addClass("text-warning");
                   }
                   else{
-                      $('#payment_status').append("Paid");
+                      $('#payment_status').append("Complete");
                       $('#payment_status').addClass("text-success");
                   }
                   var productDesc = result.productDesc.split(",");
@@ -1322,11 +1322,11 @@ function autoLoadPayment(offline_user,is_renew){
               success: function (result) {
                   console.log("firm invoice",result);
                   if(result.status==0){
-                      $('#payment_status').append("Pending");
+                      $('#payment_status').append("Incomplete");
                       $('#payment_status').addClass("text-warning");
                   }
                   else{
-                      $('#payment_status').append("Paid");
+                      $('#payment_status').append("Complete");
                       $('#payment_status').addClass("text-success");
                   }
                   //console.log(result.productDesc);
