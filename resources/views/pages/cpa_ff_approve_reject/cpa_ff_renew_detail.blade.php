@@ -34,14 +34,14 @@
                                     </div>
                                 </div>
 
-                                {{--<div class="row m-2 mt-3 border-bottom">
+                                <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registeration No.</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registration No.</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_reg_no"></span>
                                     </div>
-                                </div>--}}
+                                </div>
 
                                 {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -127,7 +127,7 @@
                                 <!-- Foreign Degree -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registeration Date</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_pass_date"></span>
@@ -145,7 +145,7 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration No.</p>
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registration No.</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_reg_no"></span>
@@ -154,7 +154,7 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration Date</p>
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_reg_year"></span>
@@ -666,13 +666,13 @@
         type: 'get',
         success: function (result) {
             if(result.status==0){
-                $('#payment_status').append("Unpaid");
+                $('#payment_status').append("Incomplete");
             }
             else if(result.status=='AP'){
-                $('#payment_status').append("Paid");
+                $('#payment_status').append("Complete");
             }
             else{
-                $('#payment_status').append("Unpaid");
+                $('#payment_status').append("Incomplete");
             }
             var productDesc = result.productDesc.split(",");
             var amount = result.amount.split(",");

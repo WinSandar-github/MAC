@@ -846,7 +846,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->date            = $course_date;
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
-                // $student_course->qt_entry        = $request->qt_entry;
+                // $student_course->qt_entry     = $request->qt_entry;
                 $student_course->approve_reject_status  = 0;
                 $student_course->offline_user  = 1;
                 $student_course->save();                 
@@ -867,7 +867,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $exam_register->student_info_id     = $student_info->id;
                 $exam_register->date                = $date;
                 
-                if($request->module!=0 ){
+                if($request->module !== 0 ){
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;

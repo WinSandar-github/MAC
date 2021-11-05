@@ -231,6 +231,30 @@
                             </div>
                         </div>
 
+												<div class="card">
+														<div class="card-header">
+																<h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+														</div>
+														<div class="card-body pt-0">
+																<div class="row m-2 mt-3 border-bottom">
+																		<div class="col-md-6 text-left">
+																				<p class="ml-2" style="font-weight:bold">Fees</p>
+																		</div>
+																		<div class="col-md-6 text-left">
+																				<button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
+																		</div>
+																</div>
+																<div class="row m-2 mt-3 border-bottom">
+																		<div class="col-md-6 text-left">
+																				<p class="ml-2" style="font-weight:bold">Status</p>
+																		</div>
+																		<div class="col-md-6 text-left">
+																				<span id="payment_status" style="font-size:20px;"></span>
+																		</div>
+																</div>
+														</div>
+												</div>
+
                         <input type="hidden" name="article_id" >
                         {{--<div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
@@ -282,6 +306,30 @@
 					</div>
 				</div>
 				{{-- Remark Modal --}}
+
+				{{-- Payment detail Modal --}}
+				<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel"> PAPP Initial Registration Fees</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+										<ul class="list-group mb-3 sticky-top fee_list">
+
+										</ul>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+				</div>
+				{{-- Payment detail Modal End --}}
+
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
         // get NRC Townships data from myanmarnrc.php config file
@@ -297,6 +345,8 @@
 <script src="{{ asset('js/article.js') }}"></script>
 <script>
     loadResignArticle();
+		var article_id = localStorage.getItem("article_id");
+		autoLoadPaymentResign(article_id);
 </script>
 <script>
 

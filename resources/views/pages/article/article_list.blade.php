@@ -61,6 +61,9 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -82,6 +85,9 @@
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Duty Report Date </th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_firm_article_approved_body" class="hoverTable text-left">
@@ -100,6 +106,9 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight"  style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -138,6 +147,8 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -158,6 +169,8 @@
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -177,6 +190,8 @@
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
                                                         </tr>
                                                     </thead>
@@ -215,6 +230,7 @@
                                                             <th class="bold-font-weight" >Resign Fee</th>
                                                             <th class="bold-font-weight" >Resign Date</th>
                                                             <th class="bold-font-weight" >Net Experience</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -235,6 +251,7 @@
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Resign Date</th>
                                                             <th class="bold-font-weight" >Net Experience</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -254,6 +271,7 @@
                                                             <th class="bold-font-weight" >Resign Fee</th>
                                                             <th class="bold-font-weight" >Resign Date</th>
                                                             <th class="bold-font-weight" >Net Experience</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -352,9 +370,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#done_link2" role="tablist" aria-expanded="true" style="font-weight:bold">3yrs Article</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#done_link3" role="tablist" aria-expanded="true" style="font-weight:bold">Existing Article</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <div class="card-body">
@@ -444,7 +462,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="done_link3" aria-expanded="true">
+                                <!-- <div class="tab-pane fade" id="done_link3" aria-expanded="true">
                                     <div class="card-header"></div>
                                     <div class="card-body">
                                         <table id="tbl_done_exist_article" class="table table-hover text-nowrap " style="width:100%;">
@@ -463,7 +481,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -581,7 +599,7 @@
 					</div>
 				</div>
 		</div>
-		{{-- Payment detail Modal End --}}
+	{{-- Payment detail Modal End --}}
 
 @endsection
 @push('scripts')
@@ -642,7 +660,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 0
+                    d.status    = 0,
+                    d.offline_user=0
                 }
 
             },
@@ -657,13 +676,16 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         //$('#tbl_firm_article_pending').DataTable().column(6).visible(false);
-        $('#tbl_firm_article_pending').DataTable().column(8).visible(false);
+        //$('#tbl_firm_article_pending').DataTable().column(8).visible(false);
 
 
         var table_approve =$('#tbl_firm_article_approved').DataTable({
@@ -676,7 +698,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1
+                    d.status    = 1,
+                    d.offline_user=0
                 }
 
             },
@@ -693,6 +716,9 @@
                 {data: 'payment_status', name: 'payment_status'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -708,7 +734,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2
+                    d.status    = 2,
+                    d.offline_user=0
                 }
 
             },
@@ -723,13 +750,16 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         $('#tbl_firm_article_rejected').DataTable().column(6).visible(false);
-        $('#tbl_firm_article_rejected').DataTable().column(8).visible(false);
+        //$('#tbl_firm_article_rejected').DataTable().column(8).visible(false);
 
         //Gov Article
         var table_pending = $('#tbl_gov_article_pending').DataTable({
@@ -742,7 +772,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 0
+                    d.status    = 0,
+                    d.offline_user=0
                 }
 
             },
@@ -757,13 +788,15 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         //$('#tbl_gov_article_pending').DataTable().column(6).visible(false);
-        $('#tbl_gov_article_pending').DataTable().column(8).visible(false);
+        $('#tbl_gov_article_pending').DataTable().column(10).visible(false);
 
         var table_approve =$('#tbl_gov_article_approved').DataTable({
             scrollX: true,
@@ -775,7 +808,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1
+                    d.status    = 1,
+                    d.offline_user=0
                 }
 
             },
@@ -791,6 +825,8 @@
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'payment_status', name: 'payment_status'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -807,7 +843,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2
+                    d.status    = 2,
+                    d.offline_user=0
                 }
 
             },
@@ -822,13 +859,15 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
         $('#tbl_gov_article_rejected').DataTable().column(6).visible(false);
-        $('#tbl_gov_article_rejected').DataTable().column(8).visible(false);
+        $('#tbl_gov_article_rejected').DataTable().column(10).visible(false);
 
         //Resign Article
         var table_pending = $('#tbl_resign_article_pending').DataTable({
@@ -841,7 +880,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 0
+                    d.status    = 0,
+                    d.offline_user=0
                 }
 
             },
@@ -856,6 +896,7 @@
                 {data: 'resign_fee', name: 'resign_fee'},
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -871,7 +912,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1
+                    d.status    = 1,
+                    d.offline_user=0
                 }
 
             },
@@ -887,6 +929,7 @@
                 {data: 'payment_status', name: 'payment_status'},
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -904,7 +947,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2
+                    d.status    = 2,
+                    d.offline_user=0
                 }
 
             },
@@ -919,6 +963,7 @@
                 {data: 'resign_fee', name: 'resign_fee'},
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -936,7 +981,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 0
+                    d.status    = 0,
+                    d.offline_user=0
                 }
 
             },
@@ -965,7 +1011,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 0
+                    d.status    = 0,
+                    d.offline_user=0
                 }
 
             },
@@ -995,7 +1042,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1
+                    d.status    = 1,
+                    d.offline_user=0
                 }
 
             },
@@ -1029,7 +1077,8 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1
+                    d.status    = 1,
+                    d.offline_user=0
                 }
 
             },
@@ -1085,34 +1134,7 @@
         });
 
         //Resign Done Form
-        var table_reject =$('#tbl_done_exist_article').DataTable({
-            scrollX: true,
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url  : BACKEND_URL + "/filter_done_article",
-                type : "POST" ,
-                data :  function (d) {
-                    d.name      =  $("input[name=filter_by_name]").val(),
-                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1,
-                    d.offline_user=1
-                }
-
-            },
-            columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'name_mm', name: 'name_mm'},
-                {data: 'phone_no', name: 'phone_no'},
-                {data: 'nrc', name: 'nrc'},
-                {data: 'form_type', name: 'form_type'},
-                {data: 'status', name: 'status'},
-            ],
-            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        });
+        
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $.each($.fn.dataTable.tables(true), function(){

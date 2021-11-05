@@ -32,7 +32,9 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return "index";
+        $app_acc = ApprenticeAccountant::get();
+        return $app_acc[0]->mentor;
+
     }
 
     public function show($id)
@@ -119,6 +121,14 @@ class ArticleController extends Controller
         }else{
             $experience_file=null;
         }
+        if ($request->hasfile('office_order_attach')) {
+            $file = $request->file('office_order_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $office_order_attach = '/storage/student_info/'.$name;
+        }else{
+            $office_order_attach = "";
+        }
         if($request->offline_user=="true"){
 
             //Student Info
@@ -160,6 +170,7 @@ class ArticleController extends Controller
             $acc_app->exam_pass_date = $request->pass_date;
             $acc_app->exam_pass_batch = $request->pass_no;
             $acc_app->current_address = $request->current_address;
+            $acc_app->office_order_attach = $office_order_attach;
             //$acc_app->m_email = $request->email;
             $acc_app->ex_papp = $request->previous_papp_name;
             $acc_app->exp_start_date = $request->previous_papp_start_date;
@@ -265,7 +276,10 @@ class ArticleController extends Controller
 
     public function FilterArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('status',$request->status)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
+        $article = ApprenticeAccountant::where('status',$request->status)
+        ->where('article_form_type' ,'<>', 'resign')
+        ->where('offline_user',$request->offline_user)
+        ->with('student_info')->get();
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
@@ -282,11 +296,19 @@ class ArticleController extends Controller
 
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
-                return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                if($infos->offline_user==1){
+                    return "<div class='btn-group'>
+                                <a href='article_show?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
                                     <li class='fa fa-eye fa-sm'></li>
-                                </button>
+                                </a>
                             </div>";
+                }else{
+                    return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                            </div>";
+                }
             })
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
@@ -313,6 +335,26 @@ class ArticleController extends Controller
 
             ->addColumn('registration_fee', function ($infos){
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfoFirm($infos)'>View Payment</button>";
+            })
+
+            ->addColumn('contract_start', function ($infos){
+                return $infos->contract_start_date;
+            })
+
+            ->addColumn('contract_end', function ($infos){
+                return $infos->contract_end_date;
+            })
+
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              if($mentor_name){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
+              }
             })
 
             ->addColumn('payment_status', function ($infos){
@@ -398,7 +440,7 @@ class ArticleController extends Controller
                     </div>";
                 }
             });
-            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
+            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end','mentor_name'])->make(true);
             return $datatable;
     }
 
@@ -432,18 +474,25 @@ class ArticleController extends Controller
 
     public function filterDoneArticle(Request $request)
     {
+        
         if($request->status == 1){
             //$article=ApprenticeAccountant::where('done_status',$request->status)->get();
             //foreach($article as $article){
+                
                 if($request->offline_user==1){
-                    $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
+                    $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
                 }else{
-                 $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->where('offline_user' ,'<>', '1')->with('student_info')->get();
+                    $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->with('student_info')->get();
                 }
             //}
 
         }else{
-            $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
+            if($request->offline_user==1){
+                $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
+            }else{
+                $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
+            }
+            
         }
 
         $result_article = [];
@@ -460,11 +509,20 @@ class ArticleController extends Controller
 
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
-                return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                if($infos->offline_user==1){
+                    return "<div class='btn-group'>
+                                <a href='article_show?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
                                     <li class='fa fa-eye fa-sm'></li>
-                                </button>
+                                </a>
                             </div>";
+                }else{
+                    return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                            </div>";
+                }
+                
             })
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
@@ -490,8 +548,13 @@ class ArticleController extends Controller
             })
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              foreach($mentor_name as $val){
-                return $val->name_eng;
+              if($mentor_name){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
               }
             })
             ->addColumn('phone_no', function ($infos){
@@ -807,6 +870,35 @@ class ArticleController extends Controller
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfo($infos)'>View Payment</button>";
             })
 
+            ->addColumn('contract_start', function ($infos){
+                if($infos->contract_start_date){
+                  return $infos->contract_start_date;
+                }
+                else{
+                  return "-";
+                }
+            })
+
+            ->addColumn('contract_end', function ($infos){
+                if($infos->contract_end_date){
+                  return $infos->contract_end_date;
+                }
+                else{
+                  return "-";
+                }
+            })
+
+            // ->addColumn('mentor_name', function ($infos){
+            //   $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+            //   if($mentor_name){
+            //     foreach($mentor_name as $val){
+            //       return $val->name_eng;
+            //     }
+            //   }
+            //   else{
+            //     return $infos->mentor_id;
+            //   }
+            // })
 
             ->addColumn('payment_status', function ($infos){
               $invoice_status = Invoice::where('invoiceNo','gov'.$infos->id)->select('status')->get();
@@ -868,7 +960,7 @@ class ArticleController extends Controller
                 </div>";
             }
         });
-        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
+        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end'])->make(true);
         return $datatable;
     }
 
@@ -1086,6 +1178,16 @@ class ArticleController extends Controller
         $acc_app->gov_staff = 0;
         $acc_app->save();
 
+        $gov_article = ApprenticeAccountantGov::where('student_info_id',$request->student_info_id)->get();
+        $article = ApprenticeAccountant::where('student_info_id',$request->student_info_id)->get();
+        if(count($gov_article) != 0){
+            $gov_article[(count($gov_article))-1]->contract_end_date = $request->change_contract_end_date;
+            $gov_article[(count($gov_article))-1]->save();
+        }else{
+            $article[(count($article))-2]->contract_end_date = $request->change_contract_end_date;
+            $article[(count($article))-2]->save();
+        }
+
         //invoice
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
@@ -1150,7 +1252,7 @@ class ArticleController extends Controller
                 }
             }
         }
-        
+
         $article_type = "resign";
         $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
@@ -1214,11 +1316,31 @@ class ArticleController extends Controller
                 return "N/A";
             })
 
+            // ->addColumn('contract_start', function ($infos){
+            //     return $infos->contract_start_date;
+            // })
+            //
+            // ->addColumn('contract_end', function ($infos){
+            //     return $infos->contract_end_date;
+            // })
+
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              if($mentor_name){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
+              }
+            })
+
             ->addColumn('resign_date', function ($infos){
                 return $infos->resign_date;
             });
 
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status','mentor_name'])->make(true);
             return $datatable;
     }
 
@@ -1299,8 +1421,13 @@ class ArticleController extends Controller
                 $mentor_name = Mentor::where('id',$infos->mentor_id)
                                      ->select('name_eng')
                                      ->get();
-                foreach($mentor_name as $val){
-                  return $val->name_eng;
+                if($mentor_name){
+                  foreach($mentor_name as $val){
+                    return $val->name_eng;
+                  }
+                }
+                else{
+                  return $infos->mentor_id;
                 }
               }
             })
