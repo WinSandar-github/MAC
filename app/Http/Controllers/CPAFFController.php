@@ -1093,6 +1093,7 @@ class CPAFFController extends Controller
             'message' => "You have successfully approved that user!"
         ],200);
     }
+
     public function approveRenewCpaff($id)
     {
         $accepted_date = date('Y-m-d');
