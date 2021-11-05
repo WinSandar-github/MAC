@@ -1005,20 +1005,19 @@ function autoLoadPaymentFirm(firm_id,form_type){
               console.log(total);
               for(let i=0 ; i<amount.length ; i++){
                   $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
+                      <li class="list-group-item d-flex justify-content-between lh-condensed">
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li >
+                      </li>
                     `);
             }
             $('.fee_list').append(`
-                    < li class= "list-group-item d-flex justify-content-between" >
+                    <li class= "list-group-item d-flex justify-content-between" >
                       <span>Total (MMK)</span>
                       <span id="total">
                           - <strong>${total}</strong> MMK
                       </span>
-                  </li >
+                  </li>
                     `);
         }
     });
@@ -1208,7 +1207,7 @@ function approveResignArticle() {
         }else{
             var id = $("input[name = article_id]").val();
         }
-        
+
         $.ajax({
             url: BACKEND_URL + "/approve_resign_article/" + id,
             type: 'patch',
@@ -1220,7 +1219,7 @@ function approveResignArticle() {
                     }else{
                         location.href = FRONTEND_URL + "/article_list";
                     }
-                    
+
                 }, 3000);
             }
         });
@@ -1240,7 +1239,7 @@ function rejectResignArticle() {
         }else{
             var id = $("input[name = article_id]").val();
         }
-        
+
         var formData = new FormData();
         formData.append('remark_resign', $('#remark_resign').val());
 

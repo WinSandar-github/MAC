@@ -474,11 +474,11 @@ class ArticleController extends Controller
 
     public function filterDoneArticle(Request $request)
     {
-        
+
         if($request->status == 1){
             //$article=ApprenticeAccountant::where('done_status',$request->status)->get();
             //foreach($article as $article){
-                
+
                 if($request->offline_user==1){
                     $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
                 }else{
@@ -492,7 +492,7 @@ class ArticleController extends Controller
             }else{
                 $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
             }
-            
+
         }
 
         $result_article = [];
@@ -522,7 +522,7 @@ class ArticleController extends Controller
                             </button>
                             </div>";
                 }
-                
+
             })
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
