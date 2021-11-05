@@ -434,6 +434,7 @@ Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@sho
 Route::post('/save_contract_date', 'ArticleController\ArticleController@saveContractDate');
 Route::post('/save_done_form', 'ArticleController\ArticleController@saveDoneForm');
 Route::post('/filter_done_article','ArticleController\ArticleController@filterDoneArticle');
+Route::post('/filter_offline_done_article','ArticleController\ArticleController@filterOfflineDoneArticle');
 
 Route::post('/save_gov_contract_date', 'ArticleController\ArticleController@saveGovContractDate');
 Route::post('/save_gov_done_form', 'ArticleController\ArticleController@saveGovDoneForm');

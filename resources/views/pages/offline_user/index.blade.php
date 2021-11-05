@@ -2289,7 +2289,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url  : BACKEND_URL + "/filter_done_article",
+                url  : BACKEND_URL + "/filter_offline_done_article",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),

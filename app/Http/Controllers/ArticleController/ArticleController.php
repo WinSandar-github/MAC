@@ -279,11 +279,12 @@ class ArticleController extends Controller
         $article = ApprenticeAccountant::where('status',$request->status)
         ->where('article_form_type' ,'<>', 'resign')
         ->where('offline_user',$request->offline_user)
+        ->where('done_status','<>',3)
         ->with('student_info')->get();
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time > $today){
@@ -497,7 +498,7 @@ class ArticleController extends Controller
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time <= $today){
@@ -591,6 +592,122 @@ class ArticleController extends Controller
             ->setRowClass(function ($infos) {
                 return $infos->done_form_attach != null && $infos->done_status != 1 ? 'bg-success' : 'bg-light';
             });
+            // $datatable = $datatable->addColumn('check_end_date', function ($infos){
+            //     return "<div class='btn-group'>
+            //                     <button type='button' class='btn btn-warning btn-sm' onclick='checkEndArticle($infos)'>
+            //                         <li class='fa fa-pencil fa-sm'></li>
+            //                     </button>
+            //                 </div>";
+            // });
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
+            return $datatable;
+    }
+
+    public function filterOfflineDoneArticle(Request $request)
+    {
+        
+        $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',3)->orwhere('done_status',2)->with('student_info')->get();
+
+        // $result_article = [];
+        // for($i=0;$i<count($article);$i++){
+        //     if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
+        //         $end_time = strtotime($article[$i]->contract_end_date);
+        //         $today = strtotime(Carbon::now());
+        //         if($end_time <= $today){
+        //             array_push($result_article , $article[$i]);
+        //         }
+        //     }
+        // }
+
+
+        $datatable = DataTables::of($article)
+            ->addColumn('action', function ($infos) {
+                if($infos->offline_user==1){
+                    return "<div class='btn-group'>
+                                <a href='article_show?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                            </div>";
+                }else{
+                    return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                            </div>";
+                }
+                
+            })
+            ->addColumn('name_mm', function ($infos){
+                return $infos->student_info->name_mm;
+            })
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
+            })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type',$infos->article_form_type)
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
+            })
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              if($mentor_name){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
+              }
+            })
+            ->addColumn('phone_no', function ($infos){
+                return $infos->student_info->phone;
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->done_status == 0){
+                    return "PENDING";
+                }else if($infos->done_status == 1){
+                    return "APPROVED";
+                }else if($infos->done_status == 3){
+                    return "Done";
+                }else{
+                    return "REJECTED";
+                }
+            })
+            ->addColumn('form_type', function ($infos){
+                if($infos->article_form_type == 'c12'){
+                    return "CPA I,II";
+                }else if($infos->article_form_type == 'c2_pass_1yr'){
+                    return "CPA II pass 1 yr";
+                }else if($infos->article_form_type == 'c2_pass_3yr'){
+                    return "CPA II pass 3 yr";
+                }else if($infos->article_form_type == 'qt_firm'){
+                    return "QT pass";
+                }else if($infos->article_form_type == 'c2_pass_renew'){
+                    return "CPA II Pass Renew";
+                }else if($infos->article_form_type == 'c12_renew'){
+                    return "CPA I,II Renew";
+                }else if($infos->article_form_type == 'resign'){
+                    return "Resign";
+                }
+            });
+            // ->setRowClass(function ($infos) {
+            //     return $infos->done_form_attach != null && $infos->done_status != 1 ? 'bg-success' : 'bg-light';
+            // });
             // $datatable = $datatable->addColumn('check_end_date', function ($infos){
             //     return "<div class='btn-group'>
             //                     <button type='button' class='btn btn-warning btn-sm' onclick='checkEndArticle($infos)'>
@@ -824,7 +941,7 @@ class ArticleController extends Controller
         $result_article = [];
         $article_type = "gov";
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time > $today){
@@ -1011,7 +1128,7 @@ class ArticleController extends Controller
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time <= $today){
@@ -1383,7 +1500,7 @@ class ArticleController extends Controller
 
     public function filterDone3yrsArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('done_status',3)->with('student_info')->get();
+        $article = ApprenticeAccountant::where('done_status',3)->with('student_info')->where('offline_user',0)->get();
         $article_gov = ApprenticeAccountantGov::where('done_status',3)->with('student_info')->get();
 
         $result_article = [];
@@ -1656,6 +1773,7 @@ class ArticleController extends Controller
         $acc_app->exp_start_date = $request->exp_start_date;
         $acc_app->exp_end_date = $request->exp_end_date;
         $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->offline_user = $request->offline_user;
         $acc_app->save();
 
         //invoice
