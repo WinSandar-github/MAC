@@ -42,6 +42,7 @@ class CreateApprenticeAccountantsGovTable extends Migration
             $table->string('done_remark')->nullable();
             $table->string('remark')->nullable();
             $table->boolean('done_status')->default(0);
+            $table->string('resign_date')->nullable();
             $table->boolean('resign_status')->default(0);
             $table->timestamps();
 
