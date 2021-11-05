@@ -17,7 +17,7 @@ class CreateStudentCourseRegsTable extends Migration
             $table->id();
             $table->bigInteger('sr_no')->nullable();
             $table->unsignedBigInteger('student_info_id');
-            $table->unsignedBigInteger('batch_id');
+            $table->unsignedBigInteger('batch_id');                                                                                                                                                                                                             
             $table->bigInteger('type')->nullable();
             $table->bigInteger('mac_type')->nullable();
             $table->tinyInteger('is_finished')->default(0)->nullable();

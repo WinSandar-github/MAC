@@ -392,6 +392,7 @@ function loadArticle()
 
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
+                    $('#office_order_row').show();
                     $("#c2_papp_name").val(data.request_papp);
                     if(data.mentor!=null){
                         $("#c2_mentor_name").val(data?.mentor?.name_eng);
@@ -409,6 +410,8 @@ function loadArticle()
                     $('#previous_papp_lab').text('၁၄။');
                     $('#previous_lab').text('၁၅။');
                     $('#exam_pass_date_label').text('၁၆။');
+
+                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
 
                 } else {
                     $("#papp_name").val(data.request_papp);

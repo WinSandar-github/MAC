@@ -112,11 +112,11 @@ class CertificateSeeder extends Seeder
                             <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;"
                                 colspan="2">
                                 <p style="line-height: 2rem;">
-                                    {{ studentName }} son/daughter of {{ abaName }},holder of CSC No. {{ nrcNumber }}, has been
+                                    {{ studentName }} of {{ abaName }},holder of CSC No. {{ nrcNumber }}, has been
                                     registered as a Lecturer/Tutor of a Private Accounting School or an Individual Lecture/Tutor
                                     under section 32 of the Myanmar Accountancy Council Law.<br>
-                                    He/She is permitted to engage as a Lecture/Tutor of a Private Accounting School.<br>
-                                    His/Her teaching Course(s) and Subject(s) are shown as below.
+                                     {{ gender }} is permitted to engage as a Lecture/Tutor of a Private Accounting School.<br>
+                                     {{ gender }} teaching Course(s) and Subject(s) are shown as below.
                                 </p>
         
                                 {{ courseAndSubject }}
