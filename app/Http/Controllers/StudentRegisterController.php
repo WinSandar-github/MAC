@@ -349,6 +349,8 @@ class StudentRegisterController extends Controller
 
     public function FilterRegistration(Request $request)
     {
+        // return $request;
+        
         $student_register = StudentRegister::with('student_info', 'course')
             ->where('form_type', $request->form_type)
             ->where('status', $request->status)
@@ -357,28 +359,10 @@ class StudentRegisterController extends Controller
 
         $datatable = DataTables::of($student_register)
             ->editColumn('name', function ($infos) {
-                // return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
                 return $infos->student_info->name_mm ;
             })
-            ->addColumn('action', function ($student) {
-                // return $infos->type == 1 /*private school*/
-                //     ? "<div class='btn-group'>
-                //                 <a class='btn btn-info btn-xs' href=" . route('private_school_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
-                //                     <li class='fa fa-eye fa-sm'></li>
-                //                 </a>
-                //             </div>"
-                //     : ($infos->type == 2 /*mac*/
-                //         ? "<div class='btn-group'>
-                //                 <a class='btn btn-info btn-xs' href=" . route('mac_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
-                //                     <li class='fa fa-eye fa-sm'></li>
-                //                 </a>
-                //             </div>"
-                //         : "<div class='btn-group'>
-                //                 <a class='btn btn-info btn-xs' href=" . route('self_study_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
-                //                     <li class='fa fa-eye fa-sm'></li>
-                //                 </a>
-                //             </div>"
-                //     );
+
+            ->addColumn('action', function ($student) {               
 
                 /*0 is self study*/
 
@@ -388,16 +372,63 @@ class StudentRegisterController extends Controller
                     </button>
                 </div>";
             })
+
             ->addColumn('email', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
             })
+
             ->addColumn('reg_no', function ($student) {
                 return $student->sr_no ? Str::limit($student->sr_no, 50, '...') : '';
             })
+
             ->addColumn('phone', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->phone, 50, '...') : '';
-
             })
+
+            ->addColumn('payment_status', function ($student){
+                // return $student;
+                switch ($student->course->code) {
+                    case 'da_1':
+                        $course_code = "da_1";
+                        break;
+                    case 'da_2':
+                        $course_code = "da_2";
+                        break;
+                    case 'cpa_1':
+                        $course_code = "cpa_1";
+                        break;
+                    case 'cpa_2':
+                        $course_code = "cpa_2";
+                        break;
+                    default:
+                        $course_code = "da_1";
+                        break;
+
+                }
+
+                switch ($student->type) {
+                    case 0:
+                        $reg_type = "self_reg_";
+                        break;
+                    case 1:
+                        $reg_type = "prv_reg_";
+                        break;
+                    case 2:
+                        $reg_type = "mac_reg_";
+                        break;
+                    default:
+                        $reg_type = "self_reg_";
+                        break;
+                }
+                $invoices = Invoice::where('invoiceNo',$reg_type.$course_code)
+                                    ->where('student_info_id',$student->student_info_id)->get();
+                                    
+                foreach($invoices as $invoice){
+                    return $invoice->status == "AP" ? "Complete" : "Incomplete";
+                }
+                
+            })
+
             ->addColumn('status', function ($student) {
                 if ($student->status == 0) {
                     return "<span class='pending'>Pending</span>";
@@ -407,6 +438,7 @@ class StudentRegisterController extends Controller
                     return "<span class='reject'>Rejected</span>";
                 }
             })
+
             ->rawColumns(['name', 'action', 'status']);
 
         if ($request->is_reg_reason == true) {

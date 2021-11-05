@@ -108,6 +108,7 @@
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration Reason</th>
+                                                            <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
 
                                                         </tr>
@@ -127,6 +128,7 @@
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration Reason</th>
+                                                            <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
 
                                                         </tr>
@@ -184,6 +186,7 @@
                                                                 <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
+                                                                <th class="bold-font-weight" >Payment Status</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                             </tr>
                                                         </thead>
@@ -201,6 +204,7 @@
                                                                 <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
+                                                                <th class="bold-font-weight" >Payment Status</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                             </tr>
                                                         </thead>
@@ -255,6 +259,7 @@
                                                             <th class="bold-font-weight" >Email</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Phone</th>
+                                                            <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -272,6 +277,7 @@
                                                             <th class="bold-font-weight" >Email</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Phone</th>
+                                                            <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -318,85 +324,7 @@
     // GetStudentRegistration("da_2");
     // loadBatchData("da_2");
     $(document).ready(function () {
-        // $('#tbl_student_mac').DataTable({
-        //     scrollX: true,
-        //     processing: true,
-        //     serverSide: true,
-        //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     ajax:{
-        //         "url":BACKEND_URL + "/filter_registration",
-        //         "method":"POST",
-        //         "data":{
-        //             "form_type":"2",
-        //             "reg_type":"2",
-        //             "is_reg_reason":false
-        //         }
-        //     },
-        //     columns: [
-        //         {data: null, render: function (data, type, row, meta) {
-        //             return meta.row + meta.settings._iDisplayStart + 1;
-        //         }, orderable: false, searchable: false},
-        //         {data: 'action', name: 'action', orderable: false, searchable: false},
-        //         {data: 'name', name: 'Student Name'},
-        //         {data: 'email', name: 'Email'},
-        //         {data: 'reg_no', name: 'Registration No'},
-        //         {data: 'phone', name: 'Phone'},
-        //         {data: 'status', name: 'Status'},
-        //     ],
-        // });
-        // $('#tbl_student_private_school').DataTable({
-        //     scrollX: true,
-        //     processing: true,
-        //     serverSide: true,
-        //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     ajax:{
-        //         "url":BACKEND_URL + "/filter_registration",
-        //         "method":"POST",
-        //         "data":{
-        //             "form_type":"2",
-        //             "reg_type":"1",
-        //             "is_reg_reason":false
-        //         }
-        //     },
-        //     columns: [
-        //         {data: null, render: function (data, type, row, meta) {
-        //             return meta.row + meta.settings._iDisplayStart + 1;
-        //         }, orderable: false, searchable: false},
-        //         {data: 'action', name: 'action', orderable: false, searchable: false},
-        //         {data: 'name', name: 'Student Name'},
-        //         {data: 'email', name: 'Email'},
-        //         {data: 'reg_no', name: 'Registration No'},
-        //         {data: 'phone', name: 'Phone'},
-        //         {data: 'status', name: 'Status'},
-        //     ],
-        // });
-        // $('#tbl_student_self_study').DataTable({
-        //     scrollX: true,
-        //     processing: true,
-        //     serverSide: true,
-        //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     ajax:{
-        //         "url":BACKEND_URL + "/filter_registration",
-        //         "method":"POST",
-        //         "data":{
-        //             "form_type":"2",
-        //             "reg_type":"0",
-        //             "is_reg_reason":true
-        //         }
-        //     },
-        //     columns: [
-        //         {data: null, render: function (data, type, row, meta) {
-        //             return meta.row + meta.settings._iDisplayStart + 1;
-        //         }, orderable: false, searchable: false},
-        //         {data: 'action', name: 'action', orderable: false, searchable: false},
-        //         {data: 'name', name: 'Student Name'},
-        //         {data: 'email', name: 'Email'},
-        //         {data: 'reg_no', name: 'Registration No'},
-        //         {data: 'phone', name: 'Phone'},
-        //         {data: 'reg_reason', name: 'Registration Reason'},
-        //         {data: 'status', name: 'Status'},
-        //     ],
-        // });
+        
         $('#tbl_mac_pending_list').DataTable({
             scrollX: true,
             processing: true,
@@ -421,6 +349,7 @@
                 {data: 'email', name: 'Email'},
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -449,6 +378,7 @@
                 {data: 'email', name: 'Email'},
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -505,6 +435,7 @@
                 {data: 'email', name: 'Email'},
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -533,6 +464,7 @@
                 {data: 'email', name: 'Email'},
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -591,6 +523,7 @@
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
                 {data: 'reg_reason', name: 'Registration Reason'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -620,6 +553,7 @@
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
                 {data: 'reg_reason', name: 'Registration Reason'},
+                {data: 'payment_status', name: 'Payment Status'},
                 {data: 'status', name: 'Status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

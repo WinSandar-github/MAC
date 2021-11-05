@@ -355,7 +355,7 @@ function loadCPAExamData() {
                 //     exam_type_id = "MAC STUDENT";
                 // }
 
-                if(element.status == 1){
+                if(element.status == 1 || element.status == 0){
                     $("#payment_info_card").show();
                 }else{
                     $("#payment_info_card").hide();
@@ -377,10 +377,10 @@ function loadCPAExamData() {
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
-                            $('#payment_status').append("Unpaid");
+                            $('#payment_status').append("Incomplete");
                         }
                         else if(result.status=='AP'){
-                            $('#payment_status').append("Paid");
+                            $('#payment_status').append("Complete");
                         }
                         else{
                             $('#payment_status').append("-");
@@ -553,8 +553,10 @@ function loadCPAExamData() {
                     url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                     type: 'get',
                     success: function (result) {
+                        console.log('result',result)
                         if (result.data.length != 0) {
                             result.data.forEach(function (course) {
+                                console.log('course',course)
                                 var success_year = new Date(course.updated_at);
                                 var module_name;
                                 if (course.is_full_module == 1) {
