@@ -998,11 +998,11 @@ class DARegisterController extends Controller
                             // }
                             //$q->where('offline_user', 1);
                             $q->where('course_type_id', $request->course_type_id);
-                            $q->where('approve_reject_status','=',$request->status);
                         })
                         // ->where('student_course_regs.approve_reject_status','=', $request->status)  
                         ->where('qt_entry','=',0)                      
                         ->where('offline_user','=',1)
+                        ->where('approve_reject_status','=',$request->status)
                         ->get();
 
         // return $student_infos;               
