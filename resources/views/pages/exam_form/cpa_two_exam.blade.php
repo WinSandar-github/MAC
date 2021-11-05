@@ -88,7 +88,8 @@
                                             <th class="bold-font-weight" >Exam Type</th>
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
                                             <th class="bold-font-weight" >Remark</th>
-                                            {{--<th class="bold-font-weight" >Status</th>--}}
+                                            <th class="bold-font-weight" >Payment Status</th>
+                                            {{-- <th class="bold-font-weight" >Status</th> --}}
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
                                             <th class="bold-font-weight" >Print</th>
@@ -111,6 +112,7 @@
                                             <th class="bold-font-weight" >Exam Type</th>
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
                                             <th class="bold-font-weight" >Remark</th>
+                                            <th class="bold-font-weight" >Payment Status</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <th class="bold-font-weight" >Exam Place</th>
 
@@ -241,6 +243,7 @@
               {data: 'student_info.email', name: 'Email'},
               {data: 'exam_type', name: 'Exam Type'},
               {data: 'remark', name: 'Remark'},
+              {data: 'payment_status', name: 'Payment Status'},
               {data: 'status', name: 'Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -270,6 +273,7 @@
               {data: 'student_info.email', name: 'Email'},
               {data: 'exam_type', name: 'Exam Type'},
               {data: 'remark', name: 'Remark'},
+              {data: 'payment_status', name: 'Payment Status'},
               {data: 'status', name: 'Status'},
               {data: 'exam_room', name: 'Print',orderable: false, searchable: false},
               {data: 'print', name: 'Print',orderable: false, searchable: false},

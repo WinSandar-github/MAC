@@ -234,7 +234,7 @@ class CertificateSeeder extends Seeder
                     <tr>
                         <td style="text-align: center; font-size: 16px; font-weight: 800;"
                             colspan="2">
-                            ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းမှတ်ပုံတင်လက်မှတ်<br>
+                            စာရင်းစစ်လုပ်ငန်းအမည်မှတ်ပုံတင်လက်မှတ်<br>
                             Certificate Of Audit Firm Name Registration
                         </td>
                     </tr>
@@ -248,8 +248,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
@@ -371,8 +371,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
@@ -508,8 +508,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
@@ -649,8 +649,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
