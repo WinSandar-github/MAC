@@ -8,6 +8,8 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\TransactionLog;
 use App\Invoice;
+use App\CPAFF;
+use App\PAPP;
 use Illuminate\Support\Str;
 use DB;
 
@@ -89,6 +91,30 @@ class PaymentController extends Controller
                         $stu->invoiceNo = $req->invoiceNo;
                         $stu->status = $req->status;
                         $stu->save();
+
+                        //reg_no and payment_date for CPAFF
+                        $old_cpaff_reg_no = CPAFF::orderBy('cpaff_reg_no', 'desc')->first();
+                        if($old_cpaff_reg_no->cpaff_reg_no == '' && $old_cpaff_reg_no->cpaff_reg_no == NULL){
+                            $cpff_reg_no = 1129;
+                        }else{
+                            $cpff_reg_no = $old_cpaff_reg_no->cpaff_reg_no +1;
+                        }
+                        $cpaff = CPAFF::where('student_info_id',$req->student_info_id)->first();
+                        $cpaff->cpaff_reg_no =  $cpff_reg_no;
+                        $cpaff->reg_date     =  date('Y-m-d');
+                        $cpaff->save();//end cpaff
+
+                        //reg_no and payment_date for PAPP
+                        $old_papp_reg_no = Papp::orderBy('papp_reg_no', 'desc')->first();
+                        if($old_papp_reg_no->papp_reg_no == '' && $old_papp_reg_no->papp_reg_no == NULL){
+                            $papp_reg_no = 1445;
+                        }else{
+                            $papp_reg_no = $old_papp_reg_no->papp_reg_no +1;
+                        }
+                        $papp = PAPP::where('student_id',$req->student_info_id)->first();
+                        $papp->papp_reg_no    =  $papp_reg_no;
+                        $papp->papp_reg_date  =  date('Y-m-d');
+                        $papp->save();//end papp
                     }
 
                     return response()->json(["message" => "Payment Data Saved!"], 200);
