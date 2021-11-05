@@ -261,6 +261,7 @@ function approveNonAuditFirm(id){
         url: BACKEND_URL + "/approve_non_auditfirm/"+id,
         type: 'patch',
         success: function(result){
+          // console.log(result)
             successMessage("You have approved that user!");
             location.href = FRONTEND_URL + "/non-audit-firm-list";
         }
