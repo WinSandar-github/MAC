@@ -37,6 +37,13 @@
                                    role="tab"
                                    aria-controls="v-pills-profile" aria-selected="false">CPA Two Course Register</a>
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
+
+                                   href="#v-pills-article"
+
+                                   role="tab"
+
+                                   aria-controls="v-pills-messages" aria-selected="false">Article</a>
+                                <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-cpa-ff"
                                    role="tab"
                                    aria-controls="v-pills-messages" aria-selected="false">CPA (Full-Fledged) Register</a>
@@ -44,13 +51,7 @@
                                    href="#v-pills-papp"
                                    role="tab"
                                    aria-controls="v-pills-messages" aria-selected="false">PAPP Register</a>
-                                <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
-
-                                   href="#v-pills-article"
-
-                                   role="tab"
-
-                                   aria-controls="v-pills-messages" aria-selected="false">Article</a>
+                                
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-audit"
                                    role="tab"
@@ -947,9 +948,11 @@
                                                 <div class="card-header">
                                                     <ul class="nav nav-tabs mt-3" role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Firm Article</a>
+                                                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Firm Article List</a>
                                                         </li>
-                                                        
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="true" style="font-weight:bold">Resign Article</a>
+                                                        </li>
                                                     </ul>
                                                     
 
@@ -1000,7 +1003,7 @@
                                                                                         <th class="bold-font-weight" >Action</th>
                                                                                         <th class="bold-font-weight" >Name</th>
                                                                                         <th class="bold-font-weight" >Phone</th>
-                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                                                         <th class="bold-font-weight" >Payment Status</th>
@@ -1034,7 +1037,86 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        
+                                                            <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                                                <div class="card-header">
+                                                                    <ul class="nav nav-tabs" role="tablist">
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link active" data-toggle="tab" href="#resign1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link" data-toggle="tab" href="#resign2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="nav-link" data-toggle="tab" href="#resign3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                                                        <div class="tab-pane fade show active" id="resign1" aria-expanded="true">
+                                                                            <table id="tbl_resign_article_pending" class="table table-hover text-nowrap " style="width:100%;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="bold-font-weight">No</th>
+                                                                                        <th class="bold-font-weight" >Action</th>
+                                                                                        <th class="bold-font-weight" >Name</th>
+                                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >Resign Fee</th>
+                                                                                        <th class="bold-font-weight" >Resign Date</th>
+                                                                                        <th class="bold-font-weight" >Net Experience</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Status</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id="tbl_resign_article_pending_body" class="hoverTable">
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="tab-pane fade show" id="resign2" aria-expanded="true">
+                                                                            <table id="tbl_resign_article_approved" class="table table-hover text-nowrap " style="width:100%;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="bold-font-weight">No</th>
+                                                                                        <th class="bold-font-weight" >Action</th>
+                                                                                        <th class="bold-font-weight" >Name</th>
+                                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
+                                                                                        <th class="bold-font-weight" >Resign Fee</th>
+                                                                                        <th class="bold-font-weight" >Payment Status</th>
+                                                                                        <th class="bold-font-weight" >Resign Date</th>
+                                                                                        <th class="bold-font-weight" >Net Experience</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Status</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id="tbl_resign_article_approved_body" class="hoverTable">
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="tab-pane fade show" id="resign3" aria-expanded="true">
+                                                                            <table id="tbl_resign_article_rejected" class="table table-hover text-nowrap " style="width:100%;">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="bold-font-weight">No</th>
+                                                                                        <th class="bold-font-weight" >Action</th>
+                                                                                        <th class="bold-font-weight" >Name</th>
+                                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
+                                                                                        <th class="bold-font-weight" >Resign Fee</th>
+                                                                                        <th class="bold-font-weight" >Resign Date</th>
+                                                                                        <th class="bold-font-weight" >Net Experience</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Status</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id="tbl_resign_article_rejected_body" class="hoverTable text-left">
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             
                                                         </div>
                                                     </div>
@@ -2226,6 +2308,100 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'status', name: 'status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_resign_article_pending').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_resign_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 0,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'status', name: 'status'},
+            ],
+            
+        });
+        $('#tbl_resign_article_approved').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_resign_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 1,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'payment_status', name: 'payment_status'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'status', name: 'status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_resign_article_rejected').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_resign_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

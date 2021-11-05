@@ -1232,7 +1232,7 @@ class ArticleController extends Controller
 
     public function FilterResignArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('resign_status',$request->status)->where('done_status',0)->where('article_form_type', '=' , 'resign')->with('student_info')->get();
+        $article = ApprenticeAccountant::where('resign_status',$request->status)->where('done_status',0)->where('article_form_type', '=' , 'resign')->where('offline_user',$request->offline_user)->with('student_info')->get();
 
         // foreach($article as $val){
         //   $resign_date = $val->resign_date;
@@ -1257,11 +1257,24 @@ class ArticleController extends Controller
         $article_type = "resign";
         $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
-                return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm' onclick='showResignArticle($infos->id)'>
+                // return "<div class='btn-group'>
+                //                 <button type='button' class='btn btn-primary btn-sm' onclick='showResignArticle($infos->id)'>
+                //                     <li class='fa fa-eye fa-sm'></li>
+                //                 </button>
+                //             </div>";
+                if($infos->offline_user==1){
+                    return "<div class='btn-group'>
+                                <a href='resign_article_show?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
                                     <li class='fa fa-eye fa-sm'></li>
-                                </button>
+                                </a>
                             </div>";
+                }else{
+                    return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='showResignArticle($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                            </div>";
+                }
             })
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;

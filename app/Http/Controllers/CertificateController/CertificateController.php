@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ExamRegister;
 use App\TeacherRegister;
+use App\QualifiedTest;
+use App\SchoolRegister;
 use DB;
 use App\AccountancyFirmInformation;
+use App\SchoolRegister;
 use Illuminate\Support\Carbon;
 
 class CertificateController extends Controller

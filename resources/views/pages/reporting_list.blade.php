@@ -178,7 +178,7 @@
         $('.show-more-modal').on('click', function() {
 
             let MAIN_REPORT = this.dataset.section
-
+            
             let course = {!! $courses !!};
            
             switch (MAIN_REPORT) {
