@@ -111,7 +111,8 @@ function loadOfflineDACPAData(){
                     if(element.course_type_id==1){
                         $(".da_one_pass_info").show();
                         $(".cpa_one_pass_info").hide();  
-                        $("#entry_success_no_row").hide();  
+                        $("#entry_success_no_row").hide();
+                        $("#entry_success_roll_no_row").hide();  
                         $("#direct_access_no_row").hide(); 
                         $(".da_one_batch_name").append(exam_register[0].batch.name);
                         $(".da_one_pass_exam_date").append(exam_register[0].passed_date);
@@ -144,7 +145,8 @@ function loadOfflineDACPAData(){
                     if(element.course_type_id==2){
                         $(".da_one_pass_info").hide();
                         $(".cpa_one_pass_info").show();  
-                        $("#entry_success_no_row").hide();  
+                        $("#entry_success_no_row").hide();
+                        $("#entry_success_roll_no_row").hide();  
                         $("#direct_access_no_row").show();
                         $(".cpa_one_batch_name").append(exam_register[0].batch.name);
                         $(".cpa_one_pass_exam_date").append(exam_register[0].passed_date);
@@ -188,6 +190,7 @@ function loadOfflineDACPAData(){
                         $(".cpa_two_pass_info").hide();
 
                         $("#entry_success_no_row").hide();  
+                        $("#entry_success_roll_no_row").hide();  
                         $("#direct_access_no_row").hide();
 
                         $(".da_one_batch_name").append(exam_register[0].batch.name);
@@ -250,7 +253,8 @@ function loadOfflineDACPAData(){
                             // if(element.course_type_id==2){
                                 $(".da_one_pass_info").hide();
                                 $(".cpa_one_pass_info").show();  
-                                $("#entry_success_no_row").show();  
+                                $("#entry_success_no_row").show(); 
+                                $("#entry_success_roll_no_row").show();  
                                 $("#direct_access_no_row").hide();
 
                                 $(".cpa_one_batch_name").append(exam_register[1].batch.name);
@@ -268,7 +272,8 @@ function loadOfflineDACPAData(){
                                     $(".cpa_one_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
                                 }
         
-                                $("#entry_success_no").append(student_course_regs[1].sr_no)
+                                $("#entry_success_no").append(exam_register[1].sr_no)
+                                $("#entry_success_roll_no").append(student_course_regs[1].sr_no)
          
                                 if(exam_register[1].is_full_module == 1){
                                     $(".cpa_one_module").append("Module 1");
@@ -291,6 +296,7 @@ function loadOfflineDACPAData(){
                             $(".cpa_two_pass_info").show(); 
 
                             $("#entry_success_no_row").hide();  
+                            $("#entry_success_roll_no_row").hide();  
                             $("#direct_access_no_row").hide(); 
 
                             $(".cpa_one_batch_name").append(exam_register[0].batch.name);
