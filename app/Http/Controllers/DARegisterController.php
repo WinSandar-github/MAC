@@ -639,9 +639,7 @@ class DARegisterController extends Controller
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 1;
                 $student_course->offline_user  = 1;
-                $student_course->save();
-
-                
+                $student_course->save();                
                     
                 $student_register = new StudentRegister();
                 $student_register->student_info_id  = $student_info->id;

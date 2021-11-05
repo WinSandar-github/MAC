@@ -553,8 +553,10 @@ function loadCPAExamData() {
                     url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                     type: 'get',
                     success: function (result) {
+                        console.log('result',result)
                         if (result.data.length != 0) {
                             result.data.forEach(function (course) {
+                                console.log('course',course)
                                 var success_year = new Date(course.updated_at);
                                 var module_name;
                                 if (course.is_full_module == 1) {

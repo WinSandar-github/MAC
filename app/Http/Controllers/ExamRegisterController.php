@@ -560,8 +560,10 @@ class ExamRegisterController extends Controller
                     return "Module 1";
                 } else if ($infos->is_full_module == 2) {
                     return "Module 2";
-                } else {
+                } else if ($infos->is_full_module == 3){
                     return "All Module";
+                } else {
+                    return "-";
                 }
             });
 
