@@ -236,7 +236,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('s_t_report3','ReportController@s_t_report3');
 
     Route::post('teacher_school_license/{type}', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
-    Route::post('teacher_school_private', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
+    Route::post('teacher_school_private/{type}', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
     Route::post('teacher_school_license_plate', 'ReportController\TeacherSchoolReportController@teacherSchoolLicensePlate');
 
 
