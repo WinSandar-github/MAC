@@ -10,10 +10,8 @@ use App\QualifiedTest;
 use App\SchoolRegister;
 use DB;
 use App\AccountancyFirmInformation;
-use App\SchoolRegister;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\CustomClass\Helper;
-
 
 class CertificateController extends Controller
 {
@@ -224,6 +222,9 @@ class CertificateController extends Controller
         // dd($audit->firm_owner_audits);
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        $reg_date = strtotime($audit->register_date);
+        $exp_date = Carbon::parse($reg_date)->format('Y');
+        // return $exp_date;
         
         switch($audit->organization_structure_id){
             case 1:
@@ -243,8 +244,8 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $foa[0]->name . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $foa[0]->public_private_reg_no . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". ($exp_date + 1) .'-'.'12'.'-'.'31'."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Me Me Thet</strong>", $template->cert_data);
 
         $className = '';
 
@@ -259,6 +260,8 @@ class CertificateController extends Controller
 
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        $reg_date = strtotime($audit->register_date);
+        $exp_date = Carbon::parse($reg_date)->format('Y');
         
         switch($audit->organization_structure_id){
             case 1:
@@ -298,8 +301,8 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $audit->dir_passport_csc . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". ($exp_date + 1) .'-'.'12'.'-'.'31'."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Me Me Thet</strong>", $template->cert_data);
 
         $className = '';
 
@@ -314,6 +317,8 @@ class CertificateController extends Controller
 
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        $reg_date = strtotime($audit->register_date);
+        $exp_date = Carbon::parse($reg_date)->format('Y');
         
         switch($audit->organization_structure_id){
             case 1:
@@ -353,8 +358,8 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $audit->dir_passport_csc . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". ($exp_date + 1) .'-'.'12'.'-'.'31'."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Me Me Thet</strong>", $template->cert_data);
 
         $className = '';
 
