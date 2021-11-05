@@ -78,7 +78,7 @@
             $btn.appendTo('#export-btn');
             // table export
 
-            var table_app = $('#tbl_exam_result_list').DataTable({
+            var table_app = $('#tbl_application').DataTable({
                 scrollX: true,
                 processing: true,
                 serverSide: false,
