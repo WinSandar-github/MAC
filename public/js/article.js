@@ -148,14 +148,25 @@ function updateContractDate(info) {
     $("#article_form_type").val(info.article_form_type);
 }
 
-function showArticle(id) {
-    localStorage.setItem("article_id", id);
-    location.href = FRONTEND_URL + "/article_show";
+function showArticle(id){
+    localStorage.setItem("article_id",id);
+    location.href=FRONTEND_URL+"/article_show";
+
 }
 
-function loadArticle() {
-    var id = localStorage.getItem("article_id");
+function loadArticle()
+{
+    let result = window.location.href;
+    let url = new URL(result);
+    let offline_user = url.searchParams.get("offline_user");
+    if(offline_user=="true"){
+        var id = url.searchParams.get("id");
+        $('#offline_user').val("true");
+    }else{
+        var id = localStorage.getItem("article_id");
+    }
     $("input[name = article_id]").val(id);
+
     $.ajax({
         url: BACKEND_URL + "/acc_app/" + id,
         type: 'get',
@@ -324,27 +335,37 @@ function loadArticle() {
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#c2_mentor_name").val(data.mentor_id);
+                    }
                     $('#previous_papp_name_row').show();
                     $('#previous_papp_date_row').show();
                     $("#previous_papp_name").val(data.ex_papp);
                     $("#previous_papp_start_date").val(data.exp_start_date);
                     $("#previous_papp_end_date").val(data.exp_end_date);
-                } else {
+                }else{
 
-                    $('#exp_row').css('display', 'none');
-                    $('#exp_attach_row').css('display', 'none');
-                    $("#gov_lab").text('၈။');
-                    $("#current_lab").text('၉။');
-                    $("#address_label").text('၁၀။');
-                    $("#phone_lab").text('၁၁။');
-                    $("#email_lab").text('၁၂။');
-                    $("#papp_lab").text('၁၃။');
-                    $("#previous_papp_lab").text('၁၄။');
-                    $("#previous_lab").text('၁၅။');
-                    $("#exam_pass_date_label").text('၁၆။');
-                    $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data?.mentor?.name_eng);
+                        $('#exp_row').css('display','none');
+                        $('#exp_attach_row').css('display','none');
+                        $("#gov_lab").text('၈။');
+                        $("#current_lab").text('၉။');
+                        $("#address_label").text('၁၀။');
+                        $("#phone_lab").text('၁၁။');
+                        $("#email_lab").text('၁၂။');
+                        $("#papp_lab").text('၁၃။');
+                        $("#previous_papp_lab").text('၁၄။');
+                        $("#previous_lab").text('၁၅။');
+                        $("#exam_pass_date_label").text('၁၆။');
+                        $("#papp_name").val(data.request_papp);
+                        if(data.mentor!=null){
+                            $("#mentor_name").val(data?.mentor?.name_eng);
+                        }
+                        else{
+                            $("#mentor_name").val(data.mentor_id);
+                        }
 
                 }
 
@@ -372,7 +393,12 @@ function loadArticle() {
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#c2_mentor_name").val(data.mentor_id);
+                    }
                     $('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
@@ -386,7 +412,12 @@ function loadArticle() {
 
                 } else {
                     $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#mentor_name").val(data.mentor_id);
+                    }
                 }
 
             }
@@ -490,6 +521,7 @@ function loadArticle() {
 
             }
 
+            autoLoadPaymentFirm(data.id,article_form_type); // load firm payment infos
         }
     });
 }
@@ -498,17 +530,32 @@ function approveArticle() {
     if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
-    else {
-        var id = $("input[name = article_id]").val();
-        console.log(id);
+    else{
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+
         $.ajax({
             url: BACKEND_URL + "/approve_article/" + id,
             type: 'patch',
             success: function (result) {
                 successMessage("You have approved that user!");
-                setInterval(() => {
-                    location.href = FRONTEND_URL + "/article_list";
-                }, 3000);
+
+                    setInterval(() => {
+                        if(offline_user=="true"){
+                            location.href = FRONTEND_URL + "/offline_user";
+                        }else{
+                            location.href = FRONTEND_URL + "/article_list";
+                        }
+                    }, 3000);
+
+
+
             }
         });
     }
@@ -541,8 +588,15 @@ function approveDoneArticle() {
     if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
-    else {
-        var id = $("input[name = article_id]").val();
+    else{
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
 
         $.ajax({
             url: BACKEND_URL + "/approve_done_article/" + id,
@@ -550,7 +604,11 @@ function approveDoneArticle() {
             success: function (result) {
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                    location.href = FRONTEND_URL + "/article_list";
+                    if(offline_user=="true"){
+                        location.href = FRONTEND_URL + "/offline_user";
+                    }else{
+                        location.href = FRONTEND_URL + "/article_list";
+                    }
                 }, 3000);
             }
         });
@@ -591,9 +649,9 @@ function showPaymentInfoResign(info) {
     autoLoadPaymentResign(info.id);
 }
 
-function showPaymentInfoFirm(info) {
-    $("#payment_detail_modal").modal('show');
-    autoLoadPaymentFirm(info.id);
+function showPaymentInfoFirm(info){
+  $("#payment_detail_modal").modal('show');
+  autoLoadPaymentFirm(info.id,info.article_form_type);
 }
 
 function updateGovContractDate(info) {
@@ -836,39 +894,30 @@ function rejectGovArticleDoneAttach() {
         success: function (result) {
             successMessage('You have successfully rejected that done attach!');
             location.href = FRONTEND_URL + "/article_list";
-        }
-    });
+//         }
+//     });
 
-}
+// }
 
-function autoLoadPayment(gov_id) {
-    //let student_id=localStorage.getItem("student_id");
-    $("#payment_detail_modal").find(".fee_list").html('');
-    $.ajax({
-        url: BACKEND_URL + "/get_payment_info/" + 'gov' + gov_id,
-        type: 'get',
-        success: function (result) {
-            console.log("gov aricle", result);
-
-            if (result.status == 0) {
-                $('#payment_status').append("Pending");
-                $('#payment_status').addClass("text-warning");
-            }
-            else {
-                $('#payment_status').append("Paid");
-                $('#payment_status').addClass("text-success");
-            }
-            var productDesc = result.productDesc.split(",");
-            var amount = result.amount.split(",");
-            var total = 0;
-            for (var i in amount) {
-                total += parseInt(amount[i]);
-            }
-            console.log(total);
-            for (let i = 0; i < amount.length; i++) {
-                $('.fee_list').append(`
-                    < li
-                          class= "list-group-item d-flex justify-content-between lh-condensed" >
+              if(result.status==0){
+                  $('#payment_status').append("Incomplete");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Complete");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
                       </li >
@@ -886,77 +935,78 @@ function autoLoadPayment(gov_id) {
     });
 }
 
-function autoLoadPaymentResign(firm_id) {
-    $("#payment_detail_modal").find(".fee_list").html('');
+function autoLoadPaymentResign(resign_id){
+  $("#payment_detail_modal").find(".fee_list").html('');
     $.ajax({
-        url: BACKEND_URL + "/get_payment_info/" + 'resign' + firm_id,
+        url: BACKEND_URL + "/get_payment_info/" + 'resign'+resign_id,
         type: 'get',
         success: function (result) {
-            console.log("gov aricle", result);
+            console.log("gov aricle",result);
 
-            if (result.status == 0) {
-                $('#payment_status').append("Pending");
+            if(result.status==0){
+                $('#payment_status').append("Incomplete");
                 $('#payment_status').addClass("text-warning");
             }
-            else {
-                $('#payment_status').append("Paid");
+            else{
+                $('#payment_status').append("Complete");
                 $('#payment_status').addClass("text-success");
             }
             var productDesc = result.productDesc.split(",");
             var amount = result.amount.split(",");
-            var total = 0;
-            for (var i in amount) {
+            var total=0;
+            for(var i in amount) {
                 total += parseInt(amount[i]);
             }
             console.log(total);
-            for (let i = 0; i < amount.length; i++) {
+            for(let i=0 ; i<amount.length ; i++){
                 $('.fee_list').append(`
-                    < li
-                          class= "list-group-item d-flex justify-content-between lh-condensed" >
-                          <h6 class="my-0">${productDesc[i]}</h6>
-                          <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li >
-                    `);
+                    <li
+                        class="list-group-item d-flex justify-content-between lh-condensed">
+                        <h6 class="my-0">${productDesc[i]}</h6>
+                        <span class="text-muted">- ${amount[i]} MMK</span>
+                    </li >
+                `);
             }
             $('.fee_list').append(`
-                    < li class= "list-group-item d-flex justify-content-between" >
-                      <span>Total (MMK)</span>
-                      <span id="total">
-                          - <strong>${total}</strong> MMK
-                      </span>
-                  </li >
-                    `);
+                < li class= "list-group-item d-flex justify-content-between" >
+                    <span>Total (MMK)</span>
+                    <span id="total">
+                        - <strong>${total}</strong> MMK
+                    </span>
+                </li >
+                `);
         }
     });
 }
 
-function autoLoadPaymentFirm(firm_id) {
-    $("#payment_detail_modal").find(".fee_list").html('');
-    $.ajax({
-        url: BACKEND_URL + "/get_payment_info/" + 'c12',
-        type: 'get',
-        success: function (result) {
-            console.log("firm aricle", result);
+function autoLoadPaymentFirm(firm_id,form_type){
+  $("#payment_detail_modal").find(".fee_list").html('');
+  $.ajax({
+          url: BACKEND_URL + "/get_payment_info/" + form_type + firm_id,
+          type: 'get',
+          success: function (result) {
+              console.log("firm aricle",result);
 
-            if (result.status == 0) {
-                $('#payment_status').append("Pending");
-                $('#payment_status').addClass("text-warning");
-            }
-            else {
-                $('#payment_status').append("Paid");
-                $('#payment_status').addClass("text-success");
-            }
-            var productDesc = result.productDesc.split(",");
-            var amount = result.amount.split(",");
-            var total = 0;
-            for (var i in amount) {
-                total += parseInt(amount[i]);
-            }
-            console.log(total);
-            for (let i = 0; i < amount.length; i++) {
-                $('.fee_list').append(`
-                    < li
-                          class= "list-group-item d-flex justify-content-between lh-condensed" >
+              if(result.status==0){
+                console.log("****",result.status);
+                  $('#payment_status').append("Incomplete");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Complete");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
                       </li >
@@ -1093,7 +1143,7 @@ function loadResignArticle() {
 
                 let certificate = JSON.parse(qualified_test.local_education_certificate);
                 $.each(certificate, function (fileCount, fileName) {
-                    $(".certificate").append(`< a href = '${PDF_URL + fileName}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' > View Attach File</a > `);
+                    $(".certificate").append(`<a href = '${PDF_URL + fileName}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' > View Attach File</a > `);
 
                 })
             } else {
@@ -1127,13 +1177,13 @@ function loadResignArticle() {
             $("#recent_org").val(data.recent_org);
 
             document.getElementById('image').src = PDF_URL + student_info.image;
-            $(".nrc_front").append(`< a href = '${PDF_URL + student_info.nrc_front}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
-            $(".nrc_back").append(`< a href = '${PDF_URL + student_info.nrc_back}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank'  align = "center" > View Photo</a > `);
+            $(".nrc_front").append(`<a href = '${PDF_URL + student_info.nrc_front}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
+            $(".nrc_back").append(`<a href = '${PDF_URL + student_info.nrc_back}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank'  align = "center" > View Photo</a > `);
 
             if (data.resign_approve_file == "") {
                 $(".resign_approve_file").append(``);
             } else {
-                $(".resign_approve_file").append(`< a href = '${PDF_URL + data.resign_approve_file}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
+                $(".resign_approve_file").append(`<a href = '${PDF_URL + data.resign_approve_file}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
             }
 
             if (data.resign_status == 0) {
@@ -1283,7 +1333,12 @@ function createDoneFormLink() {
         type: 'patch',
         success: function (result) {
             successMessage("Create download link!");
-            location.href = FRONTEND_URL + "/article_list";
+            if($('#offline_user').val()){
+                location.href = FRONTEND_URL + "/offline_user";
+            }else{
+                location.href = FRONTEND_URL + "/article_list";
+            }
+
         }
     });
 }
@@ -1308,14 +1363,14 @@ function loadEductaionHistoryByArticle(id) {
         success: function (result) {
             $.each(result.data, function (index, value) {
                 var tr = "<tr>";
-                tr += `< td > ${index += 1}</td > `;
-                tr += `< td > ${value.degree_name} </td > `;
-                tr += `< td > <a href='${PDF_URL + value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td > `;
+                tr += `<td> ${index += 1}</td> `;
+                tr += `<td> ${value.degree_name} </td> `;
+                tr += `<td> <a href='${PDF_URL + value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td> `;
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
             });
 
-            createDataTable('#tbl_degree');
+            createDataTableWithAsc('#tbl_degree');
         }
     });
 }
