@@ -9,9 +9,13 @@ use App\TeacherRegister;
 use DB;
 use App\AccountancyFirmInformation;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\CustomClass\Helper;
+
 
 class CertificateController extends Controller
 {
+    
+
     public function index(Request $req, $id)
     {
         // return DB::table('student_infos as st')
@@ -356,6 +360,7 @@ class CertificateController extends Controller
 
     public function getCertificate(Request $req, $id)
     {
+        $helper = new Helper;
         
         // return DB::table('student_infos as st')
                 // ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
@@ -375,7 +380,7 @@ class CertificateController extends Controller
                 ->select('st.name_mm','st.name_eng', 'st.nrc_state_region', 'st.nrc_township','b.number as batch_number',
                         'st.nrc_citizen', 'st.nrc_number', 'st.father_name_mm','st.father_name_mm','st.father_name_mm','st.father_name_eng',
                         'ex.result', 'er.date', 'er.grade', 'c.name_mm as course_name_mm','c.name as course_name_eng', 'b.name_mm as batch_name'
-                        ,'er.passed_level','b.number as batch_number','st.gender','st.personal_no','st.cpersonal_no'
+                        ,'er.passed_level','b.number as batch_number','st.gender','st.personal_no', 'st.cpersonal_no', 'st.gender', 'st.image'
                         )
                 ->first();
  
@@ -388,15 +393,17 @@ class CertificateController extends Controller
         list($exam_date,$exam_month, $exam_year) = explode('-', $student->date ?? "02-Jan-2021");
 
         list($curYear, $curMth, $curDay) = explode('-', date('Y-M-d'));
-
+        // return $helper::$BASE_URL.$student->image;
         // $da_cpa_card = $req->course_code == "da_2" ? 'da_card' : "cpa_card";
         $template = DB::table('certificates')->where('cert_code', '=', "da_card")->first();
+        $template->cert_data = str_replace('{{ userImage }}', $helper::$BASE_URL.$student->image, $template->cert_data);
+      
         
-        $template->cert_data = str_replace('{{ batch_num_mm }}', "<strong> $student->batch_number </strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ batch_num_eng }}', "<strong>". $this->en2mmNumber($student->batch_number)." </strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ batch_num_eng }}', "<strong> $student->batch_number </strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ batch_num_mm }}', "<strong>". $this->en2mmNumber($student->batch_number)." </strong>", $template->cert_data);
 
-        $template->cert_data = str_replace('{{ studentName_mm }}', "<strong>$student->name_mm</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ studentName_eng }}', "<strong>$student->name_eng</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName_mm }}', "<strong>".$student->gender == 1 ? 'မောင်' : 'မ'.$student->name_mm."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName_eng }}', "<strong>".$student->gender == 1 ? 'Mg ' : 'Ma '.$student->name_eng."</strong>", $template->cert_data);
 
 
         $template->cert_data = str_replace('{{ father_name_mm }}', "<strong>$student->father_name_mm</strong>", $template->cert_data);
@@ -413,7 +420,7 @@ class CertificateController extends Controller
         
         $template->cert_data = str_replace('{{ examMonth }}', "<strong>" . $this->en2mmMonthName($exam_month) . "</strong>", $template->cert_data);
 
-        $template->cert_data = str_replace('{{ year_month_eng }}', "<strong>" .$exam_month."/".$exam_year . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ year_month_eng }}', "<strong>" .$this->en2mmMonthName($exam_month)."/".$exam_year . "</strong>", $template->cert_data);
 
         $template->cert_data = str_replace('{{ courseName_mm }}', "<strong>$student->course_name_mm </strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ courseName_eng }}', "<strong>$student->course_name_eng </strong>", $template->cert_data);
@@ -427,6 +434,11 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ roll_number_mm }}', "<strong>". $personal_no_mm . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ roll_number_eng }}', "<strong>". $personal_no_eng . "</strong>", $template->cert_data);
          
+        $certi_title_mm = $req->course_code == "da_2" ? "ဒီပလိုမာစာရင်းကိုင်လက်မှတ်" : "လက်မှတ်ရပြည်သူ့စာရင်းကိုင်စာမေးပွဲအောင်လက်မှတ်";
+        $certi_title_eng = $req->course_code == "da_2" ? "Deploma in Accountancy Certificate" : "Certified Public Accountant Examination Council";
+        
+        $template->cert_data = str_replace('{{ certificate_title_mm }}', "<strong>". $certi_title_mm . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ certificate_title_eng }}', "<strong>". $certi_title_eng . "</strong>", $template->cert_data);
 
         
         $template->cert_data = str_replace('{{ grade }}', "<strong>$student->grade</strong>", $template->cert_data);
@@ -476,9 +488,9 @@ class CertificateController extends Controller
     private function gender2child($gender,$type)
     {
         if($type == "mm"){
-            $child = $gender == 1 ? "သား" : "သမီး";
+            $child = $gender == 1 ? "သား/<s>သမီး</s>" : "<s>သား</s>/သမီး";
         }else{
-            $child = $gender == 1 ? "son" : "daughter";
+            $child = $gender == 1 ? "son/<s>daughter</s>" : "<s>son</s>/daughter";
         }
         return $child;
 
