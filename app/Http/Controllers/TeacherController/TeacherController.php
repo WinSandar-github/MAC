@@ -157,6 +157,7 @@ class TeacherController extends Controller
         $teacher->from_valid_date = $request->from_valid_date;
         $teacher->t_code = $request->t_code;
         $teacher->teacher_card = $teacher_card;
+        $teacher->gender = $request->gender;
         $teacher->save();
            
         //Student Info
@@ -347,6 +348,7 @@ class TeacherController extends Controller
         $teacher->from_valid_date = $request->from_valid_date;
         $teacher->t_code = $request->t_code;
         $teacher->teacher_card = $teacher_card;
+        $teacher->gender = $request->gender;
         $teacher->save();
 
        
@@ -964,6 +966,7 @@ class TeacherController extends Controller
         $teacher->initial_status  = 1;
         $teacher->student_info_id  = $request->student_info_id;
         $teacher->from_valid_date  = $request->from_valid_date;
+        $teacher->gender  = $request->gender;
         $teacher->save();
         
         

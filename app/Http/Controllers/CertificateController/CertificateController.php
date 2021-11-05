@@ -10,6 +10,7 @@ use App\QualifiedTest;
 use App\SchoolRegister;
 use DB;
 use App\AccountancyFirmInformation;
+use App\SchoolRegister;
 use Illuminate\Support\Carbon;
 
 class CertificateController extends Controller
