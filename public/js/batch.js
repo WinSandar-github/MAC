@@ -13,7 +13,7 @@ function createBatch() {
     send_data.append('private_reg_start_date', $("input[name=private_reg_start_date]").val());
     send_data.append('private_reg_end_date', $("input[name=private_reg_end_date]").val());
     send_data.append('accept_application_start_date', $("input[name=app_acc_start_date]").val());
-    send_data.append('accept_application_end_date', $("input[name=app_acc_start_date]").val());
+    send_data.append('accept_application_end_date', $("input[name=app_acc_end_date]").val());
     send_data.append('entrance_pass_start_date', $("input[name=entrance_pass_start_date]").val());
     send_data.append('entrance_pass_end_date', $("input[name=entrance_pass_end_date]").val());
     send_data.append('exam_start_date', $("input[name=exam_start_date]").val());

@@ -31,6 +31,10 @@ class TeacherSchoolReportController extends Controller
                     $title = 'သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း';
                     $school = SchoolRegister::whereNotNull('request_for_temporary_stop')->where('approve_reject_status', '=', '1')->get();
                 break;
+                case 'teacher_all':
+                    $title = 'ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်၊ရပ်နားနေသော သင်တန်းဆရာများစာရင်း၊ private and individual';
+                    $school = TeacherRegister::whereYear('reg_date', '=', $request->date)->get();
+                    break;
             }
 
         }
