@@ -90,6 +90,23 @@
                                     </div>
                                     <div class="row mt-3 ">
                                         <div class="col-md-6">
+                                            <b>ကျား/မ</b>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="male"
+                                                    value="1">
+                                                <label for="inlineRadio1">ကျား</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="female"
+                                                    value="0">
+                                                <label for="inlineRadio2">မ</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ">
+                                        <div class="col-md-6">
                                             <b>လူမျိုး</b>
                                         </div>
                                         <div class="col-md-6 ">

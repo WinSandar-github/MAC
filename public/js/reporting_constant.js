@@ -311,7 +311,7 @@ const _TEACHER_SCHOOL = [
     {
         route_name: "/teacher_school_license/all",
         fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
-        sub_title: "ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)"
+        sub_title: "ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်၊ရပ်နားနေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)"
     },
 
     {
@@ -335,9 +335,38 @@ const _TEACHER_SCHOOL = [
     {
         route_name: "/teacher_school_private",
         fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
-        sub_title: "သင်တန်းဆရာများစာရင်း"
+        sub_title: "ရပ်နားစာရင်း"
+    },
+    {
+        route_name: "/teacher_school_license/teacher_all",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်၊ရပ်နားနေသော သင်တန်းဆရာများစာရင်း၊ private and individual"
     },
 
+    {
+        route_name: "/teacher_school_license/init",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "ကနဦးမှတ်ပုံတင်စာရင်း"
+    },
+
+    {
+        route_name: "/teacher_school_license/renew",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "သက်တမ်းတိုးစာရင်း"
+    },
+
+    {
+        route_name: "/teacher_school_license/reconnect",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "သက်တမ်းပြတ်တောက်စာရင်း"
+    },
+
+    {
+        route_name: "/teacher_school_private",
+        fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
+        sub_title: "ရပ်နားစာရင်း"
+    },
+    
     // {
     //     route_name: "/teacher_school_private",
     //     fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
