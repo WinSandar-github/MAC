@@ -1238,6 +1238,20 @@
 								                                        <label  class="error attend_place_error" style="display:none;" for="req_for_stop">Please select one</label>
 								                                    </div>
 								                                </div>
+																								@if($item->suspended_year)
+																								<div class="row mb-5">
+																										<label for="" class="col-md-1 col-form-label"></label>
+																										<label for="" class="col-md-4 col-form-label"></label>
+																										<div class="col-md-2">
+																												<label for="" class="col-form-label font-weight-bold">Year</label>
+																										</div>
+																										<div class="col-md-3">
+																												<label for="" class="col-md-4 col-form-label">
+																													<span id="suspended_year" class="">{{$item->suspended_year}}</span>
+																												</label>
+																										</div>
+																								</div>
+																								@endif
 																							@endif
 
 																							<div class="card">
@@ -1394,7 +1408,7 @@
 						    <div class="modal-dialog modal-dialog-centered" role="document">
 						      <div class="modal-content">
 						        <div class="modal-header">
-						          <h5 class="modal-title" id="exampleModalLabel"> PAPP Initial Registration Fees</h5>
+						          <h5 class="modal-title" id="exampleModalLabel">Non-Audit Firm Fees</h5>
 						          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						            <span aria-hidden="true">&times;</span>
 						          </button>
@@ -1456,11 +1470,11 @@
 	            success: function (result) {
 	                console.log("firm invoice",result);
 	                if(result.status==0){
-	                    $('#payment_status').append("Pending");
+	                    $('#payment_status').append("Incomplete");
 											$('#payment_status').addClass("text-warning");
 	                }
 	                else{
-	                    $('#payment_status').append("Paid");
+	                    $('#payment_status').append("Complete");
 											$('#payment_status').addClass("text-success");
 	                }
 	                var productDesc = result.productDesc.split(",");
