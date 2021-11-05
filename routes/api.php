@@ -268,7 +268,7 @@ Route::get('/check_payment_non_audit/{id}', 'AccFirmInfController@check_payment'
 Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 //Update Rejected Audit Firm register form
-Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@update');
+Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@updateInitial');
 Route::post('/update_renew_rejected_acc_firm_info/{id}','AccFirmInfController@updateRenewReject');
 
 //Get Exam filter by student id
