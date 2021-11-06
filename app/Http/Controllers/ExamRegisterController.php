@@ -425,6 +425,7 @@ class ExamRegisterController extends Controller
         $exam = new ExamRegister();
 
         $exam->student_info_id = $request->student_id;
+        $exam->sr_no = $request->sr_no;
         $exam->last_ans_exam_no = $request->last_ans_exam_no;
 
         $exam->date = $date;
