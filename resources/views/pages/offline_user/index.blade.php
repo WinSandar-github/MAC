@@ -1023,14 +1023,16 @@
                                                                                         <th class="bold-font-weight" >Action</th>
                                                                                         <th class="bold-font-weight" >Name</th>
                                                                                         <th class="bold-font-weight" >Phone</th>
-                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                                                         <th class="bold-font-weight" >Status</th>
-                                                                                        <th class="bold-font-weight"  style="display:none">Duty Report Date </th>
+                                                                                        <!-- <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th> -->
+                                                                                        <!-- <th class="bold-font-weight" >Mentor Name</th> -->
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <tbody id="tbl_firm_article_rejected_body" class="hoverTable text-left">
+                                                                                <tbody id="tbl_firm_article_rejected_body" class="hoverTable">
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
@@ -2255,6 +2257,39 @@
             ],
             
         });
+        $('#tbl_firm_article_rejected').DataTable({
+            scrollX: true,
+            processing: true,
+            //serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_firm_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
+                {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'status', name: 'status'},
+                // {data: 'contract_start', name: 'contract_start'},
+                // {data: 'contract_end', name: 'contract_end'},
+                // {data: 'mentor_name', name: 'mentor_name'},
+                // {data: 'contract_start_date', name: 'contract_start_date'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
         $('#tbl_two_yrs_article_pending').DataTable({
             scrollX: true,
             processing: true,
@@ -2289,7 +2324,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url  : BACKEND_URL + "/filter_done_article",
+                url  : BACKEND_URL + "/filter_offline_done_article",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),

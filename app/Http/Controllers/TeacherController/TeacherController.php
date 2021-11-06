@@ -653,7 +653,7 @@ class TeacherController extends Controller
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
-                        if($currentMonth==10 || $currentMonth==11 || $currentMonth==12){
+                        if($currentMonth==11 || $currentMonth==12){
                             $expYear=$currentDate->format('Y') ;
                         }else{
                             $expYear=date('Y');
