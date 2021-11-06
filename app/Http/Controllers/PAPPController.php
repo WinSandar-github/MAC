@@ -256,13 +256,13 @@ class PAPPController extends Controller
     
     public function approve($id)
     {
-        // $old = Papp::orderBy('papp_reg_no', 'desc')->first();
-        // // return $old->cpaff_reg_no;
-        // if($old->papp_reg_no == '' && $old->papp_reg_no == NULL){
-        //     $reg_no = 1445;
-        // }else{
-        //     $reg_no = $old->papp_reg_no +1;
-        // }
+        $old = Papp::orderBy('papp_reg_no', 'desc')->first();
+        // return $old->cpaff_reg_no;
+        if($old->papp_reg_no == '' && $old->papp_reg_no == NULL){
+            $reg_no = 1445;
+        }else{
+            $reg_no = $old->papp_reg_no +1;
+        }
         // return $reg_no;
         $accepted_date = date('Y-m-d');
         $approve = Papp::find($id);
@@ -271,8 +271,8 @@ class PAPPController extends Controller
             $approve->status = 1;
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
-            // $approve->papp_reg_no = $reg_no;
-            // $approve->papp_reg_date = date('Y-m-d');
+            $approve->papp_reg_no = $reg_no;
+            $approve->papp_reg_date = date('Y-m-d');
 
         }
         else if($approve->status==1){
