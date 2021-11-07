@@ -130,6 +130,9 @@ class ArticleController extends Controller
             $office_order_attach = "";
         }
         if($request->offline_user=="true"){
+            //$total_experience = $request->exp_year . "," .$request->exp_month. "," .$request->exp_days;
+            $total_experience = [$request->exp_year,$request->exp_month,$request->exp_days];
+            //array_push($total_experience,$request->exp_year,$request->exp_month,$request->exp_days);
 
             //Student Info
             $std_info = new StudentInfo();
@@ -175,6 +178,7 @@ class ArticleController extends Controller
             $acc_app->ex_papp = $request->previous_papp_name;
             $acc_app->exp_start_date = $request->previous_papp_start_date;
             $acc_app->exp_end_date = $request->previous_papp_end_date;
+            $acc_app->total_experience = json_encode($total_experience);
             $acc_app->accept_policy = 1;
             $acc_app->offline_user = true;
             $acc_app->resign_status = 0;
@@ -348,7 +352,7 @@ class ArticleController extends Controller
 
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              if($mentor_name){
+              if(sizeof($mentor_name)){
                 foreach($mentor_name as $val){
                   return $val->name_eng;
                 }
@@ -475,11 +479,11 @@ class ArticleController extends Controller
 
     public function filterDoneArticle(Request $request)
     {
-        
+
         if($request->status == 1){
             //$article=ApprenticeAccountant::where('done_status',$request->status)->get();
             //foreach($article as $article){
-                
+
                 if($request->offline_user==1){
                     $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
                 }else{
@@ -493,7 +497,7 @@ class ArticleController extends Controller
             }else{
                 $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
             }
-            
+
         }
 
         $result_article = [];
@@ -523,7 +527,7 @@ class ArticleController extends Controller
                             </button>
                             </div>";
                 }
-                
+
             })
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
@@ -549,7 +553,7 @@ class ArticleController extends Controller
             })
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              if($mentor_name){
+              if(sizeof($mentor_name)){
                 foreach($mentor_name as $val){
                   return $val->name_eng;
                 }
@@ -605,7 +609,7 @@ class ArticleController extends Controller
 
     public function filterOfflineDoneArticle(Request $request)
     {
-        
+
         $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',3)->orwhere('done_status',2)->with('student_info')->get();
 
         // $result_article = [];
@@ -635,7 +639,7 @@ class ArticleController extends Controller
                             </button>
                             </div>";
                 }
-                
+
             })
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
@@ -661,7 +665,7 @@ class ArticleController extends Controller
             })
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              if($mentor_name){
+              if(sizeof($mentor_name)){
                 foreach($mentor_name as $val){
                   return $val->name_eng;
                 }
@@ -1461,7 +1465,7 @@ class ArticleController extends Controller
 
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              if($mentor_name){
+              if(sizeof($mentor_name)){
                 foreach($mentor_name as $val){
                   return $val->name_eng;
                 }
@@ -1556,7 +1560,7 @@ class ArticleController extends Controller
                 $mentor_name = Mentor::where('id',$infos->mentor_id)
                                      ->select('name_eng')
                                      ->get();
-                if($mentor_name){
+                if(sizeof($mentor_name)){
                   foreach($mentor_name as $val){
                     return $val->name_eng;
                   }

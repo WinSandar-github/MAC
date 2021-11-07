@@ -16,6 +16,13 @@
     .label{
         text-align: right;
     }
+		.p-input {
+        border:none;
+        border-bottom: 1px solid #1890ff;
+        padding: 5px 10px;
+        outline: none;
+        text-align: center;
+    }
 </style>
 @section('content')
     <div class="content">
@@ -325,7 +332,7 @@
                         </div>
                         <div class="c2_pass_renew" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၄။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP အမှတ်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၃။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP</label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -397,6 +404,23 @@
                                 </div>
                             </div>
                         </div>
+
+												<div id="previous_exp_box" style="display:none;">
+													<div class="col-md-11">
+															<ul>
+																	<li>ယခင်က လက်တွေ့အလုပ်သင်ကြားမှုကို အလုပ်သင်ကြားပေးသည့်(PAPP အမည်)
+																		<input class="p-input" type="text" name="ex_papp_name" id="ex_papp_name"> ထံတွင်
+																		<input class="p-input" type="text"  name="ex_papp_start_date" id="ex_papp_start_date" placeholder="dd-mm-yyyy"> နေ့မှ
+																		<input class="p-input" type="text" name="ex_papp_end_date" id="ex_papp_end_date" placeholder="dd-mm-yyyy">နေ့အထိ
+																		<span id="result_name">
+																			<input class="p-input" type="text" name="exp_year" id="exp_year"> နှစ် ၊
+																			<input class="p-input" type="text" name="exp_month" id="exp_month"> လ ၊
+																			<input class="p-input" name="exp_days" type="text" id="exp_days"> ရက်
+																		</span> အလုပ်သင်ကြားမှုခံယူခဲ့ပါသည်။
+																	</li>
+															</ul>
+													</div>
+												</div>
 
                         <div id="attach_file_row" style="display:none;">
                             <div class="row mb-3">
@@ -577,7 +601,7 @@
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel"> PAPP Initial Registration Fees</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Article Registration Fees</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -641,7 +665,7 @@
 <script>
     loadArticle();
 		//var article_id = localStorage.getItem("article_id");
-		
+
 </script>
 <script>
 
