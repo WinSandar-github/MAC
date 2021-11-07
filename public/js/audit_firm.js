@@ -1362,35 +1362,36 @@ function autoLoadPayment(offline_user,is_renew){
 }
 
 function approveAuditFirm(){
-  // if (!confirm('Are you sure you want to approve this firm ?')){
-  //   return;
-  // }
-  // else{
-  //   var id = $("input[name = audit_firm_id]").val();
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    var id = $("input[name = audit_firm_id]").val();
 
-  //   // console.log('approveaudit_firm',id);
-  //   $.ajax({
-  //       url: BACKEND_URL + "/approve_auditfirm/"+id,
-  //       type: 'patch',
-  //       success: function(result){
-  //         // console.log(result)
-  //           successMessage("You have approved that user!");
-  //           location.href = FRONTEND_URL + "/audit-firm-list";
-  //       }
-  //   });
-  // }
-  var id = $("input[name = audit_firm_id]").val();
+    // console.log('approveaudit_firm',id);
+    $.ajax({
+        url: BACKEND_URL + "/approve_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+          // console.log(result)
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/audit-firm-list";
+        }
+    });
+  }
+
+  //var id = $("input[name = audit_firm_id]").val();
 
   // console.log('approveaudit_firm',id);
-  $.ajax({
-      url: BACKEND_URL + "/approve_auditfirm/"+id,
-      type: 'patch',
-      success: function(result){
-        // console.log(result)
-          successMessage("You have approved that user!");
-          location.href = FRONTEND_URL + "/audit-firm-list";
-      }
-  });
+  // $.ajax({
+  //     url: BACKEND_URL + "/approve_auditfirm/"+id,
+  //     type: 'patch',
+  //     success: function(result){
+  //       // console.log(result)
+  //         successMessage("You have approved that user!");
+  //         location.href = FRONTEND_URL + "/audit-firm-list";
+  //     }
+  // });
 
 }
 
