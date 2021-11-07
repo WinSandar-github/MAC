@@ -221,7 +221,6 @@ class ExamRegisterController extends Controller
                 }
             })
             ->where('form_type', '=', $request->course_code)->get();
-
         // DA One
         $datatable = DataTables::of($exam_register)
             ->addColumn('exam_type', function ($infos) {
