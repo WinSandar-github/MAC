@@ -8,12 +8,11 @@ use App\ExamRegister;
 use App\TeacherRegister;
 use App\QualifiedTest;
 use App\SchoolRegister;
+use App\Invoice;
 use DB;
 use App\AccountancyFirmInformation;
-use App\SchoolRegister;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\CustomClass\Helper;
-
 
 class CertificateController extends Controller
 {
@@ -81,50 +80,95 @@ class CertificateController extends Controller
 
     public function getTeacherCard(Request $req, $id)
     {
-        $teacher = TeacherRegister::where('id', '=', $id)->first();
-
-        $cpa_subj_id = explode(',', $teacher->certificates);
-
-        $cpa_subjects = DB::table('subjects as s')
-                    ->join('courses as c', 'c.id', '=', 's.course_id')
-                    ->whereIn('s.id', $cpa_subj_id)
-                    ->select('c.name as course_name', 'c.code', 's.subject_name')
-                    ->get();
-
-        $cpa_subject_template = "<p style='text-align:center; font-weight: bold'>" . $this->en2romaNumber(str_replace('_', ' ', strtoupper($cpa_subjects[0]->code))) . "</p>";
-        foreach($cpa_subjects as $key => $cpa){
-            $cpa_subject_template .= "<p>(" . ++$key . ")&nbsp;&nbsp;&nbsp;&nbsp;" . $cpa->subject_name . "</p>";
-        }
-
-        $da_subj_id = explode(',', $teacher->diplomas);
-
-        $da_subjects = DB::table('subjects as s')
-                    ->join('courses as c', 'c.id', '=', 's.course_id')
-                    ->whereIn('s.id', $da_subj_id)
-                    ->select('c.name as course_name', 'c.code', 's.subject_name')
-                    ->get();
+        $teacher = TeacherRegister::where('id', '=', $id)->get();
         
-        $da_subject_template = "<p style='text-align:center; font-weight: bold'>" . $this->en2romaNumber(str_replace('_', ' ', strtoupper($da_subjects[0]->code))) . "</p>";
-        foreach($da_subjects as $key => $da){
-            $da_subject_template .= "<p>(" . ++$key . ")&nbsp;&nbsp;&nbsp;&nbsp;" . $da->subject_name . "</p>";
-        }
+        foreach($teacher as $teacher){
+            $teacher->nrc_state_region=$this->mm2engNumber($teacher->nrc_state_region);
+            $teacher->nrc_township=$this->characters($teacher->nrc_township);
+            $teacher->nrc_citizen=$this->citizens($teacher->nrc_citizen);
+            $teacher->nrc_number=$this->mm2engNumber($teacher->nrc_number);
+            
+            if($teacher->gender=="male"){
+                $gender="son/<span style='text-decoration: line-through'>daughter</span>";
+                $gender2="He/<span style='text-decoration: line-through'>She</span>";
+            }else{
+                $gender="<span style='text-decoration: line-through'>son</span>/daughter";
+                $gender2="<span style='text-decoration: line-through'>He</span>/She";
+            }
+             if($teacher->certificates !=null){
+                $cpa_subj_id = explode(',', $teacher->certificates);
+                $cpa_subjects = DB::table('subjects as s')
+                                    ->join('courses as c', 'c.id', '=', 's.course_id')
+                                    ->whereIn('s.id', $cpa_subj_id)
+                                    ->select('c.name as course_name', 'c.code', 's.subject_name')
+                                    ->get();
 
-        $template = DB::table('certificates')->where('cert_code', '=', 'teacher_card')->first();
+                $cpa_subject_template = "<p style='text-align:center; font-weight: bold'>" . $this->en2romaNumber(str_replace('_', ' ', strtoupper($cpa_subjects[0]->code))) . "</p>";
+                foreach($cpa_subjects as $key => $cpa){
+                    $cpa_subject_template .= "<p>(" . ++$key . ")&nbsp;&nbsp;&nbsp;&nbsp;" . $cpa->subject_name . "</p>";
+                }
+             }else{
+                $cpa_subject_template=null;
+             }
+            
+           
+            if($teacher->diplomas !=null){
+                $da_subj_id = explode(',', $teacher->diplomas);
+                $da_subjects = DB::table('subjects as s')
+                        ->join('courses as c', 'c.id', '=', 's.course_id')
+                        ->whereIn('s.id', $da_subj_id)
+                        ->select('c.name as course_name', 'c.code', 's.subject_name')
+                        ->get();
+                $da_subject_template = "<p style='text-align:center; font-weight: bold'>" . $this->en2romaNumber(str_replace('_', ' ', strtoupper($da_subjects[0]->code))) . "</p>";
+                foreach($da_subjects as $key => $da){
+                    $da_subject_template .= "<p>(" . ++$key . ")&nbsp;&nbsp;&nbsp;&nbsp;" . $da->subject_name . "</p>";
+                }
+            }else{
+                $da_subject_template=null;
+            }
+            $template = DB::table('certificates')->where('cert_code', '=', 'teacher_card')->first();
+
+            $currentYear = Carbon::now();
+        if($teacher->initial_status==1){
+            $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".date('Y') . "</strong>", $template->cert_data);
+            if(Carbon::parse($teacher->renew_date)->format('m')=='11' || Carbon::parse($teacher->renew_date)->format('m')=='12'){
+                $currentYear = $currentYear->addYears(1) ;
+                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+            }else{
+                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);
+            }
+            
+        }else if($teacher->initial_status==0){
+            $invoice=Invoice::when($teacher->payment_method, function($q) use ($teacher){
+                $q->where('tranRef', '=', $teacher->payment_method);
+            })
+            ->where('student_info_id',$teacher->student_info_id)
+            ->where('invoiceNo',"init_tec".$teacher->id)
+            ->get();
+            foreach($invoice as $i){
+                $template->cert_data = str_replace('{{ validFrom }}', "<strong>" . Carbon::parse($i->dateTime)->format('d-m-Y') . "</strong>", $template->cert_data);
+            }
+            
+            $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".date('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+        }
+        
 
         $template->cert_data = str_replace('{{ userImage }}', $teacher->image, $template->cert_data);
         $template->cert_data = str_replace('{{ serialNo }}', $teacher->t_code, $template->cert_data);
         $template->cert_data = str_replace('{{ dated }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ studentName }}', "<strong>$teacher->name_eng</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName }}', "<strong>$teacher->father_name_eng</strong> $gender", $template->cert_data);
         $template->cert_data = str_replace('{{ abaName }}', "<strong>$teacher->name_eng</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>$teacher->nrc_state_region/$teacher->nrc_township($teacher->nrc_citizen)$teacher->nrc_number</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ courseAndSubject }}', $da_subject_template . $cpa_subject_template, $template->cert_data);
-        $template->cert_data = str_replace('{{ validFrom }}', "<strong>" . Carbon::parse($teacher->from_valid_date)->format('d-m-Y') . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ validTo }}', "<strong>" . Carbon::parse($teacher->to_valid_date)->format('d-m-Y') . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>$teacher->nrc_state_region/$teacher->nrc_township($teacher->nrc_citizen)$teacher->nrc_number</strong>",$template->cert_data);
+        $template->cert_data = str_replace('{{ gender }}', "$gender2", $template->cert_data);
+        $template->cert_data = str_replace('{{ gender }}', "$gender2", $template->cert_data);
+        $template->cert_data = str_replace('{{ courseAndSubject }}', $da_subject_template.$cpa_subject_template, $template->cert_data);
         $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
-
+        
+        }
         $className = '';
 
         return view('certificate.complete_certificate', compact('template', 'className'));
+        
     }
 
     public function getQtCard(Request $req, $id)
@@ -224,6 +268,9 @@ class CertificateController extends Controller
         // dd($audit->firm_owner_audits);
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        $reg_date = strtotime($audit->register_date);
+        $exp_date = Carbon::parse($reg_date)->format('Y');
+        // return $exp_date;
         
         switch($audit->organization_structure_id){
             case 1:
@@ -243,8 +290,8 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $foa[0]->name . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $foa[0]->public_private_reg_no . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". ($exp_date + 1) .'-'.'12'.'-'.'31'."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Me Me Thet</strong>", $template->cert_data);
 
         $className = '';
 
@@ -259,6 +306,8 @@ class CertificateController extends Controller
 
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        $reg_date = strtotime($audit->register_date);
+        $exp_date = Carbon::parse($reg_date)->format('Y');
         
         switch($audit->organization_structure_id){
             case 1:
@@ -298,8 +347,8 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $audit->dir_passport_csc . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". ($exp_date + 1) .'-'.'12'.'-'.'31'."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Me Me Thet</strong>", $template->cert_data);
 
         $className = '';
 
@@ -314,6 +363,8 @@ class CertificateController extends Controller
 
         $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        $reg_date = strtotime($audit->register_date);
+        $exp_date = Carbon::parse($reg_date)->format('Y');
         
         switch($audit->organization_structure_id){
             case 1:
@@ -353,8 +404,8 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $audit->dir_passport_csc . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". ($exp_date + 1) .'-'.'12'.'-'.'31'."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Me Me Thet</strong>", $template->cert_data);
 
         $className = '';
 
@@ -498,5 +549,28 @@ class CertificateController extends Controller
         return $child;
 
     }
- 
+    private function mm2engNumber($number)
+    {
+        $en = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+        $my = ['၀','၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
+
+        return str_replace($my, $en, $number);
+    }
+    private function citizens($number)
+    {
+        $en = ['N','E','P'];
+
+        $my = ['နိုင်','ဧည့်','ပြု'];
+
+        return str_replace($my, $en, $number);
+    }
+    private function characters($number)
+    {
+        $en = ['Ka','Kha','Ga','Gha','Nga','Sa','Hsa','Za','Zha','Nya','Dd','Nha','Ta','Hta','Da','Dha','Na','Pa','Pha','Bha','Ba','Ma','Ya','Ra','La','Wa','Tha','Ha','Ll', 'Ah','U','E'];
+
+        $my = ['က','ခ','ဂ','ဃ' ,'င' ,'စ' ,'ဆ' ,'ဇ' ,'ဈ','ည' ,'ဎ','ဏ' ,'တ' ,'ထ' ,'ဒ' ,'ဓ','န' ,'ပ' ,'ဖ' ,'ဗ' ,'ဘ','မ' ,'ယ','ရ' ,'လ' ,'ဝ' ,'သ','ဟ','ဠ' ,'အ','ဥ' ,'ဧ'];
+
+        return str_replace($my, $en, $number);
+    }
 }

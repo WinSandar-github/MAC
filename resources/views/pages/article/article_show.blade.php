@@ -373,6 +373,22 @@
                             </div>
                         </div>
 
+                        <div id="office_order_row" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span>ရုံးအမိန့်</label>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="ml-2" style="font-weight:bold" align="left">Attachment</p>
+                                        </div>
+                                        <div class="col-md-3 office_order_attach">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="previous_exam_pass_row" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left" id="exam_pass_date_label">{{ __('၁၇။') }}</span>စာမေးပွဲကျင်းပသည့် ခုနှစ်၊လ ၊ အောင်မြင်သည့်အမှတ်စဥ် </label>

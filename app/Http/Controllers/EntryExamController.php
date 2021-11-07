@@ -430,7 +430,23 @@ class EntryExamController extends Controller
                               <li class='fa fa-edit fa-sm'></li>
                           </button>
                       </div>";
-          })
+            })
+
+            ->addColumn('payment_status',function ($infos){
+              if($infos->exam_type_id == 2 || $infos->exam_type_id == 3){
+                $invoiceNo = 'cpa_app';
+              }
+
+              $invoices = Invoice::where('invoiceNo',$invoiceNo)
+                                    ->where('student_info_id',$infos->student_info_id)->get();
+                                    
+                foreach($invoices as $invoice){
+                    return $invoice->status == "AP" ? "Complete" : "Incomplete";
+                }
+              // return $invoiceNo;
+              
+            })
+
             ->addColumn('status', function ($infos){
               if($infos->status == 0){
                   return "PENDING";

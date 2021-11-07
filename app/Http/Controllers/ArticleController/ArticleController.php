@@ -753,7 +753,11 @@ class ArticleController extends Controller
         $gov = ApprenticeAccountantGov::where('student_info_id',$approve->student_info_id)->get();
 
         if(count($gov) == 0){
-            $start_article = Carbon::parse($firm[0]->contract_start_date);
+            if($firm[0]->offline_user == 1){
+                $start_article = Carbon::parse($firm[0]->exp_start_date);
+            }else{
+                $start_article = Carbon::parse($firm[0]->contract_start_date);
+            }
         }else{
             $start_article = Carbon::parse($gov[0]->contract_start_date);
         }
@@ -940,7 +944,7 @@ class ArticleController extends Controller
 
     public function FilterGovArticle(Request $request)
     {
-        $article = ApprenticeAccountantGov::where('status',$request->status)->with('student_info')->get();
+        $article = ApprenticeAccountantGov::where('status',$request->status)->where('done_status','<>',3)->with('student_info')->get();
 
         $result_article = [];
         $article_type = "gov";
@@ -1596,6 +1600,8 @@ class ArticleController extends Controller
                     return "CPA I,II Renew";
                 }else if($infos->article_form_type == 'resign'){
                     return "Resign";
+                }else{
+                    return "Government";
                 }
             });
             // ->setRowClass(function ($infos) {

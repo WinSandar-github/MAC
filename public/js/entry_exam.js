@@ -61,7 +61,7 @@ function loadEntryDetail(id) {
                     status = "REJECTED";
                 }
 
-                if(element.status == 1){
+                if(element.status == 1 || element.status == 0){
                     $("#payment_info_card").show();
                 }else{
                     $("#payment_info_card").hide();
@@ -74,10 +74,10 @@ function loadEntryDetail(id) {
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
-                            $('#payment_status').append("Unpaid");
+                            $('#payment_status').append("Incomplete");
                         }
                         else if(result.status=='AP'){
-                            $('#payment_status').append("Paid");
+                            $('#payment_status').append("Complete");
                         }
                         else{
                             $('#payment_status').append("-");
