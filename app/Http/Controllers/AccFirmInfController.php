@@ -688,7 +688,7 @@ class AccFirmInfController extends Controller
                         $reg_no = 'NFC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
                     }
         }
-        
+
 
         $approve = AccountancyFirmInformation::find($id);
         $approve->status = 1;

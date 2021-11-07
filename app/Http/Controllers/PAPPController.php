@@ -253,30 +253,7 @@ class PAPPController extends Controller
             'data'  => $papp
         ]);
     }
-
-    // public function approve($id)
-    // {
-    //     $accepted_date = date('Y-m-d');
-    //     $approve = Papp::find($id);
-    //     if($approve->status==0)
-    //     {
-    //         $approve->status = 1;
-    //         $approve->accepted_date=$accepted_date;
-    //         $approve->renew_accepted_date=$accepted_date;
-    //         // Generate papp Reg No.
-    //         $approve->papp_reg_no = 'PAPP_' . str_pad($id, 5, "0", STR_PAD_LEFT);
-    //         // $approve->reg_date = date('Y-m-d');
-    //     }
-    //     else if($approve->status==1){
-    //         $approve->status = 1;
-    //         $approve->renew_status=1;
-    //         $approve->renew_accepted_date=$accepted_date;
-    //     }
-    //     $approve->save();
-    //     return response()->json([
-    //         'message' => "You have successfully approved that user!"
-    //     ],200);
-    // }
+    
     public function approve($id)
     {
         $old = Papp::orderBy('papp_reg_no', 'desc')->first();

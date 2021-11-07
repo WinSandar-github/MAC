@@ -213,6 +213,17 @@ function loadArticle()
             //     document.getElementById('request_label').innerHTML="၃။";
             // }
 
+            if(data.total_experience){
+              var total_exp_array = JSON.parse(data.total_experience);
+              var exp_year = total_exp_array[0];
+              var exp_month = total_exp_array[1];
+              var exp_days = total_exp_array[2];
+            }
+
+            if(data.article_form_type == 'c2_pass_renew' || data.article_form_type == 'c12_renew'){
+              $("#previous_exp_box").css('display','block');
+            }
+
             var form_type;
             article_form_type = data.article_form_type;
             switch (article_form_type) {
@@ -251,6 +262,12 @@ function loadArticle()
             $("#race").val(student_info.race);
             $("#religion").val(student_info.religion);
             $("#date_of_birth").val(student_info.date_of_birth);
+            $("#ex_papp_name").val(data.ex_papp);
+            $("#ex_papp_start_date").val(data.exp_start_date);
+            $("#ex_papp_end_date").val(data.exp_end_date);
+            $("#exp_year").val(exp_year);
+            $("#exp_month").val(exp_month);
+            $("#exp_days").val(exp_days);
 
             if (data.article_form_type == "qt_firm") {
                 document.getElementById("qt_row").style.display = "block";
@@ -392,6 +409,7 @@ function loadArticle()
 
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
+                    $('#office_order_row').show();
                     $("#c2_papp_name").val(data.request_papp);
                     if(data.mentor!=null){
                         $("#c2_mentor_name").val(data?.mentor?.name_eng);
@@ -409,6 +427,8 @@ function loadArticle()
                     $('#previous_papp_lab').text('၁၄။');
                     $('#previous_lab').text('၁၅။');
                     $('#exam_pass_date_label').text('၁၆။');
+
+                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
 
                 } else {
                     $("#papp_name").val(data.request_papp);
@@ -1005,20 +1025,19 @@ function autoLoadPaymentFirm(firm_id,form_type){
               console.log(total);
               for(let i=0 ; i<amount.length ; i++){
                   $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
+                      <li class="list-group-item d-flex justify-content-between lh-condensed">
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li >
+                      </li>
                     `);
             }
             $('.fee_list').append(`
-                    < li class= "list-group-item d-flex justify-content-between" >
+                    <li class= "list-group-item d-flex justify-content-between" >
                       <span>Total (MMK)</span>
                       <span id="total">
                           - <strong>${total}</strong> MMK
                       </span>
-                  </li >
+                  </li>
                     `);
         }
     });
@@ -1208,7 +1227,7 @@ function approveResignArticle() {
         }else{
             var id = $("input[name = article_id]").val();
         }
-        
+
         $.ajax({
             url: BACKEND_URL + "/approve_resign_article/" + id,
             type: 'patch',
@@ -1220,7 +1239,7 @@ function approveResignArticle() {
                     }else{
                         location.href = FRONTEND_URL + "/article_list";
                     }
-                    
+
                 }, 3000);
             }
         });
@@ -1240,7 +1259,7 @@ function rejectResignArticle() {
         }else{
             var id = $("input[name = article_id]").val();
         }
-        
+
         var formData = new FormData();
         formData.append('remark_resign', $('#remark_resign').val());
 
