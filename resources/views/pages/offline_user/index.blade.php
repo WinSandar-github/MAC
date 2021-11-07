@@ -1010,6 +1010,9 @@
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                                                         <th class="bold-font-weight" >Payment Status</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                         <th class="bold-font-weight" >Duty Report Date </th>
                                                                                     </tr>
@@ -1020,20 +1023,22 @@
                                                                         </div>
                                                                         <div class="tab-pane fade show" id="firm3" aria-expanded="true">
                                                                             <table id="tbl_firm_article_rejected" class="table table-hover text-nowrap " style="width:100%;">
-                                                                                <thead>
+                                                                                <thead class="text-nowrap">
                                                                                     <tr>
                                                                                         <th class="bold-font-weight">No</th>
                                                                                         <th class="bold-font-weight" >Action</th>
                                                                                         <th class="bold-font-weight" >Name</th>
                                                                                         <th class="bold-font-weight" >Phone</th>
-                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
-                                                                                        <th class="bold-font-weight" >Status</th>
-                                                                                        <th class="bold-font-weight"  style="display:none">Duty Report Date </th>
+                                                                                        <!-- <th class="bold-font-weight" >Payment Start Date</th>
+                                                                                        <th class="bold-font-weight" >Payment End Date</th> -->
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <!-- <th class="bold-font-weight">Duty Report Date </th> -->
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <tbody id="tbl_firm_article_rejected_body" class="hoverTable text-left">
+                                                                                <tbody id="tbl_firm_article_rejected_body" class="hoverTable">
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
@@ -1157,6 +1162,9 @@
                                                                             <th class="bold-font-weight" >Phone</th>
                                                                             <th class="bold-font-weight" >NRC</th>
                                                                             <th class="bold-font-weight" >Form Type</th>
+                                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                                             <th class="bold-font-weight" >Status</th>
                                                                             <!-- <th class="bold-font-weight" >Check End Date</th> -->
                                                                         </tr>
@@ -1203,6 +1211,10 @@
                                                                                         <th class="bold-font-weight" >Phone</th>
                                                                                         <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Leave Days</th>
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -2256,11 +2268,15 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'payment_status', name: 'payment_status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
 
         });
+
         $('#tbl_two_yrs_article_pending').DataTable({
             scrollX: true,
             processing: true,
@@ -2285,6 +2301,9 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
                 // {data: 'check_end_date', name: 'check_end_date'},
             ],
@@ -2314,6 +2333,10 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'leave_days', name: 'leave_days'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
