@@ -1117,6 +1117,8 @@ class PAPPController extends Controller
         // $papp->letter           =   $letter;
         $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->type             =   $request->type;
+        $papp->self_confession  =   $request->self_confession;
+        $papp->self_confession_1  =   $request->self_confession1;
         $papp->save();
 
         //invoice
@@ -1810,8 +1812,6 @@ class PAPPController extends Controller
         $cpa_ff->cpaff_reg_no           =   $request->cpaff_reg_no;
         $cpa_ff->cpaff_reg_year   =   $request->cpaff_reg_year;
         $cpa_ff->is_convicted     =   $request->is_convicted;
-        $papp->self_confession  =   $request->self_confession;
-        $papp->self_confession_1  =   $request->self_confession1;
        
         
        
@@ -1854,6 +1854,8 @@ class PAPPController extends Controller
         $papp->latest_reg_year  =   $request->latest_reg_year;
         $papp->submitted_stop_form  =   $request->submitted_stop_form;
         $papp->papp_resign_date     =   $request->papp_resign_date;
+        $papp->self_confession  =   $request->self_confession;
+        $papp->self_confession_1  =   $request->self_confession1;
         $papp->offline_user =1;
         $papp->save();
         return response()->json([
