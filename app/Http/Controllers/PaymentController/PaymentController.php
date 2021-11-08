@@ -103,6 +103,14 @@ class PaymentController extends Controller
                         if($papp){
                             generatePappNo($papp->id);
                         }//end papp
+
+                        //reg_no and payment_date for audit firm
+                        $audit = AccountancyFirmInformation::where('student_info_id', $req->student_info_id)->first();
+                        if($audit->local_foreign_type != null && $audit->local_foreign_type != ""){
+                            generateNonAuditNo($audit->id);
+                        }else{
+                            generateAuditNo($audit->id);
+                        }//end audit and non-audit firm
                     }
 
                     return response()->json(["message" => "Payment Data Saved!"], 200);

@@ -291,6 +291,7 @@ Route::patch('/fail_exam/{id}', 'ExamResultController@rejectExam');
 // Route::apiResource('mentor','MentorController');
 Route::resource('mentor','MentorController');
 Route::post('/filter_mentor','MentorController@FilterMentor');
+Route::post('/update_reject_mentor','MentorController@updateRejectMentor');
 // Route::apiResource('mentor','MentorController');
 // Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
