@@ -51,6 +51,10 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('done_remark')->nullable();
             $table->string('remark')->nullable();
             $table->string('total_experience')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('course_part')->nullable();
+            $table->string('school_name')->nullable();
+            $table->string('attend_or_fail')->nullable();
             $table->boolean('done_status')->default(0);
             $table->timestamps();
             $table->boolean('offline_user')->default(0);

@@ -224,6 +224,14 @@ function loadArticle()
               $("#previous_exp_box").css('display','block');
             }
 
+            if(data.article_form_type == 'c12_renew'){
+              //$("#previous_exp_box").css('display','block');
+              $("#previous_info_box").css('display','block');
+            }
+            else if(data.article_form_type == 'c2_pass_renew'){
+              $("#previous_info_box2").css('display','block');
+            }
+
             var form_type;
             article_form_type = data.article_form_type;
             switch (article_form_type) {
@@ -268,6 +276,21 @@ function loadArticle()
             $("#exp_year").val(exp_year);
             $("#exp_month").val(exp_month);
             $("#exp_days").val(exp_days);
+            $("#gender").val(data.gender);
+            $("#gender2").val(data.gender);
+            $("#course_part").val(data.course_part);
+            $("#exam_pass_batch").val(data.exam_pass_batch);
+            $("#exam_pass_batch_2").val(data.exam_pass_batch);
+            $("#school_name").val(data.school_name);
+            $("#attend_or_fail").val(data.attend_or_fail);
+            $("#exam_pass_date").val(data.exam_pass_date);
+
+            if(student_info.gender == "ကျွန်တော်"){
+              $(".call_gender").text("ခင်ဗျာ");
+            }
+            else{
+              $(".call_gender").text("ရှင့်");
+            }
 
             if (data.article_form_type == "qt_firm") {
                 document.getElementById("qt_row").style.display = "block";
