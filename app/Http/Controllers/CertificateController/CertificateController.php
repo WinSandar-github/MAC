@@ -235,14 +235,15 @@ class CertificateController extends Controller
                 $school_address=$school->renew_school_address;
             }
             if($school->initial_status==0){
-
+                $exp_date='12-31-'.date('Y');
+                
             }else if($school->initial_status==1){
                 $month=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('m');
                 if($month=='11' || $month=='12'){
-                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y')+4;
+                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y')+3;
                     $exp_date='12-31-'.$exp_date;
                 }else{
-                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y')+3;
+                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y')+2;
                     $exp_date='12-31-'.$exp_date;
                 }
             }
@@ -286,10 +287,27 @@ class CertificateController extends Controller
             $template->cert_data = str_replace('{{ expDate }}', "". $exp_date ."", $template->cert_data);
             $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
 
+            $branch_school = tbl_branch_school::where('student_info_id', '=', $school->student_info_id)->get();
+            if(strlen($branch_school) > 0){
+            
+                $branch_template = DB::table('certificates')->where('cert_code', '=', 'branch_school')->first();
+                
+                $branch_row = '';
+                
+                foreach($branch_school as $branch){
+                    $branch_row .= "<tr><td>Branch</td><td>" . $branch->branch_school_address . "</td></tr>";
+                }
+    
+                $branch_template->cert_data = str_replace('{{ branchRow }}', $branch_row, $branch_template->cert_data);
+            }else{
+                $branch_template = '';
+            }
+    
         }
         $className = '';
-
-        return view('certificate.complete_certificate', compact('template', 'className'));
+        
+        
+        return view('certificate.complete_certificate', compact('template', 'className', 'branch_template'));
     }
 
     public function getAuditCard(Request $req, $id){
