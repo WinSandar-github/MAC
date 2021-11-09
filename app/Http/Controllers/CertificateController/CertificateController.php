@@ -7,11 +7,8 @@ use App\ExamRegister;
 use App\QualifiedTest;
 use App\SchoolRegister;
 use App\TeacherRegister;
-<<<<<<< HEAD
 use App\tbl_branch_school;
-=======
 use App\AccountancyFirmInformation;
->>>>>>> 6b295d65e07c51a0c4dae2c4dae6695227733ae3
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
