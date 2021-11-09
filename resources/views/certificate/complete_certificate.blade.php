@@ -113,5 +113,11 @@
         {!! htmlspecialchars_decode($template->cert_data) !!}
 
     </page>
+
+    @if(isset($branch_template))
+
+            {!! htmlspecialchars_decode($branch_template->cert_data) !!}
+
+    @endif
 </body>
 </html>
