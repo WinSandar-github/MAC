@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\CertificateController;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use DB;
+use App\Invoice;
 use App\ExamRegister;
-use App\TeacherRegister;
 use App\QualifiedTest;
 use App\SchoolRegister;
-use App\Invoice;
-use DB;
-use App\AccountancyFirmInformation;
+use App\TeacherRegister;
+use App\tbl_branch_school;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\AccountancyFirmInformation;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomClass\Helper;
 
 class CertificateController extends Controller
