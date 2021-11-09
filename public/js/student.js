@@ -206,6 +206,8 @@ function loadStudentSelfStudy() {
             }
             else if (element.module == "3") {
                 $("#module_name").append("All Module");
+            }else{
+                $("#module_name").append("-");
             }
 
             $("input[name = student_register_id]").val(element.id);

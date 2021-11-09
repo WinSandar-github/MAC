@@ -546,7 +546,7 @@ class DARegisterController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 1;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_one_pass_exam_date;
@@ -593,7 +593,7 @@ class DARegisterController extends Controller
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 2;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_two_pass_exam_date;
@@ -663,7 +663,7 @@ class DARegisterController extends Controller
                     $exam_register->grade           = 2;
                 } 
                 $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->exam_type_id        = $request->type;
+                $exam_register->exam_type_id        = 1;
                 $exam_register->form_type           = 1;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->da_one_pass_exam_date;
@@ -824,7 +824,7 @@ class DARegisterController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 1;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_one_pass_exam_date;
@@ -871,7 +871,7 @@ class DARegisterController extends Controller
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 2;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_two_pass_exam_date;
@@ -946,7 +946,7 @@ class DARegisterController extends Controller
                     $exam_register->grade           = 2;
                 } 
                 $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->exam_type_id        = $request->type;
+                $exam_register->exam_type_id        = 1;
                 $exam_register->form_type           = 1;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->da_one_pass_exam_date;
