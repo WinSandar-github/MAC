@@ -405,6 +405,38 @@
                             </div>
                         </div>
 
+												<div id="previous_info_box" style="display:none;">
+													<div class="col-md-11">လူကြီးမင်း <span class="call_gender"></span></div>
+													<div class="col-md-11">
+															<ul>
+																	<li>
+																			<input class="p-input" type="text" name="gender" id="gender">
+																			သည် မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင်
+																			<input class="p-input" type="text" name="course_part" id="course_part">
+																			သင်တန်းအမှတ်စဥ်<input class="p-input" type="text" name="exam_pass_batch" id="exam_pass_batch"> ကို
+																			<input class="p-input" type="text" name="school_name" id="school_name" style="width:300px;">
+																			<input class="p-input" type="text" name="attend_or_fail" id="attend_or_fail">
+																			တစ်ဦးဖြစ်ပါသည်။
+																	</li>
+															</ul>
+													</div>
+												</div>
+
+												<div id="previous_info_box2" style="display:none;">
+													<div class="col-md-11">လူကြီးမင်း <span class="call_gender"></span></div>
+													<div class="col-md-11">
+															<ul>
+																	<li>
+																			<input class="p-input" type="text" name="gender2" id="gender2">
+																			သည် မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင် ဒုတိယပိုင်း စာမေးပွဲကို
+																			<input class="p-input" type="text" name="exam_pass_date" id="exam_pass_date"> တွင်ကျင်းပခဲ့သော CPA II အမှတ်စဥ်
+																			<input class="p-input" type="text" name="exam_pass_batch_2" id="exam_pass_batch_2">
+																			တွင်အောင်မြင်သူတစ်ဦးဖြစ်ပါသည်။
+																	</li>
+															</ul>
+													</div>
+												</div>
+
 												<div id="previous_exp_box" style="display:none;">
 													<div class="col-md-11">
 															<ul>
