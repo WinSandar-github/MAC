@@ -31,6 +31,7 @@ class TeacherSchoolReportController extends Controller
                     $title = 'သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း';
                     $school = SchoolRegister::whereNotNull('request_for_temporary_stop')->where('approve_reject_status', '=', '1')->get();
                 break;
+                
             }
 
         }
@@ -43,22 +44,42 @@ class TeacherSchoolReportController extends Controller
         return view('reporting.school_teacher.teacher_school_report', compact('data'));
     }
 
-    public function teacherSchoolPrivate(Request $request)
+    public function teacherSchoolPrivate(Request $request, $type)
     {
         // 1 = private , 0 = individual
-        $teacher = TeacherRegister::with('school')->where('from_valid_date', 'like', "%$request->date%")->get();
+       // $teacher = TeacherRegister::with('school')->where('from_valid_date', 'like', "%$request->date%")->get();
+      
+        if($request->date != '' && $type != ''){
 
+            switch ($type){
+                case 'all':
+                    $title = 'ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်၊ရပ်နားနေသော သင်တန်းဆရာများစာရင်း၊ private and individual';
+                    $teacher =TeacherRegister::whereYear('reg_date', '=', $request->date)->with('school')->get();
+                    break;
+                case 'init':
+                    $title = 'ကနဦးမှတ်ပုံတင်ထားသော သင်တန်းဆရာများစာရင်း';
+                    $teacher = TeacherRegister::whereYear('reg_date', '=', $request->date)->where('approve_reject_status', '=', '1')->where('initial_status', '=', '0')->get();
+                break;
+                case 'renew':
+                    $title = 'သက်တမ်းတိုးထားသော သင်တန်းဆရာများစာရင်း';
+                    $teacher = TeacherRegister::whereYear('reg_date', '=', $request->date)->where('approve_reject_status', '=', '1')->where('initial_status', '=', '1')->get();
+                    break;
+                case 'cessation':
+                    $title = 'ရပ်နားသင်တန်းဆရာများစာရင်း';
+                    $teacher = TeacherRegister::where('approve_reject_status', '=', '1')->where('initial_status', '=', '2')->get();
+                break;
+                
+            }
+
+        }
         $teacher = $teacher->map(function($item){
             $subj_id = explode(',', $item->certificates);
             $subject = Subject::whereIn('id', $subj_id)->get(['subject_name']);
             $item->subject = $subject;
             return $item;
         });
-
         $data = [
-            // 'title' => 'ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
-            // ( အမျိုးအစားအလိုက် (Private/Individual)၊ ကျောင်းအလိုက်၊ ခုနှစ်အလိုက်၊ ဘာသာရပ်အလိုက်၊ သင်တန်းအမျိုးအစားအလိုက်',
-            'title' => 'သင်တန်းဆရာများစာရင်း',
+            'title' => $title,
             'teacher' => $teacher,
         ];
 

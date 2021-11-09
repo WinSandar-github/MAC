@@ -19,4 +19,5 @@ class ApprenticeAccountant extends Model
 
     }
 
+   
 }

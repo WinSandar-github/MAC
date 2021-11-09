@@ -37,14 +37,19 @@ class ReportController extends Controller
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
                         ->where('exam_type_id','!=',3)
                         ->where('status',1) 
+                        ->orderBy('is_full_module','asc')
                         ->with('student_info')->select('exam_register.*');
 
                      
-
-        $student_infos = $batch->course->course_type->course_code == "da" 
-        ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
-        : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
-                        
+        if($request->grade != 1)
+        {
+            $student_infos = $batch->course->course_type->course_code == "da" 
+            ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
+            : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
+        }
+        else{
+            $student_infos = $student_infos->orderby('total_mark', 'asc')->Where('grade',$request->grade);
+        }
         if($request->module)
         {
             
@@ -60,12 +65,10 @@ class ReportController extends Controller
 
         
         
-        $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
         $request->exam_type_id &&  $student_infos =  $student_infos->Where('exam_type_id',$request->exam_type_id);
 
-         $student_infos =  $student_infos->get();
-
-
+        $student_infos =  $student_infos->get();
+ 
           return DataTables::of($student_infos)
                 ->addColumn('nrc', function ($infos){
                     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;

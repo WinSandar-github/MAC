@@ -112,11 +112,11 @@ class CertificateSeeder extends Seeder
                             <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;"
                                 colspan="2">
                                 <p style="line-height: 2rem;">
-                                    {{ studentName }} son/daughter of {{ abaName }},holder of CSC No. {{ nrcNumber }}, has been
+                                    {{ studentName }} of {{ abaName }},holder of CSC No. {{ nrcNumber }}, has been
                                     registered as a Lecturer/Tutor of a Private Accounting School or an Individual Lecture/Tutor
                                     under section 32 of the Myanmar Accountancy Council Law.<br>
-                                    He/She is permitted to engage as a Lecture/Tutor of a Private Accounting School.<br>
-                                    His/Her teaching Course(s) and Subject(s) are shown as below.
+                                     {{ gender }} is permitted to engage as a Lecture/Tutor of a Private Accounting School.<br>
+                                     {{ gender }} teaching Course(s) and Subject(s) are shown as below.
                                 </p>
         
                                 {{ courseAndSubject }}
@@ -234,7 +234,7 @@ class CertificateSeeder extends Seeder
                     <tr>
                         <td style="text-align: center; font-size: 16px; font-weight: 800;"
                             colspan="2">
-                            ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းမှတ်ပုံတင်လက်မှတ်<br>
+                            စာရင်းစစ်လုပ်ငန်းအမည်မှတ်ပုံတင်လက်မှတ်<br>
                             Certificate Of Audit Firm Name Registration
                         </td>
                     </tr>
@@ -248,8 +248,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
@@ -371,8 +371,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
@@ -508,8 +508,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
@@ -649,8 +649,8 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <table class="table">
+                        <td><style>.table-bordered tr td { border: 1px solid black;}</style>
+                            <table class="table table-bordered" style="width:100% !important;">
                                 <tr>
                                     <td>
                                         မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
@@ -765,7 +765,198 @@ class CertificateSeeder extends Seeder
                 </div>
             </page>
                 ')
-            ]
+            ],
+            [
+                'cert_code' => 'da_card',
+                'cert_data' => htmlspecialchars('
+                <img src="{{ userImage }}" alt="user-image" width="120px" height="120px"
+                style="float: right; position: relative; top: 110px;right: 60px;">
+                <table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800; padding-top: 100px; ">
+                        ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံတော်
+                    </td>
+                  
+                </tr>
+                <tr>    
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        The Republic of the Union of Myanmar
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        မြန်မာနိုင်ငံစာရင်းကောင်စီ
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 24px; font-weight: 800;">
+                        Myanmar Accountancy Council
+                    </td>
+                </tr>
+                 <tr>
+                    <td style="text-align: center; padding: 20px;" colspan="2">
+                        <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                            height="100px">
+                    </td>
+                </tr>
+                 
+                <tr>
+                    <td style="text-align: center; font-size: 25px; font-weight: 800;">
+                        
+                        {{ certificate_title_mm }}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 25px; font-weight: 600;">
+                        
+                        {{ certificate_title_eng }}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top:20px;">
+                        <div style="display: flex;justify-content: space-between;" >
+                            <div>
+                                အမှတ်စဥ် &nbsp {{ batch_num_mm }} <br>
+                                Serial No&nbsp {{ batch_num_eng }}
+                            </div>
+                               
+                            <div>
+                                ရက်စွဲ  {{ date_mm }} <br>
+                                Dated  {{ date_eng }}
+                            </div>
+
+                        </div>
+                    </td>     
+                </tr>
+                
+                <tr>
+                    <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;">
+                        <p>
+                            {{ father_name_mm }} ၏ {{ child_mm }} {{ studentName_mm }} 
+                            (နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် {{ nrcNumber_mm }}) 
+                            သည် {{ examYear }} ခုနှစ်၊ {{ examMonth }} လ အတွင်း ကျင်းပခဲ့သော {{ courseName_mm }}
+                            စာမေးပွဲကို ကိုယ်ပိုင်အမှတ် {{ roll_number_mm }} ဖြင့် ဖြေဆိုအောင်မြင်ပါသဖြင့် 
+                            ဤအောင်လက်မှတ်ကို ချီးမြှင့်လိုက်သည်။
+                        </p>
+                        <p style="font-size:19px; line-height:1.5;letter-spacing:0.4;"> 
+                            {{ studentName_eng }} (CSC No. {{ nrcNumber_eng }}) {{ child_eng }} of {{ father_name_eng }},
+                            having passed the {{ courseName_eng }}
+                            Examination held in {{ year_month_eng }} under Personal No. {{ roll_number_eng }}, is award this Certificate.   
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;padding-top:2%;">
+                        မှတ်ပုံတင်အရာရှိ
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; padding-top: 2%; vertical-align: middle;">
+                        Registara    
+                    </td>
+                </tr>
+               
+            </tbody>
+               
+                </table>')
+            ],
+            // [
+            //     'cert_code' => 'qt_card',
+            //     'cert_data' => htmlspecialchars('
+            //     <table style="margin-right: 100px; margin-left: 100px;">
+            //     <tbody>
+            //     <tr>
+            //         <td style="text-align: center; font-size: 24px; font-weight: 800; padding-top: 100px; ">
+            //             ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံတော်
+            //         </td>
+                  
+            //     </tr>
+            //     <tr>    
+            //         <td style="text-align: center; font-size: 24px; font-weight: 800;">
+            //             The Republic of the Union of Myanmar
+            //         </td>
+                    
+            //     </tr>
+            //     <tr>
+            //         <td style="text-align: center; font-size: 24px; font-weight: 800;">
+            //             မြန်မာနိုင်ငံစာရင်းကောင်စီ
+            //         </td>
+            //     </tr>
+            //     <tr>
+            //         <td style="text-align: center; font-size: 24px; font-weight: 800;">
+            //             Myanmar Accountancy Certificate
+            //         </td>
+            //     </tr>
+            //     <tr>
+            //         <td style="text-align: center; font-size: 24px; padding: 20px;">
+            //             <img src="http://localhost:8000/img/logo/mac_logo.jpeg" alt="logo" width="150px" height="150px">
+            //         </td>
+            //     </tr>
+            //     <tr>
+            //         <td style="text-align: center; font-size: 25px; font-weight: 800;">
+                        
+            //             {{ certificate_title_mm }}
+
+            //         </td>
+            //     </tr>
+            //     <tr>
+            //         <td style="text-align: center; font-size: 25px; font-weight: 600;">
+                        
+            //             {{ certificate_title_eng }}
+            //         </td>
+            //     </tr>
+            //     <tr>
+            //         <td style="padding-top:20px;">
+            //             <div style="display: flex;justify-content: space-between;" >
+            //                 <div>
+            //                     အမှတ်စဥ် &nbsp {{ batch_num_mm }} <br>
+            //                     Serial No&nbsp {{ batch_num_eng }}
+            //                 </div>
+                               
+            //                 <div>
+            //                     ရက်စွဲ  {{ date_mm }} <br>
+            //                     Dated  {{ date_eng }}
+            //                 </div>
+
+            //             </div>
+            //         </td>     
+            //     </tr>
+                
+            //     <tr>
+            //         <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;">
+            //             <p>
+            //                 {{ father_name_mm }} ၏ {{ child_mm }} {{ studentName_mm }} 
+            //                 (နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် {{ nrcNumber_mm }}) 
+            //                 သည် {{ examYear }} ခုနှစ်၊ {{ examMonth }} အတွင်း ကျင်းပခဲ့သော {{ courseName_mm }}
+            //                 စာမေးပွဲကို ခုံအမှတ် {{ roll_number_mm }} ဖြင့် ဖြေဆိုအောင်မြင်ပါသဖြင့် 
+            //                 ဤအောင်လက်မှတ်ကို ချီးမြှင့်လိုက်သည်။
+            //             </p>
+            //             <p style="font-size:19px; line-height:1.5;letter-spacing:0.4;"> 
+            //                 {{ studentName_eng }} (CSC No. {{ nrcNumber_eng }}) {{ child_eng }} of {{ father_name_eng }},
+            //                 Having passed the Qualifying Test for Registration as Certfied Public Accountant 
+            //                  held in {{ year_month_eng }} under Roll No. {{ roll_number_eng }} is awarded this Certificate.   
+            //             </p>
+            //         </td>
+            //     </tr>
+            //     <tr>
+            //         <td style="text-align: right;padding-top:2%;">
+            //             မှတ်ပုံတင်အရာရှိ
+            //         </td>
+            //     </tr>
+            //     <tr>
+            //         <td style="text-align: right; padding-top: 2%; vertical-align: middle;">
+            //             Registara    
+            //         </td>
+            //     </tr>
+               
+            // </tbody>
+               
+            //     </table>')
+            // ],
+            
         ]);
     }
 }

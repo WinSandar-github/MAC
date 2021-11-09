@@ -8,7 +8,9 @@ class Helper
 {
     public static $domain = 'https://demo.aggademo.me/MAC/public/index.php/api';
     public static $BASE_URL = 'https://demo.aggademo.me/MAC/public';
+
     // public static $domain="http://localhost:8000/api";
+    // public static $BASE_URL = 'https://localhost:8000';
 
 
     public function en2mmNumber($number)

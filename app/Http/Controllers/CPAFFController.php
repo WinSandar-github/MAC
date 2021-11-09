@@ -145,24 +145,14 @@ class CPAFFController extends Controller
             }
 
             $cpa_ff  = new CPAFF();
-            // $cpa_ff->student_info_id  =   $std_info->id;
-            // $cpa_ff->profile_photo    =   $profile_photo;
             $cpa_ff->cpa              =   $cpa;
             $cpa_ff->ra               =   $ra;
             $cpa_ff->degree_name      =   json_encode($request->degree_name);
             $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
             $cpa_ff->foreign_degree   =   json_encode($degree_file);
-
-            // $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
-            // $cpa_ff->pass_personal_no =   $request->pass_personal_no;
-
-            // $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
-            // $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
             $cpa_ff->cpa_certificate  =   $cpa_certificate;
             $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
             $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
-            // $cpa_ff->nrc_front        =   $nrc_front;
-            // $cpa_ff->nrc_back         =   $nrc_back;
             $cpa_ff->cpd_record       =   $cpd_record;
             $cpa_ff->total_hours      =   $request->total_hours;
             $cpa_ff->three_years_full =   $three_years_full;
@@ -170,21 +160,8 @@ class CPAFFController extends Controller
 
             //save to cpaff
             $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-            // $cpa_ff->address          =   $request->address;
-            // $cpa_ff->phone            =   $request->phone;
             $cpa_ff->contact_mail     =   $request->contact_mail;
-            $cpa_ff->form_type        =   $request->form_type;
-
-            // $cpa_ff->email             =   strtolower($request->email);
-            // $cpa_ff->name_mm           =   $request->name_mm;
-            // $cpa_ff->name_eng          =   $request->name_eng;
-            // $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-            // $cpa_ff->nrc_township      =   $request->nrc_township;
-            // $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-            // $cpa_ff->nrc_number        =   $request->nrc_number;
-            // $cpa_ff->father_name_mm    =   $request->father_name_mm;
-            // $cpa_ff->father_name_eng   =   $request->father_name_eng;  
-            // $cpa_ff->gender            =   $request->gender;         
+            $cpa_ff->form_type        =   $request->form_type;      
             $cpa_ff->country           =   $request->country;
             $cpa_ff->government        =   $request->government;
             $cpa_ff->exam_year         =   $request->exam_year;
@@ -249,7 +226,7 @@ class CPAFFController extends Controller
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
-            $invoice->productDesc = 'Application Fee , Registration Fee, CPA(Full-Fledged) Registration';
+            $invoice->productDesc = 'AppFee , RegFee, CPA(Full-Fledged) Registration';
             $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -378,18 +355,6 @@ class CPAFFController extends Controller
             }
 
             $cpa_ff  = new CPAFF();
-            // $cpa_ff->student_info_id  =   $std_info->id;
-            // $cpa_ff->profile_photo    =   $profile_photo;
-            // $cpa_ff->email             =   strtolower($request->email);
-            // $cpa_ff->name_mm           =   $request->name_mm;
-            // $cpa_ff->name_eng          =   $request->name_eng;
-            // $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-            // $cpa_ff->nrc_township      =   $request->nrc_township;
-            // $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-            // $cpa_ff->nrc_number        =   $request->nrc_number;
-            // $cpa_ff->father_name_mm    =   $request->father_name_mm;
-            // $cpa_ff->father_name_eng   =   $request->father_name_eng; 
-            // $cpa_ff->gender            =   $request->gender;
             $cpa_ff->cpa              =   $cpa;
             $cpa_ff->ra               =   $ra;
             $cpa_ff->degree_name      =   json_encode($request->degree_name);
@@ -398,8 +363,6 @@ class CPAFFController extends Controller
             $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
             $cpa_ff->cpaff_reg_no     =   $request->cpaff_reg_no;
             $cpa_ff->cpaff_reg_year   =   $request->cpaff_reg_year;
-            // $cpa_ff->address          =   $request->address;
-            // $cpa_ff->phone            =   $request->phone;
             $cpa_ff->contact_mail     =   $request->contact_mail;
             $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
             $cpa_ff->cpaff_renew_date     =   $request->cpaff_renew_date;
@@ -410,8 +373,6 @@ class CPAFFController extends Controller
             $cpa_ff->cpa_certificate  =   $cpa_certificate;
             $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
             $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
-            // $cpa_ff->nrc_front        =   $nrc_front;
-            // $cpa_ff->nrc_back         =   $nrc_back;
             $cpa_ff->cpd_record       =   $cpd_record;
             $cpa_ff->total_hours      =   $request->total_hours;
             $cpa_ff->last_paid_year   =   $request->last_paid_year;
@@ -587,15 +548,6 @@ class CPAFFController extends Controller
                 $three_years_full="";
             }
 
-            // if ($request->hasfile('letter')) {
-            //     $file = $request->file('letter');
-            //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            //     $letter = '/storage/cpa_ff_register/'.$name;
-            // }else{
-            //     $letter="";
-            // }
-
             if($request->hasfile('degree_file'))
             {
                 foreach($request->file('degree_file') as $file)
@@ -610,15 +562,6 @@ class CPAFFController extends Controller
 
             $cpa_ff  = new CPAFF();
             $cpa_ff->student_info_id  =   $request->student_info_id;
-            // $cpa_ff->profile_photo    =   $profile_photo;
-            // $cpa_ff->name_mm           =   $request->name_mm;
-            // $cpa_ff->name_eng          =   $request->name_eng;
-            // $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-            // $cpa_ff->nrc_township      =   $request->nrc_township;
-            // $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-            // $cpa_ff->nrc_number        =   $request->nrc_number;
-            // $cpa_ff->father_name_mm    =   $request->father_name_mm;
-            // $cpa_ff->father_name_eng   =   $request->father_name_eng;   
             $cpa_ff->cpa              =   $cpa;
             $cpa_ff->ra               =   $ra;
             $cpa_ff->degree_name      =   json_encode($request->degree_name);
@@ -633,28 +576,21 @@ class CPAFFController extends Controller
             $cpa_ff->cpa_certificate  =   $cpa_certificate;
             $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
             $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
-            // $cpa_ff->nrc_front        =   $nrc_front;
-            // $cpa_ff->nrc_back         =   $nrc_back;
             $cpa_ff->cpd_record       =   $cpd_record;
             $cpa_ff->total_hours      =   $request->total_hours;
             $cpa_ff->status           =   0;
             //save to cpaff
             $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-            // $cpa_ff->address          =   $request->address;
-            // $cpa_ff->phone            =   $request->phone;
             $cpa_ff->contact_mail     =   $request->contact_mail;
             $cpa_ff->form_type        =   $request->form_type;
             $cpa_ff->cpa2_pass_date        =   $request->cpa2_pass_date;
             $cpa_ff->cpa2_reg_no        =   $request->cpa2_reg_no;
-            // $cpa_ff->reg_no        =   $request->reg_no;
             $cpa_ff->country        =   $request->country;
             $cpa_ff->government        =   $request->government;
             $cpa_ff->exam_year        =   $request->exam_year;
             $cpa_ff->exam_month        =   $request->exam_month;
             $cpa_ff->roll_no        =   $request->roll_no;
-            // $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
-            $cpa_ff->three_years_full   =   $three_years_full;
-            // $cpa_ff->letter   =   $letter;          
+            $cpa_ff->three_years_full   =   $three_years_full;    
             $cpa_ff->self_confession = $request->self_confession;    
             $cpa_ff->is_renew   =   $request->is_renew;
             $cpa_ff->type              =   $request->type;
@@ -675,7 +611,6 @@ class CPAFFController extends Controller
 
             //save to std info
             $student_info = StudentInfo::find($request->student_info_id);
-            // $student_info->image         = $profile_photo;
             $student_info->name_mm         = $request->name_mm;
             $student_info->name_eng         = $request->name_eng;
             $student_info->nrc_state_region  =   $request->nrc_state_region;
@@ -704,7 +639,7 @@ class CPAFFController extends Controller
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
-            $invoice->productDesc = 'Application Fee , Registration Fee, CPA(Full-Fledged) Registration';
+            $invoice->productDesc = 'AppFee , RegFee, CPA(Full-Fledged) Registration';
             $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -848,29 +783,10 @@ class CPAFFController extends Controller
             $resign_date = "";
         }
 
-        // if ($request->hasfile('three_years_full')) {
-        //     $file = $request->file('three_years_full');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
-        //     $three_years_full = '/storage/cpa_ff_register/'.$name;
-        // }else{
-        //     $three_years_full="";
-        // }
-
         $oldCpaff = CPAFF::where('student_info_id', '=', $request->student_info_id)->latest()->first();
 
         $cpa_ff  = new CPAFF();
         $cpa_ff->student_info_id  =   $request->student_info_id;
-        // $cpa_ff->profile_photo    =   $profile_photo;
-        
-        // $cpa_ff->name_mm           =   $request->name_mm;
-        // $cpa_ff->name_eng          =   $request->name_eng;
-        // $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-        // $cpa_ff->nrc_township      =   $request->nrc_township;
-        // $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-        // $cpa_ff->nrc_number        =   $request->nrc_number;
-        // $cpa_ff->father_name_mm    =   $request->father_name_mm;
-        // $cpa_ff->father_name_eng   =   $request->father_name_eng; 
         $cpa_ff->cpa              =   $cpa;
         $cpa_ff->ra               =   $ra;
         $cpa_ff->degree_name      =   $degree_name;
@@ -879,8 +795,6 @@ class CPAFFController extends Controller
 
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
         $cpa_ff->cpaff_reg_no     =   $request->cpaff_reg_no;
-        // $cpa_ff->address          =   $request->address;
-        // $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
         $cpa_ff->cpaff_renew_date     =   $request->cpaff_renew_date;
@@ -891,8 +805,6 @@ class CPAFFController extends Controller
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
         $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
         $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
-        // $cpa_ff->nrc_front        =   $nrc_front;
-        // $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->total_hours      =   $request->total_hours;
         $today = date('d-m-Y');
@@ -913,26 +825,6 @@ class CPAFFController extends Controller
         $cpa_ff->type   =   $request->type;
         $cpa_ff->status           =  0;
 
-        // $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
-        // $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
-        
-        
-        // // $cpa_ff->form_type        =   $initial_cpaff->form_type;
-        
-        // //save to cpaff
-        
-        // $cpa_ff->three_years_full   =   $three_years_full;
-
-        
-        // $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
-        // $cpa_ff->renew_card_year          =   $request->renew_card_year;
-        // $cpa_ff->old_card_no            =   $request->old_card_no;
-        // $cpa_ff->old_card_no_year     =   $request->old_card_no_year;
-        // $cpa_ff->old_card_file        =   $request->old_card_file;
-        // $cpa_ff->is_convicted        =   $request->is_convicted;  
-        
-
-               
         $cpa_ff->validate_from = $today ;
         // $old_validate_to=date('Y-m',strtotime($oldCpaff->validate_to));
         if(strtotime($today)<=strtotime($oldCpaff->validate_to))
@@ -1024,28 +916,28 @@ class CPAFFController extends Controller
                 }
                 $calculate_amount=$reconnect_year_count*$fees->reconnected_fee;
                 if($thisMonth === 'Jan'){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                 }
                 else if(date('m')>1 && date('m')<=4){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                 }
                 else{
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  CPA(Full-Fledged) Renewal Registration';
+                    $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                 }
             }
             else{
                 if($thisYear == $oldYear){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, CPA(Full-Fledged) Renewal Registration';
+                    $invoice->productDesc     = 'AppFee, RenewFee, CPA(Full-Fledged) Renewal Registration';
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
                 }else if($thisYear == $oldYear + 1 &&  $thisMonth === 'Jan'){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan), CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
                 }
                 else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee ;
                 }
             }
@@ -1070,30 +962,30 @@ class CPAFFController extends Controller
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                     }
                 
                 }
                 else{
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
                     }
                     // $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
@@ -1119,29 +1011,29 @@ class CPAFFController extends Controller
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                     }
                 }
                 else{
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
                     }
                 }
@@ -1201,6 +1093,7 @@ class CPAFFController extends Controller
             'message' => "You have successfully approved that user!"
         ],200);
     }
+
     public function approveRenewCpaff($id)
     {
         $accepted_date = date('Y-m-d');
@@ -1322,19 +1215,11 @@ class CPAFFController extends Controller
             $nrc_back=$request->nrc_back;
         }
 
-        // $std_info = StudentInfo::find($request->student_info_id);
-        // $std_info->payment_method = null;
-        // $std_info->approve_reject_status = 0;
-        // $std_info->save();
-
         $cpa_ff = CPAFF::find($id);
-        // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-        // $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate=$cpa_certificate;
         $cpa_ff->mpa_mem_card=$mpa_mem_card;
         $cpa_ff->mpa_mem_card_back=$mpa_mem_card_back;
         $cpa_ff->cpd_record=$cpd_record;
-        // $cpa_ff->passport_image=$passport_image;
         $cpa_ff->nrc_front        =   $nrc_front;
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->renew_accepted_date=date('Y-m-d');
@@ -1437,8 +1322,8 @@ class CPAFFController extends Controller
                     }
                     foreach($invoice as $i){
                         return $i->status == "0"
-                            ? "Unpaid"
-                            : "Paid";
+                            ? "Incomplete"
+                            : "Complete";
                     }
                   })
                 ->addColumn('degree', function ($infos){
@@ -1518,60 +1403,49 @@ class CPAFFController extends Controller
     {
         $cpa_ff = CPAFF::find($request->cpaff_id);
 
-        // if ($request->hasfile('profile_photo')) {
-        //     $file = $request->file('profile_photo');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $profile_photo = '/storage/student_info/'.$name;
-        // // }else{
-        // //     $profile_photo=null;
-        //     $cpa_ff->profile_photo    =   $profile_photo;
-        // }
-
         if(!$request->hasfile('cpa') && !$request->hasfile('ra') && !$request->hasfile('degree_file'))
         {
-            $cpa= $cpa_ff->cpa;
-            $ra= $cpa_ff->ra;
-            $degree_name=$cpa_ff->degree_name;
-            $degree_pass_year=$cpa_ff->degree_pass_year;
-            $degree_file_json=$cpa_ff->foreign_degree;
+            $cpa_ff->cpa              =   $cpa_ff->cpa  ; 
+            $cpa_ff->ra               =   $cpa_ff->ra   ;
+            $cpa_ff->foreign_degree   =   $cpa_ff->foreign_degree;
         }
         else{
             if ($request->hasfile('cpa')) {
-                $file = $request->file('cpa');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $cpa = '/storage/cpa_ff_register/'.$name;
+                $cpa_file = $request->file('cpa');
+                $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
+                $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
+                $cpa = '/storage/student_papp/'.$cpa_name;
+
+                $cpa_ff->cpa              =   $cpa;
             }
             else{
-                $cpa = null;
-            }
+                $cpa_ff->cpa              =   null  ;              }
 
             if ($request->hasfile('ra')) {
-                $file = $request->file('ra');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $ra = '/storage/cpa_ff_register/'.$name;
+                $ra_file = $request->file('ra');
+                $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
+                $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
+                $ra = '/storage/student_papp/'.$ra_name;
+
+                $cpa_ff->ra               =   $ra;
             }
             else{
-                $ra = null;
+                $cpa_ff->ra               =   null;
             }
 
             if($request->hasfile('degree_file'))
             {
                 foreach($request->file('degree_file') as $file)
                 {
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-                    $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                    $degree_file[] = '/storage/cpa_ff_register/'.$name;
-                }        
-            }else{
-                $degree_file = null;
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_papp/',$name);
+                    $degree[] = '/storage/student_papp/'.$name;
+                }
+                $cpa_ff->foreign_degree   =   json_encode($degree);
             }
-            
-            $degree_name=json_encode($request->degree_name);
-            $degree_pass_year=json_encode($request->degree_pass_year);
-            $degree_file_json=json_encode($degree_file);
+            else{
+                $cpa_ff->foreign_degree   =   null;
+            }
         }
 
         if ($request->hasfile('cpa_certificate')) {
@@ -1605,26 +1479,6 @@ class CPAFFController extends Controller
             $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
         }
 
-        // if ($request->hasfile('nrc_front')) {
-        //     $file = $request->file('nrc_front');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $nrc_front= '/storage/student_info/'.$name;
-        // // }else{
-        // //     $nrc_front="";
-        //     $cpa_ff->nrc_front        =   $nrc_front;
-        // }
-
-        // if ($request->hasfile('nrc_back')) {
-        //     $file = $request->file('nrc_back');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $nrc_back= '/storage/student_info/'.$name;
-        // // }else{
-        // //     $nrc_back="";
-        //     $cpa_ff->nrc_back         =   $nrc_back;
-        // }
-
         if ($request->hasfile('cpd_record')) {
             $file = $request->file('cpd_record');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -1644,46 +1498,14 @@ class CPAFFController extends Controller
         //     $three_years_full="";
             $cpa_ff->three_years_full   =   $three_years_full;
         }
-
-        if($request->hasfile('degree_file'))
-        {
-            foreach($request->file('degree_file') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-                $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $degree_file[] = '/storage/cpa_ff_register/'.$name;
-            }        
-        }else{
-            $degree_file = null;
-        }
-
-        $cpa_ff->cpa              =   $cpa;
-        $cpa_ff->ra               =   $ra;
-        $cpa_ff->degree_name      =   $degree_name;
-        $cpa_ff->degree_pass_year =   $degree_pass_year;
-        $cpa_ff->foreign_degree   =   $degree_file_json;
-        $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
-        $cpa_ff->pass_personal_no =   $request->pass_personal_no;
-        $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
-        $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
-        $cpa_ff->total_hours      =   $request->total_hours;
-        $cpa_ff->status           =  0;
-        $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-        $cpa_ff->cpa2_reg_no      =   $request->cpa2_reg_no;
-        // $cpa_ff->address          =   $request->address;
-        // $cpa_ff->phone            =   $request->phone;
-        $cpa_ff->contact_mail     =   $request->contact_mail;
-        $cpa_ff->form_type        =   $request->form_type;
-        // $cpa_ff->email             =   strtolower($request->email);
-        // $cpa_ff->name_mm           =   $request->name_mm;
-        // $cpa_ff->name_eng          =   $request->name_eng;
-        // $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-        // $cpa_ff->nrc_township      =   $request->nrc_township;
-        // $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-        // $cpa_ff->nrc_number        =   $request->nrc_number;
-        // $cpa_ff->father_name_mm    =   $request->father_name_mm;
-        // $cpa_ff->father_name_eng   =   $request->father_name_eng;           
-        // $cpa_ff->gender            =   $request->gender;           
+        
+        $cpa_ff->total_hours       =   $request->total_hours;
+        $cpa_ff->status            =   0;
+        $cpa_ff->cpa_batch_no      =   $request->cpa_batch_no;
+        $cpa_ff->cpa2_pass_date    =   $request->cpa2_pass_date;
+        $cpa_ff->cpa2_reg_no       =   $request->cpa2_reg_no;
+        $cpa_ff->contact_mail      =   $request->contact_mail;
+        $cpa_ff->form_type         =   $request->form_type;          
         $cpa_ff->country           =   $request->country;
         $cpa_ff->government        =   $request->government;
         $cpa_ff->exam_year         =   $request->exam_year;
@@ -1695,9 +1517,8 @@ class CPAFFController extends Controller
         $cpa_ff->save();
 
         $student_info = StudentInfo::find($request->student_info_id);
-        // $student_info->image         = $profile_photo;
-        $student_info->name_mm         = $request->name_mm;
-        $student_info->name_eng         = $request->name_eng;
+        $student_info->name_mm           = $request->name_mm;
+        $student_info->name_eng          = $request->name_eng;
         $student_info->nrc_state_region  =   $request->nrc_state_region;
         $student_info->nrc_township      =   $request->nrc_township;
         $student_info->nrc_citizen       =   $request->nrc_citizen;
@@ -1705,8 +1526,8 @@ class CPAFFController extends Controller
         $student_info->father_name_mm    =   $request->father_name_mm;
         $student_info->father_name_eng   =   $request->father_name_eng;           
         $student_info->gender            =   $request->gender;
-        $student_info->address       = $request->address;
-        $student_info->phone            =   $request->phone;
+        $student_info->address           = $request->address;
+        $student_info->phone             =   $request->phone;
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -1748,16 +1569,6 @@ class CPAFFController extends Controller
     public function updateRejectedRenewalData(Request $request)
     {
         $cpa_ff = CPAFF::find($request->cpaff_id);
-
-        // if ($request->hasfile('profile_photo')) {
-        //     $file = $request->file('profile_photo');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $profile_photo = '/storage/student_info/'.$name;
-        // }else{
-        //     $profile_photo=null;
-        //     // $cpa_ff->profile_photo    =   $profile_photo;
-        // }
         
         if ($request->hasfile('cpa_certificate')) {
             $file = $request->file('cpa_certificate');
@@ -1790,26 +1601,6 @@ class CPAFFController extends Controller
             $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
         }
 
-        // if ($request->hasfile('nrc_front')) {
-        //     $file = $request->file('nrc_front');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $nrc_front= '/storage/student_info/'.$name;
-        // }else{
-        //     $nrc_front=$request->nrc_front;
-        //     // $cpa_ff->nrc_front        =   $nrc_front;
-        // }
-
-        // if ($request->hasfile('nrc_back')) {
-        //     $file = $request->file('nrc_back');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $nrc_back= '/storage/student_info/'.$name;
-        // }else{
-        //     $nrc_back=$request->nrc_back;
-        //     // $cpa_ff->nrc_back         =   $nrc_back;
-        // }
-
         if ($request->hasfile('cpd_record')) {
             $file = $request->file('cpd_record');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -1841,19 +1632,8 @@ class CPAFFController extends Controller
         $cpa_ff->fine_person      =   $request->fine_person;
         $cpa_ff->status           =  0;
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-        // $cpa_ff->address          =   $request->address;
-        // $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
-        $cpa_ff->form_type        =   $request->form_type;
-        // $cpa_ff->email             =   strtolower($request->email);
-        // $cpa_ff->name_mm           =   $request->name_mm;
-        // $cpa_ff->name_eng          =   $request->name_eng;
-        // $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-        // $cpa_ff->nrc_township      =   $request->nrc_township;
-        // $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-        // $cpa_ff->nrc_number        =   $request->nrc_number;
-        // $cpa_ff->father_name_mm    =   $request->father_name_mm;
-        // $cpa_ff->father_name_eng   =   $request->father_name_eng;           
+        $cpa_ff->form_type        =   $request->form_type;       
         $cpa_ff->country           =   $request->country;
         $cpa_ff->government        =   $request->government;
         $cpa_ff->exam_year         =   $request->exam_year;
@@ -1865,7 +1645,6 @@ class CPAFFController extends Controller
         $cpa_ff->save();
 
         $student_info = StudentInfo::find($request->student_info_id);
-        // $student_info->image         = $profile_photo;
         $student_info->name_mm         = $request->name_mm;
         $student_info->name_eng         = $request->name_eng;
         $student_info->nrc_state_region  =   $request->nrc_state_region;
@@ -2023,21 +1802,9 @@ class CPAFFController extends Controller
         $cpa_ff->degree_pass_year =   $degree_pass_year;
         $cpa_ff->foreign_degree   =   $degree_file_json;
         $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
-        // $cpa_ff->name_mm           =   $request->name_mm;
-        // $cpa_ff->name_eng          =   $request->name_eng;
-        // $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-        // $cpa_ff->nrc_township      =   $request->nrc_township;
-        // $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-        // $cpa_ff->nrc_number        =   $request->nrc_number;
-        // $cpa_ff->father_name_mm    =   $request->father_name_mm;
-        // $cpa_ff->father_name_eng   =   $request->father_name_eng;           
-        // $cpa_ff->gender            =   $request->gender;    
-        
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
         $cpa_ff->cpaff_reg_no     =   $request->cpaff_reg_no;
         $cpa_ff->cpaff_reg_year   =   $request->cpaff_reg_year;
-        // $cpa_ff->address          =   $request->address;
-        // $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
 
         $cpa_ff->cpaff_pass_date  =   $request->cpaff_pass_date;
@@ -2059,7 +1826,6 @@ class CPAFFController extends Controller
         $cpa_ff->save();
 
         $student_info = StudentInfo::find($request->student_info_id);
-        // $student_info->image         = $profile_photo;
         $student_info->name_mm         = $request->name_mm;
         $student_info->name_eng         = $request->name_eng;
         $student_info->nrc_state_region  =   $request->nrc_state_region;

@@ -359,44 +359,44 @@ function loadDAExamData() {
                     document.getElementById("reject").style.display = 'none';
                 }
 
-                if(element.status == 1){
+                if(element.status == 1 || element.status == 0){
                     $("#payment_info_card").show();
-                }else{
+                } else {
                     $("#payment_info_card").hide();
                 }
-    
+
                 // console.log('student_course_regs',element.student_info.student_course_regs);
-                let course_code = element.course.code == "da_1"? 'da_1' : 
-                                    element.course.code == "da_2"? 'da_2' :
-                                    element.course.code == "cpa_1"? 'cpa_1' : 'cpa_2';
-    
+                let course_code = element.course.code == "da_1" ? 'da_1' :
+                    element.course.code == "da_2" ? 'da_2' :
+                        element.course.code == "cpa_1" ? 'cpa_1' : 'cpa_2';
+
                 // let reg_type    = element.type == 0? 'self_reg_' : 
                 //                     element.type == 1? 'prv_reg_' : 'mac_reg_';                               
                 // console.log('reg_type',reg_type);
                 // console.log('course_code',course_code);
-                
+
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code+"/"+ element.student_info_id ,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code + "/" + element.student_info_id,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
-                            $('#payment_status').append("Unpaid");
+                            $('#payment_status').append("Incomplete");
                         }
                         else if(result.status=='AP'){
-                            $('#payment_status').append("Paid");
+                            $('#payment_status').append("Complete");
                         }
-                        else{
+                        else {
                             $('#payment_status').append("-");
                         }
                         var productDesc = result.productDesc.split(",");
                         var amount = result.amount.split(",");
-                        var total=0;
-                        for(var i in amount) { 
+                        var total = 0;
+                        for (var i in amount) {
                             total += parseInt(amount[i]);
                         }
                         // console.log(total);
-                        for(let i=0 ; i<amount.length ; i++){
+                        for (let i = 0; i < amount.length; i++) {
                             $('.fee_list').append(`
                                 <li
                                     class="list-group-item d-flex justify-content-between lh-condensed">
@@ -416,12 +416,12 @@ function loadDAExamData() {
                     }
                 });
 
-                if(element.exam_department){
+                if (element.exam_department) {
                     $("#exam_department").append(element.exam_department.name);
-                }else{
+                } else {
                     $("#exam_department").append("-");
                 }
-                
+
                 if (element.is_full_module == 1) {
                     $("#current_module").append("Module-1");
                 } else if (element.is_full_module == 2) {
@@ -538,7 +538,7 @@ function loadDAExamData() {
                 });
 
 
-                
+
 
             })
         }

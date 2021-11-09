@@ -164,7 +164,7 @@
                                                         <th class="bold-font-weight" >CPAFF Reg; No.</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >PaymentnStatus</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>

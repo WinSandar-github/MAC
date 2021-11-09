@@ -235,7 +235,7 @@ class PAPPController extends Controller
         $invoice->name_eng       =  $stdInfo->name_eng;
         $invoice->email       = $stdInfo->email;
         $invoice->phone       = $stdInfo->phone;
-        $invoice->productDesc = 'Application Fee , Registration Fee,PAPP Registration';
+        $invoice->productDesc = 'AppFee , RegFee,PAPP Registration';
         $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
         $invoice->status          = 0;
         $invoice->save();
@@ -253,30 +253,7 @@ class PAPPController extends Controller
             'data'  => $papp
         ]);
     }
-
-    // public function approve($id)
-    // {
-    //     $accepted_date = date('Y-m-d');
-    //     $approve = Papp::find($id);
-    //     if($approve->status==0)
-    //     {
-    //         $approve->status = 1;
-    //         $approve->accepted_date=$accepted_date;
-    //         $approve->renew_accepted_date=$accepted_date;
-    //         // Generate papp Reg No.
-    //         $approve->papp_reg_no = 'PAPP_' . str_pad($id, 5, "0", STR_PAD_LEFT);
-    //         // $approve->reg_date = date('Y-m-d');
-    //     }
-    //     else if($approve->status==1){
-    //         $approve->status = 1;
-    //         $approve->renew_status=1;
-    //         $approve->renew_accepted_date=$accepted_date;
-    //     }
-    //     $approve->save();
-    //     return response()->json([
-    //         'message' => "You have successfully approved that user!"
-    //     ],200);
-    // }
+    
     public function approve($id)
     {
         $old = Papp::orderBy('papp_reg_no', 'desc')->first();
@@ -658,28 +635,28 @@ class PAPPController extends Controller
                 }
                 $calculate_amount=$reconnect_year_count*$fees->reconnected_fee;
                 if($thisMonth === 'Jan'){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, PAPP Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, PAPP Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                 }
                 else if(date('m')>1 && date('m')<=4){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, PAPP Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, PAPP Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                 }
                 else{
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  PAPP Renewal Registration';
+                    $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  PAPP Renewal Registration';
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                 }
             }
             else{
                 if($thisYear == $oldYear){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, PAPP Renewal Registration';
+                    $invoice->productDesc     = 'AppFee, RenewFee, PAPP Renewal Registration';
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
                 }else if($thisYear == $oldYear + 1 &&  $thisMonth === 'Jan'){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan), PAPP Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, PAPP Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
                 }
                 else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), PAPP Renewal Registration' ;
+                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, PAPP Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee ;
                 }
             }
@@ -704,30 +681,30 @@ class PAPPController extends Controller
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee,PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  PAPP Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  PAPP Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                     }
 
                 }
                 else{
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  PAPP Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee, PAPP Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
                     }
                     // $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
@@ -753,29 +730,29 @@ class PAPPController extends Controller
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee,PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee,PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee, PAPP Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                     }
                 }
                 else{
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee,PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, Reconnected Fee,PAPP Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
                     }
                     else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee, PAPP Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
                     }
                 }
@@ -1009,8 +986,8 @@ class PAPPController extends Controller
             }
             foreach($invoice as $i){
                 return $i->status == "0"
-                    ? "Unpaid"
-                    : "Paid";
+                    ? "Incomplete"
+                    : "Complete";
             }
           })
             // ->addColumn('type', function ($infos){
@@ -1117,6 +1094,8 @@ class PAPPController extends Controller
         // $papp->letter           =   $letter;
         $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->type             =   $request->type;
+        $papp->self_confession  =   $request->self_confession;
+        $papp->self_confession_1  =   $request->self_confession1;
         $papp->save();
 
         //invoice
@@ -1635,52 +1614,65 @@ class PAPPController extends Controller
             $cpa_ff->old_card_file    =   $cpa_ff->old_card_file;
         }
         $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
-        if ($request->hasfile('cpa')) {
-            $cpa_file = $request->file('cpa');
-            $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
-            $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
-            $cpa = '/storage/student_papp/'.$cpa_name;
-
-            $cpa_ff->cpa              =   $cpa;
-
-            $papp->cpa                          =   $cpa;
-        }
-        else{
-            $cpa_ff->cpa              =   $cpa_ff->cpa  ;
-            
-            $papp->cpa                          =  $papp->cpa     ;
-        }
-
-        if ($request->hasfile('ra')) {
-            $ra_file = $request->file('ra');
-            $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
-            $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
-            $ra = '/storage/student_papp/'.$ra_name;
-
-            $cpa_ff->ra               =   $ra;
-            $papp->ra                           =   $ra;
-        }
-        else{
-            $cpa_ff->ra               =   $cpa_ff->ra   ;
-            $papp->ra                           =   $papp->ra  ;
-        }
-
-        if($request->hasfile('degree_file'))
+        if(!$request->hasfile('cpa') && !$request->hasfile('ra') && !$request->hasfile('degree_file'))
         {
-            foreach($request->file('degree_file') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_papp/',$name);
-                $degree[] = '/storage/student_papp/'.$name;
-            }
-            $papp->foreign_degree     =   json_encode($degree);
-            $cpa_ff->foreign_degree   =   json_encode($degree);
-        }
-        else{
+            // $cpa= $initial_cpaff->cpa;
+            // $ra= $initial_cpaff->ra;
+            // $degree_name=$initial_cpaff->degree_name;
+            // $degree_pass_year=$initial_cpaff->degree_pass_year;
+            // $degree_file_json=$initial_cpaff->foreign_degree;
+            $cpa_ff->cpa              =   $cpa_ff->cpa  ;            
+            $papp->cpa                =  $papp->cpa     ;
+            $cpa_ff->ra               =   $cpa_ff->ra   ;
+            $papp->ra                 =   $papp->ra  ;
             $papp->foreign_degree     =   $papp->foreign_degree ;
             $cpa_ff->foreign_degree   =   $cpa_ff->foreign_degree;
         }
-        
+        else{
+            if ($request->hasfile('cpa')) {
+                $cpa_file = $request->file('cpa');
+                $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
+                $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
+                $cpa = '/storage/student_papp/'.$cpa_name;
+
+                $cpa_ff->cpa              =   $cpa;
+                $papp->cpa                =   $cpa;
+            }
+            else{
+                $cpa_ff->cpa              =   null  ;                
+                $papp->cpa                =  null ;
+            }
+
+            if ($request->hasfile('ra')) {
+                $ra_file = $request->file('ra');
+                $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
+                $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
+                $ra = '/storage/student_papp/'.$ra_name;
+
+                $cpa_ff->ra               =   $ra;
+                $papp->ra                 =   $ra;
+            }
+            else{
+                $cpa_ff->ra               =   null;
+                $papp->ra                 =   null;
+            }
+
+            if($request->hasfile('degree_file'))
+            {
+                foreach($request->file('degree_file') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_papp/',$name);
+                    $degree[] = '/storage/student_papp/'.$name;
+                }
+                $papp->foreign_degree     =   json_encode($degree);
+                $cpa_ff->foreign_degree   =   json_encode($degree);
+            }
+            else{
+                $papp->foreign_degree     =   null ;
+                $cpa_ff->foreign_degree   =   null;
+            }
+        }
         if ($request->hasfile('cpa_certificate')) {
             $file = $request->file('cpa_certificate');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -1797,8 +1789,6 @@ class PAPPController extends Controller
         $cpa_ff->cpaff_reg_no           =   $request->cpaff_reg_no;
         $cpa_ff->cpaff_reg_year   =   $request->cpaff_reg_year;
         $cpa_ff->is_convicted     =   $request->is_convicted;
-        $papp->self_confession  =   $request->self_confession;
-        $papp->self_confession_1  =   $request->self_confession1;
        
         
        
@@ -1841,6 +1831,8 @@ class PAPPController extends Controller
         $papp->latest_reg_year  =   $request->latest_reg_year;
         $papp->submitted_stop_form  =   $request->submitted_stop_form;
         $papp->papp_resign_date     =   $request->papp_resign_date;
+        $papp->self_confession  =   $request->self_confession;
+        $papp->self_confession_1  =   $request->self_confession1;
         $papp->offline_user =1;
         $papp->save();
         return response()->json([

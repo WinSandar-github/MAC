@@ -42,7 +42,7 @@ Route::patch('/approve_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfControlle
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@rejectRenew');
 Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
-Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
+Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approveNon');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::get('/check_initial_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
 Route::get('/check_offline_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
@@ -79,8 +79,8 @@ Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
 
 //Get Batch for Offline Student
-Route::get('/get_current_batch/{course_id}','BatchController@getBatch');
-Route::get('/get_passed_batch/{course_id}','BatchController@getBatch');
+Route::get('/get_current_batch/{course_id}','BatchController@getCurrentBatch');
+Route::get('/get_passed_batch/{course_id}','BatchController@getPassedBatch');
 
 //Exam
 Route::resource('/exam','ExamController');
@@ -268,7 +268,7 @@ Route::get('/check_payment_non_audit/{id}', 'AccFirmInfController@check_payment'
 Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 //Update Rejected Audit Firm register form
-Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@update');
+Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@updateInitial');
 Route::post('/update_renew_rejected_acc_firm_info/{id}','AccFirmInfController@updateRenewReject');
 
 //Get Exam filter by student id
@@ -291,6 +291,7 @@ Route::patch('/fail_exam/{id}', 'ExamResultController@rejectExam');
 // Route::apiResource('mentor','MentorController');
 Route::resource('mentor','MentorController');
 Route::post('/filter_mentor','MentorController@FilterMentor');
+Route::post('/update_reject_mentor','MentorController@updateRejectMentor');
 // Route::apiResource('mentor','MentorController');
 // Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
@@ -434,6 +435,7 @@ Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@sho
 Route::post('/save_contract_date', 'ArticleController\ArticleController@saveContractDate');
 Route::post('/save_done_form', 'ArticleController\ArticleController@saveDoneForm');
 Route::post('/filter_done_article','ArticleController\ArticleController@filterDoneArticle');
+Route::post('/filter_offline_done_article','ArticleController\ArticleController@filterOfflineDoneArticle');
 
 Route::post('/save_gov_contract_date', 'ArticleController\ArticleController@saveGovContractDate');
 Route::post('/save_gov_done_form', 'ArticleController\ArticleController@saveGovDoneForm');

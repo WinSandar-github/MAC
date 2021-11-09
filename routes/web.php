@@ -236,7 +236,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('s_t_report3','ReportController@s_t_report3');
 
     Route::post('teacher_school_license/{type}', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
-    Route::post('teacher_school_private', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
+    Route::post('teacher_school_private/{type}', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
     Route::post('teacher_school_license_plate', 'ReportController\TeacherSchoolReportController@teacherSchoolLicensePlate');
 
 
@@ -293,6 +293,8 @@ Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
 
 // Certificate Controller
 Route::get('/certificate/{id}', 'CertificateController\CertificateController@index')->name('certificate');
+Route::get('/get_certificate/{id}', 'CertificateController\CertificateController@getCertificate')->name('get_certificate');
+
 Route::get('/get_teacher_card/{id}', 'CertificateController\CertificateController@getTeacherCard')->name('get_teacher_card');
 Route::get('/get_audit_card/{id}', 'CertificateController\CertificateController@getAuditCard')->name('get_audit_card');
 Route::get('/get_non_audit_card/{id}', 'CertificateController\CertificateController@getNonAuditCard')->name('get_non_audit_card');

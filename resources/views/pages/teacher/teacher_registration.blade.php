@@ -80,11 +80,11 @@ $nrc_characters = config('myanmarnrc.characters');
                                                             <th class="bold-font-weight">Phone Number</th>
                                                             <th class="bold-font-weight">NRC</th>
                                                             <th class="bold-font-weight">Register Date</th>
-                                                            <th class="bold-font-weight">Expire Period Time</th>
-                                                            <th class="bold-font-weight">Payment Date</th>
+                                                            <!-- <th class="bold-font-weight">Expire Period Time</th>
+                                                            <th class="bold-font-weight">Payment Date</th> -->
                                                             <th class="bold-font-weight">Status</th>
-                                                            <th class="bold-font-weight">Payment Status</th>
-                                                            <th class="bold-font-weight">Teacher Card</th>
+                                                            <!-- <th class="bold-font-weight">Payment Status</th>
+                                                            <th class="bold-font-weight">Teacher Card</th> -->
                                                             <th class="bold-font-weight">Remark</th>
                                                         </tr>
                                                     </thead>
@@ -174,10 +174,10 @@ $nrc_characters = config('myanmarnrc.characters');
                                                             <th class="bold-font-weight">Phone Number</th>
                                                             <th class="bold-font-weight">NRC</th>
                                                             <th class="bold-font-weight">Renew Date</th>
-                                                            <th class="bold-font-weight">Expire Period time</th>
-                                                            <th class="bold-font-weight">Payment Date</th>
+                                                            <!-- <th class="bold-font-weight">Expire Period time</th>
+                                                            <th class="bold-font-weight">Payment Date</th> -->
                                                             <th class="bold-font-weight">Status</th>
-                                                            <th class="bold-font-weight">Payment Status</th>
+                                                            <!-- <th class="bold-font-weight">Payment Status</th> -->
                                                             <th class="bold-font-weight">Teacher Card</th>
                                                             <th class="bold-font-weight">Remark</th>
                                                             <th class="bold-font-weight">Yearly</th>
@@ -342,26 +342,26 @@ $nrc_characters = config('myanmarnrc.characters');
                         data: 'reg_date',
                         name: 'reg_date'
                     },
-                    {
-                        data: 'exp_date',
-                        name: 'exp_date'
-                    },
-                    {
-                        data: 'payment_date',
-                        name: 'payment_date'
-                    },
+                    // {
+                    //     data: 'exp_date',
+                    //     name: 'exp_date'
+                    // },
+                    // {
+                    //     data: 'payment_date',
+                    //     name: 'payment_date'
+                    // },
                     {
                         data: 'status',
                         name: 'status'
                     },
-                    {
-                        data: 'payment_status',
-                        name: 'payment_status'
-                    },
-                    {
-                        data: 'card',
-                        name: 'card'
-                    },
+                    // {
+                    //     data: 'payment_status',
+                    //     name: 'payment_status'
+                    // },
+                    // {
+                    //     data: 'card',
+                    //     name: 'card'
+                    // },
                     {
                         data: 'reason',
                         name: 'reason'
@@ -567,22 +567,22 @@ $nrc_characters = config('myanmarnrc.characters');
                         data: 'renew_date',
                         name: 'renew_date'
                     },
-                    {
-                        data: 'exp_date',
-                        name: 'exp_date'
-                    },
-                    {
-                        data: 'payment_date',
-                        name: 'payment_date'
-                    },
+                    // {
+                    //     data: 'exp_date',
+                    //     name: 'exp_date'
+                    // },
+                    // {
+                    //     data: 'payment_date',
+                    //     name: 'payment_date'
+                    // },
                     {
                         data: 'status',
                         name: 'status'
                     },
-                    {
-                        data: 'payment_status',
-                        name: 'payment_status'
-                    },
+                    // {
+                    //     data: 'payment_status',
+                    //     name: 'payment_status'
+                    // },
                     {
                         data: 'card',
                         name: 'card'

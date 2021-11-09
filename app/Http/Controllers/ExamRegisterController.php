@@ -92,7 +92,7 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code ;
-       $invoice->productDesc     = 'Application Fee,DA Exam Registration Fee,' . $std->batch->course->name;
+       $invoice->productDesc     = 'AppFee,DAExmRegFee,' . $std->batch->course->name;
        $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
        $invoice->save();
@@ -221,7 +221,6 @@ class ExamRegisterController extends Controller
                 }
             })
             ->where('form_type', '=', $request->course_code)->get();
-
         // DA One
         $datatable = DataTables::of($exam_register)
             ->addColumn('exam_type', function ($infos) {
@@ -244,6 +243,37 @@ class ExamRegisterController extends Controller
                     return "FAILED";
                 }
             })
+
+            ->addColumn('payment_status', function ($infos){
+                // return $infos->form_type;
+                switch ($infos->form_type) {
+                    case '1':
+                        $course_code = "da_1";
+                        break;
+                    case '2':
+                        $course_code = "da_2";
+                        break;
+                    case '3':
+                        $course_code = "cpa_1";
+                        break;
+                    case '4':
+                        $course_code = "cpa_2";
+                        break;
+                    default:
+                        $course_code = "da_1";
+                        break;
+
+                }
+
+                $invoices = Invoice::where('invoiceNo','exm_'.$course_code)
+                                    ->where('student_info_id',$infos->student_info_id)->get();
+                                    
+                foreach($invoices as $invoice){
+                    return $invoice->status == "AP" ? "Complete" : "Incomplete";
+                }
+                
+            })
+
             ->addColumn('status', function ($infos) {
                 if ($infos->status == 0) {
                     return "PENDING";
@@ -394,6 +424,9 @@ class ExamRegisterController extends Controller
         $exam = new ExamRegister();
 
         $exam->student_info_id = $request->student_id;
+        if($request->sr_no){
+            $exam->sr_no = $request->sr_no;
+        }        
         $exam->last_ans_exam_no = $request->last_ans_exam_no;
 
         $exam->date = $date;
@@ -425,7 +458,7 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code;
-       $invoice->productDesc     = 'Application Fee,CPA Exam Registration Fee,' . $std->batch->course->name;
+       $invoice->productDesc     = 'AppFee,CPAExamRegFee,' . $std->batch->course->name;
        $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
        $invoice->save();
@@ -529,8 +562,10 @@ class ExamRegisterController extends Controller
                     return "Module 1";
                 } else if ($infos->is_full_module == 2) {
                     return "Module 2";
-                } else {
+                } else if ($infos->is_full_module == 3){
                     return "All Module";
+                } else {
+                    return "-";
                 }
             });
 
@@ -541,9 +576,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
-                                    <li class='fa fa-file-text-o fa-sm'></li>
-                                </a>
+                              
                             </div>";
                 }
 
@@ -560,7 +593,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
+                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('get_certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
                                     <li class='fa fa-file-text-o fa-sm'></li>
                                 </a>
                             </div>";
@@ -579,9 +612,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
-                                    <li class='fa fa-file-text-o fa-sm'></li>
-                                </a>
+                              
                             </div>";
                 }
                 return "<div class='btn-group'>
@@ -597,7 +628,7 @@ class ExamRegisterController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
-                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
+                                <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('get_certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
                                     <li class='fa fa-file-text-o fa-sm'></li>
                                 </a>
                             </div>";

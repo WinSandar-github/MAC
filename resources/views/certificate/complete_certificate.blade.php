@@ -4,7 +4,14 @@
     <title>MAC Certificate</title>
 </head>
 <style>
+
+    @font-face {
+        font-family: 'mac';
+        /* src: url("{{ asset('/assets/fonts/NotoSansMyanmar-Regular.tff') }}"); */
+        src: url("{{ asset('assets/fonts/NotoSansMyanmar-Medium.ttf') }}")
+    }
     body {
+        font-family: 'mac',
         background: rgb(204, 204, 204);
     }
 
@@ -40,17 +47,10 @@
         }
     }
 
-    .table{
-        width: 100%;
-    }
-
-    table.table td{
-        border: 1px solid black;
-    }
-
 </style>
 
 <body>
+    
     <page size="A4" class="{{ $className }}">
         {{-- <table style="margin-right: 100px; margin-left: 100px;">
             <tbody>
@@ -109,13 +109,9 @@
             </tbody>
         </table> --}}
 
+        
         {!! htmlspecialchars_decode($template->cert_data) !!}
 
     </page>
-
-    @if(isset($branch_template))
-            {!! htmlspecialchars_decode($branch_template->cert_data) !!}
-    @endif
-
 </body>
 </html>

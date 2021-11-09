@@ -129,12 +129,12 @@ class ApiController extends Controller
                      {
                          
                         ++$sr_no;
-                      $student_info->personal_no = $helper->en2mmNumber($batch_number).'(D)/'.$helper->en2mmNumber($sr_no);
+                      $student_info->personal_no = $batch_number.'(D)/'.$sr_no;
                     }
                     }else{
                         if($student_info->cpersonal_no == null){
                         ++$sr_no;
-                        $student_info->cpersonal_no = $helper->en2mmNumber($batch_number).'/'.$helper->en2mmNumber($sr_no);
+                        $student_info->cpersonal_no = $batch_number.'/'.$sr_no;
                     }
                     } 
                 

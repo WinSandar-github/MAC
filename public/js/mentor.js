@@ -218,7 +218,8 @@ function loadMentorStudent()
             }
 
             // validate for training_absent radio button checked
-            if(mentor_data.training_absent == 1)
+            // console.log(mentor_data.training_absent);
+            if(mentor_data.training_absent == 1 && mentor_data.training_absent_reason != null && mentor_data.training_absent_reason != "")
             {
               $('input:radio[name=training_absent][value=1]').attr('checked',true);
               $('input:radio[name=training_absent][value=0]').attr('disabled',true);

@@ -103,7 +103,7 @@
                             </div>
                         </div>
 
-                        <div id="firm_education">
+                        <div id="firm_education" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
                                 <div class="col-md-9">
@@ -121,7 +121,7 @@
                             </div>
                         </div>
 
-                        <div id="certificate_row">
+                        <div id="certificate_row" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span></label>
                                 <div class="col-md-9">
@@ -136,7 +136,24 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="offline_user" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
+                                <div class="col-md-9">
+                                    <table id="tbl_degree" class="table table-bordered text-center">
+                                                <thead class="text-nowrap table-success">
+                                                    <tr>
+                                                        <th class="bold-font-weight">စဉ်</th>
+                                                        <th class="bold-font-weight">တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ</th>
+                                                        <th class="bold-font-weight">Attached Certificate</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbl_degree_body">
+                                                </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၅။') }}</span>လူမျိုး/ကိုးကွယ်သည့်ဘာသာ</label>
                             <div class="col-md-9">
@@ -214,6 +231,30 @@
                             </div>
                         </div>
 
+												<div class="card">
+														<div class="card-header">
+																<h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+														</div>
+														<div class="card-body pt-0">
+																<div class="row m-2 mt-3 border-bottom">
+																		<div class="col-md-6 text-left">
+																				<p class="ml-2" style="font-weight:bold">Fees</p>
+																		</div>
+																		<div class="col-md-6 text-left">
+																				<button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
+																		</div>
+																</div>
+																<div class="row m-2 mt-3 border-bottom">
+																		<div class="col-md-6 text-left">
+																				<p class="ml-2" style="font-weight:bold">Status</p>
+																		</div>
+																		<div class="col-md-6 text-left">
+																				<span id="payment_status" style="font-size:20px;"></span>
+																		</div>
+																</div>
+														</div>
+												</div>
+
                         <input type="hidden" name="article_id" >
                         {{--<div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
@@ -265,6 +306,30 @@
 					</div>
 				</div>
 				{{-- Remark Modal --}}
+
+				{{-- Payment detail Modal --}}
+				<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Article Resign Fees</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+										<ul class="list-group mb-3 sticky-top fee_list">
+
+										</ul>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+				</div>
+				{{-- Payment detail Modal End --}}
+
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
         // get NRC Townships data from myanmarnrc.php config file
@@ -280,6 +345,8 @@
 <script src="{{ asset('js/article.js') }}"></script>
 <script>
     loadResignArticle();
+		var article_id = localStorage.getItem("article_id");
+		autoLoadPaymentResign(article_id);
 </script>
 <script>
 

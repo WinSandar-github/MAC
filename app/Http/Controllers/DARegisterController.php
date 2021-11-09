@@ -190,7 +190,7 @@ class DARegisterController extends Controller
             $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
             
             $invoice->invoiceNo = 'app_form';
-            $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
+            $invoice->productDesc     = 'AppFee,' . $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -327,85 +327,51 @@ class DARegisterController extends Controller
     }
 
     public function FilterApplicationList(Request $request)
-    {
-        $course  = Course::where('code',$request->course_code)->first();
-        //  $student_infos = StudentCourseReg::with('student_info','batch')
-        //                     ->where('approve_reject_status','=', 1)
-        //                     ->where('batch_id','=', $batch_id);
-
+    {         
+        $course  = Course::where('code',$request->course_code)->first();       
+        
         $student_infos = StudentCourseReg::with('student_info','batch')
                         ->whereHas('batch', function ($query) use ($course) {
                             $query->where('course_id', $course->id);
                         })
                         ->whereHas('student_info', function($q) use ($request){
                             $q->where('offline_user', 0);
-                            // if($request->name !== ""){
-                            //     $q->where('name_mm', 'like', "%" . $request->name . "%")
-                            //     ->orWhere('name_eng', 'like', "%" . $request->name . "%");
-                            // }
-                            // if($request->nrc != "")
-                            // {
-                            //     $q->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-                            // }
-                            // if($request->batch != "all"){
-                            //     $q->where('batch_id', $request->batch);
-                            // }
                         })
-                        // ->whereHas('student_info', function($q) use ($request){                            
-                        //     $q->where('offline_user', 0);
-                        //     if($request->name !== ""){
-                        //         $q->where('name_mm', 'like', "%" . $request->name . "%")
-                        //         ->orWhere('name_eng', 'like', "%" . $request->name . "%");
-                        //     }
-                        //     if($request->nrc != "")
-                        //     {
-                        //         $query->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-                        //     }
-                        //     if($request->batch != "all"){
-                        //         $query->where('batch_id', $request->batch);
-                        //     }
-                        // })
+
                         ->where('student_course_regs.approve_reject_status','=', $request->status)
                         ->where('qt_entry','=',0)->get();
-                        // ->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id') ;
-        // if($request->batch != "all"){
-        //     $student_infos = $student_infos->where('batch_id', $request->batch);
-        // }
-        // if($request->nrc != "")
-        // {
-        //     $student_infos = $student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        // }
-        // if($request->name != "")
-        // {
-        //     $student_infos = $student_infos->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-        //                                 ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-        // }
-        // $student_infos = $student_infos->get();
+
         return DataTables::of($student_infos)
+
             ->editColumn('name_mm', function ($infos) {
-                // return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('action', function ($infos) {
-                // return $infos->batch->course->code == 'da_1'
-                //         ? "<div class='btn-group'>
-                //                 <a class='btn btn-info btn-xs' href=" . route('da_app_indi', ['id' => $infos->id]) . ">
-                //                     <li class='fa fa-eye fa-sm'></li>
-                //                 </a>
-                //             </div>"
-                //         : "<div class='btn-group'>
-                //                 <a class='btn btn-info btn-xs' href=" . route('cpa_app_indi', ['id' => $infos->id]) . ">
-                //                     <li class='fa fa-eye fa-sm'></li>
-                //                 </a>
-                //             </div>";
+
+            ->addColumn('action', function ($infos) {               
                 return "<button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
                             <li class='fa fa-eye fa-sm'></li>
                         </button>";
             })
+
             ->addColumn('nrc', function ($infos) {
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                 return $nrc_result;
             })
+
+            ->addColumn('payment_status',function ($infos){                
+                if($infos->batch->course->course_type_id == 1){
+                    $invoices = Invoice::where('invoiceNo',"app_form")->where('student_info_id',$infos->student_info_id)->get();
+                    
+                }else{
+                    $invoices = Invoice::where('invoiceNo',"cpa_app")->where('student_info_id',$infos->student_info_id)->get();                    
+                }
+
+                foreach($invoices as $invoice){
+                    return $invoice->status == "AP" ? "Complete" : "Incomplete";
+                }
+
+            })
+
             ->addColumn('status', function ($infos) {
                 if ($infos->approve_reject_status == 0) {
                     // return "PENDING";
@@ -418,6 +384,7 @@ class DARegisterController extends Controller
                     return "<span class='reject'>Rejected</span>";
                 }
             })
+
             ->rawColumns(['name_mm', 'action', 'status'])
             ->make(true);
     }
@@ -589,7 +556,7 @@ class DARegisterController extends Controller
                 }
                 
                 // info of da 2 pass info in da2 existing form
-                if($request->batch_id){ 
+                if($request->batch_id!="null"){ 
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->batch_id;
@@ -598,7 +565,7 @@ class DARegisterController extends Controller
                     $student_course->date            = $course_date;
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
-                    $student_course->approve_reject_status  = 0;
+                    $student_course->approve_reject_status  = 1;
                     $student_course->offline_user  = 1;
                     $student_course->save();
                     
@@ -608,7 +575,9 @@ class DARegisterController extends Controller
                     $student_register->date             = date('Y-m-d');
                     $student_register->invoice_id       = $student_info->id;
                     $student_register->invoice_date     = date('Y-m-d');
-                    $student_register->module           = $request->module; 
+                    if($request->module){
+                        $student_register->module           = $request->module; 
+                    }
                     $student_register->type             = $request->type;
                     $student_register->status           = 1;
                     $student_register->form_type        = 2;
@@ -617,7 +586,7 @@ class DARegisterController extends Controller
                     $exam_register = new ExamRegister();
                     $exam_register->student_info_id     = $student_info->id;
                     $exam_register->date                = $date;
-                    if($request->module!=0){
+                    if($request->module==1 || $request->module==2){
                         $exam_register->grade           = 1;
                     }else{
                         $exam_register->grade           = 2;
@@ -631,7 +600,31 @@ class DARegisterController extends Controller
                     $exam_register->passed_level        = $request->da_two_pass_level;
                     // $exam_register->passed_personal_no  = $request->da_two_pass_personal_no;
                     $exam_register->save();
-    
+
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->type_active_da2;
+                    $student_course->mac_type        = $request->da_two_active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
+                }
+                else{
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->type_active_da2;
+                    $student_course->mac_type        = $request->da_two_active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
                 }
                 
             }
@@ -644,11 +637,9 @@ class DARegisterController extends Controller
                 $student_course->date            = $course_date;
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
-                $student_course->approve_reject_status  = 0;
+                $student_course->approve_reject_status  = 1;
                 $student_course->offline_user  = 1;
-                $student_course->save();
-
-                
+                $student_course->save();                
                     
                 $student_register = new StudentRegister();
                 $student_register->student_info_id  = $student_info->id;
@@ -665,45 +656,32 @@ class DARegisterController extends Controller
                 $exam_register = new ExamRegister();
                 $exam_register->student_info_id     = $student_info->id;
                 $exam_register->date                = $date;
-                if($request->module!=0){
+                if($request->module==1 || $request->module==2){                    
+                    $exam_register->is_full_module      = $request->module;
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
                 } 
-                // $exam_register->grade               = 1;
                 $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->is_full_module      = $request->module;
                 $exam_register->exam_type_id        = $request->type;
                 $exam_register->form_type           = 1;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->da_one_pass_exam_date;
                 $exam_register->passed_level        = $request->da_one_pass_level;
-                // $exam_register->passed_personal_no  = $request->da_one_pass_personal_no;
                 $exam_register->save();
     
-                
+                $student_course = new StudentCourseReg();                
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->active_batch_id;
+                $student_course->type            = $request->type_active_da2;
+                $student_course->mac_type        = $request->da_two_active_mac_type;
+                $student_course->date            = $course_date;
+                $student_course->is_finished     = 1;
+                $student_course->status          = 0;
+                $student_course->approve_reject_status  = 0;
+                $student_course->offline_user  = 1;
+                $student_course->save();
             }
-
-
-            // //invoice
-            // $invoice = new Invoice();
-            // $invoice->student_info_id = $student_info->id;
-
-            // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // // $invoice->invoiceNo       = $invNo;
-
-            // $invoice->invoiceNo = '';
-
-            // $invoice->name_eng        = $request->name_eng;
-            // $invoice->email           = $request->email;
-            // $invoice->phone           = $request->phone;
-
-            // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-            // $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
-            // $invoice->amount          = $std->batch->course->form_fee;
-            // $invoice->status          = 0;
-            // $invoice->save();
-
             return response()->json($student_info,200);
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);
@@ -712,9 +690,6 @@ class DARegisterController extends Controller
 
     public function updateDAExistingRegister(Request $request)
     {
-        
-       
-        
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -735,16 +710,6 @@ class DARegisterController extends Controller
         }else{
             $certificate[] = $request->old_certificate;
         }
-
-        // if($request->hasfile('recommend_letter'))
-        // {
-        //     $file = $request->file('recommend_letter') ;
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $rec_letter = '/storage/student_info/'.$name;
-        // }else{
-        //     $rec_letter = $request->old_rec_letter;
-        // }
 
         if ($request->hasfile('nrc_front')) {
             $file = $request->file('nrc_front');
@@ -869,7 +834,7 @@ class DARegisterController extends Controller
                 }
                 
                 // info of da 2 pass info in da2 existing form
-                if($request->batch_id){ 
+                if($request->batch_id!="null" && $request->batch_id!=null){ 
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->batch_id;
@@ -878,7 +843,7 @@ class DARegisterController extends Controller
                     $student_course->date            = $course_date;
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
-                    $student_course->approve_reject_status  = 0;
+                    $student_course->approve_reject_status  = 1;
                     $student_course->offline_user  = 1;
                     $student_course->save();
                     
@@ -888,7 +853,9 @@ class DARegisterController extends Controller
                     $student_register->date             = date('Y-m-d');
                     $student_register->invoice_id       = $student_info->id;
                     $student_register->invoice_date     = date('Y-m-d');
-                    $student_register->module           = $request->module; 
+                    if($request->module){
+                        $student_register->module           = $request->module; 
+                    }
                     $student_register->type             = $request->type;
                     $student_register->status           = 1;
                     $student_register->form_type        = 2;
@@ -897,7 +864,7 @@ class DARegisterController extends Controller
                     $exam_register = new ExamRegister();
                     $exam_register->student_info_id     = $student_info->id;
                     $exam_register->date                = $date;
-                    if($request->module!=0){
+                    if($request->module==1 || $request->module==2){
                         $exam_register->grade           = 1;
                     }else{
                         $exam_register->grade           = 2;
@@ -911,24 +878,53 @@ class DARegisterController extends Controller
                     $exam_register->passed_level        = $request->da_two_pass_level;
                     // $exam_register->passed_personal_no  = $request->da_two_pass_personal_no;
                     $exam_register->save();
-    
+
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->type_active_da2;
+                    $student_course->mac_type        = $request->da_two_active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
+                }
+                else{
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->type_active_da2;
+                    $student_course->mac_type        = $request->da_two_active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
                 }
             }
             else{
-                $student_course = StudentCourseReg::where('student_info_id',$request->student_info_id)->first();
+                $student_cour_del=StudentCourseReg::where('student_info_id',$request->student_info_id)->delete();
+                $student_reg_del=StudentRegister::where('student_info_id',$request->student_info_id)->delete();
+                $exam_reg_del=ExamRegister::where('student_info_id',$request->student_info_id)->delete();
+
+                $student_course = new StudentCourseReg();                
                 $student_course->student_info_id = $student_info->id;
                 $student_course->batch_id        = $request->pass_batch_id;
                 $student_course->type            = $request->type;
                 $student_course->mac_type        = $request->mac_type;
                 $student_course->date            = $course_date;
-                $student_course->is_finished      = 1;
+                $student_course->is_finished     = 1;
                 $student_course->status          = 0;
-                $student_course->approve_reject_status  = 0;
+                $student_course->approve_reject_status  = 1;
                 $student_course->offline_user  = 1;
                 $student_course->save();
 
                 
-                $student_register = StudentRegister::where('student_info_id',$request->student_info_id)->first();
+                    
+                $student_register = new StudentRegister();
                 $student_register->student_info_id  = $student_info->id;
                 $student_register->batch_id         = $request->pass_batch_id;
                 $student_register->date             = date('Y-m-d');
@@ -940,47 +936,37 @@ class DARegisterController extends Controller
                 $student_register->form_type        = 1;
                 $student_register->save();
                 
-                $exam_register = ExamRegister::where('student_info_id',$request->student_info_id)->first();
+                $exam_register = new ExamRegister();
                 $exam_register->student_info_id     = $student_info->id;
                 $exam_register->date                = $date;
-                if($request->module!=0){
+                if($request->module==1 || $request->module==2){                    
+                    $exam_register->is_full_module      = $request->module;
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
                 } 
                 $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->is_full_module      = $request->module;
                 $exam_register->exam_type_id        = $request->type;
                 $exam_register->form_type           = 1;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->da_one_pass_exam_date;
                 $exam_register->passed_level        = $request->da_one_pass_level;
-                // $exam_register->passed_personal_no  = $request->da_one_pass_personal_no;
                 $exam_register->save();
+    
+                $student_course = new StudentCourseReg();                
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->active_batch_id;
+                $student_course->type            = $request->type_active_da2;
+                $student_course->mac_type        = $request->da_two_active_mac_type;
+                $student_course->date            = $course_date;
+                $student_course->is_finished     = 1;
+                $student_course->status          = 0;
+                $student_course->approve_reject_status  = 0;
+                $student_course->offline_user  = 1;
+                $student_course->save();
     
                
             }
-
-
-            // //invoice
-            // $invoice = new Invoice();
-            // $invoice->student_info_id = $student_info->id;
-
-            // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // // $invoice->invoiceNo       = $invNo;
-
-            // $invoice->invoiceNo = '';
-
-            // $invoice->name_eng        = $request->name_eng;
-            // $invoice->email           = $request->email;
-            // $invoice->phone           = $request->phone;
-
-            // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-            // $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
-            // $invoice->amount          = $std->batch->course->form_fee;
-            // $invoice->status          = 0;
-            // $invoice->save();
-
             return response()->json($student_info,200);
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);
@@ -1013,9 +999,10 @@ class DARegisterController extends Controller
                             //$q->where('offline_user', 1);
                             $q->where('course_type_id', $request->course_type_id);
                         })
-                        ->where('student_course_regs.approve_reject_status','=', $request->status)  
+                        // ->where('student_course_regs.approve_reject_status','=', $request->status)  
                         ->where('qt_entry','=',0)                      
                         ->where('offline_user','=',1)
+                        ->where('approve_reject_status','=',$request->status)
                         ->get();
 
         // return $student_infos;               

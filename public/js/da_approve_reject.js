@@ -306,7 +306,7 @@ function loadData() {
                 });
 
 
-                if(student_course.approve_reject_status==1){
+                if(student_course.approve_reject_status==1 || student_course.approve_reject_status==0){
                     $("#payment_info_card").show();
                 }else{
                     $("#payment_info_card").hide();
@@ -319,10 +319,10 @@ function loadData() {
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
-                            $('#payment_status').append("Unpaid");
+                            $('#payment_status').append("Incomplete");
                         }
                         else if(result.status=='AP'){
-                            $('#payment_status').append("Paid");
+                            $('#payment_status').append("Complete");
                         }
                         else{
                             $('#payment_status').append("-");

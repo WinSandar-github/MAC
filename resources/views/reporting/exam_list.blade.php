@@ -110,12 +110,15 @@
 @push('styles')
     <link href="{{ asset('assets/js/plugins/tableexport/dist/css/tableexport.min.css') }}" rel="stylesheet">
 @endpush
+
 @push('scripts')
     <script src="{{ asset('assets/js/plugins/xlsx.core.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/FileSave.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/tableexport/dist/js/tableexport.min.js') }}"></script>
     <script>
         $('document').ready(function () {
+
+        
 
             // table export
             // var $table = $('.table');
@@ -141,6 +144,33 @@
     showExamList = (course_code) =>{
         
         var table_exam = $('#tbl_exam_list').DataTable({
+            dom: 'Bfrtip',
+                "sDom": 'Rfrtlip',
+                buttons: [
+                     
+                    {
+                    className: 'bg-success',
+                    extend: 'excelHtml5',
+                    filename: 'Exam Result List',
+                    text:'Export To Excel',
+                    title: function () {
+                        return getExcelTitleName();
+                        },
+                    
+
+                    },
+                    {
+                    className: 'bg-primary',
+                    extend: 'csvHtml5',
+                    filename: 'Exam Result List',
+                    text:'Export To Csv',
+                    title: function () {
+                        return getExcelTitleName();
+                        },
+                    
+
+                    },
+                ],
             scrollX: true,
             processing: true,
             serverSide: true,
@@ -182,7 +212,7 @@
             sort: function( row, type, set, meta ) {
                 return row[meta.col][1];
             },
-            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            // "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 
         });
 

@@ -16,6 +16,13 @@
     .label{
         text-align: right;
     }
+		.p-input {
+        border:none;
+        border-bottom: 1px solid #1890ff;
+        padding: 5px 10px;
+        outline: none;
+        text-align: center;
+    }
 </style>
 @section('content')
     <div class="content">
@@ -300,7 +307,7 @@
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" name="papp_name" id="papp_name" class="form-control" readonly>                                          
+                                            <input type="text" name="papp_name" id="papp_name" class="form-control" readonly>
                                         </div>
                                         <div class="col-md-6">
                                             <input type="text" name="mentor_name" id="mentor_name" class="form-control" readonly>
@@ -325,11 +332,11 @@
                         </div>
                         <div class="c2_pass_renew" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၄။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP အမှတ်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၃။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP</label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" name="c2_papp_name" id="c2_papp_name" class="form-control" readonly>                                          
+                                            <input type="text" name="c2_papp_name" id="c2_papp_name" class="form-control" readonly>
                                         </div>
                                         <div class="col-md-6">
                                             <input type="text" name="c2_mentor_name" id="c2_mentor_name" class="form-control" readonly>
@@ -338,7 +345,7 @@
                                 </div>
                             </div>
 
-                            
+
                         </div>
                         <div id="previous_papp_name_row" style="display:none;">
                             <div class="row mb-3">
@@ -366,6 +373,22 @@
                             </div>
                         </div>
 
+                        <div id="office_order_row" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span>ရုံးအမိန့်</label>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="ml-2" style="font-weight:bold" align="left">Attachment</p>
+                                        </div>
+                                        <div class="col-md-3 office_order_attach">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="previous_exam_pass_row" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left" id="exam_pass_date_label">{{ __('၁၇။') }}</span>စာမေးပွဲကျင်းပသည့် ခုနှစ်၊လ ၊ အောင်မြင်သည့်အမှတ်စဥ် </label>
@@ -381,6 +404,23 @@
                                 </div>
                             </div>
                         </div>
+
+												<div id="previous_exp_box" style="display:none;">
+													<div class="col-md-11">
+															<ul>
+																	<li>ယခင်က လက်တွေ့အလုပ်သင်ကြားမှုကို အလုပ်သင်ကြားပေးသည့်(PAPP အမည်)
+																		<input class="p-input" type="text" name="ex_papp_name" id="ex_papp_name"> ထံတွင်
+																		<input class="p-input" type="text"  name="ex_papp_start_date" id="ex_papp_start_date" placeholder="dd-mm-yyyy"> နေ့မှ
+																		<input class="p-input" type="text" name="ex_papp_end_date" id="ex_papp_end_date" placeholder="dd-mm-yyyy">နေ့အထိ
+																		<span id="result_name">
+																			<input class="p-input" type="text" name="exp_year" id="exp_year"> နှစ် ၊
+																			<input class="p-input" type="text" name="exp_month" id="exp_month"> လ ၊
+																			<input class="p-input" name="exp_days" type="text" id="exp_days"> ရက်
+																		</span> အလုပ်သင်ကြားမှုခံယူခဲ့ပါသည်။
+																	</li>
+															</ul>
+													</div>
+												</div>
 
                         <div id="attach_file_row" style="display:none;">
                             <div class="row mb-3">
@@ -423,6 +463,7 @@
                         </div>
 
                         <div id="check_end_date" style="display:none;">
+                            <input type="hidden" id="offline_user">
                             <div class="row">
                                 <div class="col-md-12" align="right">
                                     <button type='button' class='btn btn-warning' onclick='checkEndArticle()'>Check End Date</button>
@@ -449,6 +490,30 @@
                                 </table>
                             </div>
                         </div>
+
+												<div class="card">
+														<div class="card-header">
+																<h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+														</div>
+														<div class="card-body pt-0">
+																<div class="row m-2 mt-3 border-bottom">
+																		<div class="col-md-6 text-left">
+																				<p class="ml-2" style="font-weight:bold">Fees</p>
+																		</div>
+																		<div class="col-md-6 text-left">
+																				<button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
+																		</div>
+																</div>
+																<div class="row m-2 mt-3 border-bottom">
+																		<div class="col-md-6 text-left">
+																				<p class="ml-2" style="font-weight:bold">Status</p>
+																		</div>
+																		<div class="col-md-6 text-left">
+																				<span id="payment_status" style="font-size:20px;"></span>
+																		</div>
+																</div>
+														</div>
+												</div>
 
                         <input type="hidden" name="article_id" >
                         <div id="approve_reject_btn">
@@ -531,6 +596,29 @@
 				</div>
 				{{-- Remark Modal --}}
 
+				{{-- Payment detail Modal --}}
+				<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Article Registration Fees</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+										<ul class="list-group mb-3 sticky-top fee_list">
+
+										</ul>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+				</div>
+				{{-- Payment detail Modal End --}}
+
     <!-- modal -->
     <form method="post" action="javascript:rejectArticleDoneAttach();" enctype="multipart/form-data">
         <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="reject_done_attach_modal">
@@ -576,6 +664,8 @@
 <script src="{{ asset('js/article.js') }}"></script>
 <script>
     loadArticle();
+		//var article_id = localStorage.getItem("article_id");
+
 </script>
 <script>
 

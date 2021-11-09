@@ -305,7 +305,7 @@ class CpaTraAddmissionDirectController extends Controller
         $invoice->phone           = $request->phone;
 
         $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-        $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
+        $invoice->productDesc     = 'AppFee, ' . $std->batch->course->name;
         $invoice->amount          = $std->batch->course->form_fee;
         $invoice->status          = 0;
         $invoice->save();
@@ -660,7 +660,7 @@ class CpaTraAddmissionDirectController extends Controller
         $date = date('d-M-Y');;
         $course_date = date('Y-m-d');
         $invoice_date = date('d-M-Y');
-
+       
         try {
             $student_info = new StudentInfo();
             if($request->cpa_one_pass_personal_no || $request->cpa_two_pass_personal_no){
@@ -718,6 +718,92 @@ class CpaTraAddmissionDirectController extends Controller
             $education_histroy->save();
             
             if($request->cpa_type=='cpa_2'){
+                // if($request->pass_batch_id){                
+                //     $student_course = new StudentCourseReg();
+                //     $student_course->student_info_id = $student_info->id;
+                //     $student_course->batch_id        = $request->pass_batch_id;
+                //     $student_course->type            = $request->type;
+                //     $student_course->mac_type        = $request->mac_type;
+                //     $student_course->date            = $course_date;
+                //     $student_course->is_finished      = 1;
+                //     $student_course->status          = 1;                   
+                //     $student_course->approve_reject_status  = 1;                    
+                //     $student_course->offline_user  = 1;
+                //     $student_course->save();
+
+                //     $student_register = new StudentRegister();
+                //     $student_register->student_info_id  = $student_info->id;
+                //     $student_register->batch_id         = $request->pass_batch_id;
+                //     $student_register->date             = date('Y-m-d');
+                //     $student_register->invoice_id       = $student_info->id;
+                //     $student_register->invoice_date     = date('Y-m-d');
+                //     $student_register->module           = 3;
+                //     $student_register->type             = $request->type;
+                //     $student_register->status           = 1;
+                //     $student_register->form_type        = 3;
+                //     $student_register->save();
+                    
+                //     $exam_register = new ExamRegister();
+                //     $exam_register->student_info_id     = $student_info->id;
+                //     $exam_register->date                = $date;
+                //     $exam_register->grade               = 1;
+                //     $exam_register->batch_id            = $request->pass_batch_id;
+                //     $exam_register->is_full_module      = 3;
+                //     $exam_register->exam_type_id        = $request->type;
+                //     $exam_register->form_type           = 3;
+                //     $exam_register->status              = 1;
+                //     $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
+                //     $exam_register->passed_level        = $request->cpa_one_pass_level;
+                //     // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
+                //     $exam_register->save();
+                // }
+           
+                // if($request->batch_id !== "null"){ 
+                   
+                //     $student_course = new StudentCourseReg();
+                //     $student_course->student_info_id = $student_info->id;
+                //     $student_course->batch_id        = $request->batch_id;
+                //     $student_course->type            = $request->type_cpa2;
+                //     $student_course->mac_type        = $request->cpa2_mac_type;
+                //     $student_course->date            = $course_date;
+                //     $student_course->is_finished      = 1;
+                //     $student_course->status          = 1;
+                //     $student_course->approve_reject_status  = 0;
+                //     $student_course->offline_user  = 1;
+                //     $student_course->save();
+                    
+                //     $student_register = new StudentRegister();
+                //     $student_register->student_info_id  = $student_info->id;
+                //     $student_register->batch_id         = $request->batch_id;
+                //     $student_register->date             = date('Y-m-d');
+                //     $student_register->invoice_id       = $student_info->id;
+                //     $student_register->invoice_date     = date('Y-m-d');
+                //     $student_register->module           = $request->module;
+                //     $student_register->type             = $request->type;
+                //     $student_register->status           = 1;
+                //     $student_register->form_type        = 4;
+                //     $student_register->save();
+                    
+                //     $exam_register = new ExamRegister();
+                //     $exam_register->student_info_id     = $student_info->id;
+                //     $exam_register->date                = $date;
+                //     if($request->module!=0){
+                //         $exam_register->grade           = 1;
+                //     }else{
+                //         $exam_register->grade           = 2;
+                //     }   
+                //     $exam_register->batch_id            = $request->batch_id;
+                //     $exam_register->is_full_module      = $request->module;
+                //     $exam_register->exam_type_id        = $request->type;
+                //     $exam_register->form_type           = 4;
+                //     $exam_register->status              = 1;
+                //     $exam_register->passed_date         = $request->cpa_two_pass_exam_date;
+                //     $exam_register->passed_level        = $request->cpa_two_pass_level;
+                //     // $exam_register->passed_personal_no  = $request->cpa_two_pass_personal_no;
+                //     $exam_register->save();
+    
+                // }
+
                 if($request->pass_batch_id){                
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
@@ -757,9 +843,10 @@ class CpaTraAddmissionDirectController extends Controller
                     // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                     $exam_register->save();
                 }
-
-                if($request->batch_id){ 
-
+           
+                // info of da 2 pass info in da2 existing form
+                if($request->batch_id !== "null"){ 
+                   
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->batch_id;
@@ -768,7 +855,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->date            = $course_date;
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
-                    $student_course->approve_reject_status  = 0;
+                    $student_course->approve_reject_status  = 1;
                     $student_course->offline_user  = 1;
                     $student_course->save();
                     
@@ -787,7 +874,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register = new ExamRegister();
                     $exam_register->student_info_id     = $student_info->id;
                     $exam_register->date                = $date;
-                    if($request->module!=0){
+                    if($request->module==1 || $request->module==2){
                         $exam_register->grade           = 1;
                     }else{
                         $exam_register->grade           = 2;
@@ -802,13 +889,38 @@ class CpaTraAddmissionDirectController extends Controller
                     // $exam_register->passed_personal_no  = $request->cpa_two_pass_personal_no;
                     $exam_register->save();
     
+
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->active_type;
+                    $student_course->mac_type        = $request->active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
+                }
+                else{
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->active_type;
+                    $student_course->mac_type        = $request->active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
                 }
                 
             }
             else{
                 if($request->qt_entry==1){
                     $student_course = new StudentCourseReg();
-                    // $student_course->sr_no           = $request->sr_no;
+                    $student_course->sr_no           = $request->sr_no;
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->pass_batch_id;
                     // $student_course->type            = $request->type;
@@ -823,16 +935,12 @@ class CpaTraAddmissionDirectController extends Controller
 
                     $exam_register = new ExamRegister();
                     $exam_register->student_info_id     = $student_info->id;
-                    // $exam_register->date                = $date;
+                    $exam_register->sr_no               = $request->exam_sr_no;
                     $exam_register->grade               = 1;                    
                     $exam_register->batch_id            = $request->pass_batch_id;
-                    // $exam_register->is_full_module      = $request->module;
                     $exam_register->exam_type_id        = 3;
                     $exam_register->form_type           = 3;
                     $exam_register->status              = 1;
-                    // $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
-                    // $exam_register->passed_level        = $request->cpa_one_pass_level;
-                    // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                     $exam_register->save();
                 }
 
@@ -845,8 +953,8 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->date            = $course_date;
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
-                // $student_course->qt_entry        = $request->qt_entry;
-                $student_course->approve_reject_status  = 0;
+                $student_course->qt_entry     = $request->qt_entry;
+                $student_course->approve_reject_status  = 1;
                 $student_course->offline_user  = 1;
                 $student_course->save();                 
                     
@@ -864,22 +972,41 @@ class CpaTraAddmissionDirectController extends Controller
                 
                 $exam_register = new ExamRegister();
                 $exam_register->student_info_id     = $student_info->id;
+                
+                if($request->exam_sr_no){
+                    $exam_register->sr_no           = $request->exam_sr_no;
+                }     
+
                 $exam_register->date                = $date;
                 
-                if($request->module!=0 ){
+                if($request->module == 1 || $request->module == 2){
+                    $exam_register->is_full_module      = $request->module;
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
                 } 
-                $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->is_full_module      = $request->module;
+
+                $exam_register->batch_id            = $request->pass_batch_id;                
                 $exam_register->exam_type_id        = $request->type;
                 $exam_register->form_type           = 3;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
                 $exam_register->passed_level        = $request->cpa_one_pass_level;
-                // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                 $exam_register->save();
+
+                $student_course = new StudentCourseReg();  
+                $student_course->sr_no           = $request->sr_no;              
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->active_batch_id;
+                $student_course->type            = $request->active_type;
+                $student_course->mac_type        = $request->active_mac_type;
+                $student_course->date            = $course_date;
+                $student_course->is_finished     = 1;
+                $student_course->status          = 0;
+                // $student_course->qt_entry     = $request->qt_entry;
+                $student_course->approve_reject_status  = 0;
+                $student_course->offline_user  = 1;
+                $student_course->save();
     
             }
             
@@ -911,9 +1038,6 @@ class CpaTraAddmissionDirectController extends Controller
 
     public function updateCPAExistingRegister(Request $request)
     {
-        
-       
-        
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -1067,8 +1191,8 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->save();
                 }
 
-                if($request->batch_id){ 
-
+                if($request->batch_id !== "null"){ 
+                   
                     $student_course = new StudentCourseReg();
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->batch_id;
@@ -1077,7 +1201,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->date            = $course_date;
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
-                    $student_course->approve_reject_status  = 0;
+                    $student_course->approve_reject_status  = 1;
                     $student_course->offline_user  = 1;
                     $student_course->save();
                     
@@ -1096,7 +1220,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register = new ExamRegister();
                     $exam_register->student_info_id     = $student_info->id;
                     $exam_register->date                = $date;
-                    if($request->module!=0){
+                    if($request->module==1 || $request->module==2){
                         $exam_register->grade           = 1;
                     }else{
                         $exam_register->grade           = 2;
@@ -1111,6 +1235,31 @@ class CpaTraAddmissionDirectController extends Controller
                     // $exam_register->passed_personal_no  = $request->cpa_two_pass_personal_no;
                     $exam_register->save();
     
+
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->active_type;
+                    $student_course->mac_type        = $request->active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
+                }
+                else{
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->active_batch_id;
+                    $student_course->type            = $request->active_type;
+                    $student_course->mac_type        = $request->active_mac_type;
+                    $student_course->date            = $course_date;
+                    // $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
                 }
             }
             else{
@@ -1121,7 +1270,7 @@ class CpaTraAddmissionDirectController extends Controller
 
                 if($request->qt_entry==1){
                     $student_course = new StudentCourseReg();
-                    // $student_course->sr_no           = $request->sr_no;
+                    $student_course->sr_no           = $request->sr_no;
                     $student_course->student_info_id = $student_info->id;
                     $student_course->batch_id        = $request->pass_batch_id;
                     // $student_course->type            = $request->type;
@@ -1136,16 +1285,12 @@ class CpaTraAddmissionDirectController extends Controller
 
                     $exam_register = new ExamRegister();
                     $exam_register->student_info_id     = $student_info->id;
-                    // $exam_register->date                = $date;
+                    $exam_register->sr_no               = $request->exam_sr_no;
                     $exam_register->grade               = 1;                    
                     $exam_register->batch_id            = $request->pass_batch_id;
-                    // $exam_register->is_full_module      = $request->module;
                     $exam_register->exam_type_id        = 3;
                     $exam_register->form_type           = 3;
                     $exam_register->status              = 1;
-                    // $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
-                    // $exam_register->passed_level        = $request->cpa_one_pass_level;
-                    // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                     $exam_register->save();
                 }
 
@@ -1158,8 +1303,8 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->date            = $course_date;
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
-                // $student_course->qt_entry        = $request->qt_entry;
-                $student_course->approve_reject_status  = 0;
+                $student_course->qt_entry     = $request->qt_entry;
+                $student_course->approve_reject_status  = 1;
                 $student_course->offline_user  = 1;
                 $student_course->save();                 
                     
@@ -1177,66 +1322,41 @@ class CpaTraAddmissionDirectController extends Controller
                 
                 $exam_register = new ExamRegister();
                 $exam_register->student_info_id     = $student_info->id;
+                
+                if($request->exam_sr_no){
+                    $exam_register->sr_no           = $request->exam_sr_no;
+                }     
+
                 $exam_register->date                = $date;
                 
-                if($request->module!=0 ){
+                if($request->module == 1 || $request->module == 2){
+                    $exam_register->is_full_module      = $request->module;
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
                 } 
-                $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->is_full_module      = $request->module;
+
+                $exam_register->batch_id            = $request->pass_batch_id;                
                 $exam_register->exam_type_id        = $request->type;
                 $exam_register->form_type           = 3;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
                 $exam_register->passed_level        = $request->cpa_one_pass_level;
-                // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                 $exam_register->save();
 
-
-                // $student_course = StudentCourseReg::where('student_info_id',$request->student_info_id)->first();
-                // $student_course->sr_no           = $request->sr_no;
-                // $student_course->student_info_id = $student_info->id;
-                // $student_course->batch_id        = $request->pass_batch_id;
-                // $student_course->type            = $request->type;
-                // $student_course->mac_type        = $request->mac_type;
-                // $student_course->date            = $course_date;
-                // $student_course->is_finished      = 1;
-                // $student_course->status          = 0;
-                // $student_course->approve_reject_status  = 0;
-                // $student_course->offline_user  = 1;
-                // $student_course->save();
-                    
-                // $student_register = StudentRegister::where('student_info_id',$request->student_info_id)->first();
-                // $student_register->student_info_id  = $student_info->id;
-                // $student_register->batch_id         = $request->pass_batch_id;
-                // $student_register->date             = date('Y-m-d');
-                // $student_register->invoice_id       = $student_info->id;
-                // $student_register->invoice_date     = date('Y-m-d');
-                // $student_register->module           = $request->module;
-                // $student_register->type             = $request->type;
-                // $student_register->status           = 1;
-                // $student_register->form_type        = 3;
-                // $student_register->save();
-                
-                // $exam_register = ExamRegister::where('student_info_id',$request->student_info_id)->first();
-                // $exam_register->student_info_id     = $student_info->id;
-                // $exam_register->date                = $date;
-                // if($request->module!=0){
-                //     $exam_register->grade           = 1;
-                // }else{
-                //     $exam_register->grade           = 0;
-                // } 
-                // $exam_register->batch_id            = $request->pass_batch_id;
-                // $exam_register->is_full_module      = $request->module;
-                // $exam_register->exam_type_id        = $request->type;
-                // $exam_register->form_type           = 3;
-                // $exam_register->status              = 1;
-                // $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
-                // $exam_register->passed_level        = $request->cpa_one_pass_level;
-                // // $exam_register->passed_personal_no  = $request->da_one_pass_personal_no;
-                // $exam_register->save();
+                $student_course = new StudentCourseReg();  
+                $student_course->sr_no           = $request->sr_no;              
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->active_batch_id;
+                $student_course->type            = $request->active_type;
+                $student_course->mac_type        = $request->active_mac_type;
+                $student_course->date            = $course_date;
+                $student_course->is_finished     = 1;
+                $student_course->status          = 0;
+                // $student_course->qt_entry     = $request->qt_entry;
+                $student_course->approve_reject_status  = 0;
+                $student_course->offline_user  = 1;
+                $student_course->save();
     
                 
             }

@@ -150,10 +150,10 @@ class QualifiedTestController extends Controller
             $invoice->name_eng            = $student_info->name_eng;
             $invoice->email           = $student_info->email;
             $invoice->phone           = $student_info->phone;
-            $invoice->productDesc     = 'Application Fee,QT Exam Fee';
+            $invoice->productDesc     = 'AppFee,QTExmFee';
             $invoice->amount          = $course->form_fee.','.$course->exam_fee;
             $invoice->status          = 0;  
-            $invoice->invoiceNo       = "";
+            $invoice->invoiceNo       = "qtexam".$qualifiedtest->id;
             $invoice->save();
 
           

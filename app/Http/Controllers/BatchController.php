@@ -245,9 +245,22 @@ class BatchController extends Controller
         ->make(true);
     }
 
-    public function getBatch($course_id)
+    public function getCurrentBatch($course_id)
     {
-        $batch = Batch::where('course_id',$course_id)->get();
+        $current_date = date('Y,m,d');
+        $batch = Batch::where('course_id',$course_id)->where('end_date','<',$current_date)->get();
+        return response()->json([
+            'data' => $batch
+        ],200);
+    }
+
+    public function getPassedBatch($course_id)
+    {
+        $current_date = date('Y,m,d');
+        
+        $batch = Batch::where('course_id',$course_id)
+                        ->where('end_date','<',$current_date)->get();
+
         return response()->json([
             'data' => $batch
         ],200);

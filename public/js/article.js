@@ -1,7 +1,7 @@
-function showContractDate(info){
-    if(info.article_form_type == "c2_pass_renew" || info.article_form_type == "c12_renew"){
+function showContractDate(info) {
+    if (info.article_form_type == "c2_pass_renew" || info.article_form_type == "c12_renew") {
         $("#renewContractModal").modal('show');
-    }else{
+    } else {
         $("#contractModal").modal('show');
     }
     $("#article_id").val(info.id);
@@ -9,7 +9,7 @@ function showContractDate(info){
     $("#student_info_id").val(info.student_info_id);
 }
 
-function saveRenewContractDate(){
+function saveRenewContractDate() {
     id = $("#article_id").val();
     article_form_type = $("#article_form_type").val();
     renew_start_date = $("input[name=renew_start_date]").val();
@@ -17,7 +17,7 @@ function saveRenewContractDate(){
 
     student_info_id = $("#student_info_id").val();
 
-    if(renew_start_date && renew_end_date){
+    if (renew_start_date && renew_end_date) {
 
         var data = new FormData();
         data.append('id', id);
@@ -42,38 +42,38 @@ function saveRenewContractDate(){
                 errorMessage(message);
             }
         });
-    }else{
+    } else {
         alert("Please select date.");
     }
 }
 
-function saveContractDate(){
+function saveContractDate() {
     id = $("#article_id").val();
     article_form_type = $("#article_form_type").val();
     contract_start_date = $("input[name=contract_start_date]").val();
 
     student_info_id = $("#student_info_id").val();
 
-    if(contract_start_date){
+    if (contract_start_date) {
 
-        let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        var start_date=new Date(contract_start_date);
+        var start_date = new Date(contract_start_date);
         var year = start_date.getFullYear();
         var month = start_date.getMonth();
         var day = start_date.getDate();
 
-        if(article_form_type == "c2_pass_3yr"){
-            var contract_end_date = new Date(year + 3, month, day-1);
-        }else if(article_form_type == "c12"){
-            var contract_end_date = new Date(year + 2, month, day-1);
-        }else if(article_form_type == "c2_pass_1yr"){
-            var contract_end_date = new Date(year + 1, month, day-1);
-        }else if(article_form_type == "qt_firm"){
-            var contract_end_date = new Date(year + 3, month, day-1);
-        }else if(article_form_type == "c2_pass_renew"){
+        if (article_form_type == "c2_pass_3yr") {
+            var contract_end_date = new Date(year + 3, month, day - 1);
+        } else if (article_form_type == "c12") {
+            var contract_end_date = new Date(year + 2, month, day - 1);
+        } else if (article_form_type == "c2_pass_1yr") {
+            var contract_end_date = new Date(year + 1, month, day - 1);
+        } else if (article_form_type == "qt_firm") {
+            var contract_end_date = new Date(year + 3, month, day - 1);
+        } else if (article_form_type == "c2_pass_renew") {
             //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
-        }else if(article_form_type == "c12_renew"){
+        } else if (article_form_type == "c12_renew") {
             //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
         }
 
@@ -102,24 +102,24 @@ function saveContractDate(){
                 errorMessage(message);
             }
         });
-    }else{
+    } else {
         alert("Please select date.");
     }
 }
 
-function getContractEndDate(student_info_id , contract_start_date){
+function getContractEndDate(student_info_id, contract_start_date) {
     let resign_done_date;
     let form_pass_date;
 
     $.ajax({
         type: "GET",
-        url: BACKEND_URL + "/get_resign_end_date/"+student_info_id,
+        url: BACKEND_URL + "/get_resign_end_date/" + student_info_id,
         success: function (result) {
-            result.forEach(function(element){
-                if(element.article_form_type == 'resign'){
+            result.forEach(function (element) {
+                if (element.article_form_type == 'resign') {
                     resign_done_date = element.approve_resign_date;
-                }else{
-                    if(element.article_form_type != 'c2_pass_renew' && element.article_form_type != 'c12_renew' && element.done_status != 1){
+                } else {
+                    if (element.article_form_type != 'c2_pass_renew' && element.article_form_type != 'c12_renew' && element.done_status != 1) {
                         console.log(element.contract_end_date);
                         form_pass_date = element.contract_end_date;
                     }
@@ -135,12 +135,12 @@ function getContractEndDate(student_info_id , contract_start_date){
     });
 }
 
-function updateContractDate(info){
-    if(info.article_form_type == "c2_pass_renew" || info.article_form_type == "c12_renew"){
+function updateContractDate(info) {
+    if (info.article_form_type == "c2_pass_renew" || info.article_form_type == "c12_renew") {
         $("#renewContractModal").modal('show');
         $("#renew_start_date").val(info.contract_start_date);
         $("#renew_end_date").val(info.contract_end_date);
-    }else{
+    } else {
         $("#contractModal").modal('show');
         $("#contract_start_date").val(info.contract_start_date);
     }
@@ -151,18 +151,28 @@ function updateContractDate(info){
 function showArticle(id){
     localStorage.setItem("article_id",id);
     location.href=FRONTEND_URL+"/article_show";
+
 }
 
 function loadArticle()
 {
-    var id = localStorage.getItem("article_id");
+    let result = window.location.href;
+    let url = new URL(result);
+    let offline_user = url.searchParams.get("offline_user");
+    if(offline_user=="true"){
+        var id = url.searchParams.get("id");
+        $('#offline_user').val("true");
+    }else{
+        var id = localStorage.getItem("article_id");
+    }
     $("input[name = article_id]").val(id);
+
     $.ajax({
-        url: BACKEND_URL + "/acc_app/"+id,
+        url: BACKEND_URL + "/acc_app/" + id,
         type: 'get',
-        data:"",
-        success: function(data){
-            var student_info=data.student_info;
+        data: "",
+        success: function (data) {
+            var student_info = data.student_info;
 
             // var student_reg = student_info.student_register
             // var lastest_row = student_reg.length - 1;
@@ -203,6 +213,17 @@ function loadArticle()
             //     document.getElementById('request_label').innerHTML="၃။";
             // }
 
+            if(data.total_experience){
+              var total_exp_array = JSON.parse(data.total_experience);
+              var exp_year = total_exp_array[0];
+              var exp_month = total_exp_array[1];
+              var exp_days = total_exp_array[2];
+            }
+
+            if(data.article_form_type == 'c2_pass_renew' || data.article_form_type == 'c12_renew'){
+              $("#previous_exp_box").css('display','block');
+            }
+
             var form_type;
             article_form_type = data.article_form_type;
             switch (article_form_type) {
@@ -241,66 +262,72 @@ function loadArticle()
             $("#race").val(student_info.race);
             $("#religion").val(student_info.religion);
             $("#date_of_birth").val(student_info.date_of_birth);
+            $("#ex_papp_name").val(data.ex_papp);
+            $("#ex_papp_start_date").val(data.exp_start_date);
+            $("#ex_papp_end_date").val(data.exp_end_date);
+            $("#exp_year").val(exp_year);
+            $("#exp_month").val(exp_month);
+            $("#exp_days").val(exp_days);
 
-            if(data.article_form_type == "qt_firm"){
+            if (data.article_form_type == "qt_firm") {
                 document.getElementById("qt_row").style.display = "block";
                 document.getElementById("other_row").style.display = "none";
-            }else{
+            } else {
                 document.getElementById("qt_row").style.display = "none";
                 document.getElementById("other_row").style.display = "block";
             }
 
-            if(student_info.qualified_test != null){
+            if (student_info.qualified_test != null) {
                 $("#firm_education").hide();
                 $("#qt_education").show();
                 let lcl = JSON.parse(student_info.qualified_test.local_education);
                 lcl.map(lcl_edu => $('#add_qt_education').append(`<p>${lcl_edu}</p>`));
 
                 let certificate = JSON.parse(student_info.qualified_test.local_education_certificate);
-                $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+                $.each(certificate, function (fileCount, fileName) {
+                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
 
                 })
 
-            }else{
-                if(data.offline_user==1){
+            } else {
+                if (data.offline_user == 1) {
                     $('.offline_user').show();
                     $('#firm_education').hide();
                     $('#certificate_row').hide();
                     loadEductaionHistoryByArticle(data.student_info_id);
-                }else{
+                } else {
                     $("#education").val(student_info.student_education_histroy.degree_name);
 
                     let certificate = JSON.parse(student_info.student_education_histroy.certificate);
-                    $.each(certificate,function(fileCount,fileName){
-                         $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+                    $.each(certificate, function (fileCount, fileName) {
+                        $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
                     })
                 }
             }
             $("#address").val(student_info.address);
             $("#current_address").val(student_info.current_address);
             $("#phone_no").val(student_info.phone);
-            if(student_info.email!=null){
+            if (student_info.email != null) {
                 $("#m_email").val(student_info.email);
-            }else{
+            } else {
                 $("#m_email").val(data.m_email);
             }
-            if(data.ex_papp == null){
+            if (data.ex_papp == null) {
                 document.getElementById("previous_papp_name_row").style.display = "none";
-            }else if(data.ex_papp == "undefined" && data.exp_start_date == "undefined" &&  data.exp_end_date == "undefined"){
+            } else if (data.ex_papp == "undefined" && data.exp_start_date == "undefined" && data.exp_end_date == "undefined") {
                 document.getElementById("previous_papp_name_row").style.display = "none";
                 document.getElementById("previous_papp_date_row").style.display = "none";
                 $("#exam_pass_date_label").text('၁၅။');
-            }else{
+            } else {
                 $("#previous_papp_name").val(data.ex_papp);
                 $("#previous_papp_start_date").val(data.exp_start_date);
                 $("#previous_papp_end_date").val(data.exp_end_date);
                 document.getElementById("previous_papp_name_row").style.display = "block";
                 document.getElementById("previous_papp_date_row").style.display = "block";
             }
-            if(data.exam_pass_date == null || data.exam_pass_batch == null){
+            if (data.exam_pass_date == null || data.exam_pass_batch == null) {
                 document.getElementById("previous_exam_pass_row").style.display = "none";
-            }else{
+            } else {
                 $("#pass_date").val(data.exam_pass_date);
                 $("#pass_no").val(data.exam_pass_batch);
                 $("#exam_pass_date_label").text('၁၅။');
@@ -309,10 +336,10 @@ function loadArticle()
             // $("#pass_date").val(data.request_papp);
             // $("#pass_no").val(data.request_papp);
 
-            if(data.article_form_type == "c2_pass_renew" || data.article_form_type == "c12_renew"){
-                if((data.offline_user==1 && data.article_form_type=="c2_pass_renew")){
-                    $('#exp_row').css('display','none');
-                    $('#exp_attach_row').css('display','none');
+            if (data.article_form_type == "c2_pass_renew" || data.article_form_type == "c12_renew") {
+                if ((data.offline_user == 1 && data.article_form_type == "c2_pass_renew")) {
+                    $('#exp_row').css('display', 'none');
+                    $('#exp_attach_row').css('display', 'none');
                     $("#gov_lab").text('၈။');
                     $("#current_lab").text('၉။');
                     $("#address_label").text('၁၀။');
@@ -325,7 +352,12 @@ function loadArticle()
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#c2_mentor_name").val(data.mentor_id);
+                    }
                     $('#previous_papp_name_row').show();
                     $('#previous_papp_date_row').show();
                     $("#previous_papp_name").val(data.ex_papp);
@@ -345,36 +377,46 @@ function loadArticle()
                         $("#previous_lab").text('၁၅။');
                         $("#exam_pass_date_label").text('၁၆။');
                         $("#papp_name").val(data.request_papp);
-                        $("#mentor_name").val(data?.mentor?.name_eng);
-                    
+                        if(data.mentor!=null){
+                            $("#mentor_name").val(data?.mentor?.name_eng);
+                        }
+                        else{
+                            $("#mentor_name").val(data.mentor_id);
+                        }
+
                 }
 
 
-            }else{
-                if(data.apprentice_exp == 1)
-                {
-                    $('input:radio[name=experience][value=1]').attr('checked',true);
-                    $('input:radio[name=experience][value=0]').attr('disabled',true);
-                    $('#exp_attach_row').css('display','block');
+            } else {
+                if (data.apprentice_exp == 1) {
+                    $('input:radio[name=experience][value=1]').attr('checked', true);
+                    $('input:radio[name=experience][value=0]').attr('disabled', true);
+                    $('#exp_attach_row').css('display', 'block');
                     //let apprentice_exp_file=data.apprentice_exp_file.replace(/[\'"[\]']+/g, '');
                     let apprentice_exp_file = JSON.parse(data.apprentice_exp_file);
                     $.each(apprentice_exp_file, function (fileCount, fileName) {
-                        console.log("/storage/student_info/"+fileName);
-                        $(".exp_attachment").append(`<a href='${PDF_URL + "/storage/student_info/"+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                        console.log("/storage/student_info/" + fileName);
+                        $(".exp_attachment").append(`<a href='${PDF_URL + "/storage/student_info/" + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
                     })
                 }
-                else{
-                $('input:radio[name=experience][value=0]').attr('checked',true);
-                $('input:radio[name=experience][value=1]').attr('disabled',true);
-                $('#exp_attach_row').css('display','none');
+                else {
+                    $('input:radio[name=experience][value=0]').attr('checked', true);
+                    $('input:radio[name=experience][value=1]').attr('disabled', true);
+                    $('#exp_attach_row').css('display', 'none');
                 }
-                if(data.offline_user==1 && data.article_form_type=="c2_pass_1yr"){
+                if (data.offline_user == 1 && data.article_form_type == "c2_pass_1yr") {
 
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
+                    $('#office_order_row').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#c2_mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#c2_mentor_name").val(data.mentor_id);
+                    }
                     $('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
@@ -386,42 +428,48 @@ function loadArticle()
                     $('#previous_lab').text('၁၅။');
                     $('#exam_pass_date_label').text('၁၆။');
 
-                }else{
+                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+
+                } else {
                     $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data?.mentor?.name_eng);
+                    if(data.mentor!=null){
+                        $("#mentor_name").val(data?.mentor?.name_eng);
+                    }
+                    else{
+                        $("#mentor_name").val(data.mentor_id);
+                    }
                 }
 
             }
 
-            if(data.gov_staff == 1)
-            {
-              $('input:radio[name=gov_staff][value=1]').attr('checked',true);
-              $('input:radio[name=gov_staff][value=0]').attr('disabled',true);
-              $('#gov_staff_row').css('display','block');
-              $("#position").val(data.gov_position);
-              $("#gov_joining_date").val(data.gov_joining_date);
+            if (data.gov_staff == 1) {
+                $('input:radio[name=gov_staff][value=1]').attr('checked', true);
+                $('input:radio[name=gov_staff][value=0]').attr('disabled', true);
+                $('#gov_staff_row').css('display', 'block');
+                $("#position").val(data.gov_position);
+                $("#gov_joining_date").val(data.gov_joining_date);
             }
-            else{
-              $('input:radio[name=gov_staff][value=0]').attr('checked',true);
-              $('input:radio[name=gov_staff][value=1]').attr('disabled',true);
-              $('#gov_staff_row').css('display','none');
+            else {
+                $('input:radio[name=gov_staff][value=0]').attr('checked', true);
+                $('input:radio[name=gov_staff][value=1]').attr('disabled', true);
+                $('#gov_staff_row').css('display', 'none');
             }
 
             document.getElementById('image').src = PDF_URL + student_info.image;
-            $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
-            $(".nrc_back").append(`<a href='${PDF_URL+student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
-            if(data.request_papp_attach!=""){
+            $(".nrc_front").append(`<a href='${PDF_URL + student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL + student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            if (data.request_papp_attach != "") {
                 $('.req-papp_attach').show();
-                $(".request_papp_attach").append(`<a href='${PDF_URL+data.request_papp_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
-            }else{
+                $(".request_papp_attach").append(`<a href='${PDF_URL + data.request_papp_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
+            } else {
                 $('.req-papp_attach').hide();
             }
 
 
             var leave_requests = student_info.leave_requests;
             var r = 1;
-            leave_requests.forEach(function(element){
-                if(data.article_form_type == element.form_type){
+            leave_requests.forEach(function (element) {
+                if (data.article_form_type == element.form_type) {
                     var status = element.status == 0 ? "-" : "Done";
                     var tr = "<tr>";
                     tr += "<td class='alignright'>" + r + "</td>";
@@ -435,18 +483,18 @@ function loadArticle()
                     $("#leave_request_body").append(tr);
                 }
             })
-			$('#leave_request_table').DataTable({
-				'destroy': true,
-				'paging': true,
-				'lengthChange': false,
-				"pageLength": 5,
-				'searching': false,
-				'info': false,
-				'autoWidth': true,
-				"scrollX": false,
-			});
+            $('#leave_request_table').DataTable({
+                'destroy': true,
+                'paging': true,
+                'lengthChange': false,
+                "pageLength": 5,
+                'searching': false,
+                'info': false,
+                'autoWidth': true,
+                "scrollX": false,
+            });
 
-            if(data.contract_end_date != null){
+            if (data.contract_end_date != null) {
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
 
@@ -455,7 +503,7 @@ function loadArticle()
 
                 if (end_time <= today_time) {
                     console.log(data.yes_done_attach);
-                    if(data.yes_done_attach == 0){
+                    if (data.yes_done_attach == 0) {
                         document.getElementById("check_end_date").style.display = "block";
                     }
                     $("#article_id").val(data.id);
@@ -465,13 +513,13 @@ function loadArticle()
                 }
             }
 
-            if(data.status == 0){
-              document.getElementById("approve_reject_btn").style.display = "block";
-            }else{
-              document.getElementById("approve_reject_btn").style.display = "none";
+            if (data.status == 0) {
+                document.getElementById("approve_reject_btn").style.display = "block";
+            } else {
+                document.getElementById("approve_reject_btn").style.display = "none";
             }
 
-            if(data.mentor_attach_file != null){
+            if (data.mentor_attach_file != null) {
                 $("#attach_file_row").show();
                 let mentor_attach_file = JSON.parse(data.mentor_attach_file);
                 $.each(mentor_attach_file, function (fileCount, fileName) {
@@ -480,61 +528,75 @@ function loadArticle()
                 })
             }
 
-            if(data.done_form_attach != null){
+            if (data.done_form_attach != null) {
                 $("#done_form_row").show();
-                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
+                $(".done_form_attach").append(`<a href='${PDF_URL + data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
                 $("#reject_done_attach").show();
                 $("#article_id").val(data.id);
-                if(data.done_status == 0 || data.done_status == 2 ){
+                if (data.done_status == 0 || data.done_status == 2) {
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
-                }else{
+                } else {
                     document.getElementById("done_form_approve_reject_btn").style.display = "none";
                 }
 
             }
 
+            autoLoadPaymentFirm(data.id,article_form_type); // load firm payment infos
         }
     });
 }
 
-function approveArticle(){
-    if (!confirm('Are you sure you want to approve this article?'))
-    {
+function approveArticle() {
+    if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
     else{
-        var id = $("input[name = article_id]").val();
-        console.log(id);
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+
         $.ajax({
-            url: BACKEND_URL + "/approve_article/"+id,
+            url: BACKEND_URL + "/approve_article/" + id,
             type: 'patch',
-            success: function(result){
+            success: function (result) {
                 successMessage("You have approved that user!");
-                setInterval(() => {
-                location.href = FRONTEND_URL + "/article_list";
-                }, 3000);
+
+                    setInterval(() => {
+                        if(offline_user=="true"){
+                            location.href = FRONTEND_URL + "/offline_user";
+                        }else{
+                            location.href = FRONTEND_URL + "/article_list";
+                        }
+                    }, 3000);
+
+
+
             }
         });
     }
 }
 
-function rejectArticle(){
-    if (!confirm('Are you sure you want to reject this article?'))
-    {
+function rejectArticle() {
+    if (!confirm('Are you sure you want to reject this article?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = article_id]").val();
         var formData = new FormData();
         formData.append('remark_firm', $('#remark_firm').val());
 
         $.ajax({
-            url: BACKEND_URL +"/reject_article/"+id,
+            url: BACKEND_URL + "/reject_article/" + id,
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
-            success: function(result){
+            success: function (result) {
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
             }
@@ -542,38 +604,47 @@ function rejectArticle(){
     }
 }
 
-function approveDoneArticle(){
-    if (!confirm('Are you sure you want to approve this article?'))
-    {
+function approveDoneArticle() {
+    if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
     else{
-        var id = $("input[name = article_id]").val();
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
 
         $.ajax({
-            url: BACKEND_URL + "/approve_done_article/"+id,
+            url: BACKEND_URL + "/approve_done_article/" + id,
             type: 'patch',
-            success: function(result){
+            success: function (result) {
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                location.href = FRONTEND_URL + "/article_list";
+                    if(offline_user=="true"){
+                        location.href = FRONTEND_URL + "/offline_user";
+                    }else{
+                        location.href = FRONTEND_URL + "/article_list";
+                    }
                 }, 3000);
             }
         });
     }
 }
 
-function rejectDoneArticle(){
-    if (!confirm('Are you sure you want to reject this article?'))
-    {
+function rejectDoneArticle() {
+    if (!confirm('Are you sure you want to reject this article?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = article_id]").val();
         $.ajax({
-            url: BACKEND_URL +"/reject_done_article/"+id,
+            url: BACKEND_URL + "/reject_done_article/" + id,
             type: 'patch',
-            success: function(result){
+            success: function (result) {
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
             }
@@ -581,46 +652,46 @@ function rejectDoneArticle(){
     }
 }
 
-function showGovContractDate(info){
+function showGovContractDate(info) {
     $("#contractGovModal").modal('show');
     $("#gov_article_id").val(info.id);
 }
 
-function showPaymentInfo(info){
-  $("#payment_detail_modal").modal('show');
+function showPaymentInfo(info) {
+    $("#payment_detail_modal").modal('show');
 
-  autoLoadPayment(info.id);
+    autoLoadPayment(info.id);
 }
 
-function showPaymentInfoResign(info){
-  $("#payment_detail_modal").modal('show');
+function showPaymentInfoResign(info) {
+    $("#payment_detail_modal").modal('show');
 
-  autoLoadPaymentResign(info.id);
+    autoLoadPaymentResign(info.id);
 }
 
 function showPaymentInfoFirm(info){
   $("#payment_detail_modal").modal('show');
-  autoLoadPaymentFirm(info.id);
+  autoLoadPaymentFirm(info.id,info.article_form_type);
 }
 
-function updateGovContractDate(info){
+function updateGovContractDate(info) {
     $("#contractGovModal").modal('show');
     $("#gov_article_id").val(info.id);
     $("#contract_gov_start_date").val(info.contract_start_date);
 }
 
-function saveGovContractDate(){
+function saveGovContractDate() {
     id = $("#gov_article_id").val();
     contract_start_date = $("input[name=contract_gov_start_date]").val();
-    if(contract_start_date){
-        let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if (contract_start_date) {
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        var start_date=new Date(contract_start_date);
+        var start_date = new Date(contract_start_date);
         var year = start_date.getFullYear();
         var month = start_date.getMonth();
         var day = start_date.getDate();
 
-        var contract_end_date = new Date(year + 2, month, day-1);
+        var contract_end_date = new Date(year + 2, month, day - 1);
 
         contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
 
@@ -647,27 +718,26 @@ function saveGovContractDate(){
                 errorMessage(message);
             }
         });
-    }else{
+    } else {
         alert("Please select date.");
     }
 }
 
-function showGovArticle(id){
-    localStorage.setItem("article_id",id);
-    location.href=FRONTEND_URL+"/gov_article_show";
+function showGovArticle(id) {
+    localStorage.setItem("article_id", id);
+    location.href = FRONTEND_URL + "/gov_article_show";
 }
 
-function loadGovArticle()
-{
+function loadGovArticle() {
     var id = localStorage.getItem("article_id");
     $("input[name = article_id]").val(id);
     $.ajax({
-        url: BACKEND_URL + "/gov_article_show/"+id,
+        url: BACKEND_URL + "/gov_article_show/" + id,
         type: 'get',
-        data:"",
-        success: function(data){
+        data: "",
+        success: function (data) {
 
-            var student_info=data.student_info;
+            var student_info = data.student_info;
 
             var student_reg = student_info.student_register
             var lastest_row = student_reg.length - 1;
@@ -690,18 +760,17 @@ function loadGovArticle()
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
 
-            if(data.married == 1)
-            {
-                $('input:radio[name=married][value=1]').attr('checked',true);
-                $('input:radio[name=married][value=0]').attr('disabled',true);
-                $('#married_row').css('display','block');
+            if (data.married == 1) {
+                $('input:radio[name=married][value=1]').attr('checked', true);
+                $('input:radio[name=married][value=0]').attr('disabled', true);
+                $('#married_row').css('display', 'block');
                 $("#married_name").val(data.married_name);
                 $("#married_job").val(data.married_job);
             }
-            else{
-                $('input:radio[name=married][value=0]').attr('checked',true);
-                $('input:radio[name=married][value=1]').attr('disabled',true);
-                $('#married_row').css('display','none');
+            else {
+                $('input:radio[name=married][value=0]').attr('checked', true);
+                $('input:radio[name=married][value=1]').attr('disabled', true);
+                $('#married_row').css('display', 'none');
             }
             $("#permanent_address").val(data.permanent_address);
             $("#tempory_address").val(data.tempory_address);
@@ -712,32 +781,32 @@ function loadGovArticle()
             $("#labor_registration_no").val(data.labor_registration_no);
 
             document.getElementById('image').src = PDF_URL + student_info.image;
-            $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
-            $(".nrc_back").append(`<a href='${PDF_URL+student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            $(".nrc_front").append(`<a href='${PDF_URL + student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL + student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
 
             let certificate = JSON.parse(student_info.student_education_histroy.certificate);
-                $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+            $.each(certificate, function (fileCount, fileName) {
+                $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
 
-                })
+            })
 
             let labor_registration_attach = JSON.parse(data.labor_registration_attach);
-                $.each(labor_registration_attach, function (fileCount, fileName) {
-                    $(".labor_registration_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+            $.each(labor_registration_attach, function (fileCount, fileName) {
+                $(".labor_registration_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+            })
 
             let recommend_attach = JSON.parse(data.recommend_attach);
-                $.each(recommend_attach, function (fileCount, fileName) {
-                    $(".recommend_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+            $.each(recommend_attach, function (fileCount, fileName) {
+                $(".recommend_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+            })
 
             let police_attach = JSON.parse(data.police_attach);
-                $.each(police_attach, function (fileCount, fileName) {
-                    $(".police_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+            $.each(police_attach, function (fileCount, fileName) {
+                $(".police_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+            })
 
             //$(".labor_registration_attach").append(`<a href='${PDF_URL+data.labor_registration_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
             // $(".recommend_attach").append(`<a href='${PDF_URL+data.recommend_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
@@ -745,8 +814,8 @@ function loadGovArticle()
 
             var leave_requests = student_info.leave_requests;
             var r = 1;
-            leave_requests.forEach(function(element){
-                if(element.form_type == 'gov'){
+            leave_requests.forEach(function (element) {
+                if (element.form_type == 'gov') {
                     var status = element.status == 0 ? "-" : "Done";
                     var tr = "<tr>";
                     tr += "<td class='alignright'>" + r + "</td>";
@@ -760,25 +829,25 @@ function loadGovArticle()
                     $("#leave_request_body").append(tr);
                 }
             })
-			$('#leave_request_table').DataTable({
-				'destroy': true,
-				'paging': true,
-				'lengthChange': false,
-				"pageLength": 5,
-				'searching': false,
-				'info': false,
-				'autoWidth': true,
-				"scrollX": false,
-			});
+            $('#leave_request_table').DataTable({
+                'destroy': true,
+                'paging': true,
+                'lengthChange': false,
+                "pageLength": 5,
+                'searching': false,
+                'info': false,
+                'autoWidth': true,
+                "scrollX": false,
+            });
 
-            if(data.contract_end_date != null){
+            if (data.contract_end_date != null) {
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
 
                 if (end_time <= today_time) {
-                    if(data.yes_done_attach == 0){
+                    if (data.yes_done_attach == 0) {
                         document.getElementById("check_end_date").style.display = "block";
                     }
                     $("#gov_article_id").val(data.id);
@@ -787,13 +856,13 @@ function loadGovArticle()
                 }
             }
 
-            if(data.status == 0){
-              document.getElementById("approve_reject_btn").style.display = "block";
-            }else{
-              document.getElementById("approve_reject_btn").style.display = "none";
+            if (data.status == 0) {
+                document.getElementById("approve_reject_btn").style.display = "block";
+            } else {
+                document.getElementById("approve_reject_btn").style.display = "none";
             }
 
-            if(data.mentor_attach_file != null){
+            if (data.mentor_attach_file != null) {
                 $("#attach_file_row").show();
                 let mentor_attach_file = JSON.parse(data.mentor_attach_file);
                 $.each(mentor_attach_file, function (fileCount, fileName) {
@@ -801,14 +870,14 @@ function loadGovArticle()
                 })
             }
 
-            if(data.done_form_attach != null){
+            if (data.done_form_attach != null) {
                 $("#done_form_row").show();
-                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
+                $(".done_form_attach").append(`<a href='${PDF_URL + data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
                 $("#reject_done_attach").show();
                 $("#gov_article_id").val(data.id);
-                if(data.done_status == 0 || data.done_status == 2){
+                if (data.done_status == 0 || data.done_status == 2) {
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
-                }else{
+                } else {
                     document.getElementById("done_form_approve_reject_btn").style.display = "none";
                 }
             }
@@ -816,143 +885,135 @@ function loadGovArticle()
     });
 }
 
-function rejectDoneAttach(){
+function rejectDoneAttach() {
     $("#reject_done_attach_modal").modal('toggle');
 }
 
-function rejectArticleDoneAttach(){
+function rejectArticleDoneAttach() {
     var id = $("#article_id").val();
-    var reason=$("#reason").val();
+    var reason = $("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/reject_article_done_attach",
-        data: 'id='+id+"&reason="+reason,
+        data: 'id=' + id + "&reason=" + reason,
         type: 'post',
-        success: function(result){
+        success: function (result) {
             successMessage('You have successfully rejected that done attach!');
             location.href = FRONTEND_URL + "/article_list";
         }
     });
-    
-  }
 
-  function rejectGovArticleDoneAttach(){
+}
+
+function rejectGovArticleDoneAttach() {
     var id = $("#gov_article_id").val();
-    var reason=$("#reason").val();
+    var reason = $("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/reject_gov_article_done_attach",
-        data: 'id='+id+"&reason="+reason,
+        data: 'id=' + id + "&reason=" + reason,
         type: 'post',
-        success: function(result){
+        success: function (result) {
             successMessage('You have successfully rejected that done attach!');
             location.href = FRONTEND_URL + "/article_list";
+//         }
+//     });
+
+// }
+
+              if(result.status==0){
+                  $('#payment_status').append("Incomplete");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Complete");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
+                          <h6 class="my-0">${productDesc[i]}</h6>
+                          <span class="text-muted">- ${amount[i]} MMK</span>
+                      </li >
+                    `);
+                }
+            $('.fee_list').append(`
+                    < li class= "list-group-item d-flex justify-content-between" >
+                      <span>Total (MMK)</span>
+                      <span id="total">
+                          - <strong>${total}</strong> MMK
+                      </span>
+                  </li >
+                    `);
         }
     });
-    
-  }
-
-function autoLoadPayment(gov_id){
-  //let student_id=localStorage.getItem("student_id");
-  $("#payment_detail_modal").find(".fee_list").html('');
-  $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + 'gov'+gov_id,
-          type: 'get',
-          success: function (result) {
-              console.log("gov aricle",result);
-
-              if(result.status==0){
-                  $('#payment_status').append("Pending");
-                  $('#payment_status').addClass("text-warning");
-              }
-              else{
-                  $('#payment_status').append("Paid");
-                  $('#payment_status').addClass("text-success");
-              }
-              var productDesc = result.productDesc.split(",");
-              var amount = result.amount.split(",");
-              var total=0;
-              for(var i in amount) {
-                  total += parseInt(amount[i]);
-              }
-              console.log(total);
-              for(let i=0 ; i<amount.length ; i++){
-                  $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
-                          <h6 class="my-0">${productDesc[i]}</h6>
-                          <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li>
-                  `);
-              }
-              $('.fee_list').append(`
-                  <li class="list-group-item d-flex justify-content-between">
-                      <span>Total (MMK)</span>
-                      <span id="total">
-                          - <strong>${total}</strong> MMK
-                      </span>
-                  </li>
-              `);
-          }
-      });
 }
 
-function autoLoadPaymentResign(firm_id){
+function autoLoadPaymentResign(resign_id){
   $("#payment_detail_modal").find(".fee_list").html('');
-  $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + 'resign'+firm_id,
-          type: 'get',
-          success: function (result) {
-              console.log("gov aricle",result);
+    $.ajax({
+        url: BACKEND_URL + "/get_payment_info/" + 'resign'+resign_id,
+        type: 'get',
+        success: function (result) {
+            console.log("gov aricle",result);
 
-              if(result.status==0){
-                  $('#payment_status').append("Pending");
-                  $('#payment_status').addClass("text-warning");
-              }
-              else{
-                  $('#payment_status').append("Paid");
-                  $('#payment_status').addClass("text-success");
-              }
-              var productDesc = result.productDesc.split(",");
-              var amount = result.amount.split(",");
-              var total=0;
-              for(var i in amount) {
-                  total += parseInt(amount[i]);
-              }
-              console.log(total);
-              for(let i=0 ; i<amount.length ; i++){
-                  $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
-                          <h6 class="my-0">${productDesc[i]}</h6>
-                          <span class="text-muted">- ${amount[i]} MMK</span>
-                      </li>
-                  `);
-              }
-              $('.fee_list').append(`
-                  <li class="list-group-item d-flex justify-content-between">
-                      <span>Total (MMK)</span>
-                      <span id="total">
-                          - <strong>${total}</strong> MMK
-                      </span>
-                  </li>
-              `);
-          }
-      });
+            if(result.status==0){
+                $('#payment_status').append("Incomplete");
+                $('#payment_status').addClass("text-warning");
+            }
+            else{
+                $('#payment_status').append("Complete");
+                $('#payment_status').addClass("text-success");
+            }
+            var productDesc = result.productDesc.split(",");
+            var amount = result.amount.split(",");
+            var total=0;
+            for(var i in amount) {
+                total += parseInt(amount[i]);
+            }
+            console.log(total);
+            for(let i=0 ; i<amount.length ; i++){
+                $('.fee_list').append(`
+                    <li
+                        class="list-group-item d-flex justify-content-between lh-condensed">
+                        <h6 class="my-0">${productDesc[i]}</h6>
+                        <span class="text-muted">- ${amount[i]} MMK</span>
+                    </li >
+                `);
+            }
+            $('.fee_list').append(`
+                < li class= "list-group-item d-flex justify-content-between" >
+                    <span>Total (MMK)</span>
+                    <span id="total">
+                        - <strong>${total}</strong> MMK
+                    </span>
+                </li >
+                `);
+        }
+    });
 }
 
-function autoLoadPaymentFirm(firm_id){
+function autoLoadPaymentFirm(firm_id,form_type){
   $("#payment_detail_modal").find(".fee_list").html('');
   $.ajax({
-          url: BACKEND_URL + "/get_payment_info/" + 'c12',
+          url: BACKEND_URL + "/get_payment_info/" + form_type + firm_id,
           type: 'get',
           success: function (result) {
               console.log("firm aricle",result);
 
               if(result.status==0){
-                  $('#payment_status').append("Pending");
+                console.log("****",result.status);
+                  $('#payment_status').append("Incomplete");
                   $('#payment_status').addClass("text-warning");
               }
               else{
-                  $('#payment_status').append("Paid");
+                  $('#payment_status').append("Complete");
                   $('#payment_status').addClass("text-success");
               }
               var productDesc = result.productDesc.split(",");
@@ -964,62 +1025,59 @@ function autoLoadPaymentFirm(firm_id){
               console.log(total);
               for(let i=0 ; i<amount.length ; i++){
                   $('.fee_list').append(`
-                      <li
-                          class="list-group-item d-flex justify-content-between lh-condensed">
+                      <li class="list-group-item d-flex justify-content-between lh-condensed">
                           <h6 class="my-0">${productDesc[i]}</h6>
                           <span class="text-muted">- ${amount[i]} MMK</span>
                       </li>
-                  `);
-              }
-              $('.fee_list').append(`
-                  <li class="list-group-item d-flex justify-content-between">
+                    `);
+            }
+            $('.fee_list').append(`
+                    <li class= "list-group-item d-flex justify-content-between" >
                       <span>Total (MMK)</span>
                       <span id="total">
                           - <strong>${total}</strong> MMK
                       </span>
                   </li>
-              `);
-          }
-      });
+                    `);
+        }
+    });
 }
 
-function approveGovArticle(){
-    if (!confirm('Are you sure you want to approve this article?'))
-    {
+function approveGovArticle() {
+    if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = article_id]").val();
         console.log(id);
         $.ajax({
-            url: BACKEND_URL + "/approve_gov_article/"+id,
+            url: BACKEND_URL + "/approve_gov_article/" + id,
             type: 'patch',
-            success: function(result){
+            success: function (result) {
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                location.href = FRONTEND_URL + "/article_list";
+                    location.href = FRONTEND_URL + "/article_list";
                 }, 3000);
             }
         });
     }
 }
 
-function rejectGovArticle(){
-    if (!confirm('Are you sure you want to reject this article?'))
-    {
+function rejectGovArticle() {
+    if (!confirm('Are you sure you want to reject this article?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = article_id]").val();
         var formData = new FormData();
         formData.append('remark_gov', $('#remark_gov').val());
         $.ajax({
-            url: BACKEND_URL +"/reject_gov_article/"+id,
+            url: BACKEND_URL + "/reject_gov_article/" + id,
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
-            success: function(result){
+            success: function (result) {
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
             }
@@ -1027,38 +1085,36 @@ function rejectGovArticle(){
     }
 }
 
-function approveDoneGovArticle(){
-    if (!confirm('Are you sure you want to approve this article?'))
-    {
+function approveDoneGovArticle() {
+    if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = article_id]").val();
         console.log(id);
         $.ajax({
-            url: BACKEND_URL + "/approve_done_gov_article/"+id,
+            url: BACKEND_URL + "/approve_done_gov_article/" + id,
             type: 'patch',
-            success: function(result){
+            success: function (result) {
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                location.href = FRONTEND_URL + "/article_list";
+                    location.href = FRONTEND_URL + "/article_list";
                 }, 3000);
             }
         });
     }
 }
 
-function rejectDoneGovArticle(){
-    if (!confirm('Are you sure you want to reject this article?'))
-    {
+function rejectDoneGovArticle() {
+    if (!confirm('Are you sure you want to reject this article?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = article_id]").val();
         $.ajax({
-            url: BACKEND_URL +"/reject_done_gov_article/"+id,
+            url: BACKEND_URL + "/reject_done_gov_article/" + id,
             type: 'patch',
-            success: function(result){
+            success: function (result) {
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
             }
@@ -1066,21 +1122,20 @@ function rejectDoneGovArticle(){
     }
 }
 
-function showResignArticle(id){
-    localStorage.setItem("article_id",id);
-    location.href=FRONTEND_URL+"/resign_article_show";
+function showResignArticle(id) {
+    localStorage.setItem("article_id", id);
+    location.href = FRONTEND_URL + "/resign_article_show";
 }
 
-function loadResignArticle()
-{
+function loadResignArticle() {
     var id = localStorage.getItem("article_id");
     $("input[name = article_id]").val(id);
     $.ajax({
-        url: BACKEND_URL + "/resign_article_show/"+id,
+        url: BACKEND_URL + "/resign_article_show/" + id,
         type: 'get',
-        data:"",
-        success: function(data){
-            var student_info=data.student_info;
+        data: "",
+        success: function (data) {
+            var student_info = data.student_info;
             var qualified_test = student_info.qualified_test;
 
             var student_reg = student_info.student_register
@@ -1099,25 +1154,37 @@ function loadResignArticle()
             $("#religion").val(student_info.religion);
             $("#date_of_birth").val(student_info.date_of_birth);
 
-            if(qualified_test != null){
+            if (qualified_test != null) {
                 $("#firm_education").hide();
                 $("#qt_education").show();
                 let lcl = JSON.parse(qualified_test.local_education);
-                lcl.map(lcl_edu => $('#add_qt_education').append(`<p>${lcl_edu}</p>`));
+                lcl.map(lcl_edu => $('#add_qt_education').append(`< p > ${lcl_edu}</p > `));
 
                 let certificate = JSON.parse(qualified_test.local_education_certificate);
-                $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+                $.each(certificate, function (fileCount, fileName) {
+                    $(".certificate").append(`<a href = '${PDF_URL + fileName}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' > View Attach File</a > `);
 
                 })
-            }else{
+            } else {
                 $("#education").val(student_info.student_education_histroy.degree_name);
-                let certificate = JSON.parse(student_info.student_education_histroy.certificate);
-                $.each(certificate,function(fileCount,fileName){
+                // let certificate = JSON.parse(student_info.student_education_histroy.certificate);
+                // $.each(certificate,function(fileCount,fileName){
 
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+                //      $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
 
-                })
+                // })
+                if (student_info.student_education_histroy) {
+                    $('.offline_user').show();
+                    loadEductaionHistoryByArticle(student_info.id, 'tbl_degree');
+                } else {
+                    $('#firm_education').hide();
+                    let certificate = JSON.parse(student_info.student_education_histroy.certificate);
+                    $.each(certificate, function (fileCount, fileName) {
+
+                        $(".stu_certificate").append(`<a href='${BASE_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+
+                    })
+                }
             }
 
             $("#address").val(student_info.address);
@@ -1129,90 +1196,112 @@ function loadResignArticle()
             $("#recent_org").val(data.recent_org);
 
             document.getElementById('image').src = PDF_URL + student_info.image;
-            $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
-            $(".nrc_back").append(`<a href='${PDF_URL+student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            $(".nrc_front").append(`<a href = '${PDF_URL + student_info.nrc_front}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
+            $(".nrc_back").append(`<a href = '${PDF_URL + student_info.nrc_back}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank'  align = "center" > View Photo</a > `);
 
-            if(data.resign_approve_file == ""){
+            if (data.resign_approve_file == "") {
                 $(".resign_approve_file").append(``);
-            }else{
-                $(".resign_approve_file").append(`<a href='${PDF_URL+data.resign_approve_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+            } else {
+                $(".resign_approve_file").append(`<a href = '${PDF_URL + data.resign_approve_file}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
             }
 
-            if(data.resign_status == 0){
-              document.getElementById("approve_reject_btn").style.display = "block";
-            }else{
-              document.getElementById("approve_reject_btn").style.display = "none";
+            if (data.resign_status == 0) {
+                document.getElementById("approve_reject_btn").style.display = "block";
+            } else {
+                document.getElementById("approve_reject_btn").style.display = "none";
             }
         }
     });
 }
 
-function approveResignArticle(){
-    if (!confirm('Are you sure you want to approve this article?'))
-    {
+function approveResignArticle() {
+    if (!confirm('Are you sure you want to approve this article?')) {
         return;
     }
-    else{
-        var id = $("input[name = article_id]").val();
-        console.log(id);
+    else {
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+
         $.ajax({
-            url: BACKEND_URL + "/approve_resign_article/"+id,
+            url: BACKEND_URL + "/approve_resign_article/" + id,
             type: 'patch',
-            success: function(result){
+            success: function (result) {
                 successMessage("You have approved that user!");
                 setInterval(() => {
-                location.href = FRONTEND_URL + "/article_list";
+                    if(offline_user=="true"){
+                        location.href = FRONTEND_URL + "/offline_user";
+                    }else{
+                        location.href = FRONTEND_URL + "/article_list";
+                    }
+
                 }, 3000);
             }
         });
     }
 }
 
-function rejectResignArticle(){
-    if (!confirm('Are you sure you want to reject this article?'))
-    {
+function rejectResignArticle() {
+    if (!confirm('Are you sure you want to reject this article?')) {
         return;
     }
-    else{
-        var id = $("input[name = article_id]").val();
+    else {
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
+
         var formData = new FormData();
         formData.append('remark_resign', $('#remark_resign').val());
 
         $.ajax({
-            url: BACKEND_URL +"/reject_resign_article/"+id,
+            url: BACKEND_URL + "/reject_resign_article/" + id,
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
-            success: function(result){
+            success: function (result) {
                 successMessage("You have rejected that user!");
-                location.href = FRONTEND_URL + "/article_list";
+                if(offline_user=="true"){
+                    location.href = FRONTEND_URL + "/offline_user";
+                }else{
+                    location.href = FRONTEND_URL + "/article_list";
+                }
             }
         });
     }
 }
 
-function checkEndArticle(){
+function checkEndArticle() {
     $("#endModal").modal('show');
     // $("#article_id").val(info.id);
     // $("#article_form_type").val(info.article_form_type);
     // $("#contract_end_date").val(info.contract_end_date);
 }
 
-function checkEndGovArticle(){
+function checkEndGovArticle() {
     $("#endGovModal").modal('show');
     // $("#gov_article_id").val(info.id);
     // $("#contract_gov_end_date").val(info.contract_end_date);
 }
 
-function saveEndArticle(){
+function saveEndArticle() {
     id = $("#article_id").val();
     article_form_type = $("#article_form_type").val();
     contract_end_date = $("input[name=contract_end_date]").val();
 
     student_info_id = $("#student_info_id").val();
 
-    if(contract_end_date){
+    if (contract_end_date) {
 
         var data = new FormData();
         data.append('id', id);
@@ -1238,17 +1327,17 @@ function saveEndArticle(){
                 errorMessage(message);
             }
         });
-    }else{
+    } else {
         alert("Please select date.");
     }
 }
 
-function saveGovEndArticle(){
+function saveGovEndArticle() {
     id = $("#gov_article_id").val();
     contract_gov_end_date = $("input[name=contract_gov_end_date]").val();
     student_info_id = $("#student_info_id").val();
 
-    if(contract_gov_end_date){
+    if (contract_gov_end_date) {
 
         var data = new FormData();
         data.append('id', id);
@@ -1274,52 +1363,57 @@ function saveGovEndArticle(){
                 errorMessage(message);
             }
         });
-    }else{
+    } else {
         alert("Please select date.");
     }
 }
 
-function createDoneFormLink(){
+function createDoneFormLink() {
     id = $("#article_id").val();
 
     $.ajax({
-        url: BACKEND_URL +"/create_done_form_link/"+id,
+        url: BACKEND_URL + "/create_done_form_link/" + id,
         type: 'patch',
-        success: function(result){
+        success: function (result) {
             successMessage("Create download link!");
-            location.href = FRONTEND_URL + "/article_list";
+            if($('#offline_user').val()){
+                location.href = FRONTEND_URL + "/offline_user";
+            }else{
+                location.href = FRONTEND_URL + "/article_list";
+            }
+
         }
     });
 }
 
-function govCreateDoneFormLink(){
+function govCreateDoneFormLink() {
     id = $("#gov_article_id").val();
 
     $.ajax({
-        url: BACKEND_URL +"/gov_create_done_form_link/"+id,
+        url: BACKEND_URL + "/gov_create_done_form_link/" + id,
         type: 'patch',
-        success: function(result){
+        success: function (result) {
             successMessage("Create download link!");
             location.href = FRONTEND_URL + "/article_list";
         }
     });
 }
-function loadEductaionHistoryByArticle(id){
+function loadEductaionHistoryByArticle(id) {
     $.ajax({
-        type : 'POST',
-        url : BACKEND_URL+"/getEducationHistory",
-        data: 'student_info_id='+id,
-        success: function(result){
-            $.each(result.data, function( index, value ) {
+        type: 'POST',
+        url: BACKEND_URL + "/getEducationHistory",
+        data: 'student_info_id=' + id,
+        success: function (result) {
+            $.each(result.data, function (index, value) {
                 var tr = "<tr>";
-                tr += `<td>${ index += 1 }</td>`;
-                tr += `<td> ${ value.degree_name } </td>`;
-                tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                tr += `<td> ${index += 1}</td> `;
+                tr += `<td> ${value.degree_name} </td> `;
+                tr += `<td> <a href='${PDF_URL + value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td> `;
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
             });
 
-            createDataTable('#tbl_degree');
+            createDataTableWithAsc('#tbl_degree');
         }
     });
 }
