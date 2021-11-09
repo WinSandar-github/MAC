@@ -149,8 +149,10 @@ function loadCPATwoSelfStudyStudentData(){
                 }else if(element.cpa_one.module_id==2){
                     module_id="Module - 2";
                 }
-                else{
+                else if(element.cpa_one.module_id==3){
                     module_id="All Module";
+                }else {
+                    module_id = "-";
                 }
 
                 if(element.cpa_one.civil_servant==0){
@@ -354,8 +356,10 @@ function loadCPATwoPrivateSchoolStudentData(){
                 }else if(element.cpa_one.module_id==2){
                     module_id="Module - 2";
                 }
-                else{
+                else if(element.cpa_one.module_id==3){
                     module_id="All Module";
+                }else {
+                    module_id= "-";
                 }
 
                 if(element.cpa_one.civil_servant==0){
@@ -564,8 +568,10 @@ function loadCPATwoMACStudentData(){
                 }else if(element.cpa_one.module_id==2){
                     module_id="Module - 2";
                 }
-                else{
+                else if(element.cpa_one.module_id==3){
                     module_id="All Module";
+                }else {
+                    module_id= "-";
                 }
 
                 if(element.cpa_one.civil_servant==0){
