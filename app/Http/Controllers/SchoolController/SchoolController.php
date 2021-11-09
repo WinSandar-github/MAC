@@ -1609,7 +1609,7 @@ class SchoolController extends Controller
                     ->get();
                     
                     $currentMonth=Carbon::now()->format('m');
-                    if($currentMonth==10 || $currentMonth==11 || $currentMonth==12){
+                    if($currentMonth==11 || $currentMonth==12){
                         $currentDate = Carbon::now()->addYears(4) ;
                     }else if($currentMonth==01){
                         $currentDate = Carbon::now()->addYears(3) ;
