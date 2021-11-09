@@ -206,6 +206,8 @@ class CertificateController extends Controller
         
         $school = SchoolRegister::where('id', '=', $id)->first();
 
+        $branch_school = tbl_branch_school::where('school_id', '=', $school->id)->get();
+
         $courseType = explode(',', $school->attend_course);
 
         collect($courseType)->map(function($val){
@@ -256,7 +258,22 @@ class CertificateController extends Controller
 
         $className = '';
 
-        return view('certificate.complete_certificate', compact('template', 'className'));
+        if(strlen($branch_school) > 0){
+            
+            $branch_template = DB::table('certificates')->where('cert_code', '=', 'branch_school')->first();
+            
+            $branch_row = '';
+            
+            foreach($branch_school as $branch){
+                $branch_row .= "<tr><td>Branch</td><td>" . $branch->branch_school_address . "</td></tr>";
+            }
+
+            $branch_template->cert_data = str_replace('{{ branchRow }}', $branch_row, $branch_template->cert_data);
+        }else{
+            $branch_template = '';
+        }
+
+        return view('certificate.complete_certificate', compact('template', 'className', 'branch_template'));
     }
 
     public function getAuditCard(Request $req, $id){
