@@ -79,8 +79,8 @@ Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
 
 //Get Batch for Offline Student
-Route::get('/get_current_batch/{course_id}','BatchController@getBatch');
-Route::get('/get_passed_batch/{course_id}','BatchController@getBatch');
+Route::get('/get_current_batch/{course_id}','BatchController@getCurrentBatch');
+Route::get('/get_passed_batch/{course_id}','BatchController@getPassedBatch');
 
 //Exam
 Route::resource('/exam','ExamController');
@@ -291,6 +291,7 @@ Route::patch('/fail_exam/{id}', 'ExamResultController@rejectExam');
 // Route::apiResource('mentor','MentorController');
 Route::resource('mentor','MentorController');
 Route::post('/filter_mentor','MentorController@FilterMentor');
+Route::post('/update_reject_mentor','MentorController@updateRejectMentor');
 // Route::apiResource('mentor','MentorController');
 // Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
