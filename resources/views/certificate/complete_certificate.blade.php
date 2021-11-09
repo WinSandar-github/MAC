@@ -47,6 +47,14 @@
         }
     }
 
+    .table{
+        width: 100%;
+    }
+
+    table.table td{
+        border: 1px solid black;
+    }
+
 </style>
 
 <body>
