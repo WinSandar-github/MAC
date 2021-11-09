@@ -79,8 +79,8 @@ Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
 
 //Get Batch for Offline Student
-Route::get('/get_current_batch/{course_id}','BatchController@getBatch');
-Route::get('/get_passed_batch/{course_id}','BatchController@getBatch');
+Route::get('/get_current_batch/{course_id}','BatchController@getCurrentBatch');
+Route::get('/get_passed_batch/{course_id}','BatchController@getPassedBatch');
 
 //Exam
 Route::resource('/exam','ExamController');

@@ -179,6 +179,10 @@ class ArticleController extends Controller
             $acc_app->exp_start_date = $request->previous_papp_start_date;
             $acc_app->exp_end_date = $request->previous_papp_end_date;
             $acc_app->total_experience = json_encode($total_experience);
+            $acc_app->gender = $request->gender;
+            $acc_app->course_part = $request->course_part;
+            $acc_app->school_name = $request->school_name;
+            $acc_app->attend_or_fail = $request->attend_fail;
             $acc_app->accept_policy = 1;
             $acc_app->offline_user = true;
             $acc_app->resign_status = 0;
@@ -206,7 +210,7 @@ class ArticleController extends Controller
          $invoice->phone           = $request->phone;
 
          $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-         $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+         $invoice->productDesc     = 'RegFee, Article Registration Form';
          $invoice->amount          = '5000';
          $invoice->status          = 0;
          //$invoice->save();
@@ -256,7 +260,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+        $invoice->productDesc     = 'RegFee, Article Registration Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
         //$invoice->save();
@@ -918,7 +922,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = "gov".$acc_app->id;
-        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+        $invoice->productDesc     = 'RegFee, Article Registration Form';
         $invoice->amount          = $fees->registration_fee;
         $invoice->status          = 0;
         //$invoice->save();
@@ -1330,7 +1334,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-        $invoice->productDesc     = 'Resign Fee, Article Resign Form';
+        $invoice->productDesc     = 'ResignFee, Article Resign Form';
         $invoice->amount          = '300000';
         $invoice->status          = 0;
         //$invoice->save();
@@ -1802,7 +1806,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-        $invoice->productDesc     = 'Registration Fee, Article Renew Form';
+        $invoice->productDesc     = 'Reg Fee, Article Renew Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
         //$invoice->save();
