@@ -2255,7 +2255,7 @@ class SchoolController extends Controller
                     $currentDay = Carbon::now()->format('d');
                     list($last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
                     $dbDate = Carbon::parse($last_pay_year.'-'.$currentMonth.'-'.$currentDay);
-                    if($currentMonth==10 || $currentMonth==11 || $currentMonth==12){
+                    if($currentMonth==11 || $currentMonth==12){
                         $currentYear = Carbon::now();
                         $diffYear = $currentYear->diffInYears($dbDate);
                     }else if($currentMonth==01){
@@ -2274,7 +2274,7 @@ class SchoolController extends Controller
                     
                     
                         if($diffYear==0){
-                            if($currentMonth==10 || $currentMonth== 11 || $currentMonth==12){
+                            if($currentMonth== 11 || $currentMonth==12){
                                 $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';
                                 foreach($memberships as $memberships){
                                     $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
@@ -2286,7 +2286,7 @@ class SchoolController extends Controller
                                 }
                             }
                         }else if($diffYear>=1){
-                            if($currentMonth==10 || $currentMonth== 11 || $currentMonth==12){
+                            if($currentMonth== 11 || $currentMonth==12){
                                 foreach($memberships as $memberships){
                                     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee('.$memberships->reconnected_fee.'),School Registration';
                                     $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee;
@@ -2380,7 +2380,7 @@ class SchoolController extends Controller
                 $invoice->phone           = $request->phone;
 
                 list($renew_date_year,$renew_date_month,$renew_date_day) = explode("-", $request->renew_date);
-                if($renew_date_month=="10" || $renew_date_month=="11" || $renew_date_month=="12"){
+                if($renew_date_month=="11" || $renew_date_month=="12"){
                     $renew_date_year=$renew_date_year+3;
                     $renew_date = Carbon::parse($renew_date_year.'-'.$renew_date_month.'-'.$renew_date_day);
                     $currentYear = Carbon::now();
@@ -2393,7 +2393,7 @@ class SchoolController extends Controller
                 }
                 
                 if($diffYear==0){
-                    if($month==10 || $month==11 || $month==12){
+                    if($month==11 || $month==12){
                         $invoice->productDesc     = 'Application Fee,Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';
                         foreach($memberships as $memberships){
                             $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
@@ -2405,7 +2405,7 @@ class SchoolController extends Controller
                         }
                     }
                 }else if($diffYear >= 1){
-                    if($month==10 || $month==11 || $month==12){
+                    if($month==11 || $month==12){
                         foreach($memberships as $memberships){
                             $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee('.$memberships->reconnected_fee.'),School Registration';
                             $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee;

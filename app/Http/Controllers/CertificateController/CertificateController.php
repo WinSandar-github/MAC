@@ -247,10 +247,10 @@ class CertificateController extends Controller
             $template->cert_data = str_replace('{{ other }}', "checked", $template->cert_data);
         }
 
-        $template->cert_data = str_replace('{{ founder }}', "<strong>" . $school->name_eng . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $school->nrc_state_region . "/" . $school->nrc_township ."(" . $school->nrc_citizen . ")" . $school->nrc_number . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ schoolLocation }}', "<strong>". $school->eng_school_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $school->renew_date ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ founder }}', "" . $school->name_eng . "", $template->cert_data);
+        $template->cert_data = str_replace('{{ cscNo }}', "" . $school->nrc_state_region . "/" . $school->nrc_township ."(" . $school->nrc_citizen . ")" . $school->nrc_number . "", $template->cert_data);
+        $template->cert_data = str_replace('{{ schoolLocation }}', "". $school->eng_school_address ."", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "". $school->renew_date ."", $template->cert_data);
         $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
 
         $className = '';
