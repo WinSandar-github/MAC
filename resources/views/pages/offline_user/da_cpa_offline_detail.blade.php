@@ -67,7 +67,7 @@
                                 </div>                                 
 
                                 <div class="da_one_pass_info" style="display:none">
-                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the DA Part-One Exam</h5>
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Diploma In Accountancy Part One</h5>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Batch Number</p>
@@ -124,7 +124,7 @@
                                 </div>
 
                                 <div class="da_two_pass_info" style="display:none">
-                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the DA Part-Two Exam</h5>
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Diploma In Accountancy Part Two</h5>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Batch Number</p>
@@ -181,7 +181,7 @@
                                 </div>
 
                                 <div class="cpa_one_pass_info" style="display:none">
-                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the CPA Part-One Exam</h5>
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Certified Public Accountant Part One</h5>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Batch Number</p>
@@ -238,7 +238,7 @@
                                 </div>
 
                                 <div class="cpa_two_pass_info" style="display:none">
-                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the CPA Part-Two Exam</h5>
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Certified Public Accountant Part Two</h5>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Batch Number</p>

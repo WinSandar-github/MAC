@@ -8,6 +8,8 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\TransactionLog;
 use App\Invoice;
+use App\CPAFF;
+use App\PAPP;
 use Illuminate\Support\Str;
 use DB;
 
@@ -89,6 +91,18 @@ class PaymentController extends Controller
                         $stu->invoiceNo = $req->invoiceNo;
                         $stu->status = $req->status;
                         $stu->save();
+
+                        //reg_no and payment_date for CPAFF
+                        $cpaff = CPAFF::where('student_info_id', $req->student_info_id)->first();
+                        if($cpaff){
+                            generateCpaffNo($cpaff->id);
+                        }//end cpaff
+
+                        //reg_no and payment_date for PAPP
+                        $papp = PAPP::where('student_id', $req->student_info_id)->first();
+                        if($papp){
+                            generatePappNo($papp->id);
+                        }//end papp
                     }
 
                     return response()->json(["message" => "Payment Data Saved!"], 200);

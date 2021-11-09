@@ -84,16 +84,10 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Email</th>
-
-                                            {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                             <th class="bold-font-weight" >Exam Type</th>
-                                            {{--<th class="bold-font-weight" >Batch Number</th>--}}
                                             <th class="bold-font-weight" >Remark</th>
                                             <th class="bold-font-weight" >Payment Status</th>
-                                            {{-- <th class="bold-font-weight" >Status</th> --}}
-                                            <!-- <th class="bold-font-weight" >Batch ID</th> -->
-
-                                            {{--<th class="bold-font-weight" >Print</th>--}}
+                                            <th class="bold-font-weight" >Status</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_pending_exam_body" class="hoverTable text-left">

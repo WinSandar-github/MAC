@@ -40,6 +40,7 @@ class StudentRegisterController extends Controller
             $student_info->save();
 
             $student_course = new StudentCourseReg();
+            $student_course->sr_no = $request->sr_no;
             $student_course->student_info_id = $student_info->id;
             $student_course->batch_id        = $request->batch_id;
             $student_course->date = $course_date;
