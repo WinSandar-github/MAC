@@ -30,4 +30,11 @@ class CurrentCheckServiceController extends Controller
             'data' => $service
         ],200);
     }
+
+    public function serviceById($id){
+        $service = CurrentCheckService::where('id', $id)->get();
+        return response()->json([
+            'data' => $service
+        ], 200);
+    }
 }
