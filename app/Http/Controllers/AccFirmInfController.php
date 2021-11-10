@@ -697,7 +697,7 @@ class AccFirmInfController extends Controller
         if($reg_no != ''){
           $approve->accountancy_firm_reg_no = $reg_no;
         }
-        
+
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -4202,12 +4202,17 @@ class AccFirmInfController extends Controller
     {
         $data = array();
         $acc_firm = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
-        $audit_invoice_status = Invoice::where('invoiceNo','audit_initial'.$firm_id)->select('status')->get();
-        $nonaudit_invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$firm_id)->select('status')->get();
+
+        //$audit_invoice_status = Invoice::where('invoiceNo','audit_initial'.$firm_id)->select('status')->get();
+        $invoice_status = Invoice::where('invoiceNo','like','%'.$acc_firm->id)
+                                  ->where('student_info_id',$id)
+                                  ->select('status')->get();
+        //$nonaudit_invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$firm_id)->select('status')->get();
 
         array_push($data , ['acc_firm'=>$acc_firm,
-                            'audit_invoice_status'=> $audit_invoice_status,
-                            'nonaudit_invoice_status' => $nonaudit_invoice_status
+                            // 'audit_invoice_status'=> $audit_invoice_status,
+                            // 'nonaudit_invoice_status' => $nonaudit_invoice_status,
+                            'invoice_status' => $invoice_status
                            ]);
         return response()->json($data,200);
     }
