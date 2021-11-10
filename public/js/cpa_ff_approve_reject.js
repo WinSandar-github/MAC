@@ -347,6 +347,11 @@ function loadCPAFFData(){
                 $("#status").append(status);
                 $("#cpd_total_hour").append(element.total_hours);
                 $("#cpa_batch_no").append(element.cpa_batch_no);
+                if(element.cpaff_reg_no != null){
+                    $("#cpaff_reg_no").append(element.cpaff_reg_no);
+                }else{
+                    $("#cpaff_reg_no").append(`<span>-</span>`);
+                }
                 // $("#cpaff_address").append(element.address);
                 // $("#cpaff_phone").append(element.phone);
                 $("#contact_mail").append(element.contact_mail);

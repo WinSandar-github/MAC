@@ -34,24 +34,6 @@
                                     </div>
                                 </div>
 
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="cpaff_address"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">တယ်လီဖုန်းနံပါတ်၊ Fax ဖုန်းနံပါတ်</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="cpaff_phone"></span>
-                                    </div>
-                                </div>--}}
-
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Contact E-mail Address</p>
@@ -367,6 +349,15 @@
                                     </div>
                                     <div class="col-md-6 text-left three_years_full_file">
                                         <!-- <button type="button" id="three_year_full_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#three_year_full_Modal"><i class="fa fa-paperclip"></i></button> -->
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registration No.</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpaff_reg_no"></span>
                                     </div>
                                 </div>
 

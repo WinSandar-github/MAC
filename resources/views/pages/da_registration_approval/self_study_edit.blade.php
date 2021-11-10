@@ -381,7 +381,7 @@
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom no_crime_file_row" style="display:none">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">ပြစ်မှုကင်းရှုင်းကြောင်းထောက်ခံချက်</p>
+                                            <p class="ml-2" style="font-weight:bold">ပြစ်မှုကင်းရှင်းကြောင်းထောက်ခံချက်</p>
                                         </div>
                                         <div class="col-md-6 text-left no_crime_file">
 

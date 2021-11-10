@@ -525,7 +525,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;                
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
     
                     $student_register = new StudentRegister();
@@ -566,7 +566,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
                     
                     $student_register = new StudentRegister();
@@ -638,7 +638,7 @@ class DARegisterController extends Controller
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 1;
-                $student_course->offline_user  = 1;
+                $student_course->offline_user  = 0;
                 $student_course->save();                
                     
                 $student_register = new StudentRegister();
@@ -803,7 +803,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;                
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
     
                     $student_register = new StudentRegister();
@@ -844,7 +844,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
                     
                     $student_register = new StudentRegister();
@@ -919,7 +919,7 @@ class DARegisterController extends Controller
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 1;
-                $student_course->offline_user  = 1;
+                $student_course->offline_user  = 0;
                 $student_course->save();
 
                 
