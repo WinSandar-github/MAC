@@ -377,6 +377,11 @@ function loadPAPPData(){
                 }else{
                     $("#tax_year").append(`<span>-</span>`);
                 }
+                if(element.papp_reg_no !=null){
+                    $("#papp_reg_no").append(element.papp_reg_no);
+                }else{
+                    $("#papp_reg_no").append(`<span>-</span>`);
+                }
                 $("#cpaff_reg_no").append(element.cpaff_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
