@@ -22,7 +22,7 @@ class CreateStudentRegisterTable extends Migration
             $table->text('reg_reason')->nullable();
             $table->unsignedBigInteger('invoice_id');
             $table->date('invoice_date');
-            $table->integer('type');
+            $table->bigInteger('type')->nullable();
             $table->string('batch_no')->nullable();
             $table->string('part_no')->nullable();
             $table->string('personal_no')->nullable();

@@ -571,7 +571,7 @@ class AccFirmInfController extends Controller
         $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
         $std_info->approve_reject_status = 1;
         $std_info->save();
-
+        $reg_no = '';
         $org_stru_id = AccountancyFirmInformation::where('id',$id)->get('organization_structure_id');
         switch ($org_stru_id[0]->organization_structure_id) {
             case '1':
@@ -617,7 +617,9 @@ class AccFirmInfController extends Controller
 
         $approve = AccountancyFirmInformation::find($id);
         $approve->status = 1;
-        $approve->accountancy_firm_reg_no = $reg_no;
+        if($reg_no != ''){
+          $approve->accountancy_firm_reg_no = $reg_no;
+        }
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -629,7 +631,7 @@ class AccFirmInfController extends Controller
         $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
         $std_info->approve_reject_status = 1;
         $std_info->save();
-
+        $reg_no = '';
         $org_stru_id = AccountancyFirmInformation::where('id',$id)->first();
         $local_foreign = AccountancyFirmInformation::where('id',$id)->get('local_foreign_type');
         // return $local_foreign[0]->local_foreign_type;
@@ -692,7 +694,10 @@ class AccFirmInfController extends Controller
 
         $approve = AccountancyFirmInformation::find($id);
         $approve->status = 1;
-        $approve->accountancy_firm_reg_no = $reg_no;
+        if($reg_no != ''){
+          $approve->accountancy_firm_reg_no = $reg_no;
+        }
+        
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
