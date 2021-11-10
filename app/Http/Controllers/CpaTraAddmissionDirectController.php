@@ -730,7 +730,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;                   
                     $student_course->approve_reject_status  = 1;                    
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
 
                     $student_register = new StudentRegister();
@@ -772,7 +772,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
                     
                     $student_register = new StudentRegister();
@@ -846,7 +846,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->status          = 1;
                     $student_course->qt_entry        = $request->qt_entry;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
 
                     $exam_register = new ExamRegister();
@@ -871,7 +871,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->status          = 0;
                 $student_course->qt_entry     = $request->qt_entry;
                 $student_course->approve_reject_status  = 1;
-                $student_course->offline_user  = 1;
+                $student_course->offline_user  = 0;
                 $student_course->save();                 
                     
                 $student_register = new StudentRegister();
@@ -1077,7 +1077,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;                   
                     $student_course->approve_reject_status  = 1;                    
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
 
                     $student_register = new StudentRegister();
@@ -1118,7 +1118,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  =0;
                     $student_course->save();
                     
                     $student_register = new StudentRegister();
@@ -1196,7 +1196,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->status          = 1;
                     $student_course->qt_entry        = $request->qt_entry;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
 
                     $exam_register = new ExamRegister();
@@ -1221,7 +1221,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->status          = 0;
                 $student_course->qt_entry     = $request->qt_entry;
                 $student_course->approve_reject_status  = 1;
-                $student_course->offline_user  = 1;
+                $student_course->offline_user  = 0;
                 $student_course->save();                 
                     
                 $student_register = new StudentRegister();

@@ -113,6 +113,15 @@
                                         </div>
                                     </div>
 
+                                    {{-- <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Attend Place</p>
+                                        </div>
+                                        <div class="col-md-6 text-left current_attend_place">                                            
+                                            
+                                        </div>
+                                    </div> --}}
+
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Module</p>
@@ -121,6 +130,7 @@
                                             
                                         </div>
                                     </div>
+                                    
                                 </div>
 
                                 <div class="da_two_pass_info" style="display:none">
