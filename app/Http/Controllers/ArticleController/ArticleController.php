@@ -292,7 +292,7 @@ class ArticleController extends Controller
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
+            if($article[$i]->contract_end_date != null && ($article[$i]->resign_date ==  null || $article[$i]->resign_date ==  "N/A")){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time > $today){
@@ -506,7 +506,7 @@ class ArticleController extends Controller
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
+            if($article[$i]->contract_end_date != null && ($article[$i]->resign_date ==  null || $article[$i]->resign_date ==  "N/A")){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time <= $today){
@@ -953,7 +953,7 @@ class ArticleController extends Controller
         $result_article = [];
         $article_type = "gov";
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
+            if($article[$i]->contract_end_date != null && ($article[$i]->resign_date ==  null || $article[$i]->resign_date ==  "N/A")){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time > $today){
@@ -1140,7 +1140,7 @@ class ArticleController extends Controller
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
+            if($article[$i]->contract_end_date != null && ($article[$i]->resign_date ==  null || $article[$i]->resign_date ==  "N/A")){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time <= $today){
