@@ -167,6 +167,7 @@ Route::post('save_exam','BatchController@saveExam');
 //DA2 Exam Register Form API
 Route::resource('/exam_register', 'ExamRegisterController');
 Route::get('/get_passed_exam_student/{id}','ExamRegisterController@getPassedExamByStudentID');
+Route::get('/get_passed_exam_existing_student/{id}','ExamRegisterController@getPassedExamByExistingStudentID');
 //DA Exam Form 1 API
 Route::resource('/exam_register', 'ExamRegisterController');
 Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
