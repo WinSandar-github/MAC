@@ -320,6 +320,8 @@
                                                 <th class="bold-font-weight" >Phone</th>
                                                 <th class="bold-font-weight" >Registration No</th>
                                                 <th class="bold-font-weight" >Form Type</th>
+                                                <th class="bold-font-weight" >Contract Start Date</th>
+                                                <th class="bold-font-weight" >Contract End Date</th>
                                                 <th class="bold-font-weight" >Status</th>
                                                 <!-- <th class="bold-font-weight" >Check End Date</th> -->
                                             </tr>
@@ -338,6 +340,8 @@
                                                 <th class="bold-font-weight" >Phone</th>
                                                 <th class="bold-font-weight" >Registration No</th>
                                                 <th class="bold-font-weight" >Form Type</th>
+                                                <th class="bold-font-weight" >Contract Start Date</th>
+                                                <th class="bold-font-weight" >Contract End Date</th>
                                                 <th class="bold-font-weight" >Status</th>
                                                 <!-- <th class="bold-font-weight" >Check End Date</th> -->
                                             </tr>
@@ -995,6 +999,8 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
                 {data: 'status', name: 'status'},
                 // {data: 'check_end_date', name: 'check_end_date'},
             ],
@@ -1025,6 +1031,8 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
                 {data: 'status', name: 'status'},
                 // {data: 'check_end_date', name: 'check_end_date'},
             ],
