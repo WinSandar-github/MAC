@@ -59,7 +59,7 @@
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($chel->form_valid_date)->diffInYears($chel->to_valid_date) . ' Year' }}</td>
                                         <td>{{ $chel->renew_date ?? 'No Renew Date' }}</td>
-                                        <td>{{ "N/A" }}</td>
+                                        <td>{{ $chel->cessation_date ?? 'N/A' }}</td></td>
                                         <td>{{ "N/A" }}</td>
                                     </tr>
                                     @endforeach

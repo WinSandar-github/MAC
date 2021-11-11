@@ -56,9 +56,9 @@ class CreateTeacherRegistersTable extends Migration
             $table->text('reason')->nullable();
             $table->integer('initial_status')->default(0);
             $table->string('regno')->nullable();
-            $table->string('gender')->nullable();
-            
+            $table->string('gender')->nullable();         
             $table->string('invoice_no')->nullable();
+            $table->string('cessation_date')->nullable();
             $table->text('cessation_reason')->nullable();
             $table->string('school_name')->nullable();
             $table->integer('student_info_id')->nullable();
