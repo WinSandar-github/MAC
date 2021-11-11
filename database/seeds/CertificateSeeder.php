@@ -616,7 +616,7 @@ class CertificateSeeder extends Seeder
                 'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
                 <tbody>
                     <tr>
-                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
+                        <td style="text-align: center; font-size: 18px; font-weight: 800; padding-top: 30px;"
                             colspan="2">
                             မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
                             Myanmar Accountancy Council
@@ -629,7 +629,7 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center; font-size: 16px; font-weight: 800;"
+                        <td style="text-align: center; font-size: 18px; font-weight: 800;"
                             colspan="2">
                             ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းမှတ်ပုံတင်လက်မှတ်<br>
                             Registration Certificate of Private Accounting School
