@@ -674,12 +674,20 @@ class TeacherController extends Controller
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"init_tec".$infos->id)
                         ->get();
-                    }else{
+                    }else if($infos->initial_status==1){
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"renew_tec".$infos->id)
+                        ->get();
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec".$infos->id)
+                        ->orWhere('invoiceNo',"renew_tec".$infos->id)
                         ->get();
                     }
 

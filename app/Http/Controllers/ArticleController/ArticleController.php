@@ -282,6 +282,125 @@ class ArticleController extends Controller
         return "destory";
     }
 
+    public function updateRejectFirmArticle(Request $request)
+    {
+        if ($request->hasfile('request_papp_attach')) {
+            $file = $request->file('request_papp_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $request_papp_attach = '/storage/student_info/'.$name;
+        }else{
+            $request_papp_attach = "";
+        }
+
+        if($request->hasfile('apprentice_exp_file'))
+        {
+            foreach($request->file('apprentice_exp_file') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $apprentice_exp_file[] = '/storage/student_info/'.$name;
+            }
+        }else{
+            $apprentice_exp_file = null;
+        }
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
+        if ($request->hasfile('degrees_certificates')) {
+            foreach($request->file('degrees_certificates') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $degrees_certificates[] = $name;
+             }
+
+        }else{
+            $degrees_certificates=null;
+        }
+        if ($request->hasfile('experience_file')) {
+            foreach($request->file('experience_file') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $apprentice_exp_file[] = $name;
+             }
+
+        }else{
+            $experience_file=null;
+        }
+        if ($request->hasfile('office_order_attach')) {
+            $file = $request->file('office_order_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $office_order_attach = '/storage/student_info/'.$name;
+        }else{
+            $office_order_attach = "";
+        }
+        $acc_app = ApprenticeAccountant::find($request->article_id);
+        $acc_app->student_info_id = $request->student_info_id;
+        $acc_app->article_form_type = $request->article_form_type;
+        $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
+
+        $acc_app->apprentice_exp_file = $apprentice_exp_file == null ? $acc_app->apprentice_exp_file : json_encode($apprentice_exp_file) ;
+        $acc_app->gov_staff = $request->gov_staff;
+        $acc_app->gov_position = $request->gov_position;
+        $acc_app->gov_joining_date = $request->gov_joining_date;
+        $acc_app->request_papp = $request->request_papp;
+        $acc_app->mentor_id = $request->mentor_id;
+        $acc_app->request_papp_attach = $request_papp_attach == "" ? $acc_app->request_papp_attach : $request_papp_attach;
+        $acc_app->exam_pass_date = $request->exam_pass_date;
+        $acc_app->exam_pass_batch = $request->exam_pass_batch;
+        $acc_app->current_address = $request->current_address;
+        $acc_app->m_email = $request->m_email;
+        $acc_app->ex_papp = $request->ex_papp;
+        $acc_app->exp_start_date = $request->exp_start_date;
+        $acc_app->exp_end_date = $request->exp_end_date;
+        $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->resign_date = $request->resign_date ?? "N/A";
+        $acc_app->resign_reason = $request->resign_reason ?? "N/A";
+        $acc_app->recent_org = $request->recent_org ?? "N/A";
+        $acc_app->resign_approve_file = $request->resign_approve_file ?? "N/A";
+        $acc_app->know_policy = $request->know_policy;
+        $acc_app->status = 0;
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
+
+        if($acc_app->save()){
+            return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
+        }
+        return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
+    }
+
     public function FilterArticle(Request $request)
     {
         $article = ApprenticeAccountant::where('status',$request->status)
@@ -933,6 +1052,104 @@ class ArticleController extends Controller
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
     }
 
+    public function updateRejectGovArticle(Request $request)
+    {
+        if($request->hasfile('labor_registration_attach'))
+        {
+            foreach($request->file('labor_registration_attach') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $labor_registration_attach[] = '/storage/student_info/'.$name;
+            }
+        }else{
+            $labor_registration_attach = null;
+        }
+
+        if($request->hasfile('recommend_attach'))
+        {
+            foreach($request->file('recommend_attach') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $recommend_attach[] = '/storage/student_info/'.$name;
+            }
+        }else{
+            $recommend_attach = null;
+        }
+
+        if($request->hasfile('police_attach'))
+        {
+            foreach($request->file('police_attach') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $police_attach[] = '/storage/student_info/'.$name;
+            }
+        }else{
+            $police_attach = null;
+        }
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
+
+        $acc_app = ApprenticeAccountantGov::find($request->article_id);
+        $acc_app->student_info_id = $request->student_info_id;
+        $acc_app->labor_registration_no = $request->labor_registration_no;
+        $acc_app->father_job = $request->father_job;
+        $acc_app->father_address = $request->father_address;
+        $acc_app->married = $request->married;
+        $acc_app->married_name = $request->married_name;
+        $acc_app->married_job = $request->married_job;
+        $acc_app->home_address = $request->home_address;
+        $acc_app->current_address = $request->current_address;
+        $acc_app->address = $request->address;
+        $acc_app->tempory_address = $request->tempory_address;
+        $acc_app->m_email = $request->m_email;
+        $acc_app->permanent_address = $request->permanent_address;
+        $acc_app->labor_registration_attach = $labor_registration_attach == null ? $acc_app->labor_registration_attach : json_encode($labor_registration_attach) ;
+        $acc_app->recommend_attach = $recommend_attach == null ? $acc_app->recommend_attach : json_encode($recommend_attach);
+        $acc_app->police_attach = $police_attach == null ?  $acc_app->police_attach : json_encode($police_attach);
+        $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->status = 0;
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
+
+        if($acc_app->save()){
+            return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
+        }
+        return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
+    }
+
     public function showGovArticle($id)
     {
         if($id != ""){
@@ -1345,6 +1562,80 @@ class ArticleController extends Controller
         // return $acc_app;
         if($invoice->save()){
             return response()->json($invoice, 200, $this->header, $this->options);
+        }
+        return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
+    }
+
+    public function updateRejectResignArticle(Request $request)
+    {
+        if ($request->hasfile('resign_approve_attach')) {
+            $file = $request->file('resign_approve_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $resign_approve_attach = '/storage/student_info/'.$name;
+        }else{
+            $resign_approve_attach = "";
+        }
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
+
+        $acc_app = ApprenticeAccountant::find($request->article_id);
+        $acc_app->student_info_id = $request->student_info_id;
+        $acc_app->resign_date = $request->resign_date;
+        $acc_app->resign_reason = $request->resign_reason;
+        $acc_app->recent_org = $request->recent_org;
+        $acc_app->m_email = $request->m_email;
+        $acc_app->resign_approve_file = $resign_approve_attach == "" ? $acc_app->resign_approve_file : $resign_approve_attach;
+        $acc_app->know_policy = $request->know_policy;
+        $acc_app->article_form_type = $request->article_form_type;
+        $acc_app->gov_staff = 0;
+        $acc_app->offline_user = $request->offline_user;
+        $acc_app->resign_status = 0;
+
+        $gov_article = ApprenticeAccountantGov::where('student_info_id',$request->student_info_id)->get();
+        $article = ApprenticeAccountant::where('student_info_id',$request->student_info_id)->get();
+        if(count($gov_article) != 0){
+            $gov_article[(count($gov_article))-1]->resign_date = $request->resign_date;
+            $gov_article[(count($gov_article))-1]->save();
+        }else{
+            $article[(count($article))-2]->resign_date = $request->resign_date;
+            $article[(count($article))-2]->save();
+        }
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
+
+        if($acc_app->save()){
+            return response()->json(['message' => 'Update Artile Update!'], 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
     }
@@ -1819,6 +2110,73 @@ class ArticleController extends Controller
         //$invoice->save();
 
         if($invoice->save()){
+            return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
+        }
+        return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
+    }
+
+    public function updateRejectRenewArticle(Request $request)
+    {
+        if ($request->hasfile('request_papp_attach')) {
+            $file = $request->file('request_papp_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $request_papp_attach = '/storage/student_info/'.$name;
+        }else{
+            $request_papp_attach = "";
+        }
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
+
+        $acc_app = ApprenticeAccountant::find($request->article_id);
+        $acc_app->student_info_id = $request->student_info_id;
+        $acc_app->article_form_type = $request->article_form_type;
+        $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
+        $acc_app->request_papp = $request->request_papp;
+        $acc_app->mentor_id = $request->mentor_id;
+        $acc_app->request_papp_attach = $request_papp_attach == "" ? $acc_app->request_papp_attach  : $request_papp_attach;
+        $acc_app->current_address = $request->current_address;
+        $acc_app->m_email = $request->m_email;
+        $acc_app->ex_papp = $request->ex_papp;
+        $acc_app->exp_start_date = $request->exp_start_date;
+        $acc_app->exp_end_date = $request->exp_end_date;
+        $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->offline_user = $request->offline_user;
+        $acc_app->status = 0;
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
+
+        if($acc_app->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
