@@ -1171,4 +1171,43 @@ class DARegisterController extends Controller
             return "no data";
         }
     }
+
+
+    function getAppStuId($id){
+        
+        $student = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
+        return $student;
+    }
+
+    function getRegStuId($id){
+        $latest_course =  StudentCourseReg::where('student_info_id',$id)->latest()->first();
+        $student = StudentRegister::where('student_info_id',$id)->where('batch_id',$latest_course->batch_id)->with('batch')->latest()->first();
+        return $student;
+    }
+
+    function getExamStuId($id){
+
+        $latest_reg =  StudentRegister::where('student_info_id',$id)->latest()->first();
+
+        $student = ExamRegister::where('student_info_id',$id)->where('batch_id',$latest_reg->batch_id)->with('batch')->latest()->first();
+        $student_info = ExamRegister::where('student_info_id',$id)->where('form_type',$student->form_type)->with('batch')->latest()->take(2)->get();
+        $module = array();
+       
+        foreach($student_info as $info){
+            array_push($module,$info->is_full_module);    
+        }
+
+         
+        if(([1,2] == $module) || ([1,2] == $module) || $student->is_full_module == 3){
+            $module_status = 1;
+        }else{
+            $module_status = 2;
+        } 
+
+        return response()->json([
+            'module_status' =>  $module_status,
+            'student'       =>  $student
+        ],200);
+    }
 }
+ 
