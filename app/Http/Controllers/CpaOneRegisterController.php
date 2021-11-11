@@ -107,8 +107,8 @@ class CpaOneRegisterController extends Controller
         $std = StudentCourseReg::with('batch')->where("student_info_id", $std_info->id)->latest()->first();
 
         $invoice->invoiceNo = 'reg_' . $std->batch->course->code ;
-        $invoice->productDesc     = 'AppFee,TransFee' . $std->batch->course->name;
-        $invoice->amount          = $std->batch->course->form_fee . ',1000';
+        $invoice->productDesc     = 'App Fee,' . $std->batch->course->name;
+        $invoice->amount          = $std->batch->course->form_fee;
         $invoice->status          = 0;
         $invoice->save();
         

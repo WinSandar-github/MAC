@@ -426,8 +426,10 @@ function loadDAExamData() {
                     $("#current_module").append("Module-1");
                 } else if (element.is_full_module == 2) {
                     $("#current_module").append("Module-2");
-                } else {
+                } else if (element.is_full_module == 3){
                     $("#current_module").append("All Module");
+                } else{
+                    $("#current_module").append("-");
                 }
 
 
@@ -787,8 +789,10 @@ function loadStudent(course_type) {
                     is_full_module = "Module 1";
                 } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
-                } else {
+                } else if (element.is_full_module == 3){
                     is_full_module = "All Module";
+                }else{
+                    is_full_module = "-";
                 }
 
                 if (element.grade == 0) {
@@ -954,8 +958,10 @@ function getModuleStd() {
                     is_full_module = "Module 1";
                 } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
-                } else {
+                } else if (element.is_full_module == 3){
                     is_full_module = "All Module";
+                }else {
+                    is_full_module = "-";
                 }
 
                 if (element.form_type == 1) {

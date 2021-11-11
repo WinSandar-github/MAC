@@ -92,7 +92,7 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code ;
-       $invoice->productDesc     = 'AppFee,DAExmRegFee,' . $std->batch->course->name;
+       $invoice->productDesc     = 'App Fee,DA Exm Reg Fee,' . $std->batch->course->name;
        $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
        $invoice->save();
@@ -458,7 +458,7 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code;
-       $invoice->productDesc     = 'AppFee,CPAExamRegFee,' . $std->batch->course->name;
+       $invoice->productDesc     = 'App Fee,CPA Exm Reg Fee,' . $std->batch->course->name;
        $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
        $invoice->save();
@@ -478,6 +478,18 @@ class ExamRegisterController extends Controller
     public function getPassedExamByStudentID($id)
     {
         $exam_register = ExamRegister::where('student_info_id', $id)->where('grade', 1)->with('course', 'batch')->get();
+        return response()->json([
+            'data' => $exam_register
+        ], 200);
+
+    }
+
+    public function getPassedExamByExistingStudentID($id)
+    {
+        $exam_register = ExamRegister::where('student_info_id', $id)
+                                        ->where('grade', 1)
+                                        // ->where('exam_type_id',1)
+                                        ->with('course', 'batch')->get();
         return response()->json([
             'data' => $exam_register
         ], 200);

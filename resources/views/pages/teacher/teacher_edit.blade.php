@@ -334,14 +334,14 @@
                                                 <input type='text' id="subject_total_amount" class="form-control" disabled>
                                             </div>
                                         </div>
-                                        <div class="row mt-5 border-bottom period" style="display:none;">
+                                        <!-- <div class="row mt-5 border-bottom period" style="display:none;">
                                             <div class="col-md-6">
                                                 <p style="font-weight:bold">ငွေပေးချေသည့် ရက်စွဲ</p>
                                             </div>
                                             <div class="col-md-6">
                                                 <input type='text' id="payment_date" class="form-control" disabled>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="row mt-5 border-bottom">
                                         <div class="col-md-6">

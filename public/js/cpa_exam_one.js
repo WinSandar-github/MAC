@@ -664,8 +664,10 @@ function loadCPAStudent(course_type) {
                     is_full_module = "Module 1";
                 } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
-                } else {
+                } else if (element.is_full_module == 3){
                     is_full_module = "All Module";
+                }else{
+                    is_full_module = "-";
                 }
                 if (element.grade == 0) {
                     student_grade = "-";
@@ -824,8 +826,10 @@ function getCPAModuleStd() {
                     is_full_module = "Module 1";
                 } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
-                } else {
+                } else if (element.is_full_module == 3){
                     is_full_module = "All Module";
+                } else{
+                    is_full_module = "-";
                 }
 
                 if (element.form_type == 1) {

@@ -235,7 +235,7 @@ class CertificateSeeder extends Seeder
                         <td style="text-align: center; font-size: 16px; font-weight: 800;"
                             colspan="2">
                             စာရင်းစစ်လုပ်ငန်းအမည်မှတ်ပုံတင်လက်မှတ်<br>
-                            Certificate Of Audit Firm Name Registration
+                            Certificate of Audit Firm Name Registration
                         </td>
                     </tr>
                     <tr>
@@ -331,7 +331,7 @@ class CertificateSeeder extends Seeder
                     <tr>
                         <td style="text-align: right;" colspan="2">
                             မှတ်ပုံတင်အရာရှိ<br>
-                            Registrar
+                            (Registrar)
                         </td>
                     </tr>
                 </tbody>
@@ -358,7 +358,7 @@ class CertificateSeeder extends Seeder
                         <td style="text-align: center; font-size: 16px; font-weight: 800;"
                             colspan="2">
                             အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းမှအပဖြစ်သောစာရင်းလုပ်ငန်းမှတ်ပုံတင်လက်မှတ် (နိုင်ငံသား)<br>
-                            Certificate Of Non_Audit Firm Registration (Citizen)
+                            Certificate of Non_Audit Firm Registration (Citizen)
                         </td>
                     </tr>
                     <tr>
@@ -468,7 +468,7 @@ class CertificateSeeder extends Seeder
                     <tr>
                         <td style="text-align: right;" colspan="2">
                             မှတ်ပုံတင်အရာရှိ<br>
-                            Registrar
+                            (Registrar)
                         </td>
                     </tr>
                 </tbody>
@@ -495,7 +495,7 @@ class CertificateSeeder extends Seeder
                         <td style="text-align: center; font-size: 16px; font-weight: 800;"
                             colspan="2">
                             အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းမှအပဖြစ်သောစာရင်းလုပ်ငန်းမှတ်ပုံတင်လက်မှတ် (နိုင်ငံခြားသား)<br>
-                            Certificate Of Non_Audit Firm Registration (Foreigner)
+                            Certificate of Non_Audit Firm Registration (Foreigner)
                         </td>
                     </tr>
                     <tr>
@@ -605,7 +605,7 @@ class CertificateSeeder extends Seeder
                     <tr>
                         <td style="text-align: right;" colspan="2">
                             မှတ်ပုံတင်အရာရှိ<br>
-                            Registrar
+                            (Registrar)
                         </td>
                     </tr>
                 </tbody>
@@ -616,7 +616,7 @@ class CertificateSeeder extends Seeder
                 'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
                 <tbody>
                     <tr>
-                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
+                        <td style="text-align: center; font-size: 18px; font-weight: 800; padding-top: 30px;"
                             colspan="2">
                             မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
                             Myanmar Accountancy Council
@@ -629,7 +629,7 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center; font-size: 16px; font-weight: 800;"
+                        <td style="text-align: center; font-size: 18px; font-weight: 800;"
                             colspan="2">
                             ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းမှတ်ပုံတင်လက်မှတ်<br>
                             Registration Certificate of Private Accounting School

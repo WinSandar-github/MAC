@@ -39,17 +39,13 @@
                                     
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $apprentic->student_info->name_mm }}</td>
-                                        <td>{{ $apprentic->student_info->cpersonal_no }}</td>
+                                        <td>{{ $apprentic->student_info->name_mm ?? 'N/A' }}</td>
+                                        <td>{{ $apprentic->student_info->cpersonal_no ?? 'N/A' }}</td>
                                         <td>{{ $apprentic->student_info->nrc_state_region ."/". $apprentic->student_info->nrc_township ."(". $apprentic->student_info->nrc_citizen .")". $apprentic->student_info->nrc_number }}</td>
-                                        <td>{{ $apprentic->student_info->father_name_mm }}</td>
-                                        <td>{{ $apprentic->contract_start_date }}</td>
-                                        <td>{{ $apprentic->contract_end_date }}</td>
-                                        <td>
-                                            {{ $apprentic->student_info->student_register[0]->batch != '' 
-                                                ? $apprentic->student_info->student_register[0]->batch->name_mm
-                                                : 'error while data fetch'    
-                                            }}
+                                        <td>{{ $apprentic->student_info->father_name_mm ?? 'N/A'}}</td>
+                                        <td>{{ $apprentic->contract_start_date ?? 'N/A' }}</td>
+                                        <td>{{ $apprentic->contract_end_date ?? 'N/A' }}</td>
+                                        <td>{{  $apprentic->student_info->student_register[0]->batch->name_mm ?? 'N/A'}}
                                         </td>
                                         <td>{{ $apprentic->done_status == '1' ? '၂ နှစ်ပြည့်' : 'အလုပ်သင်ဆင်းနေဆဲ' }}</td>
                                     </tr>

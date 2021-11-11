@@ -24,6 +24,7 @@ class StudentRegisterController extends Controller
 
     public function store(Request $request)
     {
+        // return $request;
         $date = date('Y-m-d');
         if ($request->date) {
             $date = $request->date;
@@ -32,7 +33,7 @@ class StudentRegisterController extends Controller
         }
         $invoice_date = date('Y-m-d');
 
-        if ($request->remain_module == 1 || $request->remain_module == 2 || $request->remain_module == 0) {
+        if ($request->remain_module == 1 || $request->remain_module == 2 || $request->remain_module==0 && $request->remain_module != null) {
             $course_date = date('Y-m-d');
 
             $student_info = StudentInfo::find($request->student_id);
