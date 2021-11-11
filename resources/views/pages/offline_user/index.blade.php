@@ -1074,6 +1074,9 @@
                                                                                         <th class="bold-font-weight" >Resign Date</th>
                                                                                         <th class="bold-font-weight" >Net Experience</th>
                                                                                         <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -1095,6 +1098,9 @@
                                                                                         <th class="bold-font-weight" >Resign Date</th>
                                                                                         <th class="bold-font-weight" >Net Experience</th>
                                                                                         <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -1115,6 +1121,9 @@
                                                                                         <th class="bold-font-weight" >Resign Date</th>
                                                                                         <th class="bold-font-weight" >Net Experience</th>
                                                                                         <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -2400,6 +2409,9 @@
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
                 {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
             ],
 
@@ -2432,6 +2444,9 @@
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
                 {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -2463,6 +2478,9 @@
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
                 {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

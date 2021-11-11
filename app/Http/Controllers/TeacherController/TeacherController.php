@@ -674,12 +674,20 @@ class TeacherController extends Controller
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"init_tec".$infos->id)
                         ->get();
-                    }else{
+                    }else if($infos->initial_status==1){
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"renew_tec".$infos->id)
+                        ->get();
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec".$infos->id)
+                        ->orWhere('invoiceNo',"renew_tec".$infos->id)
                         ->get();
                     }
 
@@ -865,6 +873,7 @@ class TeacherController extends Controller
         $std_info->save();
         $teacher = TeacherRegister::find($request->id);
         //$teacher->approve_reject_status = $request->status;
+        $teacher->cessation_date = date('d-M-Y');
         $teacher->cessation_reason = $request->cessation_reason;
         $teacher->initial_status = $request->initial_status;
         $teacher->save();

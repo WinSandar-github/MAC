@@ -1523,6 +1523,9 @@ class ArticleController extends Controller
         $acc_app->article_form_type = $request->article_form_type;
         $acc_app->gov_staff = 0;
         $acc_app->offline_user = $request->offline_user;
+        $acc_app->contract_start_date = $request->contract_start_date;
+        $acc_app->contract_end_date = $request->contract_end_date;
+        $acc_app->mentor_id = $request->mentor_id;
         $acc_app->save();
 
         $gov_article = ApprenticeAccountantGov::where('student_info_id',$request->student_info_id)->get();
@@ -1750,13 +1753,17 @@ class ArticleController extends Controller
                 return "N/A";
             })
 
-            // ->addColumn('contract_start', function ($infos){
-            //     return $infos->contract_start_date;
-            // })
-            //
-            // ->addColumn('contract_end', function ($infos){
-            //     return $infos->contract_end_date;
-            // })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+
+            ->addColumn('form_type', function ($infos){
+                return $infos->article_form_type;
+            })
 
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
@@ -1774,7 +1781,7 @@ class ArticleController extends Controller
                 return $infos->resign_date;
             });
 
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status','mentor_name'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status','mentor_name','contract_start_date','contract_end_date','form_type'])->make(true);
             return $datatable;
     }
 

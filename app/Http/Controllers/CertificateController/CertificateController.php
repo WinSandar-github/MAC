@@ -90,10 +90,10 @@ class CertificateController extends Controller
             $teacher->nrc_number=$this->mm2engNumber($teacher->nrc_number);
             
             if($teacher->gender=="male"){
-                $gender="son/<span style='text-decoration: line-through'>daughter</span>";
+                $gender="son / <span style='text-decoration: line-through'>daughter</span>";
                 $gender2="He/<span style='text-decoration: line-through'>She</span>";
             }else{
-                $gender="<span style='text-decoration: line-through'>son</span>/daughter";
+                $gender="<span style='text-decoration: line-through'>son </span>/ daughter";
                 $gender2="<span style='text-decoration: line-through'>He</span>/She";
             }
              if($teacher->certificates !=null){
@@ -131,11 +131,13 @@ class CertificateController extends Controller
 
             $currentYear = Carbon::now();
         if($teacher->initial_status==1){
-            $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".date('Y') . "</strong>", $template->cert_data);
+            $currentYear = $currentYear->addYears(1) ;
+            
             if(Carbon::parse($teacher->renew_date)->format('m')=='11' || Carbon::parse($teacher->renew_date)->format('m')=='12'){
-                $currentYear = $currentYear->addYears(1) ;
+                $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$currentYear->format('Y') . "</strong>", $template->cert_data);
                 $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
             }else{
+                $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".date('Y') . "</strong>", $template->cert_data);
                 $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);
             }
             
@@ -151,19 +153,43 @@ class CertificateController extends Controller
             }
             
             $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".date('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+        }else{
+            if($teacher->renew_date!=null){
+                $currentYear = $currentYear->addYears(1) ;
+            
+                if(Carbon::parse($teacher->renew_date)->format('m')=='11' || Carbon::parse($teacher->renew_date)->format('m')=='12'){
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$currentYear->format('Y') . "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+                }else{
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".date('Y') . "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);
+                }
+            }else{
+                $invoice=Invoice::when($teacher->payment_method, function($q) use ($teacher){
+                    $q->where('tranRef', '=', $teacher->payment_method);
+                })
+                ->where('student_info_id',$teacher->student_info_id)
+                ->where('invoiceNo',"init_tec".$teacher->id)
+                ->get();
+                foreach($invoice as $i){
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>" . Carbon::parse($i->dateTime)->format('d-m-Y') . "</strong>", $template->cert_data);
+                }
+                
+                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".date('Y'). "</strong>", $template->cert_data);
+            }
         }
         
 
         $template->cert_data = str_replace('{{ userImage }}', $teacher->image, $template->cert_data);
         $template->cert_data = str_replace('{{ serialNo }}', $teacher->t_code, $template->cert_data);
         $template->cert_data = str_replace('{{ dated }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ studentName }}', "<strong>$teacher->father_name_eng</strong> $gender", $template->cert_data);
-        $template->cert_data = str_replace('{{ abaName }}', "<strong>$teacher->name_eng</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName }}', "<strong style='margin-left:10%;'>$teacher->father_name_eng</strong><span style='margin-left:5%;'>,$gender</span>", $template->cert_data);
+        $template->cert_data = str_replace('{{ abaName }}', "<strong style='margin-left:5%;margin-right:5%;'>$teacher->name_eng</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>$teacher->nrc_state_region/$teacher->nrc_township($teacher->nrc_citizen)$teacher->nrc_number</strong>",$template->cert_data);
         $template->cert_data = str_replace('{{ gender }}', "$gender2", $template->cert_data);
         $template->cert_data = str_replace('{{ gender }}', "$gender2", $template->cert_data);
         $template->cert_data = str_replace('{{ courseAndSubject }}', $da_subject_template.$cpa_subject_template, $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Kay Thi Sein</strong>", $template->cert_data);
         
         }
         $className = '';
@@ -204,75 +230,116 @@ class CertificateController extends Controller
 
     public function getSchoolCard(Request $req, $id){
         
-        $school = SchoolRegister::where('id', '=', $id)->first();
+        $school = SchoolRegister::where('id', '=', $id)->get();
 
-        $branch_school = tbl_branch_school::where('school_id', '=', $school->id)->get();
-
-        $courseType = explode(',', $school->attend_course);
-
-        collect($courseType)->map(function($val){
-            return $val . " helll ";
-        });
-
-        $template = DB::table('certificates')->where('cert_code', '=', $req->course_code)->first();
-
-        $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $school->regno . " / " . $school->reg_date . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ schoolName }}', "<strong>" . $school->school_name . "</strong>", $template->cert_data);
-        
-        switch($school->type){
-            case "PCS":
-                $template->cert_data = str_replace('{{ pcs }}', "checked", $template->cert_data);
-                break;
-            case "PCP":
-                $template->cert_data = str_replace('{{ pcp }}', "checked", $template->cert_data);
-                break;
-            case "PCC":
-                $template->cert_data = str_replace('{{ pcc }}', "checked", $template->cert_data);
-                break;
-            case "P":
-                $template->cert_data = str_replace('{{ p }}', "checked", $template->cert_data);
-                break;
-        }
-
-        if(in_array('1', $courseType)){
-            $template->cert_data = str_replace('{{ da_1 }}', "checked", $template->cert_data);
-        }
-        if(in_array('2', $courseType)){
-            $template->cert_data = str_replace('{{ da_2 }}', "checked", $template->cert_data);
-        }
-        if(in_array('3', $courseType)){
-            $template->cert_data = str_replace('{{ cpa_1 }}', "checked", $template->cert_data);
-        }
-        if(in_array('4', $courseType)){
-            $template->cert_data = str_replace('{{ cpa_2 }}', "checked", $template->cert_data);
-        }
-        if(in_array('5', $courseType)){
-            $template->cert_data = str_replace('{{ other }}', "checked", $template->cert_data);
-        }
-
-        $template->cert_data = str_replace('{{ founder }}', "<strong>" . $school->name_eng . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $school->nrc_state_region . "/" . $school->nrc_township ."(" . $school->nrc_citizen . ")" . $school->nrc_number . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ schoolLocation }}', "<strong>". $school->eng_school_address ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $school->renew_date ."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
-
-        $className = '';
-
-        if(strlen($branch_school) > 0){
+        foreach($school as $school){
+            if($school->attend_course!="null"){
+                $courseType = explode(',', $school->attend_course);
+            }else{
+                $courseType = explode(',', $school->renew_course);
+            }
             
-            $branch_template = DB::table('certificates')->where('cert_code', '=', 'branch_school')->first();
+            collect($courseType)->map(function($val){
+                return $val . " helll ";
+            });
+
+            $template = DB::table('certificates')->where('cert_code', '=', $req->course_code)->first();
+            if($school->from_valid_date!=null){
+                $reg_date=Carbon::createFromFormat('Y-m-d', $school->from_valid_date)->format('d-m-Y');
+            }else{
+                $reg_date=Carbon::createFromFormat('Y-m-d', $school->reg_date)->format('d-m-Y');
+            }
+            if($school->school_name!=null){
+                $school_name=$school->school_name;
+            }else{
+                $school_name=$school->renew_school_name;
+            }
+            $school->nrc_state_region=$this->mm2engNumber($school->nrc_state_region);
+            $school->nrc_township=$this->characters($school->nrc_township);
+            $school->nrc_citizen=$this->citizens($school->nrc_citizen);
+            $school->nrc_number=$this->mm2engNumber($school->nrc_number);
+
+            if($school->eng_school_address!=null){
+                $school_address=$school->eng_school_address;
+            }else{
+                $school_address=$school->renew_school_address;
+            }
+            if($school->initial_status==0){
+                $exp_date='31-12-'.date('Y');
+                
+            }else if($school->initial_status==1){
+                $month=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('m');
+                $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y');
+                $exp_date='31-12-'.$exp_date;
+            }else{
+                if($school->renew_date!=null){
+                    $month=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('m');
+                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y');
+                    $exp_date='31-12-'.$exp_date;
+                }else{
+                    $exp_date='31-12-'.date('Y');
+                }
+            }
+            $template->cert_data = str_replace('{{ issueDate }}', "" .  $school->s_code . " / " . $reg_date . "", $template->cert_data);
+            $template->cert_data = str_replace('{{ schoolName }}', "" . $school_name . "", $template->cert_data);
             
-            $branch_row = '';
+            switch($school->type){
+                case "PCS":
+                    $template->cert_data = str_replace('{{ pcs }}', "checked", $template->cert_data);
+                    break;
+                case "PCP":
+                    $template->cert_data = str_replace('{{ pcp }}', "checked", $template->cert_data);
+                    break;
+                case "PCC":
+                    $template->cert_data = str_replace('{{ pcc }}', "checked", $template->cert_data);
+                    break;
+                case "P":
+                    $template->cert_data = str_replace('{{ p }}', "checked", $template->cert_data);
+                    break;
+            }
             
-            foreach($branch_school as $branch){
-                $branch_row .= "<tr><td>Branch</td><td>" . $branch->branch_school_address . "</td></tr>";
+            if(in_array('1', $courseType)){
+                $template->cert_data = str_replace('{{ da_1 }}', "checked", $template->cert_data);
+            }
+            if(in_array('2', $courseType)){
+                $template->cert_data = str_replace('{{ da_2 }}', "checked", $template->cert_data);
+            }
+            if(in_array('3', $courseType)){
+                $template->cert_data = str_replace('{{ cpa_1 }}', "checked", $template->cert_data);
+            }
+            if(in_array('4', $courseType)){
+                $template->cert_data = str_replace('{{ cpa_2 }}', "checked", $template->cert_data);
+            }
+            if(in_array('5', $courseType)){
+                $template->cert_data = str_replace('{{ other }}', "checked", $template->cert_data);
             }
 
-            $branch_template->cert_data = str_replace('{{ branchRow }}', $branch_row, $branch_template->cert_data);
-        }else{
-            $branch_template = '';
-        }
+            $template->cert_data = str_replace('{{ founder }}', "" . $school->name_eng . "", $template->cert_data);
+            $template->cert_data = str_replace('{{ cscNo }}', "" . $school->nrc_state_region . "/" . $school->nrc_township ."(" . $school->nrc_citizen . ")" . $school->nrc_number . "", $template->cert_data);
+            $template->cert_data = str_replace('{{ schoolLocation }}', "". $school_address ."", $template->cert_data);
+            $template->cert_data = str_replace('{{ expDate }}', "". $exp_date ."", $template->cert_data);
+            $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
 
+            $branch_school = tbl_branch_school::where('student_info_id', '=', $school->student_info_id)->get();
+            if(strlen($branch_school) > 0){
+            
+                $branch_template = DB::table('certificates')->where('cert_code', '=', 'branch_school')->first();
+                
+                $branch_row = '';
+                
+                foreach($branch_school as $branch){
+                    $branch_row .= "<tr><td>Branch</td><td>" . $branch->branch_school_address . "</td></tr>";
+                }
+    
+                $branch_template->cert_data = str_replace('{{ branchRow }}', $branch_row, $branch_template->cert_data);
+            }else{
+                $branch_template = '';
+            }
+    
+        }
+        $className = '';
+        
+        
         return view('certificate.complete_certificate', compact('template', 'className', 'branch_template'));
     }
 

@@ -249,7 +249,7 @@ class ApiController extends Controller
     {
         // return $batch;
         // $course = Course::where('code',$code)->with('active_batch')->first();
-        
+         
         $student_infos = ExamRegister::where('batch_id',$batch)
         ->where('exam_register.status',1)
         ->where('exam_register.exam_type_id','=',3)
@@ -260,10 +260,6 @@ class ApiController extends Controller
         ->get();
 
        
-      
-         
-        
-    
 
         $count = 0;
         foreach($student_infos as $key => $student_info){

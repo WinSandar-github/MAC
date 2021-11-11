@@ -1002,20 +1002,19 @@ function autoLoadPaymentResign(resign_id){
             console.log(total);
             for(let i=0 ; i<amount.length ; i++){
                 $('.fee_list').append(`
-                    <li
-                        class="list-group-item d-flex justify-content-between lh-condensed">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <h6 class="my-0">${productDesc[i]}</h6>
                         <span class="text-muted">- ${amount[i]} MMK</span>
-                    </li >
+                    </li>
                 `);
             }
             $('.fee_list').append(`
-                < li class= "list-group-item d-flex justify-content-between" >
+                <li class= "list-group-item d-flex justify-content-between" >
                     <span>Total (MMK)</span>
                     <span id="total">
                         - <strong>${total}</strong> MMK
                     </span>
-                </li >
+                </li>
                 `);
         }
     });
@@ -1192,8 +1191,16 @@ function showResignArticle(id) {
 }
 
 function loadResignArticle() {
-    var id = localStorage.getItem("article_id");
-    $("input[name = article_id]").val(id);
+
+    let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = localStorage.getItem("article_id");
+            $("input[name = article_id]").val(id);
+        }
     $.ajax({
         url: BACKEND_URL + "/resign_article_show/" + id,
         type: 'get',
@@ -1274,6 +1281,8 @@ function loadResignArticle() {
             } else {
                 document.getElementById("approve_reject_btn").style.display = "none";
             }
+
+            autoLoadPaymentResign(id);
         }
     });
 }

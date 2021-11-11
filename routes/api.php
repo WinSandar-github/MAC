@@ -499,3 +499,10 @@ Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewU
 Route::post('/getTotalAmount', 'SchoolController\SchoolController@getTotalAmount');
 //school branch
 Route::get('/getSchoolBranch/{id}', 'SchoolController\SchoolController@getSchoolBranch');
+
+
+//User Profile for student
+Route::get('/get_app_stu_id/{id}','DaRegisterController@getAppStuId');
+Route::get('/get_reg_stu_id/{id}','DaRegisterController@getRegStuId');
+Route::get('/get_exam_stu_id/{id}','DaRegisterController@getExamStuId');
+
