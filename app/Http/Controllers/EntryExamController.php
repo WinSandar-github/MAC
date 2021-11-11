@@ -204,7 +204,7 @@ class EntryExamController extends Controller
             $invoice->email           = $student_info->email;
             $invoice->phone           = $student_info->phone;
             $invoice->invoiceNo       = "cpa_app";
-            $invoice->productDesc     = 'AppFee,EntryExmFee,'. $std->batch->course->name;
+            $invoice->productDesc     = 'App Fee,Entry Exm Fee,'. $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->entry_exam_fee;
             $invoice->status          = 0;  
             
