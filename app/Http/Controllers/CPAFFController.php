@@ -1064,7 +1064,7 @@ class CPAFFController extends Controller
 
     public function approve($id)
     {
-        $old = CPAFF::orderBy('cpaff_reg_no', 'desc')->first();
+        $old = CPAFF::where('offline_user',0)->orderBy('cpaff_reg_no', 'desc')->first();
         // return $old->cpaff_reg_no;
         if($old->cpaff_reg_no == '' && $old->cpaff_reg_no == NULL){
             $reg_no = 1129;

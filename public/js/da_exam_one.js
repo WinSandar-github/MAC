@@ -359,7 +359,7 @@ function loadDAExamData() {
                     document.getElementById("reject").style.display = 'none';
                 }
 
-                if(element.status == 1 || element.status == 0){
+                if (element.status == 1 || element.status == 0) {
                     $("#payment_info_card").show();
                 } else {
                     $("#payment_info_card").hide();
@@ -380,10 +380,10 @@ function loadDAExamData() {
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
-                        if(result.status==0){
+                        if (result.status == 0) {
                             $('#payment_status').append("Incomplete");
                         }
-                        else if(result.status=='AP'){
+                        else if (result.status == 'AP') {
                             $('#payment_status').append("Complete");
                         }
                         else {
@@ -1074,24 +1074,30 @@ function getModuleStd() {
                 attached_file = std.student_education_histroy.certificate;
 
                 var subjects = element.subjects;
+                console.log(subjects)
                 var i = 1;
+                // alert("Hello")
                 subjects.forEach(function (subj) {
                     if (element.is_full_module == subj.module_id) {
+
                         var tr = "<tr>";
                         tr += "<td>" + i + "</td>";
                         // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
-                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+
+                        tr += "<td><input type='number' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
                     } else if (element.is_full_module == 3 || element.is_full_module == 0) {
+
                         var tr = "<tr>";
                         tr += "<td>" + i + "</td>";
                         // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
-                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+                        tr += "<td>" + subj.module.name + "</td>"
+                        tr += "<td><input type='number' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
@@ -1099,7 +1105,36 @@ function getModuleStd() {
                     }
                 })
 
+                var pass_module = `<tr id="pass_module">
+                                    <td colspan='3'>Choose Pass Module </td>
+                                    <td colspan='2'>
+                                      
+                                            <label class="form-check-label">
+                                                <input class="form-check-input module_one" type="radio" id="0"
+                                                    name="is_full_module" value="1" required>
+                                                <span class="form-check-sign"></span>
+                                                Module 1
+                                            </label>
+
+                                            <label class="form-check-label mx-5">
+                                                <input class="form-check-input " type="radio" id="1"
+                                                    name="is_full_module" value="2" required>
+                                                <span class="form-check-sign"></span>
+                                                Module 2
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input module_one" type="radio" id="0"
+                                                    name="is_full_module" value="3" required>
+                                                <span class="form-check-sign"></span>
+                                                All Module 
+                                            </label>
+                                     
+                                    </td></tr>`;
+                // console.log(tr, "Table")
+                element.is_full_module == 3 && $(".tbl_fillmarks_body").append(pass_module);
             });
+
+
 
             $.ajax({
                 url: BACKEND_URL + "/search_exam_result/" + id,
@@ -1109,7 +1144,7 @@ function getModuleStd() {
                     // console.log('result', result.data);
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
-                        tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
+                        tr += "<td colspan='3' style='text-align:center;font-weight:bold;'>Total Marks</td>";
                         tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.total_mark + "</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
@@ -1165,6 +1200,7 @@ function getModuleStd() {
                             }
                         }
                         else if (module_type == 3) {
+                            // row_length += 1;
                             for (var i = 0; i < row_length; i++) {
                                 var j = i + 1;
                                 var subject = document.getElementById('subject' + j);
@@ -1183,6 +1219,9 @@ function getModuleStd() {
                                 grade.value = rData.grades[i];
                                 grade.setAttribute("readonly", "true");
                             }
+
+                            $('#pass_module').remove();
+
                         }
                         // var total_mark=0;
                         // for (var i = 0; i < row_length; i++) {
@@ -1213,7 +1252,11 @@ function examResultSubmit() {
         var course_type = localStorage.getItem("course_type");
         var table = document.getElementById("tbl_fillmarks");
         var result_id = $("input[name = result_id]").val();
-        var totalRowCount = table.rows.length;
+
+        var pass_module = $("input[type='radio'][name='is_full_module']:checked").val();
+        var count = pass_module ? 1 : 0;
+
+        var totalRowCount = table.rows.length - count;
         // var totalRowCount = $('#tbl_fillmarks >tbody >tr').length;
         var data = new FormData();
         for (var i = 1; i < totalRowCount; i++) {
@@ -1278,6 +1321,7 @@ function examResultSubmit() {
                         $.ajax({
                             url: BACKEND_URL + "/pass_exam/" + id,
                             type: 'PATCH',
+                            data: { "pass_module": pass_module },
                             success: function (result) {
                                 //aggaio
                                 successMessage(result.message);
