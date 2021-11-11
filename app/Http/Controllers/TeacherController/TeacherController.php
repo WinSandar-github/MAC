@@ -204,7 +204,7 @@ class TeacherController extends Controller
             $invoice->phone           = $request->phone;
 
             foreach($memberships as $memberships){
-                $invoice->productDesc     = 'AppFee,RegFee,'.$cpa_subject_count.'x CPAOneSubYearlyFee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DAOneSubYearlyFee('.$memberships->da_subject_fee.'),Teacher Registration';
+                $invoice->productDesc     = 'App Fee,Reg Fee,'.$cpa_subject_count.'x CPAOne Sub Yearly Fee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DAOne Sub Yearly Fee('.$memberships->da_subject_fee.'),Teacher Registration';
                 $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
             }
            
@@ -424,7 +424,7 @@ class TeacherController extends Controller
                 $inNo->phone           = $request->phone;
 
                 foreach($memberships as $memberships){
-                    $inNo->productDesc     = 'AppFee,RegFee,'.$cpa_subject_count.'x CPAOneSubYearlyFee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DAOneSubYearlyFee('.$memberships->da_subject_fee.'),Teacher Registration';
+                    $inNo->productDesc     = 'App Fee,Reg Fee,'.$cpa_subject_count.'x CPAOne Sub Yearly Fee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DAOne Sub Yearly Fee('.$memberships->da_subject_fee.'),Teacher Registration';
                     $inNo->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
                 }
             
@@ -996,7 +996,7 @@ class TeacherController extends Controller
             $invoice->phone           = $request->phone;
             
             foreach($memberships as $memberships){
-                $invoice->productDesc     = 'AppFee,'.$cpa_subject_count.'x CPAOneSubRenewFee('.$memberships->renew_cpa_subject_fee.'),'.$da_subject_count.'x DAOneSubRenewFee('.$memberships->renew_da_subject_fee.'),Teacher Registration';
+                $invoice->productDesc     = 'App Fee,'.$cpa_subject_count.'x CPAOne Sub Renew Fee('.$memberships->renew_cpa_subject_fee.'),'.$da_subject_count.'x DAOne Sub Renew Fee('.$memberships->renew_da_subject_fee.'),Teacher Registration';
                 $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee;
             }
            
@@ -1185,7 +1185,7 @@ class TeacherController extends Controller
             $inNo->phone           = $request->phone;
             
             foreach($memberships as $memberships){
-                $inNo->productDesc     = 'AppFee,'.$cpa_subject_count.'x CPAOneSubRenewFee('.$memberships->renew_cpa_subject_fee.'),'.$da_subject_count.'x DAOneSubRenewFee('.$memberships->renew_da_subject_fee.'),Teacher Registration';
+                $inNo->productDesc     = 'App Fee,'.$cpa_subject_count.'x CPAOne Sub Renew Fee('.$memberships->renew_cpa_subject_fee.'),'.$da_subject_count.'x DAOne Sub Renew Fee('.$memberships->renew_da_subject_fee.'),Teacher Registration';
                 $inNo->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee;
             }
         
