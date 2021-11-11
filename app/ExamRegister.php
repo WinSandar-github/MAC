@@ -26,6 +26,6 @@ class ExamRegister extends Model
     }
     public function subjects()
     {
-        return $this->hasMany(Subject::class,'course_id','form_type');
+        return $this->hasMany(Subject::class,'course_id','form_type')->with('module');
     }
 }

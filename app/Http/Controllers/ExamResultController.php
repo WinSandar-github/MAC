@@ -191,10 +191,12 @@ class ExamResultController extends Controller
     }
 
 
-    public function passExam($id)
+    public function passExam($id,Request $request)
     {
+        
         $exam_register = ExamRegister::find($id);
         $exam_register->grade = 1;
+        $exam_register->pass_module = $request->pass_module ? $request->pass_module : $exam_register->is_full_module;
         $exam_register->save();
 
         $student_info_id = StudentInfo::find($exam_register->student_info_id);

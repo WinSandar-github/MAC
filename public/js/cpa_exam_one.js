@@ -355,44 +355,44 @@ function loadCPAExamData() {
                 //     exam_type_id = "MAC STUDENT";
                 // }
 
-                if(element.status == 1){
+                if (element.status == 1 || element.status == 0) {
                     $("#payment_info_card").show();
-                }else{
+                } else {
                     $("#payment_info_card").hide();
                 }
-    
+
                 // console.log('student_course_regs',element.student_info.student_course_regs);
-                let course_code = element.course.code == "da_1"? 'da_1' : 
-                                    element.course.code == "da_2"? 'da_2' :
-                                    element.course.code == "cpa_1"? 'cpa_1' : 'cpa_2';
-    
+                let course_code = element.course.code == "da_1" ? 'da_1' :
+                    element.course.code == "da_2" ? 'da_2' :
+                        element.course.code == "cpa_1" ? 'cpa_1' : 'cpa_2';
+
                 // let reg_type    = element.type == 0? 'self_reg_' : 
                 //                     element.type == 1? 'prv_reg_' : 'mac_reg_';                               
                 // console.log('reg_type',reg_type);
                 // console.log('course_code',course_code);
-                
+
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code+"/"+ element.student_info_id ,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code + "/" + element.student_info_id,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
-                        if(result.status==0){
-                            $('#payment_status').append("Unpaid");
+                        if (result.status == 0) {
+                            $('#payment_status').append("Incomplete");
                         }
-                        else if(result.status=='AP'){
-                            $('#payment_status').append("Paid");
+                        else if (result.status == 'AP') {
+                            $('#payment_status').append("Complete");
                         }
-                        else{
+                        else {
                             $('#payment_status').append("-");
                         }
                         var productDesc = result.productDesc.split(",");
                         var amount = result.amount.split(",");
-                        var total=0;
-                        for(var i in amount) { 
+                        var total = 0;
+                        for (var i in amount) {
                             total += parseInt(amount[i]);
                         }
                         // console.log(total);
-                        for(let i=0 ; i<amount.length ; i++){
+                        for (let i = 0; i < amount.length; i++) {
                             $('.fee_list').append(`
                                 <li
                                     class="list-group-item d-flex justify-content-between lh-condensed">
@@ -437,7 +437,7 @@ function loadCPAExamData() {
                 }
 
                 if (element.is_full_module == 1) {
-                    module_name = "Module 1";
+                    module_name = "Module";
                 }
                 else if (element.is_full_module == 2) {
                     module_name = "Module 2";
@@ -454,9 +454,9 @@ function loadCPAExamData() {
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
 
-                if(element.exam_department){
+                if (element.exam_department) {
                     $("#exam_department").append(element.exam_department.name);
-                }else{
+                } else {
                     $("#exam_department").append("-");
                 }
 
@@ -553,8 +553,10 @@ function loadCPAExamData() {
                     url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                     type: 'get',
                     success: function (result) {
+                        console.log('result', result)
                         if (result.data.length != 0) {
                             result.data.forEach(function (course) {
+                                console.log('course', course)
                                 var success_year = new Date(course.updated_at);
                                 var module_name;
                                 if (course.is_full_module == 1) {
@@ -943,11 +945,12 @@ function getCPAModuleStd() {
                 var i = 1;
                 subjects.forEach(function (subj) {
                     if (element.is_full_module == subj.module_id) {
-                        var tr = "<tr>";
+                        var tr = "<tr>Moduel 1</tr>"
+                        tr = "<tr>";
                         tr += "<td>" + i + "</td>";
                         // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
-                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='number' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
@@ -957,13 +960,44 @@ function getCPAModuleStd() {
                         tr += "<td>" + i + "</td>";
                         // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
-                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+                        tr += "<td>" + subj.module.name + "</td>"
+
+                        tr += "<td><input type='number' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
                     }
                 })
+
+                console.log(element.is_full_module)
+                var pass_module = `<tr id="pass_module">
+                                    <td colspan='3'>Choose Pass Module </td>
+                                    <td colspan='2'>
+                                      
+                                            <label class="form-check-label">
+                                                <input class="form-check-input module_one" type="radio" id="0"
+                                                    name="is_full_module" value="1" required>
+                                                <span class="form-check-sign"></span>
+                                                Module 1
+                                            </label>
+
+                                            <label class="form-check-label mx-5">
+                                                <input class="form-check-input " type="radio" id="1"
+                                                    name="is_full_module" value="2" required>
+                                                <span class="form-check-sign"></span>
+                                                Module 2
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input module_one" type="radio" id="0"
+                                                    name="is_full_module" value="3" required>
+                                                <span class="form-check-sign"></span>
+                                                All Module 
+                                            </label>
+                                     
+                                    </td></tr>`;
+                // console.log(tr, "Table")
+                element.is_full_module == 3 && $(".tbl_fillmarks_body").append(pass_module);
 
             });
             $.ajax({

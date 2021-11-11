@@ -51,7 +51,7 @@
                                    href="#v-pills-papp"
                                    role="tab"
                                    aria-controls="v-pills-messages" aria-selected="false">PAPP Register</a>
-                                
+
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-audit"
                                    role="tab"
@@ -789,7 +789,7 @@
                                                                 <th class="bold-font-weight" >School No</th>
                                                                 <th class="bold-font-weight" >School Name</th>
                                                                 <th class="bold-font-weight" >School Founder Name</th>
-                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
@@ -811,7 +811,7 @@
                                                                 <th class="bold-font-weight" >School No</th>
                                                                 <th class="bold-font-weight" >School Name</th>
                                                                 <th class="bold-font-weight" >School Founder Name</th>
-                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
@@ -833,7 +833,7 @@
                                                                 <th class="bold-font-weight" >School No</th>
                                                                 <th class="bold-font-weight" >School Name</th>
                                                                 <th class="bold-font-weight" >School Founder Name</th>
-                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
@@ -880,7 +880,7 @@
                                                                 <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Teacher No</th>
                                                                 <th class="bold-font-weight" >Teacher Name</th>
-                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
@@ -901,7 +901,7 @@
                                                                 <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Teacher No</th>
                                                                 <th class="bold-font-weight" >Teacher Name</th>
-                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
@@ -922,7 +922,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Teacher No</th>
                                                         <th class="bold-font-weight" >Teacher Name</th>
-                                                        <th class="bold-font-weight" >Email</th>     
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Phone</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Initial Date</th>
@@ -954,12 +954,12 @@
                                                             <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="true" style="font-weight:bold">Resign Article</a>
                                                         </li>
                                                     </ul>
-                                                    
+
 
                                                     <div class="card-body">
                                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                            
+
                                                                 <div class="card-header">
 
                                                                     <ul class="nav nav-tabs" role="tablist">
@@ -987,8 +987,11 @@
                                                                                         <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
                                                                                         <th class="bold-font-weight" >Status</th>
-                                                                                        
+
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody id="tbl_firm_article_pending_body" class="hoverTable">
@@ -1007,6 +1010,9 @@
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                                                         <th class="bold-font-weight" >Payment Status</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                         <th class="bold-font-weight" >Duty Report Date </th>
                                                                                     </tr>
@@ -1017,20 +1023,22 @@
                                                                         </div>
                                                                         <div class="tab-pane fade show" id="firm3" aria-expanded="true">
                                                                             <table id="tbl_firm_article_rejected" class="table table-hover text-nowrap " style="width:100%;">
-                                                                                <thead>
+                                                                                <thead class="text-nowrap">
                                                                                     <tr>
                                                                                         <th class="bold-font-weight">No</th>
                                                                                         <th class="bold-font-weight" >Action</th>
                                                                                         <th class="bold-font-weight" >Name</th>
                                                                                         <th class="bold-font-weight" >Phone</th>
-                                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                                        <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
                                                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                                                         <th class="bold-font-weight" >Status</th>
-                                                                                        <th class="bold-font-weight"  style="display:none">Duty Report Date </th>
+                                                                                        <!-- <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th> -->
+                                                                                        <!-- <th class="bold-font-weight" >Mentor Name</th> -->
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <tbody id="tbl_firm_article_rejected_body" class="hoverTable text-left">
+                                                                                <tbody id="tbl_firm_article_rejected_body" class="hoverTable">
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
@@ -1117,7 +1125,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1139,7 +1147,7 @@
                                                             <li class="nav-item">
                                                                 <a class="nav-link active" data-toggle="tab" href="#two_yrs_link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Firm Article</a>
                                                             </li>
-                                                            
+
                                                         </ul>
                                                     </div>
                                                     <div class="card-body">
@@ -1154,6 +1162,9 @@
                                                                             <th class="bold-font-weight" >Phone</th>
                                                                             <th class="bold-font-weight" >NRC</th>
                                                                             <th class="bold-font-weight" >Form Type</th>
+                                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                                             <th class="bold-font-weight" >Status</th>
                                                                             <!-- <th class="bold-font-weight" >Check End Date</th> -->
                                                                         </tr>
@@ -1162,7 +1173,7 @@
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1184,13 +1195,13 @@
                                                                         <li class="nav-item">
                                                                             <a class="nav-link active" data-toggle="tab" href="#done_firm" role="tablist" aria-expanded="false" style="font-weight:bold">Firm Article</a>
                                                                         </li>
-                                                                        
+
                                                         </ul>
                                                     </div>
                                                     <div class="card-body">
                                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                                             <div class="tab-pane fade show active" id="done_firm" aria-expanded="true">
-                                                                
+
                                                                             <table id="tbl_done_firm_article_approved" class="table table-hover text-nowrap " style="width:100%;">
                                                                                 <thead>
                                                                                     <tr>
@@ -1200,15 +1211,19 @@
                                                                                         <th class="bold-font-weight" >Phone</th>
                                                                                         <th class="bold-font-weight" >NRC</th>
                                                                                         <th class="bold-font-weight" >Form Type</th>
+                                                                                        <th class="bold-font-weight" >Contract Start Date</th>
+                                                                                        <th class="bold-font-weight" >Contract End Date</th>
+                                                                                        <th class="bold-font-weight" >Mentor Name</th>
+                                                                                        <th class="bold-font-weight" >Leave Days</th>
                                                                                         <th class="bold-font-weight" >Status</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody id="tbl_done_firm_article_approved_body" class="hoverTable text-left">
                                                                                 </tbody>
                                                                             </table>
-                                                                        
+
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1539,7 +1554,7 @@
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
-            
+
             $('#tbl_cpa_offline_pending_list').DataTable({
                 scrollX: true,
                 processing: true,
@@ -1639,7 +1654,7 @@
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
-            
+
             $('#tbl_cpa2_offline_pending_list').DataTable({
                 scrollX: true,
                 processing: true,
@@ -1752,8 +1767,8 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     {data: 'student_info.name_mm', name: 'Name'},
                     {data: 'student_info.email', name: 'Email'},
-                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},  
-                    {data: 'student_info.phone', name: 'Phone'},                 
+                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},
+                    {data: 'student_info.phone', name: 'Phone'},
                     {data: 'status', name: 'Status'},
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -1771,8 +1786,8 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     {data: 'student_info.name_mm', name: 'Name'},
                     {data: 'student_info.email', name: 'Email'},
-                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"}, 
-                    {data: 'student_info.phone', name: 'Phone'},                  
+                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},
+                    {data: 'student_info.phone', name: 'Phone'},
                     {data: 'status', name: 'Status'},
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -1790,13 +1805,13 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     {data: 'student_info.name_mm', name: 'Name'},
                     {data: 'student_info.email', name: 'Email'},
-                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},  
-                    {data: 'student_info.phone', name: 'Phone'},                 
+                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},
+                    {data: 'student_info.phone', name: 'Phone'},
                     {data: 'status', name: 'Status'},
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
-        
+
 
             $('#tbl_audit_offline_pending').DataTable({
           			processing: true,
@@ -1943,11 +1958,11 @@
                     // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
                     {data: 'reason', name: 'reason'},
-                    
+
                 ],
-                
+
             });
-            
+
             $('#tbl_school_approved_list').DataTable({
                 scrollX: true,
                 processing: true,
@@ -2042,7 +2057,7 @@
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
-            
+
             $('#tbl_cpaff_initial_approved_list').DataTable({
                 processing: true,
                 scrollX:true,
@@ -2123,9 +2138,9 @@
                     {data: 'status', name: 'status'},
                     {data: 'reason', name: 'reason'},
                 ],
-                
+
             });
-            
+
             $('#tbl_teacher_approved_list').DataTable({
                 scrollX: true,
                 processing: true,
@@ -2218,6 +2233,9 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
                 // {data: 'contract_start_date', name: 'contract_start_date'},
             ],
@@ -2250,10 +2268,46 @@
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'payment_status', name: 'payment_status'},
+                {data: 'contract_start', name: 'contract_start'},
+                {data: 'contract_end', name: 'contract_end'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
-            
+
+        });
+        $('#tbl_firm_article_rejected').DataTable({
+            scrollX: true,
+            processing: true,
+            //serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_firm_article",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2,
+                    d.offline_user=1
+                }
+
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
+                {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'status', name: 'status'},
+                // {data: 'contract_start', name: 'contract_start'},
+                // {data: 'contract_end', name: 'contract_end'},
+                // {data: 'mentor_name', name: 'mentor_name'},
+                // {data: 'contract_start_date', name: 'contract_start_date'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
         $('#tbl_two_yrs_article_pending').DataTable({
             scrollX: true,
@@ -2279,6 +2333,9 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
                 // {data: 'check_end_date', name: 'check_end_date'},
             ],
@@ -2289,7 +2346,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url  : BACKEND_URL + "/filter_done_article",
+                url  : BACKEND_URL + "/filter_offline_done_article",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -2308,6 +2365,10 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'leave_days', name: 'leave_days'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -2341,7 +2402,7 @@
                 {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
-            
+
         });
         $('#tbl_resign_article_approved').DataTable({
             scrollX: true,
@@ -2421,7 +2482,7 @@
             });
         });
 
-        
-      
+
+
     </script>
 @endpush

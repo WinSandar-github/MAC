@@ -130,6 +130,9 @@ class ArticleController extends Controller
             $office_order_attach = "";
         }
         if($request->offline_user=="true"){
+            //$total_experience = $request->exp_year . "," .$request->exp_month. "," .$request->exp_days;
+            $total_experience = [$request->exp_year,$request->exp_month,$request->exp_days];
+            //array_push($total_experience,$request->exp_year,$request->exp_month,$request->exp_days);
 
             //Student Info
             $std_info = new StudentInfo();
@@ -175,6 +178,7 @@ class ArticleController extends Controller
             $acc_app->ex_papp = $request->previous_papp_name;
             $acc_app->exp_start_date = $request->previous_papp_start_date;
             $acc_app->exp_end_date = $request->previous_papp_end_date;
+            $acc_app->total_experience = json_encode($total_experience);
             $acc_app->accept_policy = 1;
             $acc_app->offline_user = true;
             $acc_app->resign_status = 0;
@@ -202,7 +206,7 @@ class ArticleController extends Controller
          $invoice->phone           = $request->phone;
 
          $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-         $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+         $invoice->productDesc     = 'RegFee, Article Registration Form';
          $invoice->amount          = '5000';
          $invoice->status          = 0;
          //$invoice->save();
@@ -252,7 +256,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+        $invoice->productDesc     = 'RegFee, Article Registration Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
         //$invoice->save();
@@ -279,11 +283,12 @@ class ArticleController extends Controller
         $article = ApprenticeAccountant::where('status',$request->status)
         ->where('article_form_type' ,'<>', 'resign')
         ->where('offline_user',$request->offline_user)
+        ->where('done_status','<>',3)
         ->with('student_info')->get();
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time > $today){
@@ -347,7 +352,7 @@ class ArticleController extends Controller
 
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              if($mentor_name){
+              if(sizeof($mentor_name)){
                 foreach($mentor_name as $val){
                   return $val->name_eng;
                 }
@@ -474,11 +479,11 @@ class ArticleController extends Controller
 
     public function filterDoneArticle(Request $request)
     {
-        
+
         if($request->status == 1){
             //$article=ApprenticeAccountant::where('done_status',$request->status)->get();
             //foreach($article as $article){
-                
+
                 if($request->offline_user==1){
                     $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
                 }else{
@@ -492,12 +497,12 @@ class ArticleController extends Controller
             }else{
                 $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
             }
-            
+
         }
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time <= $today){
@@ -522,7 +527,7 @@ class ArticleController extends Controller
                             </button>
                             </div>";
                 }
-                
+
             })
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
@@ -548,7 +553,7 @@ class ArticleController extends Controller
             })
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              if($mentor_name){
+              if(sizeof($mentor_name)){
                 foreach($mentor_name as $val){
                   return $val->name_eng;
                 }
@@ -602,6 +607,122 @@ class ArticleController extends Controller
             return $datatable;
     }
 
+    public function filterOfflineDoneArticle(Request $request)
+    {
+
+        $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',3)->orwhere('done_status',2)->with('student_info')->get();
+
+        // $result_article = [];
+        // for($i=0;$i<count($article);$i++){
+        //     if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
+        //         $end_time = strtotime($article[$i]->contract_end_date);
+        //         $today = strtotime(Carbon::now());
+        //         if($end_time <= $today){
+        //             array_push($result_article , $article[$i]);
+        //         }
+        //     }
+        // }
+
+
+        $datatable = DataTables::of($article)
+            ->addColumn('action', function ($infos) {
+                if($infos->offline_user==1){
+                    return "<div class='btn-group'>
+                                <a href='article_show?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                            </div>";
+                }else{
+                    return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                            </div>";
+                }
+
+            })
+            ->addColumn('name_mm', function ($infos){
+                return $infos->student_info->name_mm;
+            })
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
+            })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type',$infos->article_form_type)
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
+            })
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              if(sizeof($mentor_name)){
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
+              else{
+                return $infos->mentor_id;
+              }
+            })
+            ->addColumn('phone_no', function ($infos){
+                return $infos->student_info->phone;
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->done_status == 0){
+                    return "PENDING";
+                }else if($infos->done_status == 1){
+                    return "APPROVED";
+                }else if($infos->done_status == 3){
+                    return "Done";
+                }else{
+                    return "REJECTED";
+                }
+            })
+            ->addColumn('form_type', function ($infos){
+                if($infos->article_form_type == 'c12'){
+                    return "CPA I,II";
+                }else if($infos->article_form_type == 'c2_pass_1yr'){
+                    return "CPA II pass 1 yr";
+                }else if($infos->article_form_type == 'c2_pass_3yr'){
+                    return "CPA II pass 3 yr";
+                }else if($infos->article_form_type == 'qt_firm'){
+                    return "QT pass";
+                }else if($infos->article_form_type == 'c2_pass_renew'){
+                    return "CPA II Pass Renew";
+                }else if($infos->article_form_type == 'c12_renew'){
+                    return "CPA I,II Renew";
+                }else if($infos->article_form_type == 'resign'){
+                    return "Resign";
+                }
+            });
+            // ->setRowClass(function ($infos) {
+            //     return $infos->done_form_attach != null && $infos->done_status != 1 ? 'bg-success' : 'bg-light';
+            // });
+            // $datatable = $datatable->addColumn('check_end_date', function ($infos){
+            //     return "<div class='btn-group'>
+            //                     <button type='button' class='btn btn-warning btn-sm' onclick='checkEndArticle($infos)'>
+            //                         <li class='fa fa-pencil fa-sm'></li>
+            //                     </button>
+            //                 </div>";
+            // });
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
+            return $datatable;
+    }
+
     public function approve($id)
     {
         $approve = ApprenticeAccountant::find($id);
@@ -632,7 +753,11 @@ class ArticleController extends Controller
         $gov = ApprenticeAccountantGov::where('student_info_id',$approve->student_info_id)->get();
 
         if(count($gov) == 0){
-            $start_article = Carbon::parse($firm[0]->contract_start_date);
+            if($firm[0]->offline_user == 1){
+                $start_article = Carbon::parse($firm[0]->exp_start_date);
+            }else{
+                $start_article = Carbon::parse($firm[0]->contract_start_date);
+            }
         }else{
             $start_article = Carbon::parse($gov[0]->contract_start_date);
         }
@@ -793,7 +918,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = "gov".$acc_app->id;
-        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+        $invoice->productDesc     = 'RegFee, Article Registration Form';
         $invoice->amount          = $fees->registration_fee;
         $invoice->status          = 0;
         //$invoice->save();
@@ -819,12 +944,12 @@ class ArticleController extends Controller
 
     public function FilterGovArticle(Request $request)
     {
-        $article = ApprenticeAccountantGov::where('status',$request->status)->with('student_info')->get();
+        $article = ApprenticeAccountantGov::where('status',$request->status)->where('done_status','<>',3)->with('student_info')->get();
 
         $result_article = [];
         $article_type = "gov";
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time > $today){
@@ -1011,7 +1136,7 @@ class ArticleController extends Controller
 
         $result_article = [];
         for($i=0;$i<count($article);$i++){
-            if($article[$i]->contract_end_date != null){
+            if($article[$i]->contract_end_date != null && $article[$i]->resign_date ==  null){
                 $end_time = strtotime($article[$i]->contract_end_date);
                 $today = strtotime(Carbon::now());
                 if($end_time <= $today){
@@ -1182,10 +1307,10 @@ class ArticleController extends Controller
         $gov_article = ApprenticeAccountantGov::where('student_info_id',$request->student_info_id)->get();
         $article = ApprenticeAccountant::where('student_info_id',$request->student_info_id)->get();
         if(count($gov_article) != 0){
-            $gov_article[(count($gov_article))-1]->contract_end_date = $request->change_contract_end_date;
+            $gov_article[(count($gov_article))-1]->resign_date = $request->resign_date;
             $gov_article[(count($gov_article))-1]->save();
         }else{
-            $article[(count($article))-2]->contract_end_date = $request->change_contract_end_date;
+            $article[(count($article))-2]->resign_date = $request->resign_date;
             $article[(count($article))-2]->save();
         }
 
@@ -1205,7 +1330,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-        $invoice->productDesc     = 'Resign Fee, Article Resign Form';
+        $invoice->productDesc     = 'ResignFee, Article Resign Form';
         $invoice->amount          = '300000';
         $invoice->status          = 0;
         //$invoice->save();
@@ -1340,7 +1465,7 @@ class ArticleController extends Controller
 
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
-              if($mentor_name){
+              if(sizeof($mentor_name)){
                 foreach($mentor_name as $val){
                   return $val->name_eng;
                 }
@@ -1383,7 +1508,7 @@ class ArticleController extends Controller
 
     public function filterDone3yrsArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('done_status',3)->with('student_info')->get();
+        $article = ApprenticeAccountant::where('done_status',3)->with('student_info')->where('offline_user',0)->get();
         $article_gov = ApprenticeAccountantGov::where('done_status',3)->with('student_info')->get();
 
         $result_article = [];
@@ -1435,7 +1560,7 @@ class ArticleController extends Controller
                 $mentor_name = Mentor::where('id',$infos->mentor_id)
                                      ->select('name_eng')
                                      ->get();
-                if($mentor_name){
+                if(sizeof($mentor_name)){
                   foreach($mentor_name as $val){
                     return $val->name_eng;
                   }
@@ -1475,6 +1600,8 @@ class ArticleController extends Controller
                     return "CPA I,II Renew";
                 }else if($infos->article_form_type == 'resign'){
                     return "Resign";
+                }else{
+                    return "Government";
                 }
             });
             // ->setRowClass(function ($infos) {
@@ -1656,6 +1783,7 @@ class ArticleController extends Controller
         $acc_app->exp_start_date = $request->exp_start_date;
         $acc_app->exp_end_date = $request->exp_end_date;
         $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->offline_user = $request->offline_user;
         $acc_app->save();
 
         //invoice
@@ -1674,7 +1802,7 @@ class ArticleController extends Controller
         $invoice->phone           = $std_info->phone;
 
         $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
-        $invoice->productDesc     = 'Registration Fee, Article Renew Form';
+        $invoice->productDesc     = 'Reg Fee, Article Renew Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
         //$invoice->save();
