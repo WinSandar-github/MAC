@@ -13,7 +13,7 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('subjects')->delete();
+        DB::table('subjects')->truncate();
 
         DB::table('subjects')->insert([
             //da one

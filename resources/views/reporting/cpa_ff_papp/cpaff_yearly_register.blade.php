@@ -21,7 +21,7 @@
                                 <thead>
                                     <tr>
                                         <th class="bold-font-weight" >စဥ်</th>
-                                        <th class="bold-font-weight" >CPA FF Reg No</th>
+                                        <th class="bold-font-weight" >CPA(Full-Fledged) Reg No</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                         <th class="bold-font-weight" >လိပ်စာ</th>
