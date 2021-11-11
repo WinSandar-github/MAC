@@ -571,11 +571,10 @@ class AccFirmInfController extends Controller
         $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
         $std_info->approve_reject_status = 1;
         $std_info->save();
-        $reg_no = '';
         $org_stru_id = AccountancyFirmInformation::where('id',$id)->get('organization_structure_id');
         switch ($org_stru_id[0]->organization_structure_id) {
             case '1':
-                $old = AccountancyFirmInformation::where('organization_structure_id',1)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                $old = AccountancyFirmInformation::where('organization_structure_id',1)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
                 $old_number = trim($old->accountancy_firm_reg_no, 'ACS-');
                 // return $old_number;
@@ -588,7 +587,7 @@ class AccFirmInfController extends Controller
                 }
             break;
             case '2':
-                $old = AccountancyFirmInformation::where('organization_structure_id',2)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                $old = AccountancyFirmInformation::where('organization_structure_id',2)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
                 $old_number = trim($old->accountancy_firm_reg_no, 'ACP-');
                 // return $old_number;
@@ -601,7 +600,7 @@ class AccFirmInfController extends Controller
                 }
             break;
             case '3':
-                $old = AccountancyFirmInformation::where('organization_structure_id',3)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                $old = AccountancyFirmInformation::where('organization_structure_id',3)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
                 $old_number = trim($old->accountancy_firm_reg_no, 'ACC-');
                 // return $old_number;
@@ -613,13 +612,14 @@ class AccFirmInfController extends Controller
                     $reg_no = 'ACC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
                 }
             break;
+            default:
+                $reg_no = '';
+            break;
         }
 
         $approve = AccountancyFirmInformation::find($id);
         $approve->status = 1;
-        if($reg_no != ''){
-          $approve->accountancy_firm_reg_no = $reg_no;
-        }
+        $approve->accountancy_firm_reg_no = $reg_no;
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -631,14 +631,13 @@ class AccFirmInfController extends Controller
         $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
         $std_info->approve_reject_status = 1;
         $std_info->save();
-        $reg_no = '';
         $org_stru_id = AccountancyFirmInformation::where('id',$id)->first();
         $local_foreign = AccountancyFirmInformation::where('id',$id)->get('local_foreign_type');
         // return $local_foreign[0]->local_foreign_type;
         if($local_foreign[0]->local_foreign_type == 1){
             switch ($org_stru_id->organization_structure_id) {
                 case '1':
-                    $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',1)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                    $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',1)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
                     // return $old;
                     $old_number = trim($old->accountancy_firm_reg_no, 'NCS-');
                     // return $old_number;
@@ -651,7 +650,7 @@ class AccFirmInfController extends Controller
                     }
                 break;
                 case '2':
-                    $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',2)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                    $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',2)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
                     $old_number = trim($old->accountancy_firm_reg_no, 'NCP-');
                     // return $old_number;
@@ -664,7 +663,7 @@ class AccFirmInfController extends Controller
                     }
                 break;
                 case '3':
-                    $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',3)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                    $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',3)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
                     $old_number = trim($old->accountancy_firm_reg_no, 'NCC-');
                     // return $old_number;
@@ -676,28 +675,28 @@ class AccFirmInfController extends Controller
                         $reg_no = 'NCC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
                     }
                 break;
+                default:
+                    $reg_no = '';
+                break;
             }
         }else{
-            $old = AccountancyFirmInformation::where('local_foreign_type',2)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+            $old = AccountancyFirmInformation::where('local_foreign_type',2)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
-                    $old_number = trim($old->accountancy_firm_reg_no, 'NFC-');
-                    // return $old_number;
-                    if($old_number == null && $old_number == '')
-                    {
-                        $reg_no = 'NFC-'. str_pad(27, 3, "0", STR_PAD_LEFT);
-                    }
-                    else{
-                        $reg_no = 'NFC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
-                    }
+            $old_number = trim($old->accountancy_firm_reg_no, 'NFC-');
+            // return $old_number;
+            if($old_number == null && $old_number == '')
+            {
+                $reg_no = 'NFC-'. str_pad(27, 3, "0", STR_PAD_LEFT);
+            }
+            else{
+                $reg_no = 'NFC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
+            }
         }
 
 
         $approve = AccountancyFirmInformation::find($id);
         $approve->status = 1;
-        if($reg_no != ''){
-          $approve->accountancy_firm_reg_no = $reg_no;
-        }
-
+        $approve->accountancy_firm_reg_no = $reg_no;
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
