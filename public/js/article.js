@@ -1200,7 +1200,7 @@ function loadResignArticle() {
         data: "",
         success: function (data) {
             var student_info = data.student_info;
-            var qualified_test = student_info.qualified_test;
+            var qualified_test = student_info.qualified_test == null ? null : student_info.qualified_test;
 
             var student_reg = student_info.student_register
             var lastest_row = student_reg.length - 1;
