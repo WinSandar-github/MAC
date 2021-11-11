@@ -79,7 +79,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed the Date</p>
+                                            <p class="ml-2" style="font-weight:bold">Exam Date</p>
                                         </div>
                                         <div class="col-md-6 text-left da_one_pass_exam_date">                                            
                                             
@@ -88,7 +88,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Grade</p>
+                                            <p class="ml-2" style="font-weight:bold">Grade</p>
                                         </div>
                                         <div class="col-md-6 text-left da_one_pass_level">                                            
                                             
@@ -97,7 +97,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Personal Number</p>
+                                            <p class="ml-2" style="font-weight:bold">Personal Number</p>
                                         </div>
                                         <div class="col-md-6 text-left da_one_pass_personal_no">                                            
                                             
@@ -121,6 +121,7 @@
                                             
                                         </div>
                                     </div>
+                                    
                                 </div>
 
                                 <div class="da_two_pass_info" style="display:none">
@@ -136,7 +137,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed the Date</p>
+                                            <p class="ml-2" style="font-weight:bold">Exam Date</p>
                                         </div>
                                         <div class="col-md-6 text-left da_two_pass_exam_date">                                            
                                             
@@ -145,7 +146,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Grade</p>
+                                            <p class="ml-2" style="font-weight:bold">Grade</p>
                                         </div>
                                         <div class="col-md-6 text-left da_two_pass_level">                                            
                                             
@@ -154,7 +155,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Personal Number</p>
+                                            <p class="ml-2" style="font-weight:bold">Personal Number</p>
                                         </div>
                                         <div class="col-md-6 text-left da_two_pass_personal_no">                                            
                                             
@@ -193,7 +194,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed the Date</p>
+                                            <p class="ml-2" style="font-weight:bold">Exam Date</p>
                                         </div>
                                         <div class="col-md-6 text-left cpa_one_pass_exam_date">                                            
                                             
@@ -202,7 +203,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Grade</p>
+                                            <p class="ml-2" style="font-weight:bold">Grade</p>
                                         </div>
                                         <div class="col-md-6 text-left cpa_one_pass_level">                                            
                                             
@@ -211,7 +212,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Personal Number</p>
+                                            <p class="ml-2" style="font-weight:bold">Personal Number</p>
                                         </div>
                                         <div class="col-md-6 text-left cpa_one_pass_personal_no">                                            
                                             
@@ -250,7 +251,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed the Date</p>
+                                            <p class="ml-2" style="font-weight:bold">Exam Date</p>
                                         </div>
                                         <div class="col-md-6 text-left cpa_two_pass_exam_date">                                            
                                             
@@ -259,7 +260,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Grade</p>
+                                            <p class="ml-2" style="font-weight:bold">Grade</p>
                                         </div>
                                         <div class="col-md-6 text-left cpa_two_pass_level">                                            
                                             
@@ -268,7 +269,7 @@
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Passed Personal Number</p>
+                                            <p class="ml-2" style="font-weight:bold">Personal Number</p>
                                         </div>
                                         <div class="col-md-6 text-left cpa_two_pass_personal_no">                                            
                                             
@@ -518,6 +519,14 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">သင်တန်းတက်ရောက်မည့်နေရာ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="current_attend_place"></span>
+                                    </div>
+                                </div>
                                 <div class="row m-2 mt-3 border-bottom" id="direct_access_no_row">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">တိုက်ရိုက်တက်ရောက်ခွင့်ရသည့်အမှတ်စဥ်</p>
@@ -593,7 +602,7 @@
                                             <th>Course Name</th>
                                             <th>Batch Name</th>
                                             <th>Module</th>
-                                            <th>Success Year</th>
+                                            <th>Year</th>
                                         </thead>
                                         <tbody class="course">
 

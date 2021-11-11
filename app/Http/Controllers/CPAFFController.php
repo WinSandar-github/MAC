@@ -226,7 +226,7 @@ class CPAFFController extends Controller
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
-            $invoice->productDesc = 'AppFee , RegFee, CPA(Full-Fledged) Registration';
+            $invoice->productDesc = 'App Fee , Reg Fee, CPA(Full-Fledged) Registration';
             $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -639,7 +639,7 @@ class CPAFFController extends Controller
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
-            $invoice->productDesc = 'AppFee , RegFee, CPA(Full-Fledged) Registration';
+            $invoice->productDesc = 'App Fee , Reg Fee, CPA(Full-Fledged) Registration';
             $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -916,28 +916,28 @@ class CPAFFController extends Controller
                 }
                 $calculate_amount=$reconnect_year_count*$fees->reconnected_fee;
                 if($thisMonth === 'Jan'){
-                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee,Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                 }
                 else if(date('m')>1 && date('m')<=4){
-                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee, Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                 }
                 else{
-                    $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
+                    $invoice->productDesc     = 'App Fee, Renew Fee,Reconnect Fee,  CPA(Full-Fledged) Renewal Registration';
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                 }
             }
             else{
                 if($thisYear == $oldYear){
-                    $invoice->productDesc     = 'AppFee, RenewFee, CPA(Full-Fledged) Renewal Registration';
+                    $invoice->productDesc     = 'App Fee, Renew Fee, CPA(Full-Fledged) Renewal Registration';
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
                 }else if($thisYear == $oldYear + 1 &&  $thisMonth === 'Jan'){
-                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
                 }
                 else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
-                    $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, CPA(Full-Fledged) Renewal Registration' ;
+                    $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee, CPA(Full-Fledged) Renewal Registration' ;
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee ;
                 }
             }
@@ -962,30 +962,30 @@ class CPAFFController extends Controller
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee,Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee, Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                     }
                     else{
-                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'App Fee, Renew Fee,Reconnect Fee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                     }
                 
                 }
                 else{
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee,Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee, Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
                     }
                     else{
-                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'App Fee, Renew Fee,Reconnect Fee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
                     }
                     // $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
@@ -1011,29 +1011,29 @@ class CPAFFController extends Controller
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee,Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, Reconnected Fee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee, Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
                     }
                     else{
-                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'App Fee, Renew Fee,Reconnect Fee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                     }
                 }
                 else{
                     if($thisMonth === 'Jan'){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee,ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee,Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
                     }
                     else if(date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'AppFee, RenewFee, DelayFee, ReconnectFee, CPA(Full-Fledged) Renewal Registration' ;
+                        $invoice->productDesc     = 'App Fee, Renew Fee, Delay Fee, Reconnect Fee, CPA(Full-Fledged) Renewal Registration' ;
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
                     }
                     else{
-                        $invoice->productDesc     = 'AppFee, RenewFee,ReconnectFee,  CPA(Full-Fledged) Renewal Registration';
+                        $invoice->productDesc     = 'App Fee, Renew Fee,Reconnect Fee,  CPA(Full-Fledged) Renewal Registration';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
                     }
                 }
@@ -1064,7 +1064,7 @@ class CPAFFController extends Controller
 
     public function approve($id)
     {
-        $old = CPAFF::orderBy('cpaff_reg_no', 'desc')->first();
+        $old = CPAFF::where('offline_user',0)->orderBy('cpaff_reg_no', 'desc')->first();
         // return $old->cpaff_reg_no;
         if($old->cpaff_reg_no == '' && $old->cpaff_reg_no == NULL){
             $reg_no = 1129;

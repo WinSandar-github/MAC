@@ -190,7 +190,7 @@ class DARegisterController extends Controller
             $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
             
             $invoice->invoiceNo = 'app_form';
-            $invoice->productDesc     = 'AppFee,' . $std->batch->course->name;
+            $invoice->productDesc     = 'App Fee,' . $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -525,7 +525,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;                
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
     
                     $student_register = new StudentRegister();
@@ -546,7 +546,7 @@ class DARegisterController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 1;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_one_pass_exam_date;
@@ -566,7 +566,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
                     
                     $student_register = new StudentRegister();
@@ -593,7 +593,7 @@ class DARegisterController extends Controller
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 2;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_two_pass_exam_date;
@@ -638,7 +638,7 @@ class DARegisterController extends Controller
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 1;
-                $student_course->offline_user  = 1;
+                $student_course->offline_user  = 0;
                 $student_course->save();                
                     
                 $student_register = new StudentRegister();
@@ -663,7 +663,7 @@ class DARegisterController extends Controller
                     $exam_register->grade           = 2;
                 } 
                 $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->exam_type_id        = $request->type;
+                $exam_register->exam_type_id        = 1;
                 $exam_register->form_type           = 1;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->da_one_pass_exam_date;
@@ -676,7 +676,7 @@ class DARegisterController extends Controller
                 $student_course->type            = $request->type_active_da2;
                 $student_course->mac_type        = $request->da_two_active_mac_type;
                 $student_course->date            = $course_date;
-                $student_course->is_finished     = 1;
+                $student_course->is_finished     = 0;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 0;
                 $student_course->offline_user  = 1;
@@ -803,7 +803,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;                
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
     
                     $student_register = new StudentRegister();
@@ -824,7 +824,7 @@ class DARegisterController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 1;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_one_pass_exam_date;
@@ -844,7 +844,7 @@ class DARegisterController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  = 1;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
                     
                     $student_register = new StudentRegister();
@@ -871,7 +871,7 @@ class DARegisterController extends Controller
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
-                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 2;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->da_two_pass_exam_date;
@@ -919,7 +919,7 @@ class DARegisterController extends Controller
                 $student_course->is_finished     = 1;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 1;
-                $student_course->offline_user  = 1;
+                $student_course->offline_user  = 0;
                 $student_course->save();
 
                 
@@ -946,7 +946,7 @@ class DARegisterController extends Controller
                     $exam_register->grade           = 2;
                 } 
                 $exam_register->batch_id            = $request->pass_batch_id;
-                $exam_register->exam_type_id        = $request->type;
+                $exam_register->exam_type_id        = 1;
                 $exam_register->form_type           = 1;
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->da_one_pass_exam_date;
@@ -959,7 +959,7 @@ class DARegisterController extends Controller
                 $student_course->type            = $request->type_active_da2;
                 $student_course->mac_type        = $request->da_two_active_mac_type;
                 $student_course->date            = $course_date;
-                $student_course->is_finished     = 1;
+                $student_course->is_finished     = 0;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 0;
                 $student_course->offline_user  = 1;

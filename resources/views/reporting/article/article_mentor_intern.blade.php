@@ -59,8 +59,8 @@
                                                     <td>{{ $m->student_info->email }}</td>
                                                     <td>{{ $m->student_info->father_name_mm}}</td>
                                                     <td>{{ $m->student_info->student_education_histroy->degree_name }}</td>
-                                                    <td>{{ $m->student_info->student_course->batch->course->name }}</td>
-                                                    <td>{{ $m->student_info->student_course->type == 1 ? "Private School" : 'MAC' }}</td>
+                                                    <td>{{ $m->student_info->student_course->batch->course->name ?? 'N/A'}}</td>
+                                                    <td>{{ $m->student_info->student_course->type && $m->student_info->student_course->type == 1 ? "Private School" : 'MAC' }}</td>
                                                     <td>{{ $diff->format("%y year") }}</td>
                                                     <td>{{ $m->contract_start_date ?? 'N/A' }}</td>
                                                     <td>{{ $m->contract_end_date ?? 'N/A' }}</td>
