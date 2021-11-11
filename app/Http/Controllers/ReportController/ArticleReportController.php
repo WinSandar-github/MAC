@@ -111,7 +111,7 @@ class ArticleReportController extends Controller
             'title' => 'အစိုးရအလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)',
             'apprentic' => $apprentic
         ];
-
+       
         return view('reporting.article.article_job_accept', compact('data'));
     }
     
