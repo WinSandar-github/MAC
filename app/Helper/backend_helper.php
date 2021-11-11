@@ -38,7 +38,7 @@ function generateNonAuditNo($id){
     if($local_foreign[0]->local_foreign_type == 1){
         switch ($org_stru_id->organization_structure_id) {
             case '1':
-                $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',1)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',1)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
                 // return $old;
                 $old_number = trim($old->accountancy_firm_reg_no, 'NCS-');
                 // return $old_number;
@@ -51,7 +51,7 @@ function generateNonAuditNo($id){
                 }
             break;
             case '2':
-                $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',2)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',2)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
                 $old_number = trim($old->accountancy_firm_reg_no, 'NCP-');
                 // return $old_number;
@@ -64,7 +64,7 @@ function generateNonAuditNo($id){
                 }
             break;
             case '3':
-                $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',3)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+                $old = AccountancyFirmInformation::where('local_foreign_type',1)->where('organization_structure_id',3)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
                 $old_number = trim($old->accountancy_firm_reg_no, 'NCC-');
                 // return $old_number;
@@ -76,19 +76,22 @@ function generateNonAuditNo($id){
                     $reg_no = 'NCC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
                 }
             break;
+            default:
+                $reg_no = '';
+            break;
         }
     }else{
-        $old = AccountancyFirmInformation::where('local_foreign_type',2)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+        $old = AccountancyFirmInformation::where('local_foreign_type',2)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
-                $old_number = trim($old->accountancy_firm_reg_no, 'NFC-');
-                // return $old_number;
-                if($old_number == null && $old_number == '')
-                {
-                    $reg_no = 'NFC-'. str_pad(27, 3, "0", STR_PAD_LEFT);
-                }
-                else{
-                    $reg_no = 'NFC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
-                }
+        $old_number = trim($old->accountancy_firm_reg_no, 'NFC-');
+        // return $old_number;
+        if($old_number == null && $old_number == '')
+        {
+            $reg_no = 'NFC-'. str_pad(27, 3, "0", STR_PAD_LEFT);
+        }
+        else{
+            $reg_no = 'NFC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
+        }
     }
 
     $non_audit = AccountancyFirmInformation::find($id);
@@ -103,7 +106,7 @@ function generateAuditNo($id){
     $org_stru_id = AccountancyFirmInformation::where('id',$id)->get('organization_structure_id');
     switch ($org_stru_id[0]->organization_structure_id) {
         case '1':
-            $old = AccountancyFirmInformation::where('organization_structure_id',1)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+            $old = AccountancyFirmInformation::where('organization_structure_id',1)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
             $old_number = trim($old->accountancy_firm_reg_no, 'ACS-');
             // return $old_number;
@@ -116,7 +119,7 @@ function generateAuditNo($id){
             }
         break;
         case '2':
-            $old = AccountancyFirmInformation::where('organization_structure_id',2)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+            $old = AccountancyFirmInformation::where('organization_structure_id',2)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
             $old_number = trim($old->accountancy_firm_reg_no, 'ACP-');
             // return $old_number;
@@ -129,7 +132,7 @@ function generateAuditNo($id){
             }
         break;
         case '3':
-            $old = AccountancyFirmInformation::where('organization_structure_id',3)->orderBy('accountancy_firm_reg_no', 'desc')->first();
+            $old = AccountancyFirmInformation::where('organization_structure_id',3)->where('offline_user',0)->orderBy('accountancy_firm_reg_no', 'desc')->first();
 
             $old_number = trim($old->accountancy_firm_reg_no, 'ACC-');
             // return $old_number;
@@ -140,6 +143,9 @@ function generateAuditNo($id){
             else{
                 $reg_no = 'ACC-'. str_pad($old_number +1, 3, "0", STR_PAD_LEFT);
             }
+        break;
+        default:
+            $reg_no = '';
         break;
     }
 
