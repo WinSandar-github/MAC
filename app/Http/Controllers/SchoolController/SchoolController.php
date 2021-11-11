@@ -3342,8 +3342,7 @@ class SchoolController extends Controller
                         $toilet_type->toilet_attach= $old_toilet_attach[$i];
                         $toilet_type->save();
                         
-                        }
-                        
+                    }                       
                    
                 }
             }
@@ -3453,4 +3452,3 @@ class SchoolController extends Controller
         ],200);
     }
 }
-
