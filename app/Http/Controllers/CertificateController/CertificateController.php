@@ -153,14 +153,38 @@ class CertificateController extends Controller
             }
             
             $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".date('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+        }else{
+            if($teacher->renew_date!=null){
+                $currentYear = $currentYear->addYears(1) ;
+            
+                if(Carbon::parse($teacher->renew_date)->format('m')=='11' || Carbon::parse($teacher->renew_date)->format('m')=='12'){
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$currentYear->format('Y') . "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+                }else{
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".date('Y') . "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);
+                }
+            }else{
+                $invoice=Invoice::when($teacher->payment_method, function($q) use ($teacher){
+                    $q->where('tranRef', '=', $teacher->payment_method);
+                })
+                ->where('student_info_id',$teacher->student_info_id)
+                ->where('invoiceNo',"init_tec".$teacher->id)
+                ->get();
+                foreach($invoice as $i){
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>" . Carbon::parse($i->dateTime)->format('d-m-Y') . "</strong>", $template->cert_data);
+                }
+                
+                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".date('Y'). "</strong>", $template->cert_data);
+            }
         }
         
 
         $template->cert_data = str_replace('{{ userImage }}', $teacher->image, $template->cert_data);
         $template->cert_data = str_replace('{{ serialNo }}', $teacher->t_code, $template->cert_data);
         $template->cert_data = str_replace('{{ dated }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ studentName }}', "<strong style='margin-left:10%;'>$teacher->father_name_eng</strong><span style='margin-left:10%;'>,$gender</span>", $template->cert_data);
-        $template->cert_data = str_replace('{{ abaName }}', "<strong style='margin-left:10%;margin-right:10%;'>$teacher->name_eng</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName }}', "<strong style='margin-left:10%;'>$teacher->father_name_eng</strong><span style='margin-left:5%;'>,$gender</span>", $template->cert_data);
+        $template->cert_data = str_replace('{{ abaName }}', "<strong style='margin-left:5%;margin-right:5%;'>$teacher->name_eng</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>$teacher->nrc_state_region/$teacher->nrc_township($teacher->nrc_citizen)$teacher->nrc_number</strong>",$template->cert_data);
         $template->cert_data = str_replace('{{ gender }}', "$gender2", $template->cert_data);
         $template->cert_data = str_replace('{{ gender }}', "$gender2", $template->cert_data);
@@ -241,16 +265,19 @@ class CertificateController extends Controller
                 $school_address=$school->renew_school_address;
             }
             if($school->initial_status==0){
-                $exp_date='12-31-'.date('Y');
+                $exp_date='31-12-'.date('Y');
                 
             }else if($school->initial_status==1){
                 $month=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('m');
-                if($month=='11' || $month=='12'){
-                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y')+3;
+                $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y');
+                $exp_date='31-12-'.$exp_date;
+            }else{
+                if($school->renew_date!=null){
+                    $month=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('m');
+                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y');
                     $exp_date='31-12-'.$exp_date;
                 }else{
-                    $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y')+2;
-                    $exp_date='31-12-'.$exp_date;
+                    $exp_date='31-12-'.date('Y');
                 }
             }
             $template->cert_data = str_replace('{{ issueDate }}', "" .  $school->s_code . " / " . $reg_date . "", $template->cert_data);

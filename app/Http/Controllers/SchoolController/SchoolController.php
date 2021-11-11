@@ -1663,12 +1663,20 @@ class SchoolController extends Controller
                     ->where('student_info_id',$infos->student_info_id)
                     ->where('invoiceNo',"init_sch".$infos->id)
                     ->get();
-                }else{
+                }else if($infos->initial_status == 1){
                     $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                         $q->where('tranRef', '=', $infos->payment_method);
                     })
                     ->where('student_info_id',$infos->student_info_id)
                     ->where('invoiceNo',"renew_sch".$infos->id)
+                    ->get();
+                }else{
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"init_sch".$infos->id)
+                    ->orWhere('invoiceNo',"renew_sch".$infos->id)
                     ->get();
                 }
                 foreach($invoice as $i){
@@ -2359,15 +2367,15 @@ class SchoolController extends Controller
                     //     $diffYear = $lastFeeDate->diffInYears($reqStopDate);
                     // }
                     if($request_stop_date_year > $last_pay_year){
-                        $lastFeeDate = Carbon::parse($last_pay_year.'-'.$currentMonth.'-'.$currentDay);
-                        $reqStopDate = Carbon::parse($request_stop_date_year.'-'.$request_stop_date_month.'-'.$request_stop_date_day);
-                        $diffYear = $lastFeeDate->diffInYears($reqStopDate);
+                         //$lastFeeDate = Carbon::parse($last_pay_year.'-'.$currentMonth.'-'.$currentDay);
+                        // $reqStopDate = Carbon::parse($request_stop_date_year.'-'.$request_stop_date_month.'-'.$request_stop_date_day);
+                        // $diffYear = $lastFeeDate->diffInYears($reqStopDate);
+                        $diffYear=$request_stop_date_year-$last_pay_year;
+                        
                     }else{
                         $diffYear = 0;
                     }
                     
-                    
-
                     $invoice = new Invoice();
                     $invoice->student_info_id = $request->student_info_id;
                     $invoice->invoiceNo = 'renew_sch'.$school->id;
