@@ -48,6 +48,7 @@
                                                     $sdate=date_create($m->contract_start_date);
                                                     $edate=date_create(date('d-M-Y'));
                                                     $diff=date_diff($sdate,$edate);
+                                                    $form_type = $m->student_info->student_course->type ?? 'N/A';
                                                 @endphp
                                                 <tr>
                                                     <td>{{ ++$k }}</td>
@@ -60,7 +61,7 @@
                                                     <td>{{ $m->student_info->father_name_mm}}</td>
                                                     <td>{{ $m->student_info->student_education_histroy->degree_name }}</td>
                                                     <td>{{ $m->student_info->student_course->batch->course->name ?? 'N/A'}}</td>
-                                                    <td>{{ $m->student_info->student_course->type && $m->student_info->student_course->type == 1 ? "Private School" : 'MAC' }}</td>
+                                                    <td>{{ $form_type == 0 ? 'Self Study' : ($form_type == 1 ? 'Private School' : 'MAC') }}</td>
                                                     <td>{{ $diff->format("%y year") }}</td>
                                                     <td>{{ $m->contract_start_date ?? 'N/A' }}</td>
                                                     <td>{{ $m->contract_end_date ?? 'N/A' }}</td>

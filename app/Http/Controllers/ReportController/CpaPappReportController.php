@@ -33,7 +33,7 @@ class CpaPappReportController extends Controller
         $data = [
             'title' => 'CPA (Full-Fledged) တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
             'fields' => [
-                        'စဥ်','CPA FF Reg No',
+                        'စဥ်','CPA(Full-Fledged) Reg No',
                         'အမည်', $first_yr_str,$second_yr_str,$third_yr_str,'total hours'
                     ],
             'cpa' => $cpa
