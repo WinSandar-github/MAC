@@ -14,7 +14,7 @@ class ExamRegister extends Model
         return $this->belongsTo(Course::class,'form_type','id');
     }
     public function batch(){
-        return $this->belongsTo(Batch::class);
+        return $this->belongsTo(Batch::class)->with('course');
     }
     public function student_info()
     {
@@ -26,6 +26,6 @@ class ExamRegister extends Model
     }
     public function subjects()
     {
-        return $this->hasMany(Subject::class,'course_id','form_type');
+        return $this->hasMany(Subject::class,'course_id','form_type')->with('module');
     }
 }

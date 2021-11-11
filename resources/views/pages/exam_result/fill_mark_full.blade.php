@@ -358,7 +358,8 @@
                                         <thead>
                                             <tr>
                                                 <th width="10%">စဉ်</th>
-                                                <th width="40%">Subject Name</th>
+                                                <th width="30%">Subject Name</th>
+                                                <th width="10%">module</th>
                                                 <th width="30%">အမှတ်ပေးရန်</th>
                                                 <th width="20%">Grade</th>
                                             </tr>
