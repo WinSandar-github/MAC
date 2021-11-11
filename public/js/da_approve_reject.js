@@ -145,7 +145,15 @@ function loadData() {
 
             student.forEach(function (student_course) {
                 // console.log('student_course',student_course)
-
+                // if(student_course[0].type==0){
+                //     $(".attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                // }else if(student_course[0].type==1){
+                //     $(".attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                // }else if(student_course[0].type==2 && student_course[0].mac_type==1){
+                //     $(".attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                // }else{
+                //     $(".attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                // }
                 let current_course = student_course.batch.course;
                 // console.log('current_course',current_course)
 

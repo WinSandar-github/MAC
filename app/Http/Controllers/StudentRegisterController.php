@@ -167,7 +167,7 @@ class StudentRegisterController extends Controller
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
                 $invoice->invoiceNo = 'self_reg_' . $std->batch->course->code;
-                $invoice->productDesc     = 'AppFee,SelfStudyRegFee,' . $std->batch->course->name;
+                $invoice->productDesc     = 'App Fee,Self-Study Reg Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee. ',' .$std->batch->course->selfstudy_registration_fee;
                 $invoice->status          = 0;
                 $invoice->save();
@@ -221,7 +221,7 @@ class StudentRegisterController extends Controller
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
                 $invoice->invoiceNo = 'prv_reg_' . $std->batch->course->code;
-                $invoice->productDesc     = 'AppFee,PrivateSchoolRegFee,' . $std->batch->course->name;
+                $invoice->productDesc     = 'App Fee,Private School Reg Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee ;
                 $invoice->status          = 0;
                 $invoice->save();
@@ -293,7 +293,7 @@ class StudentRegisterController extends Controller
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
                 $invoice->invoiceNo = 'mac_reg_' . $std->batch->course->code;
-                $invoice->productDesc     = 'AppFee,MACRegFee,CourseFee,'. $std->batch->course->name;
+                $invoice->productDesc     = 'App Fee,MAC Reg Fee,Course Fee,'. $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee;
                 $invoice->status          = 0;
                 $invoice->save();
@@ -607,7 +607,7 @@ class StudentRegisterController extends Controller
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
                 $invoice->invoiceNo = 'self_reg_' . $std->batch->course->code;
-                $invoice->productDesc     = 'AppFee,SelfStudyRegFee,' . $std->batch->course->name;
+                $invoice->productDesc     = 'App Fee,Self-Study Reg Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->selfstudy_registration_fee ;
                 $invoice->status          = 0;
                 $invoice->save();
@@ -661,7 +661,7 @@ class StudentRegisterController extends Controller
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
                 $invoice->invoiceNo = 'prv_reg_' . $std->batch->course->code;
-                $invoice->productDesc     = 'AppFee,PrivateSchoolRegFee,' . $std->batch->course->name;
+                $invoice->productDesc     = 'App Fee,Private School Reg Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee ;
                 $invoice->status          = 0;
                 $invoice->save();
@@ -733,7 +733,7 @@ class StudentRegisterController extends Controller
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
                 $invoice->invoiceNo = 'mac_reg_' . $std->batch->course->code;
-                $invoice->productDesc     = 'AppFee,MACRegFee,CourseFee,' . $std->batch->course->name;
+                $invoice->productDesc     = 'App Fee,MAC Reg Fee,Course Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee ;
                 $invoice->status          = 0;
                 $invoice->save();
