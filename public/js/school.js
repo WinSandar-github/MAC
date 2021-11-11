@@ -434,6 +434,7 @@ function getSchoolInfos(){
                     $("#school_card").append(`<a href='${PDF_URL+data.data.school_card}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
                 }
             }
+            
             if(data.data.offline_user=="true"){
                 $('.school_fee').hide();
             }else{
