@@ -676,7 +676,7 @@ class DARegisterController extends Controller
                 $student_course->type            = $request->type_active_da2;
                 $student_course->mac_type        = $request->da_two_active_mac_type;
                 $student_course->date            = $course_date;
-                $student_course->is_finished     = 1;
+                $student_course->is_finished     = 0;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 0;
                 $student_course->offline_user  = 1;
@@ -959,7 +959,7 @@ class DARegisterController extends Controller
                 $student_course->type            = $request->type_active_da2;
                 $student_course->mac_type        = $request->da_two_active_mac_type;
                 $student_course->date            = $course_date;
-                $student_course->is_finished     = 1;
+                $student_course->is_finished     = 0;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 0;
                 $student_course->offline_user  = 1;

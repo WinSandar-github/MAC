@@ -57,6 +57,7 @@ function loadOfflineDACPAData(){
 
                 let exam_register = student_course.student_info.exam_registers;
                 let student_course_regs = student_course.student_info.student_course_regs;
+                let student_course_reg = student_course.student_info.student_course_regs.slice(-1);
                 // console.log('exam_register',exam_register);
                 // console.log('student_course_regs',student_course_regs);
 
@@ -95,6 +96,20 @@ function loadOfflineDACPAData(){
                 }
 
                 $('#current_batch_name').append(student_course.batch.name);
+
+                if(student_course_reg[0].type==0){
+                    $("#current_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                }else if(student_course_reg[0].type==1){
+                    $("#current_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                }else if(student_course_reg[0].type==2 && student_course_reg[0].mac_type==1){
+                    $("#current_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                }else if(student_course_reg[0].type==2 && student_course_reg[0].mac_type==2){
+                    $("#current_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                }else {
+                    $("#current_attend_place").append("-");
+                }
+                
+
                 $("#date").append(element.date);
                 // $("#batch_name").append(student_course.batch.name);
                 // if (element.gov_staff == 1) {
@@ -385,13 +400,13 @@ function loadOfflineDACPAData(){
                 attached_file = element.student_education_histroy.certificate;
                 //document.getElementById('attach_file').src=attached_file;
                 $.ajax({
-                    url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
+                    url: BACKEND_URL + "/get_passed_exam_existing_student/" + element.id,
                     type: 'get',
                     success: function (result) {
                         if (result.data.length != 0) {
-                            // console.log(result.data,"aa");
-                            result.data.forEach(function (course) {
-                                var success_year = new Date(course.updated_at);
+                            
+                            result.data.forEach(function (course) {  
+                                // var success_year = new Date(course.updated_at);
                                 var module_name;
                                 if(course.is_full_module==1){
                                     module_name="Module 1";
@@ -405,12 +420,25 @@ function loadOfflineDACPAData(){
                                 else{
                                     module_name="-";
                                 }
-                                course_html += `<tr>
+                                
+                                if(course.passed_date && course.updated_at){
+                                    var pass_year = new Date(course.passed_date);
+                                    course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${module_name}</td>
-                                                    <td>${success_year.getFullYear()}</td>
-                                                </tr>`
+                                                    <td>${pass_year.getFullYear()}</td>
+                                                </tr>`;
+                                                
+                                }else if(!course.passed_date && course.updated_at){
+                                    course_html += `<tr>
+                                                    <td>${course.course.name}</td>
+                                                    <td>${course.batch.name}</td>
+                                                    <td>${module_name}</td>
+                                                    <td>-</td>
+                                                </tr>`;
+                                }                               
+                               
                             });
                             $('.course').html(course_html)
                         }

@@ -484,6 +484,18 @@ class ExamRegisterController extends Controller
 
     }
 
+    public function getPassedExamByExistingStudentID($id)
+    {
+        $exam_register = ExamRegister::where('student_info_id', $id)
+                                        ->where('grade', 1)
+                                        // ->where('exam_type_id',1)
+                                        ->with('course', 'batch')->get();
+        return response()->json([
+            'data' => $exam_register
+        ], 200);
+
+    }
+
     public function getExamStatus($id)
     {
         $stu_course_reg = StudentCourseReg::where('student_info_id', $id)->with('batch')->latest()->first();
