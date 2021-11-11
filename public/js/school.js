@@ -173,9 +173,11 @@ function getSchoolInfos(){
             }
             if(data.data.attend_course!=null && data.data.attend_course.replace(/[\'"[\]']+/g, '')!="null"){
                 $('.attend_course-class').show();
-                loadStudentCourse(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
+                loadStudentCourse(data.data.attend_course);
+                //loadStudentCourse(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
             }else{
-                loadStudentCourse(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
+                loadStudentCourse(data.data.renew_course);
+                //loadStudentCourse(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
             }
             if(data.data.own_type!=null){
                 $('.own_type-class').hide();

@@ -1128,8 +1128,16 @@ function showResignArticle(id) {
 }
 
 function loadResignArticle() {
-    var id = localStorage.getItem("article_id");
-    $("input[name = article_id]").val(id);
+    
+    let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = localStorage.getItem("article_id");
+            $("input[name = article_id]").val(id);
+        }
     $.ajax({
         url: BACKEND_URL + "/resign_article_show/" + id,
         type: 'get',
