@@ -148,6 +148,7 @@ class ArticleController extends Controller
             $std_info->nrc_citizen = $request->nrc_citizen;
             $std_info->nrc_number = $request->nrc_number;
             $std_info->nrc_front = $nrc_front;
+            $std_info->cpersonal_no = $request->personal_no;
             $std_info->nrc_back = $nrc_back;
             $std_info->image = $image;
             $std_info->race = $request->race;
