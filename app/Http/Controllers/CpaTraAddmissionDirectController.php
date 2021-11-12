@@ -751,6 +751,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
+                    $exam_register->pass_module         = 3;
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 3;
                     $exam_register->status              = 1;
@@ -797,6 +798,7 @@ class CpaTraAddmissionDirectController extends Controller
                     }   
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
+                    $exam_register->pass_module         = $request->module;
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 4;
                     $exam_register->status              = 1;
@@ -896,7 +898,8 @@ class CpaTraAddmissionDirectController extends Controller
                 $exam_register->date                = $date;
                 
                 if($request->module == 1 || $request->module == 2){
-                    $exam_register->is_full_module      = $request->module;
+                    $exam_register->is_full_module  = $request->module;
+                    $exam_register->pass_module     = $request->module;
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
@@ -917,7 +920,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->type            = $request->active_type;
                 $student_course->mac_type        = $request->active_mac_type;
                 $student_course->date            = $course_date;
-                $student_course->is_finished     = 1;
+                $student_course->is_finished     = 0;
                 $student_course->status          = 0;
                 // $student_course->qt_entry     = $request->qt_entry;
                 $student_course->approve_reject_status  = 0;
@@ -925,26 +928,6 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->save();
     
             }
-            
-                   
-            //invoice
-            // $invoice = new Invoice();
-            // $invoice->student_info_id = $student_info->id;
-
-            // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // // $invoice->invoiceNo       = $invNo;
-
-            // $invoice->invoiceNo = '';
-
-            // $invoice->name_eng        = $request->name_eng;
-            // $invoice->email           = $request->email;
-            // $invoice->phone           = $request->phone;
-
-            // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-            // $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
-            // $invoice->amount          = $std->batch->course->form_fee;
-            // $invoice->status          = 0;
-            // $invoice->save();
 
             return response()->json($student_info,200);
         } catch (\Exception $e) {
@@ -1098,6 +1081,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
+                    $exam_register->pass_module         = 3;
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 3;
                     $exam_register->status              = 1;
@@ -1143,6 +1127,7 @@ class CpaTraAddmissionDirectController extends Controller
                     }   
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
+                    $exam_register->pass_module         = $request->module;
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 4;
                     $exam_register->status              = 1;
@@ -1246,7 +1231,8 @@ class CpaTraAddmissionDirectController extends Controller
                 $exam_register->date                = $date;
                 
                 if($request->module == 1 || $request->module == 2){
-                    $exam_register->is_full_module      = $request->module;
+                    $exam_register->is_full_module  = $request->module;
+                    $exam_register->pass_module     = $request->module;
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
@@ -1267,7 +1253,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->type            = $request->active_type;
                 $student_course->mac_type        = $request->active_mac_type;
                 $student_course->date            = $course_date;
-                $student_course->is_finished     = 1;
+                $student_course->is_finished     = 0;
                 $student_course->status          = 0;
                 // $student_course->qt_entry     = $request->qt_entry;
                 $student_course->approve_reject_status  = 0;
