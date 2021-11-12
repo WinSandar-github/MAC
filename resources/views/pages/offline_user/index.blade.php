@@ -551,9 +551,9 @@
                                                     <tr>
                                                         <th class="bold-font-weight">No</th>
                                                         <th class="bold-font-weight">Action</th>
-                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Name</th>
                                                         <th class="bold-font-weight">Email</th>
-                                                        <th class="bold-font-weight">Registration No</th>
+                                                        <th class="bold-font-weight">PAPP Reg;No</th>
                                                         <th class="bold-font-weight">Phone</th>
                                                         <th class="bold-font-weight">Status</th>
                                                     </tr>
@@ -569,9 +569,9 @@
                                                     <tr>
                                                         <th class="bold-font-weight">No</th>
                                                         <th class="bold-font-weight">Action</th>
-                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Name</th>
                                                         <th class="bold-font-weight">Email</th>
-                                                        <th class="bold-font-weight">Registration No</th>
+                                                        <th class="bold-font-weight">PAPP Reg;No</th>
                                                         <th class="bold-font-weight">Phone</th>
                                                         <th class="bold-font-weight">Status</th>
                                                     </tr>
@@ -587,9 +587,9 @@
                                                     <tr>
                                                         <th class="bold-font-weight">No</th>
                                                         <th class="bold-font-weight">Action</th>
-                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Name</th>
                                                         <th class="bold-font-weight">Email</th>
-                                                        <th class="bold-font-weight">Registration No</th>
+                                                        <th class="bold-font-weight">PAPP Reg;No</th>
                                                         <th class="bold-font-weight">Phone</th>
                                                         <th class="bold-font-weight">Status</th>
                                                     </tr>
@@ -1776,7 +1776,7 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     {data: 'student_info.name_mm', name: 'Name'},
                     {data: 'student_info.email', name: 'Email'},
-                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},
+                    {data: 'papp_reg_no', name: 'PAPP Reg; No.',className: "set-text-center"},
                     {data: 'student_info.phone', name: 'Phone'},
                     {data: 'status', name: 'Status'},
                 ],
@@ -1795,7 +1795,7 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     {data: 'student_info.name_mm', name: 'Name'},
                     {data: 'student_info.email', name: 'Email'},
-                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},
+                    {data: 'papp_reg_no', name: 'PAPP Reg; No.',className: "set-text-center"},
                     {data: 'student_info.phone', name: 'Phone'},
                     {data: 'status', name: 'Status'},
                 ],
@@ -1814,7 +1814,7 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     {data: 'student_info.name_mm', name: 'Name'},
                     {data: 'student_info.email', name: 'Email'},
-                    {data: 'papp_reg_no', name: 'Reg; No.',className: "set-text-center"},
+                    {data: 'papp_reg_no', name: 'PAPP Reg; No.',className: "set-text-center"},
                     {data: 'student_info.phone', name: 'Phone'},
                     {data: 'status', name: 'Status'},
                 ],
