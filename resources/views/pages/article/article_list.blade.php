@@ -698,7 +698,7 @@
         });
 
         //$('#tbl_firm_article_pending').DataTable().column(6).visible(false);
-        //$('#tbl_firm_article_pending').DataTable().column(8).visible(false);
+        $('#tbl_firm_article_pending').DataTable().column(11).visible(false);
 
 
         var table_approve =$('#tbl_firm_article_approved').DataTable({
