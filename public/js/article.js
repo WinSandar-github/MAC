@@ -230,6 +230,8 @@ function loadArticle()
             }
             else if(data.article_form_type == 'c2_pass_renew'){
               $("#previous_info_box2").css('display','block');
+            }else if(data.article_form_type == 'c2_pass/qt_pass_3yr'){
+                $("#previous_info_box3").css('display','block');
             }
 
             var form_type;
@@ -252,6 +254,9 @@ function loadArticle()
                     break;
                 case 'c12_renew':
                     form_type = 'CPA I,II Renew';
+                    break;
+                case 'c2_pass/qt_pass_3yr':
+                    form_type = 'CPA II Pass/QT Pass 3 yr';
                     break;
                 default:
                     form_type = 'Resign';
@@ -291,7 +296,21 @@ function loadArticle()
             else{
               $(".call_gender").text("ရှင့်");
             }
-
+            if(student_info.gender == "1"){
+                $(".call_gender3").text("ခင်ဗျာ");
+                
+              }
+              else{
+                $(".call_gender3").text("ရှင့်");
+                
+              }
+              if(data.gender == "1"){
+                 $("#gender3").val("ကျွန်တော်");
+              }
+              else{
+                $("#gender3").val("ကျွန်မ");
+              }
+              $("#course_exam").val(data.course_exam);
             if (data.article_form_type == "qt_firm") {
                 document.getElementById("qt_row").style.display = "block";
                 document.getElementById("other_row").style.display = "none";

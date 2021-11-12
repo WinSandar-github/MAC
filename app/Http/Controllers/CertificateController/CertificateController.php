@@ -131,14 +131,16 @@ class CertificateController extends Controller
 
             $currentYear = Carbon::now();
         if($teacher->initial_status==1){
-            $currentYear = $currentYear->addYears(1) ;
-            
+            //$currentYear = $currentYear->addYears(1) ;
+            $from = Carbon::parse($teacher->renew_date)->format('Y') ;
+            $from=$from+1;
+            $to=$teacher->renew_date;
             if(Carbon::parse($teacher->renew_date)->format('m')=='11' || Carbon::parse($teacher->renew_date)->format('m')=='12'){
-                $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$currentYear->format('Y') . "</strong>", $template->cert_data);
-                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+                $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$from . "</strong>", $template->cert_data);
+                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$from. "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
             }else{
-                $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".date('Y') . "</strong>", $template->cert_data);
-                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);
+                $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$to->format('Y') . "</strong>", $template->cert_data);
+                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$to->format('Y'). "</strong>", $template->cert_data);
             }
             
         }else if($teacher->initial_status==0){
@@ -150,19 +152,22 @@ class CertificateController extends Controller
             ->get();
             foreach($invoice as $i){
                 $template->cert_data = str_replace('{{ validFrom }}', "<strong>" . Carbon::parse($i->dateTime)->format('d-m-Y') . "</strong>", $template->cert_data);
+                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-". Carbon::parse($i->dateTime)->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+                
             }
             
-            $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".date('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+            
         }else{
             if($teacher->renew_date!=null){
-                $currentYear = $currentYear->addYears(1) ;
-            
+                //$currentYear = $currentYear->addYears(1) ;
+                $from = $teacher->renew_date+1 ;
+                $to=$teacher->renew_date;
                 if(Carbon::parse($teacher->renew_date)->format('m')=='11' || Carbon::parse($teacher->renew_date)->format('m')=='12'){
-                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$currentYear->format('Y') . "</strong>", $template->cert_data);
-                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$from->format('Y') . "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$from->format('Y'). "</strong>", $template->cert_data);//. Carbon::parse($teacher->to_valid_date)->format('d-m-Y') .
                 }else{
-                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".date('Y') . "</strong>", $template->cert_data);
-                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$currentYear->format('Y'). "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validFrom }}', "<strong>01-01-".$to->format('Y') . "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".$to->format('Y'). "</strong>", $template->cert_data);
                 }
             }else{
                 $invoice=Invoice::when($teacher->payment_method, function($q) use ($teacher){
@@ -173,16 +178,24 @@ class CertificateController extends Controller
                 ->get();
                 foreach($invoice as $i){
                     $template->cert_data = str_replace('{{ validFrom }}', "<strong>" . Carbon::parse($i->dateTime)->format('d-m-Y') . "</strong>", $template->cert_data);
+                    $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".Carbon::parse($i->dateTime)->format('Y'). "</strong>", $template->cert_data);
                 }
                 
-                $template->cert_data = str_replace('{{ validTo }}', "<strong>31-12-".date('Y'). "</strong>", $template->cert_data);
+                
             }
         }
-        
+        if($teacher->from_valid_date!=null){
+            $from_valid_date=Carbon::parse($teacher->from_valid_date)->format('d-m-Y');
+            
+        }else{
+            $invoice=Invoice::where('student_info_id',$teacher->student_info_id)->first();
+            $from_valid_date=Carbon::parse($invoice->dateTime)->format('d-m-Y');
+            
+        }
 
         $template->cert_data = str_replace('{{ userImage }}', $teacher->image, $template->cert_data);
         $template->cert_data = str_replace('{{ serialNo }}', $teacher->t_code, $template->cert_data);
-        $template->cert_data = str_replace('{{ dated }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ dated }}', "<strong>" . $from_valid_date . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ studentName }}', "<strong style='margin-left:10%;'>$teacher->father_name_eng</strong><span style='margin-left:5%;'>,$gender</span>", $template->cert_data);
         $template->cert_data = str_replace('{{ abaName }}', "<strong style='margin-left:5%;margin-right:5%;'>$teacher->name_eng</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>$teacher->nrc_state_region/$teacher->nrc_township($teacher->nrc_citizen)$teacher->nrc_number</strong>",$template->cert_data);
@@ -242,12 +255,14 @@ class CertificateController extends Controller
             collect($courseType)->map(function($val){
                 return $val . " helll ";
             });
-
+            
             $template = DB::table('certificates')->where('cert_code', '=', $req->course_code)->first();
             if($school->from_valid_date!=null){
                 $reg_date=Carbon::createFromFormat('Y-m-d', $school->from_valid_date)->format('d-m-Y');
             }else{
-                $reg_date=Carbon::createFromFormat('Y-m-d', $school->reg_date)->format('d-m-Y');
+                $invoice=Invoice::where('student_info_id',$school->student_info_id)->first();
+                //$currentDate = Carbon::now()->addYears(3) ;
+                $reg_date=Carbon::createFromFormat('Y-m-d', $invoice->dateTime)->format('d-m-Y');
             }
             if($school->school_name!=null){
                 $school_name=$school->school_name;
@@ -265,7 +280,19 @@ class CertificateController extends Controller
                 $school_address=$school->renew_school_address;
             }
             if($school->initial_status==0){
-                $exp_date='31-12-'.date('Y');
+                //$exp_date='31-12-'.date('Y');
+                $invoice=Invoice::when($school->payment_method, function($q) use ($school){
+                    $q->where('tranRef', '=', $school->payment_method);
+                })
+                ->where('student_info_id',$school->student_info_id)
+                ->where('invoiceNo',"init_sch".$school->id)
+                
+                ->get();
+                //$currentDate = Carbon::now()->addYears(3) ;
+                foreach($invoice as $i){
+                    $exp_date='31-12-'.Carbon::createFromFormat('Y-m-d', $school->to_valid_date)->format('Y');
+                        
+                }
                 
             }else if($school->initial_status==1){
                 $month=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('m');
@@ -277,7 +304,17 @@ class CertificateController extends Controller
                     $exp_date=Carbon::createFromFormat('Y-m-d', $school->renew_date)->format('Y');
                     $exp_date='31-12-'.$exp_date;
                 }else{
-                    $exp_date='31-12-'.date('Y');
+                    // $exp_date='31-12-'.date('Y');
+                    $invoice=Invoice::when($school->payment_method, function($q) use ($school){
+                        $q->where('tranRef', '=', $school->payment_method);
+                    })
+                    ->where('student_info_id',$school->student_info_id)
+                    ->where('invoiceNo',"init_sch".$school->id)
+                    ->get();
+                    foreach($invoice as $i){
+                        $exp_date='31-12-'.Carbon::createFromFormat('Y-m-d', $school->to_valid_date)->format('Y');
+                            
+                    }
                 }
             }
             $template->cert_data = str_replace('{{ issueDate }}', "" .  $school->s_code . " / " . $reg_date . "", $template->cert_data);
