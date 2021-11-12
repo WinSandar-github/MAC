@@ -28,6 +28,8 @@ class CreateCoursesTable extends Migration
             $table->string('code','20');
             $table->string('requirement_id');
             $table->string('description')->nullable();
+            $table->string('da_subject_fee')->nullable();
+            $table->string('cpa_subject_fee')->nullable();
             $table->timestamps();
         });
     }
