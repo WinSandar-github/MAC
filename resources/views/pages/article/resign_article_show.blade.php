@@ -345,8 +345,8 @@
 <script src="{{ asset('js/article.js') }}"></script>
 <script>
     loadResignArticle();
-		var article_id = localStorage.getItem("article_id");
-		autoLoadPaymentResign(article_id);
+		// var article_id = localStorage.getItem("article_id");
+		// autoLoadPaymentResign(article_id);
 </script>
 <script>
 

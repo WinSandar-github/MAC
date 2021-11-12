@@ -469,6 +469,10 @@ Route::patch('/create_done_form_link/{id}', 'ArticleController\ArticleController
 Route::patch('/gov_create_done_form_link/{id}', 'ArticleController\ArticleController@govCreateDoneFormLink');
 Route::post('/continue_article', 'ArticleController\ArticleController@continueArticle');
 
+Route::post('/update_reject_article', 'ArticleController\ArticleController@updateRejectFirmArticle');
+Route::post('/update_reject_gov_article', 'ArticleController\ArticleController@updateRejectGovArticle');
+Route::post('/update_reject_resign_article', 'ArticleController\ArticleController@updateRejectResignArticle');
+Route::post('/update_reject_renew_article', 'ArticleController\ArticleController@updateRejectRenewArticle');
 
 // Payment
 Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
