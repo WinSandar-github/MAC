@@ -1090,7 +1090,8 @@ class CpaTraAddmissionDirectController extends Controller
                     // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                     $exam_register->save();
                 }
-
+           
+                // info of da 2 pass info in da2 existing form
                 if($request->batch_id !== "null"){ 
                    
                     $student_course = new StudentCourseReg();
@@ -1102,7 +1103,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 1;
-                    $student_course->offline_user  =0;
+                    $student_course->offline_user  = 0;
                     $student_course->save();
                     
                     $student_register = new StudentRegister();
@@ -1162,6 +1163,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->offline_user  = 1;
                     $student_course->save();
                 }
+                
             }
             else{
 
