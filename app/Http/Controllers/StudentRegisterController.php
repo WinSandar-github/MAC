@@ -480,6 +480,7 @@ class StudentRegisterController extends Controller
 
     public function store_student_app_reg(Request $request)
     {
+         
         // $date = date('Y-m-d');
         $course_date = date('Y-m-d');
 
@@ -534,21 +535,22 @@ class StudentRegisterController extends Controller
         $student_job->save();
 
         // $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
+        if($student_info->offline_user !== 1)
+        {
+            $student_course = new StudentCourseReg();
+            $student_course->student_info_id = $student_info->id;
+            $student_course->batch_id        = $request->batch_id;
+            $student_course->date            = $course_date;
+            $student_course->status          = 1;
+            $student_course->type            = $request->type;
 
-        $student_course = new StudentCourseReg();
-        $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = $course_date;
-        $student_course->status          = 1;
-        $student_course->type            = $request->type;
+            if($request->type == 2){
+                $student_course->mac_type          = $request->mac_type;
+            }
 
-        if($request->type == 2){
-            $student_course->mac_type          = $request->mac_type;
+            $student_course->approve_reject_status = 1;
+            $student_course->save();
         }
-
-        $student_course->approve_reject_status = 1;
-        $student_course->save();
-
         switch ($request->type) {
             case 0:
                 if (isset($request->reg_reason)) {
