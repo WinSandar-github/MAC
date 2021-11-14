@@ -180,7 +180,7 @@ class ArticleController extends Controller
             $acc_app->exp_start_date = $request->previous_papp_start_date;
             $acc_app->exp_end_date = $request->previous_papp_end_date;
             $acc_app->total_experience = json_encode($total_experience);
-            $acc_app->gender = $request->gender;
+            $acc_app->gender = $request->gender2;
             $acc_app->course_part = $request->course_part;
             $acc_app->school_name = $request->school_name;
             $acc_app->attend_or_fail = $request->attend_fail;
@@ -189,6 +189,7 @@ class ArticleController extends Controller
             $acc_app->resign_status = 0;
             $acc_app->status = 0;
             $acc_app->done_status = 0;
+            $acc_app->course_exam = $request->course_exam;
             $acc_app->save();
         if($degrees_certificates!=null){
             $degrees_certificates=implode(',', $degrees_certificates);

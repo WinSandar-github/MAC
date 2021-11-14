@@ -246,7 +246,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
                                             <table id="tbl_school_cessation_pending" class="table table-hover text-nowrap" style="width:100%;">
-                                                        <thead class="text-nowrap">
+                                                        <thead >
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
@@ -523,7 +523,7 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1,
+                    d.status    = 1
                     d.initial_status= 2
                 }
             
@@ -540,9 +540,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'renew_date', name: 'renew_date'},
-                // {data: 'payment_date', name: 'payment_date'},
-                // {data: 'status', name: 'status'},
-                // {data: 'payment_method', name: 'payment_method'},
+                
                 {data: 'card', name: 'card'},
                 {data: 'remark', name: 'remark'},
             ],
