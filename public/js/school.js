@@ -130,7 +130,11 @@ function getSchoolInfos(){
             $('.school_fee').show();
             if(data.data.approve_reject_status != 0){
                 $("#approve_reject").hide();
-                $('#cessation-btn').show();
+                if(data.data.initial_status==2){
+                    $('#cessation-btn').hide();
+                }else{
+                    $('#cessation-btn').show();
+                }
                 
             }else{
                 $("#approve_reject").show();

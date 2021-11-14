@@ -56,6 +56,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('school_name')->nullable();
             $table->string('attend_or_fail')->nullable();
             $table->boolean('done_status')->default(0);
+            $table->string('course_exam')->nullable();
             $table->timestamps();
             $table->boolean('offline_user')->default(0);
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
