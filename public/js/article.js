@@ -1214,7 +1214,7 @@ function loadResignArticle() {
 
             $('#name_mm').val(student_info.name_mm);
             $("#name_eng").val(student_info.name_eng);
-            $("#personal_no").val(student_info.personal_no);
+            $("#personal_no").val(student_info.cpersonal_no);
             $("#nrc_state_region").val(student_info.nrc_state_region);
             $("#nrc_township").val(student_info.nrc_township);
             $("#nrc_citizen").val(student_info.nrc_citizen);
