@@ -91,17 +91,6 @@ class ReportController extends Controller
                         return "-";
                     }
                 })
-                ->addColumn('pass_module', function ($infos) {
-                    if ($infos->pass_module == 1) {
-                        return "Module 1";
-                    } else if ($infos->pass_module == 2) {
-                        return "Module 2";
-                    } else if ($infos->pass_module == 3){
-                        return "All Module";
-                    }else {
-                        return "-";
-                    }
-                })
                 ->addColumn('age', function ($infos) {
                     return Carbon::parse($infos->student_info->date_of_birth)->age;
                 })
