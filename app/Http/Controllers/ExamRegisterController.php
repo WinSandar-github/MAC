@@ -89,7 +89,8 @@ class ExamRegisterController extends Controller
        $invoice->email           = $student_info->email;
        $invoice->phone           = $student_info->phone;
        
-       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code ;
        $invoice->productDesc     = 'App Fee,DA Exm Reg Fee,' . $std->batch->course->name;
@@ -455,7 +456,8 @@ class ExamRegisterController extends Controller
        $invoice->email           = $student_info->email;
        $invoice->phone           = $student_info->phone;
        
-       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code;
        $invoice->productDesc     = 'App Fee,CPA Exm Reg Fee,' . $std->batch->course->name;

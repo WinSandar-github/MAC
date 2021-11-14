@@ -205,7 +205,7 @@
                     {data: 'age', name: 'age'},
                     {data: 'gender', name: 'gender'},
                     {data: 'gov_staff', name: 'gov_staff'},
-                    {data: 'module', name: 'Module'}, 
+                    {data: 'pass_module', name: 'Module'}, 
                     {data: 'remark', name: 'remark'}, 
 
                     

@@ -494,6 +494,10 @@ class StudentRegisterController extends Controller
 
         $student_info = StudentInfo::find($request->student_id);
 
+        // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+        // return $std;
+       
+
         $student_info->approve_reject_status = 1;
         
         if($request->direct_degree)
@@ -606,7 +610,8 @@ class StudentRegisterController extends Controller
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
                 
-                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+              
 
                 $invoice->invoiceNo = 'self_reg_' . $std->batch->course->code;
                 $invoice->productDesc     = 'App Fee,Self-Study Reg Fee,' . $std->batch->course->name;
@@ -660,7 +665,8 @@ class StudentRegisterController extends Controller
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
                 
-                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+
 
                 $invoice->invoiceNo = 'prv_reg_' . $std->batch->course->code;
                 $invoice->productDesc     = 'App Fee,Private School Reg Fee,' . $std->batch->course->name;
@@ -731,8 +737,8 @@ class StudentRegisterController extends Controller
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-                
-                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
 
                 $invoice->invoiceNo = 'mac_reg_' . $std->batch->course->code;
                 $invoice->productDesc     = 'App Fee,MAC Reg Fee,Course Fee,' . $std->batch->course->name;
