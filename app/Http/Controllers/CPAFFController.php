@@ -1291,7 +1291,7 @@ class CPAFFController extends Controller
         $cpa_ff = CPAFF::with('student_info','student_job', 'student_education_histroy')
                       ->where('status','=',$status)
                       ->where('is_renew','=',$is_renew)
-                      ->where('offline_user','=',0)
+                      // ->where('offline_user','=',0)
                       ->get();
               return DataTables::of($cpa_ff)
                 ->addColumn('action', function ($infos) {
