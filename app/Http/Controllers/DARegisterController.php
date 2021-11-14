@@ -546,6 +546,8 @@ class DARegisterController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
+                    $exam_register->pass_module      = 3;
+
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 1;
                     $exam_register->status              = 1;
@@ -593,6 +595,8 @@ class DARegisterController extends Controller
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
+                    $exam_register->pass_module         = $request->module;
+
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 2;
                     $exam_register->status              = 1;
@@ -658,6 +662,8 @@ class DARegisterController extends Controller
                 $exam_register->date                = $date;
                 if($request->module==1 || $request->module==2){                    
                     $exam_register->is_full_module      = $request->module;
+                    $exam_register->pass_module      = $request->module;
+
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
@@ -824,6 +830,8 @@ class DARegisterController extends Controller
                     $exam_register->grade               = 1;
                     $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = 3;
+                    $exam_register->pass_module      = 3;
+
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 1;
                     $exam_register->status              = 1;
@@ -871,6 +879,8 @@ class DARegisterController extends Controller
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
+                    $exam_register->pass_module         = $request->module;
+
                     $exam_register->exam_type_id        = 1;
                     $exam_register->form_type           = 2;
                     $exam_register->status              = 1;
@@ -920,9 +930,7 @@ class DARegisterController extends Controller
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 1;
                 $student_course->offline_user  = 0;
-                $student_course->save();
-
-                
+                $student_course->save();                
                     
                 $student_register = new StudentRegister();
                 $student_register->student_info_id  = $student_info->id;
@@ -941,6 +949,8 @@ class DARegisterController extends Controller
                 $exam_register->date                = $date;
                 if($request->module==1 || $request->module==2){                    
                     $exam_register->is_full_module      = $request->module;
+                    $exam_register->pass_module      = $request->module;
+
                     $exam_register->grade           = 1;
                 }else{
                     $exam_register->grade           = 2;
@@ -1003,7 +1013,7 @@ class DARegisterController extends Controller
                         ->where('qt_entry','=',0)                      
                         ->where('offline_user','=',1)
                         ->where('approve_reject_status','=',$request->status)
-                        ->get();
+                        ->orderBy('id','desc')->get();
 
         // return $student_infos;               
         return DataTables::of($student_infos)

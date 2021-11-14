@@ -360,7 +360,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        {{-- <div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
                             </div>
@@ -382,7 +382,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-md-8">
                         <div class="card">
