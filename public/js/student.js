@@ -180,6 +180,7 @@ function loadStudentSelfStudy() {
             var element = data.data;
             // console.log('element', element);
             let student_course_regs = element.student_info.student_course_regs.slice(-1);
+            // console.log('student_course_regs',element.student_info.student_course_regs)
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
             // $("#student_dob").append(element.student_info.date_of_birth);
@@ -191,6 +192,19 @@ function loadStudentSelfStudy() {
             }else{
                 $("#student_registration_no").append(student_course_regs[0].sr_no);
             }
+
+            // if(student_course_regs[0].type == 0){
+            //     $("#attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+            // }else if(student_course_regs[0].type == 1){
+            //     $("#attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+            // }else if(student_course_regs[0].type ==2 && student_course_regs[0].mac_type == 1){
+            //     $("#attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+            // }else if(student_course_regs[0].type == 2 && student_course_regs[0].mac_type == 2){
+            //     $("#attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+            // }else {
+            //     $("#attend_place").append("-");
+            // }
+
             
             if (element.reg_reason) {
                 $("#student_registration_reason").append(element.reg_reason);
