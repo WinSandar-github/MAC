@@ -480,6 +480,7 @@ class StudentRegisterController extends Controller
 
     public function store_student_app_reg(Request $request)
     {
+         
         // $date = date('Y-m-d');
         $course_date = date('Y-m-d');
 
@@ -492,6 +493,10 @@ class StudentRegisterController extends Controller
         $invoice_date = date('Y-m-d');
 
         $student_info = StudentInfo::find($request->student_id);
+
+        // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+        // return $std;
+       
 
         $student_info->approve_reject_status = 1;
         
@@ -534,21 +539,22 @@ class StudentRegisterController extends Controller
         $student_job->save();
 
         // $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
+        if($student_info->offline_user !== 1)
+        {
+            $student_course = new StudentCourseReg();
+            $student_course->student_info_id = $student_info->id;
+            $student_course->batch_id        = $request->batch_id;
+            $student_course->date            = $course_date;
+            $student_course->status          = 1;
+            $student_course->type            = $request->type;
 
-        $student_course = new StudentCourseReg();
-        $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = $course_date;
-        $student_course->status          = 1;
-        $student_course->type            = $request->type;
+            if($request->type == 2){
+                $student_course->mac_type          = $request->mac_type;
+            }
 
-        if($request->type == 2){
-            $student_course->mac_type          = $request->mac_type;
+            $student_course->approve_reject_status = 1;
+            $student_course->save();
         }
-
-        $student_course->approve_reject_status = 1;
-        $student_course->save();
-
         switch ($request->type) {
             case 0:
                 if (isset($request->reg_reason)) {
@@ -604,7 +610,8 @@ class StudentRegisterController extends Controller
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
                 
-                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+              
 
                 $invoice->invoiceNo = 'self_reg_' . $std->batch->course->code;
                 $invoice->productDesc     = 'App Fee,Self-Study Reg Fee,' . $std->batch->course->name;
@@ -658,7 +665,8 @@ class StudentRegisterController extends Controller
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
                 
-                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+
 
                 $invoice->invoiceNo = 'prv_reg_' . $std->batch->course->code;
                 $invoice->productDesc     = 'App Fee,Private School Reg Fee,' . $std->batch->course->name;
@@ -729,8 +737,8 @@ class StudentRegisterController extends Controller
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-                
-                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
 
                 $invoice->invoiceNo = 'mac_reg_' . $std->batch->course->code;
                 $invoice->productDesc     = 'App Fee,MAC Reg Fee,Course Fee,' . $std->batch->course->name;

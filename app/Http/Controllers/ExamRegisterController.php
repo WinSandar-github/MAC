@@ -89,7 +89,8 @@ class ExamRegisterController extends Controller
        $invoice->email           = $student_info->email;
        $invoice->phone           = $student_info->phone;
        
-       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code ;
        $invoice->productDesc     = 'App Fee,DA Exm Reg Fee,' . $std->batch->course->name;
@@ -408,8 +409,8 @@ class ExamRegisterController extends Controller
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
         $type = $exam_type[0]['type'];
-        $batch = StudentCourseReg::where('student_info_id', $student_info_id)->latest()->get('batch_id');
-        $batch_id = $batch[0]['batch_id'];
+        // $batch = StudentCourseReg::where('student_info_id', $student_info_id)->latest()->get('batch_id');
+        // $batch_id = $batch[0]['batch_id'];
 
 
         // $student_info_id = $request->student_id;
@@ -434,7 +435,7 @@ class ExamRegisterController extends Controller
         // $exam->private_school_id = $request->private_school_id;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 0;
-        $exam->batch_id = $batch_id;
+        $exam->batch_id = $request->batch_id;
         $exam->is_full_module = $request->is_full_module;
         $exam->exam_department = $request->exam_department;
         //exam type id mean mac self study private school
@@ -455,7 +456,8 @@ class ExamRegisterController extends Controller
        $invoice->email           = $student_info->email;
        $invoice->phone           = $student_info->phone;
        
-       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
+
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code;
        $invoice->productDesc     = 'App Fee,CPA Exm Reg Fee,' . $std->batch->course->name;
