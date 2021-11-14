@@ -555,19 +555,27 @@ class TeacherController extends Controller
             return DataTables::of($teachers)
                 ->addColumn('action', function ($infos) {
                     $btn='';
-                    if($infos->initial_status==0 ||$infos->initial_status==2){
+                    if($infos->initial_status==0){
                         $btn="<div class='btn-group'>
                                     <a href='teacher_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
                                         <li class='fa fa-eye fa-sm'></li>
                                     </a>
                                 </div>";
                         return $btn;
-                    }else if($infos->initial_status==1){
+                    }else{
+                        if($infos->renew_date!=null){
                         $btn="<div class='btn-group'>
                                     <a href='renew_teacher_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
                                         <li class='fa fa-eye fa-sm'></li>
                                     </a>
                                 </div>";
+                        }else{
+                        $btn="<div class='btn-group'>
+                                    <a href='teacher_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </a>
+                                </div>";
+                        }
                         return $btn;
                     }
                     
@@ -596,21 +604,25 @@ class TeacherController extends Controller
                         ->where('invoiceNo',"init_tec".$infos->id)
                         
                         ->get();
-                       
-                    }else{
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? "Payment Incomplete"
+                                : "Payment Complete";
+                        }
+                    }else if($infos->initial_status==1){
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
-                       
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? "Payment Incomplete"
+                                : "Payment Complete";
+                        }
                     }
-                    foreach($invoice as $i){
-                        return $i->status == "0"
-                            ? "Payment Incomplete"
-                            : "Payment Complete";
-                    }
+                    
                     
                     
                 })
@@ -642,10 +654,10 @@ class TeacherController extends Controller
                         foreach($invoice as $i){
                             return $i->status == "0"
                                 ? ""
-                                : Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('d-m-Y').' to 31-12-'.date('Y');
+                                : Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('d-m-Y').' to 31-12-'.Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('Y');
                         }
-                    }else{
-                        $currentDate = Carbon::now()->addYears(1) ;
+                    }else if($infos->initial_status==1){
+                        //$currentDate = Carbon::now()->addYears(1) ;
                         $currentMonth = Carbon::now()->format('m');
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                             $q->where('tranRef', '=', $infos->payment_method);
@@ -654,9 +666,12 @@ class TeacherController extends Controller
                         ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
                         if($currentMonth==11 || $currentMonth==12){
-                            $expYear=$currentDate->format('Y') ;
+                            // $expYear=$currentDate->format('Y') ;
+                            $expYear=Carbon::createFromFormat('Y-m-d', $infos->renew_date)->format('Y');
+                            $expYear=$expYear+1;
                         }else{
-                            $expYear=date('Y');
+                            // $expYear=date('Y');
+                            $expYear=Carbon::createFromFormat('Y-m-d', $infos->renew_date)->format('Y');
                         }
                         foreach($invoice as $i){
                             return $i->status == "0"
@@ -755,21 +770,25 @@ class TeacherController extends Controller
                         ->where('invoiceNo',"init_tec".$infos->id)
                         
                         ->get();
-                       
-                    }else{
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? ""
+                                : Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('d-m-Y');
+                        }
+                    }else if($infos->initial_status==1){
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
-                       
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? ""
+                                : Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('d-m-Y');
+                        }
                     }
-                    foreach($invoice as $i){
-                        return $i->status == "0"
-                            ? ""
-                            : Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('d-m-Y');
-                    }
+                    
                 })
                 ->addColumn('yearly', function ($infos){
                     if($infos->renew_date	 == ""){
