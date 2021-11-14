@@ -148,7 +148,7 @@ class ArticleController extends Controller
             $std_info->nrc_citizen = $request->nrc_citizen;
             $std_info->nrc_number = $request->nrc_number;
             $std_info->cpersonal_no = $request->personal_no;
-            $std_info->nrc_front = $nrc_front;     
+            $std_info->nrc_front = $nrc_front;
             $std_info->nrc_back = $nrc_back;
             $std_info->image = $image;
             $std_info->race = $request->race;
@@ -1526,7 +1526,7 @@ class ArticleController extends Controller
         $acc_app->gov_staff = 0;
         $acc_app->offline_user = $request->offline_user;
         $acc_app->contract_start_date = $request->contract_start_date;
-        $acc_app->contract_end_date = $request->contract_end_date;
+        //$acc_app->contract_end_date = $request->contract_end_date;
         $acc_app->mentor_id = $request->mentor_id;
         $acc_app->save();
 
@@ -1680,6 +1680,7 @@ class ArticleController extends Controller
         }
 
         $article_type = "resign";
+        
         $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
                 // return "<div class='btn-group'>
