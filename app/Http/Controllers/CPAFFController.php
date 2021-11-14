@@ -824,6 +824,7 @@ class CPAFFController extends Controller
         $cpa_ff->self_confession = $request->self_confession_renew;
         $cpa_ff->type   =   $request->type;
         $cpa_ff->status           =  0;
+        $cpa_ff->offline_user     =  $request->offline_user;
 
         $cpa_ff->validate_from = $today ;
         // $old_validate_to=date('Y-m',strtotime($oldCpaff->validate_to));
@@ -1642,6 +1643,7 @@ class CPAFFController extends Controller
         $cpa_ff->is_renew          =   $request->is_renew;
         $cpa_ff->self_confession   =   $request->self_confession_renew;
         $cpa_ff->type              =   $request->type;
+        $cpa_ff->offline_user      =   $request->offline_user;
         $cpa_ff->save();
 
         $student_info = StudentInfo::find($request->student_info_id);
