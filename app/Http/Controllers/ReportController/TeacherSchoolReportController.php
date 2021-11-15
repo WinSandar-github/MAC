@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\SchoolRegister;
 use App\TeacherRegister;
 use App\Subject;
-
+use App\Invoice;
+use DB;
 class TeacherSchoolReportController extends Controller
 {
     public function teacherSchoolLicense(Request $request, $type)
@@ -18,27 +19,35 @@ class TeacherSchoolReportController extends Controller
                 case 'all':
                     $title = 'ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)';
                     $school = SchoolRegister::whereYear('reg_date', '=', $request->date)
+                              ->where('approve_reject_status', '=', '1')
                               ->where('offline_user', '=', null)
                               ->get();
-                    break;
+                   break;
                 case 'init':
                     $title = 'ကနဦးမှတ်ပုံတင်ထားသော ကိုယ်ပိုင်ကျောင်းစာရင်း';
                     $school = SchoolRegister::whereYear('reg_date', '=', $request->date)->where('approve_reject_status', '=', '1')
+                              ->where('initial_status', '=', 0)
                               ->where('offline_user', '=', null)
                               ->get();
                 break;
                 case 'renew':
                     $title = 'သက်တမ်းတိုးထားသော ကိုယ်ပိုင်ကျောင်းစာရင်း';
-                    $school = SchoolRegister::whereYear('renew_date', '=', $request->date)->where('approve_reject_status', '=', '1')
-                              ->where('offline_user', '=', null)
+                    $school = SchoolRegister::whereYear('reg_date', '=', $request->date)->where('approve_reject_status', '=', '1')
+                              ->where('initial_status', '=', 1)
                               ->get();
                     break;
                 case 'reconnect':
                     $title = 'သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း';
                     $school = SchoolRegister::whereNotNull('request_for_temporary_stop')->where('approve_reject_status', '=', '1')
-                              ->where('offline_user', '=', null)
+                              ->whereYear('reg_date', '=', $request->date)
                               ->get();
-                break;
+                    break;
+                case 'cessation':
+                    $title = 'ရပ်နားထားသော ကိုယ်ပိုင်ကျောင်းစာရင်း';
+                    $school = SchoolRegister::whereYear('reg_date', '=', $request->date)->where('approve_reject_status', '=', '1')
+                              ->where('initial_status', '=', 2)
+                              ->get();
+                    break;
                 
             }
 
@@ -63,8 +72,9 @@ class TeacherSchoolReportController extends Controller
                 case 'all':
                     $title = 'ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်၊ရပ်နားနေသော သင်တန်းဆရာများစာရင်း၊ private and individual';
                     $teacher =TeacherRegister::whereYear('reg_date', '=', $request->date)->with('school')
-                              ->where('offline_user', '=', null)
-                              ->get();
+                                ->where('approve_reject_status', '=', '1')
+                                ->where('offline_user', '=', null)
+                                ->get();
                     break;
                 case 'init':
                     $title = 'ကနဦးမှတ်ပုံတင်ထားသော သင်တန်းဆရာများစာရင်း';
@@ -80,7 +90,7 @@ class TeacherSchoolReportController extends Controller
                     break;
                 case 'cessation':
                     $title = 'ရပ်နားသင်တန်းဆရာများစာရင်း';
-                    $teacher = TeacherRegister::where('approve_reject_status', '=', '1')->where('initial_status', '=', '2')
+                    $teacher = TeacherRegister::whereYear('reg_date', '=', $request->date)->where('approve_reject_status', '=', '1')->where('initial_status', '=', '2')
                                ->where('offline_user', '=', null)
                                ->get();
                 break;

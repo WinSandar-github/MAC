@@ -1537,20 +1537,23 @@ class SchoolController extends Controller
                             </div>";
                     return $btn;
                 }else{
-                    if($infos->renew_date!=null){
+                    // if($infos->renew_date!=null){
+                        
+                    // }else{
+                    //     $btn ="<div class='btn-group'>
+                    //         <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                    //             <li class='fa fa-eye fa-sm'></li>
+                    //         </a>
+                    //         </div>";
+                    //         return $btn;
+                    // }
                     $btn ="<div class='btn-group'>
-                        <a href='renew_school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                        </a>
-                        </div>";
-                    }else{
-                    $btn ="<div class='btn-group'>
-                        <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                        </a>
-                        </div>";
-                    }
-                    return $btn;
+                            <a href='renew_school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            </div>";
+                            return $btn;
+                    
                 }
                 
             })
@@ -1628,10 +1631,11 @@ class SchoolController extends Controller
                     
                     ->get();
                     //$currentDate = Carbon::now()->addYears(3) ;
+                    
                     foreach($invoice as $i){
                         return $i->status == "0"
                             ? ""
-                            : Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('d-m-Y').' to 31-12-'.Carbon::createFromFormat('Y-m-d', $infos->to_valid_date)->format('Y');
+                            : Carbon::createFromFormat('Y-m-d', $i->dateTime)->format('d-m-Y').' to 31-12-'.Carbon::createFromFormat('Y-m-d', $infos->to_valid_date)->format('Y');;
                     }
                 }else if($infos->initial_status==1){
                     $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
@@ -1799,8 +1803,8 @@ class SchoolController extends Controller
                  if($infos->renew_date	 == ""){
                      return "";
                  }else{
-                     $date = Carbon::createFromFormat('Y-m-d', $infos->renew_date);
-                     return $date->format('d-m-Y');
+                    return Carbon::createFromFormat('Y-m-d', $infos->reg_date)->format('d-m-Y');
+                    
                  }
             })
             ->rawColumns(['card','action'])
@@ -1878,6 +1882,7 @@ class SchoolController extends Controller
         $school = SchoolRegister::find($request->id);
         //$school->approve_reject_status = $request->status;
         $school->cessation_reason = $request->cessation_reason;
+        $school->cessation_date = date('d-m-Y');
         $school->initial_status = $request->initial_status;
         $school->save();
         return response()->json([
@@ -2324,6 +2329,7 @@ class SchoolController extends Controller
         
         //invoice
             if($request->offline_user=="true"){
+                
                     $currentMonth = Carbon::now()->format('m');
                     $currentDay = Carbon::now()->format('d');
                     list($last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
@@ -2337,7 +2343,6 @@ class SchoolController extends Controller
                     //     $diffYear = $currentYear->diffInYears($dbDate);
                     // }
                 if($request->request_for_temporary_stop=="no"){
-                   
                     $invoice = new Invoice();
                     $invoice->student_info_id = $request->student_info_id;
                     $invoice->invoiceNo = 'renew_sch'.$school->id;
@@ -2359,7 +2364,8 @@ class SchoolController extends Controller
                                     $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
                                 }
                             }
-                        }else if($diffYear>=1){
+                        }else if($diffYear >=1){
+                            
                             // if($currentMonth== 11 || $currentMonth==12){
                                 foreach($memberships as $memberships){
                                     $invoice->productDesc     = 'App Fee,Renew Reg Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee('.$memberships->reconnected_fee.'),School Registration';
