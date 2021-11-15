@@ -490,7 +490,7 @@ class ExamRegisterController extends Controller
     {
         $exam_register = ExamRegister::where('student_info_id', $id)
                                         ->where('grade', 1)
-                                        // ->where('exam_type_id',1)
+                                        ->where('exam_type_id','!=',3)
                                         ->with('course', 'batch')->get();
         return response()->json([
             'data' => $exam_register
