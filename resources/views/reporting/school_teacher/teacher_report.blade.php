@@ -57,9 +57,26 @@
                                                 {{ 'Error' }}
                                             @endif
                                         </td>
-                                        <td>{{ \Carbon\Carbon::parse($chel->form_valid_date)->diffInYears($chel->to_valid_date) . ' Year' }}</td>
-                                        <td>{{ $chel->renew_date ?? 'No Renew Date' }}</td>
-                                        <td>{{ $chel->cessation_date ?? 'N/A' }}</td></td>
+                                        @if($chel->initial_status==0)
+                                        <td>{{ \Carbon\Carbon::parse($chel->reg_date)->format('d-m-Y') . ' to 31-12-' .\Carbon\Carbon::parse($chel->renew_date)->format('Y') }}</td>
+                                        @endif
+                                        @if($chel->initial_status==1)
+                                        <td>{{ '01-01-'.\Carbon\Carbon::parse($chel->reg_date)->format('Y') . ' to 31-12-' .\Carbon\Carbon::parse($chel->renew_date)->format('Y') }}</td>
+                                        @endif
+                                        @if($chel->initial_status==2)
+                                        <td>{{  'N/A' }}</td>
+                                        @endif
+                                        <!-- <td>{{ \Carbon\Carbon::parse($chel->form_valid_date)->diffInYears($chel->to_valid_date) . ' Year' }}</td> -->
+                                        @if($chel->renew_date=='')
+                                        <td>{{  'N/A' }}</td>
+                                        @else
+                                        <td>{{ \Carbon\Carbon::parse($chel->renew_date)->format('d-m-Y') }}</td>
+                                        @endif
+                                        @if($chel->cessation_date=='')
+                                        <td>{{  'N/A' }}</td>
+                                        @else
+                                        <td>{{ \Carbon\Carbon::parse($chel->cessation_date)->format('d-m-Y') }}</td>
+                                        @endif
                                         <td>{{ "N/A" }}</td>
                                     </tr>
                                     @endforeach

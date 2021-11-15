@@ -129,6 +129,7 @@
         var approved_datatable;
         var rejected_datatable;
         $(document).ready(function () {
+             
             localStorage.setItem("course_type", "da_2");
             pending_datatable = $('#tbl_exam_pending_result').DataTable({
                 processing: true,
