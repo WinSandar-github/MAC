@@ -144,15 +144,15 @@ function loadData() {
             var student = data.data;
 
             student.forEach(function (student_course) {
-                if(student_course.type == 0){
+                if (student_course.type == 0) {
                     $("#attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
-                }else if(student_course.type == 1){
+                } else if (student_course.type == 1) {
                     $("#attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
-                }else if(student_course.type ==2 && student_course.mac_type == 1){
+                } else if (student_course.type == 2 && student_course.mac_type == 1) {
                     $("#attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
-                }else if(student_course.type == 2 && student_course.mac_type == 2){
+                } else if (student_course.type == 2 && student_course.mac_type == 2) {
                     $("#attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
-                }else {
+                } else {
                     $("#attend_place").append("-");
                 }
                 let current_course = student_course.batch.course;
@@ -189,9 +189,9 @@ function loadData() {
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
                 if (current_course.course_type_id == 1) {
-                    $("#registration_no").append((element.personal_no== null || element.personal_no== "")?"-":element.personal_no);
+                    $("#registration_no").append((element.personal_no == null || element.personal_no == "") ? "-" : element.personal_no);
                 } else if (current_course.course_type_id == 2) {
-                    $("#registration_no").append((element.cpersonal_no== null || element.cpersonal_no== "")?"-":element.cpersonal_no);
+                    $("#registration_no").append((element.cpersonal_no == null || element.cpersonal_no == "") ? "-" : element.cpersonal_no);
                 } else {
                     $("#registration_no").append("-");
                 }
@@ -211,41 +211,45 @@ function loadData() {
                     $(".recommend_row").hide();
                 }
 
-                if(!element.da_pass_roll_number){
+                if (!element.da_pass_roll_number) {
                     $(".da_two_pass_info").hide();
-                }else{
+                } else {
                     $(".da_two_pass_info").show();
-                    if(element.da_pass_certificate==null){
-                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
-                    }else{
+                    if (element.da_pass_certificate == null) {
+
+
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL}/get_certificate/${element.id}?course_code=da_2' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+
+                        // $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
+                    } else {
                         $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
                     }
                     $(".da_pass_date").append(element.da_pass_date);
                     $(".da_pass_roll_number").append(element.da_pass_roll_number);
                 }
 
-                if(!element.acca_cima){
-                    $(".acca_cima_info").hide();                    
-                }else{
-                    $(".acca_cima_info").show(); 
-                    if(element.acca_cima==1){
+                if (!element.acca_cima) {
+                    $(".acca_cima_info").hide();
+                } else {
+                    $(".acca_cima_info").show();
+                    if (element.acca_cima == 1) {
                         $(".acca_cima").append("ACCA");
-                    }else{
+                    } else {
                         $(".acca_cima").append("CIMA");
                     }
                     $(".acca_cima_pass_roll_no").append(element.direct_degree);
                     $(".acca_cima_pass_date").append(element.degree_date);
                     $(".acca_cima_id_no").append(element.degree_rank);
-                    if(element.degree_certificate_image==null){
+                    if (element.degree_certificate_image == null) {
                         $(".acca_cima_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Available</a>`)
-                    }else{
+                    } else {
                         $(".acca_cima_certificate").append(`<a href='${PDF_URL + element.degree_certificate_image}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                     }
-                    
-                    
-                    if(element.da_pass_certificate==null){
+
+
+                    if (element.da_pass_certificate == null) {
                         $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Available</a>`)
-                    }else{
+                    } else {
                         $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
                     }
                     $(".da_pass_date").append(element.da_pass_date);
@@ -287,17 +291,17 @@ function loadData() {
                             result.data.forEach(function (course) {
                                 var success_year = new Date(course.updated_at);
                                 var module_name;
-                                if(course.pass_module==1){
-                                    module_name="Module 1";
+                                if (course.pass_module == 1) {
+                                    module_name = "Module 1";
                                 }
-                                else if(course.pass_module==2){
-                                    module_name="Module 2";
+                                else if (course.pass_module == 2) {
+                                    module_name = "Module 2";
                                 }
-                                else if(course.pass_module==3){
-                                    module_name="All Module";
+                                else if (course.pass_module == 3) {
+                                    module_name = "All Module";
                                 }
-                                else{
-                                    module_name="-";
+                                else {
+                                    module_name = "-";
                                 }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
@@ -320,35 +324,35 @@ function loadData() {
                 });
 
 
-                if(student_course.approve_reject_status==1 || student_course.approve_reject_status==0){
+                if (student_course.approve_reject_status == 1 || student_course.approve_reject_status == 0) {
                     $("#payment_info_card").show();
-                }else{
+                } else {
                     $("#payment_info_card").hide();
                 }
-                let invoice_no=current_course.code == "da_1" ? 'app_form' : 'cpa_app';
+                let invoice_no = current_course.code == "da_1" ? 'app_form' : 'cpa_app';
                 // console.log('invoice_no',invoice_no)
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + invoice_no+"/"+ element.id ,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + invoice_no + "/" + element.id,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
-                        if(result.status==0){
+                        if (result.status == 0) {
                             $('#payment_status').append("Incomplete");
                         }
-                        else if(result.status=='AP'){
+                        else if (result.status == 'AP') {
                             $('#payment_status').append("Complete");
                         }
-                        else{
+                        else {
                             $('#payment_status').append("-");
                         }
                         var productDesc = result.productDesc.split(",");
                         var amount = result.amount.split(",");
-                        var total=0;
-                        for(var i in amount) { 
+                        var total = 0;
+                        for (var i in amount) {
                             total += parseInt(amount[i]);
                         }
                         // console.log(total);
-                        for(let i=0 ; i<amount.length ; i++){
+                        for (let i = 0; i < amount.length; i++) {
                             $('.fee_list').append(`
                                 <li
                                     class="list-group-item d-flex justify-content-between lh-condensed">
@@ -417,7 +421,7 @@ function loadData() {
 //     });
 // }
 
-function approveUser(student_info_id) {    
+function approveUser(student_info_id) {
     var student_info_id = student_info_id || $("input[name = student_course_id]").val();
     Swal.fire({
         title: 'Approve Student?',
@@ -428,7 +432,7 @@ function approveUser(student_info_id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, Approve it!'
     }).then((result) => {
-        if(result.isConfirmed) {
+        if (result.isConfirmed) {
             $.ajax({
                 url: BACKEND_URL + "/approve/" + student_info_id,
                 type: 'patch',
@@ -458,7 +462,7 @@ function approveUser(student_info_id) {
                             'Approved!',
                             'Approved Student',
                             'success'
-                        ).then( () => {
+                        ).then(() => {
                             setInterval(() => {
                                 location.href = FRONTEND_URL + url;
                             }, 2000);
@@ -526,7 +530,7 @@ function rejectUser(student_info_id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, Reject it!'
     }).then((result) => {
-        if(result.isConfirmed){
+        if (result.isConfirmed) {
             var formData = new FormData();
             formData.append('remark', $('#remark').val());
             formData.append('_method', 'PATCH')
@@ -562,7 +566,7 @@ function rejectUser(student_info_id) {
                             'Rejected!',
                             'Rejected Student',
                             'success'
-                        ).then( ()=> {
+                        ).then(() => {
                             setInterval(() => {
                                 location.href = FRONTEND_URL + url;
                             }, 2000);

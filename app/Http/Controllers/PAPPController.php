@@ -256,7 +256,7 @@ class PAPPController extends Controller
     
     public function approve($id)
     {
-        $old = Papp::where('offline_user',0)->orderBy('papp_reg_no', 'desc')->first();
+        $old = Papp::where('type',0)->orderBy('papp_reg_no', 'desc')->first();
         // return $old->cpaff_reg_no;
         if($old->papp_reg_no == '' && $old->papp_reg_no == NULL){
             $reg_no = 1445;

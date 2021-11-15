@@ -183,7 +183,7 @@
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
-                                                                <th class="bold-font-weight" >Register Date</th>
+                                                                <th class="bold-font-weight" >Renew Date</th>
                                                                 <!-- <th class="bold-font-weight" >Expire Period time</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <!-- <th class="bold-font-weight" >Payment Status</th> -->
@@ -230,7 +230,7 @@
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
-                                                            <th class="bold-font-weight" >Register Date</th>
+                                                            <th class="bold-font-weight" >Renew Date</th>
                                                             <th class="bold-font-weight" >Expire Period time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
@@ -256,7 +256,7 @@
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
-                                                                <th class="bold-font-weight" >Renew Date</th>
+                                                                <!-- <th class="bold-font-weight" >Renew Date</th> -->
                                                                 <!-- <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th> -->
@@ -317,7 +317,7 @@
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'school_name', name: 'school_name'},
-                {data: 'name_mm', name: 'name_mm'},
+                {data: 'name_eng', name: 'name_eng'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -354,7 +354,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 's_code', name: 's_code'},
                 {data: 'school_name', name: 'school_name'},
-                {data: 'name_mm', name: 'name_mm'},
+                {data: 'name_eng', name: 'name_eng'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -390,7 +390,7 @@
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'school_name', name: 'school_name'},
-                {data: 'name_mm', name: 'name_mm'},
+                {data: 'name_eng', name: 'name_eng'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -425,7 +425,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 's_code', name: 's_code'},
                 {data: 'school_name', name: 'school_name'},
-                {data: 'name_mm', name: 'name_mm'},
+                {data: 'name_eng', name: 'name_eng'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -463,7 +463,7 @@
                 
                 {data: 's_code', name: 's_code'},
                 {data: 'school_name', name: 'school_name'},
-                {data: 'name_mm', name: 'name_mm'},
+                {data: 'name_eng', name: 'name_eng'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -500,7 +500,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 's_code', name: 's_code'},
                 {data: 'school_name', name: 'school_name'},
-                {data: 'name_mm', name: 'name_mm'},
+                {data: 'name_eng', name: 'name_eng'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -535,11 +535,11 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 's_code', name: 's_code'},
                 {data: 'school_name', name: 'school_name'},
-                {data: 'name_mm', name: 'name_mm'},
+                {data: 'name_eng', name: 'name_eng'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'renew_date', name: 'renew_date'},
+                // {data: 'renew_date', name: 'renew_date'},
                 
                 {data: 'card', name: 'card'},
                 {data: 'remark', name: 'remark'},
