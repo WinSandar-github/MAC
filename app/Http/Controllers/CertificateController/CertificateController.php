@@ -500,7 +500,7 @@ class CertificateController extends Controller
     public function getCertificate(Request $req, $id)
     {
         $helper = new Helper;
-        
+        // return $id;
         // return DB::table('student_infos as st')
                 // ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
                 // ->join('exam_register as er', 'er.student_info_id', 'st.id')
@@ -522,7 +522,6 @@ class CertificateController extends Controller
                         ,'er.passed_level','b.number as batch_number','st.gender','st.personal_no', 'st.cpersonal_no', 'st.gender', 'st.image'
                         )
                 ->first();
- 
 
         if($student == null){
             return "<h1 style='color:red;'>Selected User not found in Database.</h1>";
