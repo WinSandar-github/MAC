@@ -892,7 +892,7 @@ class TeacherController extends Controller
         $std_info->save();
         $teacher = TeacherRegister::find($request->id);
         //$teacher->approve_reject_status = $request->status;
-        $teacher->cessation_date = date('d-M-Y');
+        $teacher->cessation_date = date('d-m-Y');
         $teacher->cessation_reason = $request->cessation_reason;
         $teacher->initial_status = $request->initial_status;
         $teacher->save();

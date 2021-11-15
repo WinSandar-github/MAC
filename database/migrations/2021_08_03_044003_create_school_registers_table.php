@@ -59,7 +59,7 @@ class CreateSchoolRegistersTable extends Migration
             
             $table->string('invoice_no')->nullable();
             $table->text('cessation_reason')->nullable();
-            
+            $table->string('cessation_date')->nullable();
             $table->integer('student_info_id')->nullable();
             $table->string('renew_school_name')->nullable();
             $table->string('renew_school_address')->nullable();

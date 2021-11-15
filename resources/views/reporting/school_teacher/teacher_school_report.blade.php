@@ -37,17 +37,45 @@
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable">
                                     @foreach($data['school'] as $key => $school)
+                                        
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ 'SCH-Demo-' . $school->id }}</td>
-                                            <td>{{ $school->school_name }}</td>
-                                            <td>{{ $school->name_mm }}</td>
+                                            <td>{{ $school->s_code }}</td>
+                                            @if($school->school_name =='')         
+                                            <td>{{ $school->renew_school_name }}</td>
+                                            @else
+                                            <td>{{ $school->school_name }}</td>     
+                                            @endif
+                                            
+                                            <td>{{ $school->name_eng }}</td>
                                             <td>{{ $school->nrc_state_region ."/". $school->nrc_township ."(". $school->nrc_citizen .")". $school->nrc_number }}</td>
                                             <!--<td>{{ $school->type }}</td>-->
-                                            <td>{{ $school->school_address }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($school->reg_date)->diffInYears($school->renew_date) . " Year" }}</td>
-                                            <td>{{ $school->renew_date }}</td>
-                                            <td>{{ $school->to_request_stop_date ?? 'N/A' }}</td>
+                                            @if($school->eng_school_address =="")         
+                                            <td>{{ $school->renew_school_address }}</td>
+                                            @else
+                                            <td>{{ $school->eng_school_address }}</td>      
+                                            @endif
+                                            
+                                            
+                                            @if($school->initial_status==1)         
+                                            <td>{{ '01-01-'.(\Carbon\Carbon::parse($school->renew_date)->format('Y')-2).' to 31-12-'.\Carbon\Carbon::parse($school->renew_date)->format('Y')}}</td> 
+                                            @endif
+                                            @if($school->initial_status==0)         
+                                            <td>{{ (\Carbon\Carbon::parse($school->reg_date)->format('d-m-Y')).' to 31-12-'.\Carbon\Carbon::parse($school->to_valid_date)->format('Y') }}</td> 
+                                            @endif
+                                            @if($school->initial_status==2)
+                                            <td>{{  'N/A' }}</td>
+                                            @endif
+                                            @if($school->renew_date=='')
+                                            <td>{{  'N/A' }}</td>
+                                            @else
+                                            <td>{{ \Carbon\Carbon::parse($school->reg_date)->format('d-m-Y') }}</td>
+                                            @endif
+                                            @if($school->cessation_date=='')
+                                            <td>{{  'N/A' }}</td>
+                                            @else
+                                            <td>{{ \Carbon\Carbon::parse($school->cessation_date)->format('d-m-Y') }}</td>
+                                            @endif
                                             <td>{{ $school->last_registration_fee_year ?? 'N/A' }}</td>
                                         </tr>
                                     @endforeach
