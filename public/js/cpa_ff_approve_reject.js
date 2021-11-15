@@ -125,12 +125,13 @@ function showCPAFFList(capffId,is_renew){
 function showOfflineCPAFFList(capffId,is_renew){
     localStorage.setItem("cpa_ff_id",capffId);
     localStorage.setItem("is_renew",is_renew);
-    if(is_renew==1){
-        location.href= FRONTEND_URL + "/cpaff_offline_edit";
-    }
-    else{
-        location.href= FRONTEND_URL + "/cpaff_offline_renew_detail";
-    }
+    location.href= FRONTEND_URL + "/cpaff_offline_edit";
+    // if(is_renew==1){
+    //     location.href= FRONTEND_URL + "/cpaff_offline_edit";
+    // }
+    // else{
+    //     location.href= FRONTEND_URL + "/cpaff_offline_renew_detail";
+    // }
 }
 
 function loadCPAFFData(){
