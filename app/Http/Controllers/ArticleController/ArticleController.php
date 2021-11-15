@@ -157,7 +157,6 @@ class ArticleController extends Controller
             $std_info->address = $request->address;
             $std_info->current_address = $request->current_address;
             $std_info->gender = $request->gender;
-            $std_info->cpersonal_no = $request->personal_no;
             $std_info->save();
             //article
             $acc_app = new ApprenticeAccountant();
