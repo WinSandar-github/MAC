@@ -2217,7 +2217,14 @@ class AccFirmInfController extends Controller
               if($request->req_for_stop == 1){
                 // suspended
                 $suspended_year = $request->suspended_year;
-                $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+
+                if($current_month == 11 || $current_month == 12){
+                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                }
+                else{
+                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+                }
+
                 if($request->org_stru_id == 1){
                   // for Sole Proprietorship
                   if($current_month_name == 'Jan'){
@@ -2283,7 +2290,14 @@ class AccFirmInfController extends Controller
 
                 // not suspended
                 $last_registered_year = $request->last_registered_year;
-                $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+
+                if($current_month == 11 || $current_month == 12){
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                }
+                else{
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                }
+
                 if($request->org_stru_id == 1){
                   // for Sole Proprietorship
                   if($current_month_name == 'Jan'){
@@ -2455,7 +2469,14 @@ class AccFirmInfController extends Controller
               if($request->req_for_stop == 1){
                 // suspended
                 $suspended_year = $request->suspended_year;
-                $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+
+                if($current_month == 11 || $current_month == 12){
+                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                }
+                else{
+                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+                }
+
                 if($request->org_stru_id == 1){
                   // for Sole Proprietorship
                   if($current_month_name == 'Jan'){
@@ -2534,7 +2555,14 @@ class AccFirmInfController extends Controller
               else{
                 // not suspended
                 $last_registered_year = $request->last_registered_year;
-                $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+
+                if($current_month == 11 || $current_month == 12){
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                }
+                else{
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                }
+
                 if($request->org_stru_id == 1){
                   // for Sole Proprietorship
                   if($current_month_name == 'Jan'){
@@ -3399,7 +3427,14 @@ class AccFirmInfController extends Controller
                           if($request->req_for_stop == 1){
                             // suspended
                             $suspended_year = $request->suspended_year;
-                            $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+
+                            if($current_month == 11 || $current_month == 12){
+                              $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                            }
+                            else{
+                              $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+                            }
+
                             if($request->org_stru_id == 1){
                               // for Sole Proprietorship
                               if($current_month_name == 'Jan'){
@@ -3464,7 +3499,14 @@ class AccFirmInfController extends Controller
                           else{
                             // not suspended
                             $last_registered_year = $request->last_registered_year;
-                            $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+
+                            if($current_month == 11 || $current_month == 12){
+                              $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                            }
+                            else{
+                              $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                            }
+
                             if($request->org_stru_id == 1){
                               // for Sole Proprietorship
                               if($current_month_name == 'Jan'){
@@ -3636,7 +3678,14 @@ class AccFirmInfController extends Controller
             if($request->req_for_stop == 1){
               // suspended
               $suspended_year = $request->suspended_year;
-              $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+
+              if($current_month == 11 || $current_month == 12){
+                $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+              }
+              else{
+                $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+              }
+
               if($request->org_stru_id == 1){
                 // for Sole Proprietorship
                 if($current_month_name == 'Jan'){
@@ -3696,7 +3745,14 @@ class AccFirmInfController extends Controller
             else{
               // not suspended
               $last_registered_year = $request->last_registered_year;
-              $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+
+              if($current_month == 11 || $current_month == 12){
+                $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+              }
+              else{
+                $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+              }
+
               if($request->org_stru_id == 1){
                 // for Sole Proprietorship
                 if($current_month_name == 'Jan'){
