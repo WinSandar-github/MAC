@@ -300,7 +300,11 @@ function getTeacherInfos(){
                 
                 if(value.approve_reject_status != 0){
                     $("#approve_reject").hide();
-                    $('#cessation-btn').show();
+                    if(value.initial_status==2){
+                        $('#cessation-btn').hide();
+                    }else{
+                        $('#cessation-btn').show();
+                    }
                 }
                 else{
                     $("#approve_reject").show();

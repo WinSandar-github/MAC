@@ -148,7 +148,7 @@ class ArticleController extends Controller
             $std_info->nrc_citizen = $request->nrc_citizen;
             $std_info->nrc_number = $request->nrc_number;
             $std_info->cpersonal_no = $request->personal_no;
-            $std_info->nrc_front = $nrc_front;     
+            $std_info->nrc_front = $nrc_front;
             $std_info->nrc_back = $nrc_back;
             $std_info->image = $image;
             $std_info->race = $request->race;
@@ -180,7 +180,7 @@ class ArticleController extends Controller
             $acc_app->exp_start_date = $request->previous_papp_start_date;
             $acc_app->exp_end_date = $request->previous_papp_end_date;
             $acc_app->total_experience = json_encode($total_experience);
-            $acc_app->gender = $request->gender;
+            $acc_app->gender = $request->gender2;
             $acc_app->course_part = $request->course_part;
             $acc_app->school_name = $request->school_name;
             $acc_app->attend_or_fail = $request->attend_fail;
@@ -189,6 +189,7 @@ class ArticleController extends Controller
             $acc_app->resign_status = 0;
             $acc_app->status = 0;
             $acc_app->done_status = 0;
+            $acc_app->course_exam = $request->course_exam;
             $acc_app->save();
         if($degrees_certificates!=null){
             $degrees_certificates=implode(',', $degrees_certificates);
@@ -1525,7 +1526,7 @@ class ArticleController extends Controller
         $acc_app->gov_staff = 0;
         $acc_app->offline_user = $request->offline_user;
         $acc_app->contract_start_date = $request->contract_start_date;
-        $acc_app->contract_end_date = $request->contract_end_date;
+        //$acc_app->contract_end_date = $request->contract_end_date;
         $acc_app->mentor_id = $request->mentor_id;
         $acc_app->save();
 
@@ -1679,6 +1680,7 @@ class ArticleController extends Controller
         }
 
         $article_type = "resign";
+        
         $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
                 // return "<div class='btn-group'>

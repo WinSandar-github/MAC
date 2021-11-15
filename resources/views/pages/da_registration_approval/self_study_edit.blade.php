@@ -324,6 +324,15 @@
                                             <span id="registration_no"></span>
                                         </div>
                                     </div>
+
+                                    <div class="row m-2 mt-3 border-bottom" style="display: none">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">သင်တန်းတက်ရောက်သည့်နေရာ</p>
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <span id="attend_place"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card">

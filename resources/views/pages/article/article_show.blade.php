@@ -100,6 +100,20 @@
 														</div>
 													</div>
 												</div>
+                                                <div id="previous_info_box3" style="display:none;">
+														<div class="col-md-11">လူကြီးမင်း <span class="call_gender3"></span></div>
+														<div class="col-md-11">
+																<ul>
+																		<li>
+																				<input class="p-input" type="text" name="gender3" id="gender3">
+																				သည် မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင် 
+																				<input class="p-input" type="text" name="course_exam" id="course_exam"> 
+																				
+																				ကိုအောင်မြင်သူတစ်ဦးဖြစ်ပါသည်။
+																		</li>
+																</ul>
+														</div>
+													</div>
 
                         <div class="row">
                             <div class="col-md-9">
