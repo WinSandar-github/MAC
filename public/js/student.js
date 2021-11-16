@@ -179,9 +179,9 @@ function loadStudentSelfStudy() {
         success: function (data) {
             // console.log(data,"yy");
             var element = data.data;
-
+            console.log(element)
             let course_reg = element.student_info.student_course_regs.filter(function(v){
-                        return v.batch.course.code == "da_1"  && v.batch.id == element.batch_id
+                        return v.batch.course.code == element.course.code  && v.batch.id == element.batch_id
             });
 
             let latest_course_reg=course_reg.at(-1);
@@ -281,8 +281,13 @@ function loadStudentSelfStudy() {
             //$("#batch_name").append(element.name);
             // console.log("student_info_data",student_info_data);
             if (student_info_data.gov_staff == 1) {
-                $(".recommend_row").show();
-                $(".recommend_letter").append(`<a href='${PDF_URL + student_info_data.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                if(student_info_data.recommend_letter){
+                    $(".recommend_row").show();
+                    $(".recommend_letter").append(`<a href='${PDF_URL + student_info_data.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else{
+                    $(".recommend_row").hide();
+                }
+                
             } else {
                 $(".recommend_row").hide();
             }
