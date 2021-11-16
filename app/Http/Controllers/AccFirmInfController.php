@@ -2073,9 +2073,10 @@ class AccFirmInfController extends Controller
         if($request->last_registered_year){
           $acc_firm_info->last_registered_year    = $request->last_registered_year;
         }
-        if($request->suspended_year){
-          $acc_firm_info->suspended_year    = $request->suspended_year;
-        }
+        // if($request->suspended_year){
+        //   $acc_firm_info->suspended_year    = $request->suspended_year;
+        // }
+        $acc_firm_info->suspended_year    = $request->suspended_year;
 
         $acc_firm_info->save();
 
