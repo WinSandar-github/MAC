@@ -200,13 +200,11 @@ function loadData() {
                 if (element.gov_staff == 1) {
                     if(element.recommend_letter){
                         $(".recommend_row").show();
+                        $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                     }else{
                         $(".recommend_row").hide();
-                    }
+                    }                    
                     
-                    element.recommend_letter == null
-                        ? $(".recommend_letter").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
-                        : $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 } else {
                     $(".recommend_row").hide();
                 }
