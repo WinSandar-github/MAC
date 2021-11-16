@@ -1196,7 +1196,7 @@
 	                                                    </div>
 	                                            </div>
 
-																							@if($item->offline_user == 1)
+																							@if($item->offline_user == 1 || $item->is_renew == 1)
 																								<div class="row mb-5">
 																										<label for="" class="col-md-1 col-form-label"></label>
 																										<label for="" class="col-md-3 col-form-label font-weight-bold">Last Registered Year</label>
