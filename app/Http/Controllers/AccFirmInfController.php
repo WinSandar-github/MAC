@@ -2073,9 +2073,10 @@ class AccFirmInfController extends Controller
         if($request->last_registered_year){
           $acc_firm_info->last_registered_year    = $request->last_registered_year;
         }
-        if($request->suspended_year){
-          $acc_firm_info->suspended_year    = $request->suspended_year;
-        }
+        // if($request->suspended_year){
+        //   $acc_firm_info->suspended_year    = $request->suspended_year;
+        // }
+        $acc_firm_info->suspended_year    = $request->suspended_year;
 
         $acc_firm_info->save();
 
@@ -2218,8 +2219,13 @@ class AccFirmInfController extends Controller
                 // suspended
                 $suspended_year = $request->suspended_year;
 
-                if($current_month == 11 || $current_month == 12){
-                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                if($last_registered_year == $current_year){
+                  if($current_month == 11 || $current_month == 12){
+                    $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                  }
+                  else{
+                    $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+                  }
                 }
                 else{
                   $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
@@ -2291,11 +2297,16 @@ class AccFirmInfController extends Controller
                 // not suspended
                 $last_registered_year = $request->last_registered_year;
 
-                if($current_month == 11 || $current_month == 12){
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                if($last_registered_year == $current_year){
+                  if($current_month == 11 || $current_month == 12){
+                    $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                  }
+                  else{
+                    $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                  }
                 }
                 else{
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
                 }
 
                 if($request->org_stru_id == 1){
@@ -2470,8 +2481,13 @@ class AccFirmInfController extends Controller
                 // suspended
                 $suspended_year = $request->suspended_year;
 
-                if($current_month == 11 || $current_month == 12){
-                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                if($last_registered_year == $current_year){
+                  if($current_month == 11 || $current_month == 12){
+                    $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                  }
+                  else{
+                    $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+                  }
                 }
                 else{
                   $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
@@ -2556,11 +2572,16 @@ class AccFirmInfController extends Controller
                 // not suspended
                 $last_registered_year = $request->last_registered_year;
 
-                if($current_month == 11 || $current_month == 12){
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                if($last_registered_year == $current_year){
+                  if($current_month == 11 || $current_month == 12){
+                    $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                  }
+                  else{
+                    $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                  }
                 }
                 else{
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
                 }
 
                 if($request->org_stru_id == 1){
@@ -3428,8 +3449,13 @@ class AccFirmInfController extends Controller
                             // suspended
                             $suspended_year = $request->suspended_year;
 
-                            if($current_month == 11 || $current_month == 12){
-                              $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                            if($last_registered_year == $current_year){
+                              if($current_month == 11 || $current_month == 12){
+                                $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                              }
+                              else{
+                                $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+                              }
                             }
                             else{
                               $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
@@ -3500,11 +3526,16 @@ class AccFirmInfController extends Controller
                             // not suspended
                             $last_registered_year = $request->last_registered_year;
 
-                            if($current_month == 11 || $current_month == 12){
-                              $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                            if($last_registered_year == $current_year){
+                              if($current_month == 11 || $current_month == 12){
+                                $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                              }
+                              else{
+                                $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                              }
                             }
                             else{
-                              $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                              $number_of_reconnect_pay_year = $current_year - $last_registered_year;
                             }
 
                             if($request->org_stru_id == 1){
@@ -3679,8 +3710,13 @@ class AccFirmInfController extends Controller
               // suspended
               $suspended_year = $request->suspended_year;
 
-              if($current_month == 11 || $current_month == 12){
-                $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+              if($last_registered_year == $current_year){
+                if($current_month == 11 || $current_month == 12){
+                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year;
+                }
+                else{
+                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+                }
               }
               else{
                 $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
@@ -3746,11 +3782,16 @@ class AccFirmInfController extends Controller
               // not suspended
               $last_registered_year = $request->last_registered_year;
 
-              if($current_month == 11 || $current_month == 12){
-                $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+              if($last_registered_year == $current_year){
+                if($current_month == 11 || $current_month == 12){
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
+                }
+                else{
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                }
               }
               else{
-                $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                $number_of_reconnect_pay_year = $current_year - $last_registered_year;
               }
 
               if($request->org_stru_id == 1){
