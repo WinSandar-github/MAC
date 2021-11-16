@@ -191,9 +191,9 @@
                     type: "POST",
                     data: function (d) {
                         d.grade = 1,
-                            d.course_code = '2',
-                            d.name = "",
-                            d.batch = "all"
+                        d.course_code = '2',
+                        d.name = "",
+                        d.batch = "all"
                     }
 
                 },

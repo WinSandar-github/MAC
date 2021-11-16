@@ -130,6 +130,7 @@ function showRegistration(studentId, course_code) {
 function loadStudentSelfStudy() {
     var id = localStorage.getItem("student_id");
     var course_code = localStorage.getItem("course_code");
+    // console.log('course_code',id)
     // $("#student_name").html("");
     // // $("#student_nrc").html("");
     // $("#student_dob").html("");
@@ -178,7 +179,31 @@ function loadStudentSelfStudy() {
         success: function (data) {
             // console.log(data,"yy");
             var element = data.data;
-            // console.log('element', element);
+            console.log(element)
+            let course_reg = element.student_info.student_course_regs.filter(function(v){
+                        return v.batch.course.code == element.course.code  && v.batch.id == element.batch_id
+            });
+
+            let latest_course_reg=course_reg.at(-1);
+
+            if(latest_course_reg.type == 0){
+                $("#attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+            }else if(latest_course_reg.type == 1){
+                $("#attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+            }else if(latest_course_reg.type ==2 && latest_course_reg.mac_type == 1){
+                $("#attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+            }else if(latest_course_reg.type == 2 && latest_course_reg.mac_type == 2){
+                $("#attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+            }else {
+                $("#attend_place").append("-");
+            }
+
+
+            // let da_one_list = element.filter(function (v) {
+            //     console.log('da_one_list',da_one_list)
+            //     // return v.batch.course.code == course_code
+            // })
+
             let student_course_regs = element.student_info.student_course_regs.slice(-1);
             // console.log('student_course_regs',element.student_info.student_course_regs)
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
@@ -191,20 +216,7 @@ function loadStudentSelfStudy() {
                 $("#student_registration_no").append("-");
             }else{
                 $("#student_registration_no").append(student_course_regs[0].sr_no);
-            }
-
-            // if(student_course_regs[0].type == 0){
-            //     $("#attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
-            // }else if(student_course_regs[0].type == 1){
-            //     $("#attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
-            // }else if(student_course_regs[0].type ==2 && student_course_regs[0].mac_type == 1){
-            //     $("#attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
-            // }else if(student_course_regs[0].type == 2 && student_course_regs[0].mac_type == 2){
-            //     $("#attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
-            // }else {
-            //     $("#attend_place").append("-");
-            // }
-
+            }           
             
             if (element.reg_reason) {
                 $("#student_registration_reason").append(element.reg_reason);
@@ -231,6 +243,7 @@ function loadStudentSelfStudy() {
                 document.getElementById("approve_reject").style.display = "none";
             }
             var student_info_data = element.student_info;
+            
             var education_history = student_info_data.student_education_histroy;
             var job = student_info_data.student_job;
 
@@ -268,8 +281,13 @@ function loadStudentSelfStudy() {
             //$("#batch_name").append(element.name);
             // console.log("student_info_data",student_info_data);
             if (student_info_data.gov_staff == 1) {
-                $(".recommend_row").show();
-                $(".recommend_letter").append(`<a href='${PDF_URL + student_info_data.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                if(student_info_data.recommend_letter){
+                    $(".recommend_row").show();
+                    $(".recommend_letter").append(`<a href='${PDF_URL + student_info_data.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else{
+                    $(".recommend_row").hide();
+                }
+                
             } else {
                 $(".recommend_row").hide();
             }

@@ -551,17 +551,18 @@ class ExamRegisterController extends Controller
             ->where('grade', '=', $request->grade)->get();
 
         // DA One
-        $datatable = DataTables::of($exam_register)->addColumn('exam_type', function ($infos) {
-            if ($infos->form_type == 1) {
-                return "DA - I";
-            } else if ($infos->form_type == 2) {
-                return "DA - II";
-            } else if ($infos->form_type == 3) {
-                return "CPA - I";
-            } else {
-                return "CPA - II";
-            }
-        })
+        $datatable = DataTables::of($exam_register)->
+            addColumn('exam_type', function ($infos) {
+                if ($infos->form_type == 1) {
+                    return "DA - I";
+                } else if ($infos->form_type == 2) {
+                    return "DA - II";
+                } else if ($infos->form_type == 3) {
+                    return "CPA - I";
+                } else {
+                    return "CPA - II";
+                }
+            })
             ->addColumn('remark', function ($infos) {
                 if ($infos->grade == 0) {
                     return "-";
