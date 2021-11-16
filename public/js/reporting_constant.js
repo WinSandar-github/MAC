@@ -334,7 +334,7 @@ const _TEACHER_SCHOOL = [
     },
 
     {
-        route_name: "/teacher_school_private",
+        route_name: "/teacher_school_license/cessation",
         fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
         sub_title: "ရပ်နားကျောင်းများစာရင်း"
     },

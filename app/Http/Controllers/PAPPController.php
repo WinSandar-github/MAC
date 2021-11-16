@@ -256,7 +256,7 @@ class PAPPController extends Controller
     
     public function approve($id)
     {
-        $old = Papp::where('offline_user',0)->orderBy('papp_reg_no', 'desc')->first();
+        $old = Papp::where('type',0)->orderBy('papp_reg_no', 'desc')->first();
         // return $old->cpaff_reg_no;
         if($old->papp_reg_no == '' && $old->papp_reg_no == NULL){
             $reg_no = 1445;
@@ -502,7 +502,6 @@ class PAPPController extends Controller
         $papp->audit_work       =   $request->audit_work;
         $papp->audit_year       =   $request->audit_year;
         $papp->type             =   $request->type;
-        $papp->offline_user     =   $request->offline_user;
         $papp->papp_renew_date     =   $request->papp_renew_date;
         $today = date('d-m-Y');
         if(strtotime($today)<=strtotime($oldPapp->validate_to))
@@ -1237,7 +1236,6 @@ class PAPPController extends Controller
         $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->audit_year       =   $request->audit_year;
         $papp->type             =   $request->type;
-        $papp->offline_user     =   $request->offline_user;
         $papp->self_confession  =   $request->self_confession;
         $papp->self_confession_1  =   $request->self_confession1;
         $papp->save();

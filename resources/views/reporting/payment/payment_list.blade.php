@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-12">
                         <h3 class="text-center m-3" style="font-weight:bold">
-                              payment transation</h3>
+                              Payment History</h3>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }},
                     {data: 'name_eng', name: 'name_eng'}, 
-                    {data: 'invoiceNo', name: 'invoiceNo'}, 
+                    {data: 'membership', name: 'membership'}, 
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'total', name: 'total'},

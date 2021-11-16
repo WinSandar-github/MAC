@@ -33,6 +33,19 @@
     <link href="{{ asset('EasyLoading/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom_table.css') }}" rel="stylesheet">
+
+    <style>
+        @font-face {
+        font-family: 'mac';
+        /* src: url("{{ asset('/assets/fonts/NotoSansMyanmar-Regular.tff') }}"); */
+        src: url("{{ asset('assets/fonts/NotoSansMyanmar-Medium.ttf') }}")
+    }
+    body {
+        font-family: 'mac',
+        background: rgb(204, 204, 204);
+    }
+
+        </style>
 </head>
 <body class="{{ $class }}">
     @auth()

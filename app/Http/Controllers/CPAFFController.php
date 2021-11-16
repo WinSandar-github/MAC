@@ -824,7 +824,7 @@ class CPAFFController extends Controller
         $cpa_ff->self_confession = $request->self_confession_renew;
         $cpa_ff->type   =   $request->type;
         $cpa_ff->status           =  0;
-        $cpa_ff->offline_user     =  $request->offline_user;
+        // $cpa_ff->offline_user     =  $request->offline_user;
 
         $cpa_ff->validate_from = $today ;
         // $old_validate_to=date('Y-m',strtotime($oldCpaff->validate_to));
@@ -1065,7 +1065,7 @@ class CPAFFController extends Controller
 
     public function approve($id)
     {
-        $old = CPAFF::where('offline_user',0)->orderBy('cpaff_reg_no', 'desc')->first();
+        $old = CPAFF::where('is_renew',0)->orderBy('cpaff_reg_no', 'desc')->first();
         // return $old->cpaff_reg_no;
         if($old->cpaff_reg_no == '' && $old->cpaff_reg_no == NULL){
             $reg_no = 1129;
@@ -1291,7 +1291,7 @@ class CPAFFController extends Controller
         $cpa_ff = CPAFF::with('student_info','student_job', 'student_education_histroy')
                       ->where('status','=',$status)
                       ->where('is_renew','=',$is_renew)
-                      // ->where('offline_user','=',0)
+                      ->where('offline_user','=',0)
                       ->get();
               return DataTables::of($cpa_ff)
                 ->addColumn('action', function ($infos) {
@@ -1643,7 +1643,7 @@ class CPAFFController extends Controller
         $cpa_ff->is_renew          =   $request->is_renew;
         $cpa_ff->self_confession   =   $request->self_confession_renew;
         $cpa_ff->type              =   $request->type;
-        $cpa_ff->offline_user      =   $request->offline_user;
+        // $cpa_ff->offline_user      =   $request->offline_user;
         $cpa_ff->save();
 
         $student_info = StudentInfo::find($request->student_info_id);

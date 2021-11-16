@@ -43,6 +43,16 @@
         #export-btn > button{
             margin-right: 1.5rem
         }
+
+        @font-face {
+        font-family: 'mac';
+        /* src: url("{{ asset('/assets/fonts/NotoSansMyanmar-Regular.tff') }}"); */
+        src: url("{{ asset('assets/fonts/NotoSansMyanmar-Medium.ttf') }}")
+    }
+    body {
+        font-family: 'mac',
+        background: rgb(204, 204, 204);
+    }
     </style>
 </head>
 
