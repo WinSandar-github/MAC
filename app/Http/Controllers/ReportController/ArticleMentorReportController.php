@@ -12,7 +12,7 @@ class ArticleMentorReportController extends Controller
 {
     public function articleMentorRegisteredIntern(Request $request)
     {
-        $mentor = Mentor::get();
+        $mentor = Mentor::whereYear('reg_date', '=', $request->date)->get();
 
         $data = [
             'title' => 'မှတ်ပုံတင်ထားသော အလုပ်သင်ကြားပေးသူစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက် / status အလိုက်)',
