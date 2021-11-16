@@ -421,7 +421,7 @@ class TeacherController extends Controller
             foreach($invoice as $inNo){
                 $inNo->name_eng        = $request->name_eng;
                 $inNo->email           = $request->email;
-                $inNo->phone           = $request->phone;
+                $inNo->phone           = $request->phone_number;
 
                 foreach($memberships as $memberships){
                     $inNo->productDesc     = 'App Fee,Reg Fee,'.$cpa_subject_count.'x CPAOne Sub Yearly Fee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DAOne Sub Yearly Fee('.$memberships->da_subject_fee.'),Teacher Registration';
@@ -472,7 +472,7 @@ class TeacherController extends Controller
         if($request->offline_user==true){
             $teacher = TeacherRegister::where('approve_reject_status',$request->status)
                                         ->where('offline_user',1)
-                                        ->orderBy('created_at','desc');
+                                        ->orderBy('created_at','asc');
             if($request->name!=""){
                 $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
                 ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -539,7 +539,7 @@ class TeacherController extends Controller
                                         ->where('offline_user',null)
                                         //->select('teacher_registers.*');
                                         
-                                        ->orderBy('teacher_registers.created_at','desc');
+                                        ->orderBy('teacher_registers.created_at','asc');
                                        // ->distinct();
                                        // ->groupBy('teacher_registers.id');
             //$teacher = StudentInfo::where('id',$id)->with('teacher', 'invoice')->get();             

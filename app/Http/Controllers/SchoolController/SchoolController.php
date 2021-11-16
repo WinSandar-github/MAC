@@ -1463,7 +1463,7 @@ class SchoolController extends Controller
             
             $school = SchoolRegister::where('approve_reject_status',$request->status)
             ->where('offline_user',$request->offline_user)
-            ->orderBy('created_at','desc');
+            ->orderBy('created_at','asc');
             if($request->name!=""){
                 $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
                             ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -1517,7 +1517,7 @@ class SchoolController extends Controller
             $school = SchoolRegister::where('approve_reject_status',$request->status)
                                     ->where('initial_status',$request->initial_status)
                                     ->where('offline_user',null)
-                                    ->orderBy('created_at','desc');
+                                    ->orderBy('created_at','asc');
             if($request->name!=""){
                 $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
                             ->orWhere('name_eng', 'like', '%' . $request->name. '%');
