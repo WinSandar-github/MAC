@@ -25,7 +25,7 @@
                                             <th class="bold-font-weight">PAPPအမှတ်</th>
                                             <th class="bold-font-weight">အမည်</th>
                                             <th class="bold-font-weight">လုပ်ငန်းအမှတ်</th>
-                                            <th class="bold-font-weight">လုပ်ငန်းအမျိုးအစား</th>
+                                            <th class="bold-font-weight">လုပ်ငန်းအမည်</th>
                                             <th class="bold-font-weight">ရုံးလိပ်စာ</th>
                                             <th class="bold-font-weight">အီးမေလ်</th>
                                             <th class="bold-font-weight">ဖုန်း</th>
@@ -46,11 +46,12 @@
                                                     <td>{{ $m->papp_reg_no }}</td>
                                                     <td>{{ $m->name_mm }}</td>
                                                     <td>{{ 'MENTOR-' . $m->id }}</td>
-                                                    <td class='text-left'>
+                                                    <!-- <td class='text-left'>
                                                        @foreach($m->serviceType() as $ser)
                                                         <span class="d-block m-1 badge bg-info text-white"> {{ $ser->name }} </span>
                                                        @endforeach
-                                                    </td>
+                                                    </td> -->
+                                                    <td>{{ $m->audit_firm_name }}</td>
                                                     <td class='text-left'>{{ $m->address }}</td>
                                                     <td>{{ $m->m_email }}</td>
                                                     <td>{{ $m->phone_no }}</td>
