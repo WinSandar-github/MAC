@@ -12,6 +12,8 @@ use App\CPAFF;
 use App\PAPP;
 use Illuminate\Support\Str;
 use DB;
+use Carbon\Carbon;
+use Yajra\DataTables\Facades\DataTables;
 
 class PaymentController extends Controller
 {
@@ -135,4 +137,36 @@ class PaymentController extends Controller
                         where('student_info_id',$studentID)->first();
         return response()->json($data,200);
     }
+
+      public function filterPayment(Request $request)
+    {
+        
+        $invoices = Invoice::whereYear('updated_at',$request->date)->orderBy('id','desc')->get();
+
+ 
+    $datatable = DataTables::of($invoices)
+            ->addColumn('total', function ($invoice) {
+                $total = 0 ;
+                $amounts = explode(',',$invoice->amount);
+                
+                foreach($amounts as $amount){
+                $total += (int) $amount;
+                }
+                return $total;
+               
+            })
+            ->addColumn('payment_date',function($invoice){
+                return Carbon::createFromFormat('Y-m-d H:i:s', $invoice->created_at)->format('d-M-Y');
+
+            });
+             
+    $datatable = $datatable->rawColumns(['total','payment_date'])->make(true);
+    return $datatable;   
+    }
+
+     
+
+
+
+
 }

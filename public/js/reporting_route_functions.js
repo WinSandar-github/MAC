@@ -368,4 +368,13 @@ function teacherSchoolLicensePlate(url) {
 }
 
 
+function paymentList(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url + "?date=" + $('#select-date').val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
 

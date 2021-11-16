@@ -7,6 +7,7 @@ const _MAIN_TITLE = [
     "ARTICLE_MENTOR",
     "FIRM",
     "TEACHER_SCHOOL",
+    "PAYMENT",
     "REGISTER_LIST",
     "EXAMINEE",
     "EXAM_PASS_LIST"
@@ -366,7 +367,7 @@ const _TEACHER_SCHOOL = [
         fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
         sub_title: "ရပ်နားသင်တန်းဆရာများစာရင်း"
     },
-    
+
     // {
     //     route_name: "/teacher_school_private",
     //     fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
@@ -471,5 +472,14 @@ const _ARTICLE = [
         fun_name: 'articleInternshipList($(this).data(\'url\'))',
         sub_title: "အစိုးရအလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
     }
+
+]
+
+const _PAYMENT = [
+    {
+        route_name: "/show_payment_list",
+        fun_name: 'paymentList($(this).data(\'url\'))',
+        sub_title: "Payment Transaction"
+    },
 
 ]
