@@ -506,3 +506,5 @@ Route::get('/get_app_stu_id/{id}','DaRegisterController@getAppStuId');
 Route::get('/get_reg_stu_id/{id}','DaRegisterController@getRegStuId');
 Route::get('/get_exam_stu_id/{id}','DaRegisterController@getExamStuId');
 
+//payment
+Route::post('/cashPayment', 'PaymentController\PaymentController@cashPayment');
