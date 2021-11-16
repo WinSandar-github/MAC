@@ -2305,7 +2305,7 @@ class AccFirmInfController extends Controller
                   }
                 }
                 else{
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
                 }
 
                 if($request->org_stru_id == 1){
@@ -2580,7 +2580,7 @@ class AccFirmInfController extends Controller
                   }
                 }
                 else{
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                  $number_of_reconnect_pay_year = $current_year - $last_registered_year;
                 }
 
                 if($request->org_stru_id == 1){
@@ -3534,7 +3534,7 @@ class AccFirmInfController extends Controller
                               }
                             }
                             else{
-                              $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                              $number_of_reconnect_pay_year = $current_year - $last_registered_year;
                             }
 
                             if($request->org_stru_id == 1){
@@ -3790,7 +3790,7 @@ class AccFirmInfController extends Controller
                 }
               }
               else{
-                $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+                $number_of_reconnect_pay_year = $current_year - $last_registered_year;
               }
 
               if($request->org_stru_id == 1){
