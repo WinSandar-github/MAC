@@ -204,7 +204,7 @@ class BatchController extends Controller
             $e_date=date('Y-m-d',strtotime($request->end_date));
             $batches=$batches->where('end_date','<=',$e_date);
         }
-        $batches=$batches->get();
+        $batches=$batches->orderBy('id','desc')->get();
         return DataTables::of($batches)
         ->addColumn('action', function ($batch) {
             // if(Carbon::now() >= $batch->start_date){

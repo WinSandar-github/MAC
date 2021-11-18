@@ -570,11 +570,12 @@
                 }
             },
             columns: [
-
                 {
-                    data: "id",
-                    name: 'No'
-                },
+                    data: null,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },                
                 {
                     data: 'action',
                     name: 'action',

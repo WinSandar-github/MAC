@@ -231,7 +231,7 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>" . $qt->student_info->nrc_state_region . "/" . $qt->student_info->nrc_township ."(" . $qt->student_info->nrc_citizen . ")" . $qt->student_info->nrc_number . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ year }}', "<strong>" . $this->en2mmNumber($year) . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ yearEng }}', "<strong>" . $year . "</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ month }}', "<strong>" . $this->en2mmMonthNumber($month) . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ month }}', "<strong>" . $this->en2mmMonthName($month) . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ monthEng }}', "<strong>" . Carbon::parse($qt->exam_date)->format('M') . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ qtRollNo }}', "<strong>" . $qt->sr_no . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officerName }}', "<strong>" . "Thandar Lay" . "</strong>", $template->cert_data);

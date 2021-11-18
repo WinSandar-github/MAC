@@ -357,7 +357,7 @@ class StudentRegisterController extends Controller
             ->where('form_type', $request->form_type)
             ->where('status', $request->status)
             ->where('type', $request->reg_type)
-            ->get();
+            ->orderBy('id','desc')->get();
 
         $datatable = DataTables::of($student_register)
             ->editColumn('name', function ($infos) {
