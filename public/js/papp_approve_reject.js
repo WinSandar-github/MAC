@@ -797,6 +797,7 @@ function approveRenewPappUser(){
             url: BACKEND_URL + "/approve_renew_papp/"+id,
             type: 'patch',
             success: function(result){
+                // console.log(result)
                 successMessage("You have approved that user!");
                 location.href = FRONTEND_URL + "/papp_registration_list";
             }

@@ -28,7 +28,31 @@ class CpaPappReportController extends Controller
         $third_yr = $year - 2;
         $third_yr_str = "CPD {$third_yr}";
 
-        $cpa = CPAFF::with('student_info')->get();
+        //initial
+        $fmonth_initial = 1;
+        $tmonth_initial = 12;
+        $fday_initial = 1;
+        $tday_initial = 31; 
+        $fdate_initial = strftime("%F", strtotime($year."-".$fmonth_initial."-".$fday_initial));
+        $tdate_initial = strftime("%F", strtotime($year."-".$tmonth_initial."-".$tday_initial));
+        //end initial
+
+        //renewal
+        $y = $year -1;
+        $fmonth_renewal = 1;//
+        $tmonth_renewal = 12;
+        $fday_renewal = 11;//
+        $tday_renewal = 31; //
+        $fdate_renewal = strftime("%F", strtotime($y."-".$fmonth_renewal."-".$fday_renewal));
+        $tdate_renewal = strftime("%F", strtotime($year."-".$tmonth_renewal."-".$tday_renewal));
+        //end renewal
+        
+        $initial = CPAFF::with('student_info')->whereBetween('reg_date', [$fdate_initial, $tdate_initial])->get();
+        // return $initial;
+        $renewal = CPAFF::with('student_info')->whereBetween('reg_date', [$fdate_renewal, $tdate_renewal])->get();
+        // return $renewal;
+        $merged = $renewal->merge($initial);
+        // $cpa = $merged->toarray();
 
         $data = [
             'title' => 'CPA (Full-Fledged) တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
@@ -36,7 +60,7 @@ class CpaPappReportController extends Controller
                         'စဥ်','CPA(Full-Fledged) Reg No',
                         'အမည်', $first_yr_str,$second_yr_str,$third_yr_str,'total hours'
                     ],
-            'cpa' => $cpa
+            'cpa' => $merged
         ];
         return view('reporting.cpa_ff_papp.cpa_ff_papp_report', compact('data'));
     }
@@ -70,8 +94,8 @@ class CpaPappReportController extends Controller
     {
         if($request->date != ""){
             $cpaff = CPAFF::with('student_info')
-                            ->where('cpaff_reg_date', 'like', "%$request->date%")
-                            ->orWhere('reg_date', 'like', "%$request->date%")
+                            // ->where('cpaff_reg_date', 'like', "%$request->date%")
+                            ->where('reg_date', 'like', "%$request->date%")
                             ->get();
         }
 
@@ -87,8 +111,9 @@ class CpaPappReportController extends Controller
     {
         if($request->date != ""){
             $papp = PAPP::with('student_info')
-                            ->where('papp_date', 'like', "%$request->date%")
+                            ->where('reg_date', 'like', "%$request->date%")
                             ->get();
+            // return $papp;
         }
 
         $data = [
