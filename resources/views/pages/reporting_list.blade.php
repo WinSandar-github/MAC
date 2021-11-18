@@ -90,6 +90,16 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment</h5>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
+                        <a href="#" class="btn btn-primary show-more-modal" data-section="PAYMENT">Show More</a>
+                    </div>
+                </div>
+            </div>
             <!-- <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -178,6 +188,7 @@
         $('.show-more-modal').on('click', function() {
 
             let MAIN_REPORT = this.dataset.section
+           
             
             let course = {!! $courses !!};
            
@@ -300,6 +311,17 @@
                     $('#more-modal').modal('show')
 
                     break;
+                case _MAIN_TITLE[8]: 
+                     
+                    clearModalContent();
+
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
+                    setModalContent('PAYMENT', _PAYMENT)
+                    $('#more-modal').modal('show')
+
+                    break;
                 default:
                     clearModalContent()
 
@@ -400,7 +422,7 @@
             $('.card').each(function() {
                 let title = $(this).find('.show-more-modal').data('section')
                 let span_text = $(this).find('span')
-
+                
                 switch (title) {
                     case _MAIN_TITLE[0]:
                         span_text.text(_DA.length)
@@ -409,7 +431,7 @@
                         span_text.text(_CPA.length)
                         break;
                     case _MAIN_TITLE[2]:
-                    span_text.text(_CPA_QUALIFIED.length)
+                        span_text.text(_CPA_QUALIFIED.length)
                     break;
                     case _MAIN_TITLE[3]:
                         span_text.text(_CPA_PAPP.length)
@@ -426,6 +448,9 @@
                     case _MAIN_TITLE[7]: 
                         span_text.text(_TEACHER_SCHOOL.length)
                         break;
+                    case _MAIN_TITLE[8]: 
+                        span_text.text(_PAYMENT.length)
+                    break;
                     default:
                         span_text.text('0')
                 }

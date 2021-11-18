@@ -221,7 +221,8 @@ class ExamRegisterController extends Controller
                     $q->where('batch_id', $request->batch);
                 }
             })
-            ->where('form_type', '=', $request->course_code)->get();
+            ->where('form_type', '=', $request->course_code)
+            ->orderBy('id','desc')->get();
         // DA One
         $datatable = DataTables::of($exam_register)
             ->addColumn('exam_type', function ($infos) {
@@ -548,20 +549,22 @@ class ExamRegisterController extends Controller
                     $query->where('batch_id', $request->batch);
                 }
             })
-            ->where('grade', '=', $request->grade)->get();
+            ->where('grade', '=', $request->grade)
+            ->orderBy('id','desc')->get();
 
         // DA One
-        $datatable = DataTables::of($exam_register)->addColumn('exam_type', function ($infos) {
-            if ($infos->form_type == 1) {
-                return "DA - I";
-            } else if ($infos->form_type == 2) {
-                return "DA - II";
-            } else if ($infos->form_type == 3) {
-                return "CPA - I";
-            } else {
-                return "CPA - II";
-            }
-        })
+        $datatable = DataTables::of($exam_register)->
+            addColumn('exam_type', function ($infos) {
+                if ($infos->form_type == 1) {
+                    return "DA - I";
+                } else if ($infos->form_type == 2) {
+                    return "DA - II";
+                } else if ($infos->form_type == 3) {
+                    return "CPA - I";
+                } else {
+                    return "CPA - II";
+                }
+            })
             ->addColumn('remark', function ($infos) {
                 if ($infos->grade == 0) {
                     return "-";
