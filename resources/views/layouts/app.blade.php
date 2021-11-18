@@ -33,6 +33,10 @@
     <link href="{{ asset('EasyLoading/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom_table.css') }}" rel="stylesheet">
+
+    {{-- Academic Year Start --}}
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
+    {{-- Academic Year End --}}
 </head>
 <body class="{{ $class }}">
     @auth()
@@ -107,6 +111,14 @@
     <script src="{{ asset('js/show_da_cpa_offline_user.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
+
+    {{-- Academic Year Start--}}
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
+    {{-- Academic Year end--}}
+
+
 
     <script type="text/javascript">
         $(document).ready(function() {

@@ -19,6 +19,7 @@ class CreateBatchesTable extends Migration
             $table->string('name_mm');
             $table->integer('number');
             $table->unsignedBigInteger('course_id');
+            // $table->string('academic_year')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->date('mac_reg_start_date');

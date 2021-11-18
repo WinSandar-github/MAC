@@ -37,6 +37,7 @@
                                         <th class="bold-font-weight">Batch Name</th>
                                         <th class="bold-font-weight">Batch Number</th>
                                         <th class="bold-font-weight">Course Name</th>
+                                        <th class="bold-font-weight">Academic Year</th>
                                         <th class="bold-font-weight">Batch Start Date</th>
                                         <th class="bold-font-weight">Batch End Date</th>
                                         <th class="bold-font-weight">Application Accept Start Date</th>
@@ -59,91 +60,7 @@
 
                                 </tbody>
                             </table>
-                            {{--
-
-                                <div class="row">
-                                   <div class="col-md-12">
-                                       <div class="card">
-                                           <div class="card-header">
-                                               <div class="row">
-                                                   <div class="col-md-12 text-center">
-                                                       <!-- <form method="post" enctype="multipart/form-data"> -->
-                                                       <div class="row">
-                                                           <div class="col-md-5">
-                                                               <div class="row">
-                                                                   <div class="col-md-1"></div>
-                                                                   <div class="col-md-4 text-left"
-                                                                       style="padding-left:0px;font;font-weight:bold;">Batch
-                                                                       Number</div>
-                                                                   <div class="col-md-7"
-                                                                       style="padding-right:0px;padding-left:0px;">
-                                                                       <input type="text" name="filter_by_name"
-                                                                           class="form-control filter_by_name"
-                                                                           placeholder="Batch Number">
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                           <div class="col-md-5">
-                                                               <div class="row">
-                                                                   <div class="col-md-1"></div>
-                                                                   <div class="col-md-4 text-left"
-                                                                       style="padding-left:0px;font;font-weight:bold;">Course
-                                                                       Name</div>
-                                                                   <div class="col-md-7"
-                                                                       style="padding-right:0px;padding-left:0px;">
-                                                                       <select class="form-control form-select"
-                                                                           name="course_id" id="filter_course_id"
-                                                                           style="width: 100%;" required>
-                                                                           <option value="all" selected>All</option>
-                                                                       </select>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                       </div><br />
-                                                       <div class="row">
-                                                           <div class="col-md-5">
-                                                               <div class="row">
-                                                                   <div class="col-md-1"></div>
-                                                                   <div class="col-md-4 text-left"
-                                                                       style="padding-left:0px;font;font-weight:bold;">Batch
-                                                                       Start Date</div>
-                                                                   <div class="col-md-7"
-                                                                       style="padding-right:0px;padding-left:0px;">
-                                                                       <input type="text" name="filter_by_start_date"
-                                                                           class="form-control" placeholder="DD-MMM-YYYY">
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                           <div class="col-md-5">
-                                                               <div class="row">
-                                                                   <div class="col-md-1"></div>
-                                                                   <div class="col-md-4 text-left"
-                                                                       style="padding-left:0px;font;font-weight:bold;">Batch
-                                                                       End Date</div>
-                                                                   <div class="col-md-7"
-                                                                       style="padding-right:0px;padding-left:0px;">
-                                                                       <input type="text" name="filter_by_end_date"
-                                                                           class="form-control" placeholder="DD-MMM-YYYY">
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                           <div class="col-md-2" style="vertical-align: top;">
-                                                               <button type="button" class="btn btn-primary btn-round m-0"
-                                                                   id="search">Search</button>
-                                                           </div>
-                                                       </div>
-                                                       <!-- </form> -->
-                                                   </div>
-                                               </div>
-                                           </div>
-                                           <div class="card-body">
-                                               <hr size="5" width="95%" color="#F5F5F5">
-                                               
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div> 
-                            --}}
+                            
                         </div>
                     </div>
                 </form>
@@ -208,6 +125,16 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{-- <div class="row">
+                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Academic Year') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="academic_year" class="form-control" placeholder="Academic Year" autocomplete="off"  value="01/01/2018 - 01/15/2018"required>
+                                </div>
+                            </div>
+                        </div> --}}
 
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('5.') }}</label>
@@ -456,6 +383,16 @@
 
     <script type="text/javascript">
         $(document).ready(function(e) {
+
+            // $('input[name="academic_year"]').daterangepicker(
+            //     {
+            //         opens: 'left'
+            //     }, function(start, end, label) {
+            //         console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            //     }
+            // );
+
+
             $("input[name='start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-M-Y",
@@ -594,6 +531,10 @@
                     data: 'course.name',
                     name: 'course.name'
                 },
+                // {
+                //     data: 'academic_year',
+                //     name: 'academic_year'
+                // },
                 {
                     data: 'start_date',
                     name: 'start_date'
