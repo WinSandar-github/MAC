@@ -271,7 +271,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('publishes_qualifiedtest_list','ReportController\QtReportController@currentQualifiedTestList');
     Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
 
+    // Payment Report
+    Route::post('show_payment_list','ReportController\PaymentReportController@showPaymentList');
+    
+    
 });
+Route::post('/filter_payment','PaymentController\PaymentController@filterPayment');
+
 Route::post('show_qualifiedtest_list','QualifiedTest\QualifiedTestController@showPublishQTList');
 
 Route::post('show_registration_list','ReportController@showRegistrationList');

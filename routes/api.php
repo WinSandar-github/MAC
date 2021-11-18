@@ -429,6 +429,7 @@ Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@a
 Route::post('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
 Route::get('/gov_article_show/{id}', 'ArticleController\ArticleController@showGovArticle');
 
+
 Route::post('/article_resign_register', 'ArticleController\ArticleController@saveResignArticle');
 Route::post('/filter_resign_article','ArticleController\ArticleController@FilterResignArticle');
 Route::patch('/approve_resign_article/{id}', 'ArticleController\ArticleController@approveResign');
@@ -506,3 +507,5 @@ Route::get('/get_app_stu_id/{id}','DaRegisterController@getAppStuId');
 Route::get('/get_reg_stu_id/{id}','DaRegisterController@getRegStuId');
 Route::get('/get_exam_stu_id/{id}','DaRegisterController@getExamStuId');
 
+//payment
+Route::post('/cashPayment', 'PaymentController\PaymentController@cashPayment');

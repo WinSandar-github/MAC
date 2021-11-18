@@ -283,18 +283,18 @@ function getTeacherInfos(){
                     }
                 }
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate",value.initial_status,value.offline_user);
+                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),data.payment[0].status,"#tbl_certificate",value.initial_status,value.offline_user);
                     loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
-                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate",value.initial_status,value.offline_user);
+                    loadCertificates(value.certificates,data.payment[0].status,"#tbl_certificate",value.initial_status,value.offline_user);
                     loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma",value.initial_status,value.offline_user);
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),data.payment[0].status,"#tbl_diploma",value.initial_status,value.offline_user);
                     loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
-                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma",value.initial_status,value.offline_user);
+                    loadCertificates(value.diplomas,data.payment[0].status,"#tbl_diploma",value.initial_status,value.offline_user);
                     loadCard(value.diplomas);
                 }
                 

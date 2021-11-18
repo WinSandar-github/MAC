@@ -339,7 +339,8 @@ class DARegisterController extends Controller
                         })
 
                         ->where('student_course_regs.approve_reject_status','=', $request->status)
-                        ->where('qt_entry','=',0)->get();
+                        ->where('qt_entry','=',0)
+                        ->orderBy('id','desc')->get();
 
         return DataTables::of($student_infos)
 
