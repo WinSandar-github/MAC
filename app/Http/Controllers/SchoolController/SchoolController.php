@@ -2349,17 +2349,20 @@ class SchoolController extends Controller
                 
                     $currentMonth = Carbon::now()->format('m');
                     $currentDay = Carbon::now()->format('d');
-                    list($last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
+                    list($last_pay_day,$last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
                     $dbDate = Carbon::parse($last_pay_year.'-'.$currentMonth.'-'.$currentDay);
                     // if($currentMonth==11 || $currentMonth==12){
-                        $currentYear = Carbon::now();
-                        $diffYear = $currentYear->diffInYears($dbDate);
+                        // $currentYear = Carbon::now();
+                        // $diffYear = $currentYear->diffInYears($dbDate);
                     // }
                     // else if($currentMonth >=01){
                     //     $currentYear = Carbon::now()->subYear();
                     //     $diffYear = $currentYear->diffInYears($dbDate);
                     // }
                 if($request->request_for_temporary_stop=="no"){
+                    $currentYear = Carbon::now();
+                    $diffYear = $currentYear->diffInYears($dbDate);
+
                     $invoice = new Invoice();
                     $invoice->student_info_id = $request->student_info_id;
                     $invoice->invoiceNo = 'renew_sch'.$school->id;
