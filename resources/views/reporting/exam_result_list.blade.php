@@ -185,7 +185,7 @@
                         d.grade       = 1,
                         d.batch_id = $('#batch_id').val(),
                         d.exam_type_id = $('#student_type').val(),
-                        d.module     = $('#selected_module').val(),
+                        d.pass_module     = $('#selected_module').val(),
                         d.exam_department = $('#exam_department').val()
 
 
@@ -205,7 +205,7 @@
                     {data: 'age', name: 'age'},
                     {data: 'gender', name: 'gender'},
                     {data: 'gov_staff', name: 'gov_staff'},
-                    {data: 'module', name: 'Module'}, 
+                    {data: 'pass_module', name: 'Module'}, 
                     {data: 'remark', name: 'remark'}, 
 
                     
