@@ -30,8 +30,8 @@ class ReportController extends Controller
 
     public function showExamList(Request $request)
     {
-      
-        $batch = Batch::where('id',$request->batch_id)->with('course',)->first();
+         
+        $batch = Batch::where('id',$request->batch_id)->with('course')->first();
 
         $student_infos = ExamRegister::where('batch_id',$request->batch_id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')

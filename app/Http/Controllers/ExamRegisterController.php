@@ -221,7 +221,8 @@ class ExamRegisterController extends Controller
                     $q->where('batch_id', $request->batch);
                 }
             })
-            ->where('form_type', '=', $request->course_code)->get();
+            ->where('form_type', '=', $request->course_code)
+            ->orderBy('id','desc')->get();
         // DA One
         $datatable = DataTables::of($exam_register)
             ->addColumn('exam_type', function ($infos) {
@@ -550,7 +551,8 @@ class ExamRegisterController extends Controller
                     $q->where('batch_id', $request->batch);
                 }
             })
-            ->where('grade', '=', $request->grade)->get();
+            ->where('grade', '=', $request->grade)
+            ->orderBy('id','desc')->get();
 
         // DA One
         $datatable = DataTables::of($exam_register)->addColumn('exam_type', function ($infos) {
