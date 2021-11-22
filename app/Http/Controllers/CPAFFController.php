@@ -1103,7 +1103,8 @@ class CPAFFController extends Controller
         {
             $approve->status = 1;
             $approve->accepted_date=$accepted_date;
-        $approve->renew_accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
+            $approve->reg_date=date('Y-m-d');
         }
         else if($approve->status==1){
             $approve->status = 1;
