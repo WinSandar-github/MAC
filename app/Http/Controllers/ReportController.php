@@ -30,7 +30,7 @@ class ReportController extends Controller
 
     public function showExamList(Request $request)
     {
-         
+      
         $batch = Batch::where('id',$request->batch_id)->with('course',)->first();
 
         $student_infos = ExamRegister::where('batch_id',$request->batch_id)
@@ -48,13 +48,19 @@ class ReportController extends Controller
             : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
         }
         else{
-            $student_infos = $student_infos->orderby('total_mark', 'asc')->Where('grade',$request->grade);
-        }
-        if($request->module)
-        {
             
-            $student_infos = $student_infos->where('is_full_module',$request->module);
+            $student_infos = $student_infos->orderby('total_mark', 'asc')->where('grade',$request->grade);
         }
+
+        if($request->module)
+        { 
+            $student_infos = $student_infos->where('is_full_module',$request->module);
+        }else if($request->pass_module){
+            $student_infos = $student_infos->where('pass_module',$request->pass_module);
+
+        }
+
+
 
   
         if($request->exam_department)
@@ -91,6 +97,18 @@ class ReportController extends Controller
                         return "-";
                     }
                 })
+                
+                ->addColumn('pass_module', function ($infos) {
+                    if ($infos->pass_module == 1) {
+                        return "Module 1";
+                    } else if ($infos->pass_module == 2) {
+                        return "Module 2";
+                    } else if ($infos->pass_module == 3){
+                        return "All Module";
+                    }else {
+                        return "-";
+                    }
+                })
                 ->addColumn('age', function ($infos) {
                     return Carbon::parse($infos->student_info->date_of_birth)->age;
                 })
@@ -117,7 +135,7 @@ class ReportController extends Controller
             
                     // return  $infos->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်';
                 })
-                ->rawColumns(['action','nrc','cpersonal_no','module','course_name','age','gender','gov_staff','remark'])
+                ->rawColumns(['action','nrc','cpersonal_no','module','course_name','age','gender','gov_staff','remark','pass_module'])
                 ->make(true);
 
 

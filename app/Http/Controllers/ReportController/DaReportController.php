@@ -70,6 +70,7 @@ class DaReportController extends Controller
                 'course' => $course,
                 'student' => $student_registers,
             ];
+            return $student_registers;
 
             /*return view('reporting.application_list',compact('batch','course','student_registers'));*/
             return view('reporting.application_list', compact('data'));
