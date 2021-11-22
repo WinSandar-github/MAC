@@ -96,16 +96,22 @@ class PaymentController extends Controller
 
                         //reg_no and payment_date for CPAFF
                         $cpaff = CPAFF::where('student_info_id', $req->student_info_id)->first();
-                        if($cpaff){
+                        $cpaff_type = $cpaff->is_renew;
+                        if($cpaff_type == 0){
                             generateCpaffNo($cpaff->id);
+                        }else if($cpaff_type == 1){
+                            generateCpaffPaymentDate($cpaff->id);
                         }//end cpaff
 
                         //reg_no and payment_date for PAPP
                         $papp = PAPP::where('student_id', $req->student_info_id)->first();
-                        if($papp){
+                        $papp_type = $papp->type;
+                        if($papp_type == 0){
                             generatePappNo($papp->id);
+                        }else if($papp_type == 1){
+                            generatePappPaymentDate($papp->id);
                         }//end papp
-
+                        
                         //reg_no and payment_date for audit firm
                         $audit = AccountancyFirmInformation::where('student_info_id', $req->student_info_id)->first();
                         if($audit->local_foreign_type != null && $audit->local_foreign_type != ""){

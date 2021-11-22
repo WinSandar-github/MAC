@@ -16,10 +16,9 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 table-responsive">
                             <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
-                                    <thead>
                                     <tr>
                                         <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >CPA (Full-Fledged) Reg No.</th>
@@ -27,16 +26,13 @@
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                         <th class="bold-font-weight" >လိပ်စာ</th>
-                                        <!--<th class="bold-font-weight" >ဖုန်းနံပါတ်</th>
-                                        <th class="bold-font-weight" >အီးမေးလ်</th>-->
                                     </tr>
-                                </thead>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable text-center">
                                 @foreach($data['papp'] as $key => $papp)
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ $papp->reg_no }}</td>
+                                            <td>{{ $papp->cpaff_reg_no }}</td>
                                             <td>{{ $papp->papp_reg_no }}</td>
                                             <td>{{ 
                                                 $papp->student_info == ""

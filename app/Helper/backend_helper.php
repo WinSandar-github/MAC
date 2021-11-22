@@ -17,6 +17,12 @@ function generateCpaffNo($id){
     $cpaff->save();
 }
 
+function generateCpaffPaymentDate($id){
+    $cpaff = CPAFF::find($id);
+    $cpaff->reg_date = date('Y-m-d');
+    $cpaff->save();
+}
+
 function generatePappNo($id){
     $old = Papp::where('type',0)->orderBy('papp_reg_no', 'desc')->first();
         // return $old->cpaff_reg_no;
@@ -27,7 +33,13 @@ function generatePappNo($id){
     }
     $papp = PAPP::find($id);
     $papp->papp_reg_no   = $reg_no;
-    $papp->papp_reg_date = date('Y-m-d');
+    $papp->reg_date = date('Y-m-d');
+    $papp->save();
+}
+
+function generatePappPaymentDate($id){
+    $papp = Papp::find($id);
+    $papp->reg_date = date('Y-m-d');
     $papp->save();
 }
 
