@@ -143,6 +143,17 @@ class PaymentController extends Controller
                         where('student_info_id',$studentID)->first();
         return response()->json($data,200);
     }
+    public function cashPayment(Request $request)
+    {
+        $invoice = Invoice::where('invoiceNo',$request->invoiceNo)->first();
+        $invoice->dateTime = date('Y-m-d');
+        $invoice->status = 'AP';
+        $invoice->save();
+        
+        return response()->json([
+            'message' => 'Payment Success.'
+        ],200);
+    }
 
       public function filterPayment(Request $request)
     {

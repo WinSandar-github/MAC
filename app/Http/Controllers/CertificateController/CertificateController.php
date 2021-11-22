@@ -260,7 +260,9 @@ class CertificateController extends Controller
             if($school->from_valid_date!=null){
                 $reg_date=Carbon::createFromFormat('Y-m-d', $school->from_valid_date)->format('d-m-Y');
             }else{
-                $invoice=Invoice::where('student_info_id',$school->student_info_id)->first();
+                $invoice=Invoice::where('student_info_id',$school->student_info_id)
+                                    ->where('invoiceNo',"init_sch".$school->id)
+                                    ->first();
                 //$currentDate = Carbon::now()->addYears(3) ;
                 $reg_date=Carbon::createFromFormat('Y-m-d', $invoice->dateTime)->format('d-m-Y');
             }
