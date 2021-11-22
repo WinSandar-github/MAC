@@ -37,7 +37,8 @@
                                         <th class="bold-font-weight">Batch Name</th>
                                         <th class="bold-font-weight">Batch Number</th>
                                         <th class="bold-font-weight">Course Name</th>
-                                        <th class="bold-font-weight">Academic Year</th>
+                                        <th class="bold-font-weight">Academic Year Start Date</th>
+                                        <th class="bold-font-weight">Academic Year End Date</th>
                                         <th class="bold-font-weight">Batch Start Date</th>
                                         <th class="bold-font-weight">Batch End Date</th>
                                         <th class="bold-font-weight">Application Accept Start Date</th>
@@ -126,18 +127,28 @@
                             </div>
                         </div>
 
-                        {{-- <div class="row">
-                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Academic Year') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" name="academic_year" class="form-control" placeholder="Academic Year" autocomplete="off"  value="01/01/2018 - 01/15/2018"required>
-                                </div>
-                            </div>
-                        </div> --}}
-
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Academic Year Start Date') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="acdm_year_start_date" class="form-control" placeholder="DD-MMM-YYYY">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Academic Year End Date') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="acdm_year_end_date" class="form-control" placeholder="DD-MMM-YYYY">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Batch Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -147,7 +158,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Batch End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -158,7 +169,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -169,7 +180,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('8.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -180,7 +191,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('MAC Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -191,7 +202,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('12.') }}</label>
                             <label class="col-md-4 form-label">{{ __('MAC Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -202,7 +213,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('13.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Self Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -213,7 +224,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('14.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Self Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -224,7 +235,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('13.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('15.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Private Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -235,7 +246,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('14.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('16.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Private Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -246,7 +257,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('15.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('17.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Exam Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -256,7 +267,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('16.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('18.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Exam Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -272,7 +283,7 @@
 
                         <div id="entrance_pass" style="display:none;">
                             <div class="row">
-                                <label class="col-md-1 form-label">{{ __('17.') }}</label>
+                                <label class="col-md-1 form-label">{{ __('19.') }}</label>
                                 <label class="col-md-4 form-label">{{ __('Entrance Exam Form Start Date') }}</label>
                                 <div class="col-md-7">
                                     <div class="form-group">
@@ -282,8 +293,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-1 form-label">{{ __('18.') }}</label>
-                                <label class="col-md-4 form-label">{{ __('Entrance Exam Formx End Date') }}</label>
+                                <label class="col-md-1 form-label">{{ __('20.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Entrance Exam Form End Date') }}</label>
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <input type="text" name="entrance_pass_end_date" class="form-control"
@@ -393,16 +404,24 @@
             // );
 
 
+            $("input[name='acdm_year_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-M-Y",
+                allowInput: true,
+            });
+
+            $("input[name='acdm_year_end_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-M-Y",
+                allowInput: true,
+            });
+
             $("input[name='start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-M-Y",
                 allowInput: true,
             });
-            // $("input[name='start_date']").flatpickr({
-            //         enableTime: false,
-            //         dateFormat: "d-M-Y",
-            //         allowInput: true,
-            // });
+            
             $("input[name='end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-M-Y",
@@ -531,10 +550,14 @@
                     data: 'course.name',
                     name: 'course.name'
                 },
-                // {
-                //     data: 'academic_year',
-                //     name: 'academic_year'
-                // },
+                {
+                    data: 'acdm_year_start_date',
+                    name: 'acdm_year_start_date'
+                },
+                {
+                    data: 'acdm_year_end_date',
+                    name: 'acdm_year_end_date'
+                },
                 {
                     data: 'start_date',
                     name: 'start_date'

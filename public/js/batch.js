@@ -4,7 +4,8 @@ function createBatch() {
     send_data.append('name_mm', $("input[name=name_mm]").val());
     send_data.append('number', $("input[name=number]").val());
     send_data.append('course_id', $('#selected_course_id').val());
-    // send_data.append('academic_year', $("input[name=academic_year]").val());
+    send_data.append('acdm_year_start_date', $("input[name=acdm_year_start_date]").val());
+    send_data.append('acdm_year_end_date', $("input[name=acdm_year_end_date]").val());
     send_data.append('start_date', $("input[name=start_date]").val());
     send_data.append('end_date', $("input[name=end_date]").val());
     send_data.append('mac_reg_start_date', $("input[name=mac_reg_start_date]").val());
@@ -58,7 +59,8 @@ function getBatch() {
             { data: 'action', name: 'action', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
             { data: 'course.name', name: 'course.name' },
-            // { data: 'academic_year', name: 'academic_year' },
+            { data: 'acdm_year_start_date', name: 'acdm_year_start_date' },
+            { data: 'acdm_year_end_date', name: 'acdm_year_end_date' },
             { data: 'start_date', name: 'start_date' },
             { data: 'end_date', name: 'end_date' },
             { data: 'accept_application_start_date', name: 'accept_application_start_date' },
@@ -167,7 +169,8 @@ function showBatchInfo(id) {
             $("input[name=number]").val(batch_data.number);
             $('#selected_course_id').val(batch_data.course_id);
             checkCpaOne(batch_data.course_id);
-            // $('input[name=academic_year]').val(batch_data.academic_year);
+            $('input[name=acdm_year_start_date]').val(batch_data.acdm_year_start_date);
+            $('input[name=acdm_year_end_date]').val(batch_data.acdm_year_end_date);
             $('input[name=start_date]').val(batch_data.start_date);
             $('input[name=end_date]').val(batch_data.end_date);
             $('input[name=mac_reg_start_date]').val(batch_data.mac_reg_start_date);
@@ -201,7 +204,8 @@ function updateBatch() {
     var name_mm = $("input[name=name_mm]").val();
     var number = $("input[name=number]").val();
     var course_id = $("#selected_course_id").val();
-    // var academic_year = $("input[name=academic_year]").val();
+    var acdm_year_start_date = $("input[name=acdm_year_start_date]").val();
+    var acdm_year_end_date = $("input[name=acdm_year_end_date]").val();
     var start_date = $("input[name=start_date]").val();
     var end_date = $("input[name=end_date]").val();
     var mac_reg_start_date = $("input[name=mac_reg_start_date]").val();
@@ -227,7 +231,8 @@ function updateBatch() {
             name_mm: name_mm,
             number: number,
             course_id: course_id,
-            // academic_year: academic_year,
+            acdm_year_start_date: acdm_year_start_date,
+            acdm_year_end_date: acdm_year_end_date,
             start_date: start_date,
             end_date: end_date,
             mac_reg_start_date: mac_reg_start_date,
