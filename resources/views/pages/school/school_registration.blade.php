@@ -256,11 +256,12 @@
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
-                                                                <!-- <th class="bold-font-weight" >Renew Date</th> -->
+                                                                
                                                                 <!-- <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th> -->
                                                                 <th class="bold-font-weight" >School Card</th>
+                                                                <th class="bold-font-weight" >Cessation Date</th>
                                                                 <th class="bold-font-weight" >Cessation Reason</th>
                                                             </tr>
                                                         </thead>
@@ -539,9 +540,8 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                // {data: 'renew_date', name: 'renew_date'},
-                
                 {data: 'card', name: 'card'},
+                {data: 'cessation_date', name: 'cessation_date'},
                 {data: 'remark', name: 'remark'},
             ],
         });
