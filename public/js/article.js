@@ -75,6 +75,8 @@ function saveContractDate() {
             //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
         } else if (article_form_type == "c12_renew") {
             //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
+        }else if (article_form_type == "c2_pass/qt_pass_3yr") {
+            var contract_end_date = new Date(year + 3, month, day - 1);
         }
 
         contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();

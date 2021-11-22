@@ -12,6 +12,8 @@ use App\CPAFF;
 use App\PAPP;
 use Illuminate\Support\Str;
 use DB;
+use Carbon\Carbon;
+use Yajra\DataTables\Facades\DataTables;
 
 class PaymentController extends Controller
 {
@@ -94,16 +96,22 @@ class PaymentController extends Controller
 
                         //reg_no and payment_date for CPAFF
                         $cpaff = CPAFF::where('student_info_id', $req->student_info_id)->first();
-                        if($cpaff){
+                        $cpaff_type = $cpaff->is_renew;
+                        if($cpaff_type == 0){
                             generateCpaffNo($cpaff->id);
+                        }else if($cpaff_type == 1){
+                            generateCpaffPaymentDate($cpaff->id);
                         }//end cpaff
 
                         //reg_no and payment_date for PAPP
                         $papp = PAPP::where('student_id', $req->student_info_id)->first();
-                        if($papp){
+                        $papp_type = $papp->type;
+                        if($papp_type == 0){
                             generatePappNo($papp->id);
+                        }else if($papp_type == 1){
+                            generatePappPaymentDate($papp->id);
                         }//end papp
-
+                        
                         //reg_no and payment_date for audit firm
                         $audit = AccountancyFirmInformation::where('student_info_id', $req->student_info_id)->first();
                         if($audit->local_foreign_type != null && $audit->local_foreign_type != ""){
@@ -135,4 +143,104 @@ class PaymentController extends Controller
                         where('student_info_id',$studentID)->first();
         return response()->json($data,200);
     }
+    public function cashPayment(Request $request)
+    {
+        $invoice = Invoice::where('invoiceNo',$request->invoiceNo)->first();
+        $invoice->dateTime = date('Y-m-d');
+        $invoice->status = 'AP';
+        $invoice->save();
+        
+        return response()->json([
+            'message' => 'Payment Success.'
+        ],200);
+    }
+
+      public function filterPayment(Request $request)
+    {
+         
+
+        
+        $invoices = Invoice::whereYear('updated_at',$request->date)->where('status','AP')->with('student_info')->orderBy('id','desc')->get();
+        
+ 
+    $datatable = DataTables::of($invoices)
+            ->addColumn('total', function ($invoice) {
+                $total = 0 ;
+                $amounts = explode(',',$invoice->amount);
+                
+                foreach($amounts as $amount){
+                $total += (int) $amount;
+                }
+                return $total;
+               
+            })
+            ->addColumn('membership', function ($invoice) {
+                if(str_contains($invoice->invoiceNo,'init_sch') == 1) {
+                    $membership = 'Initial School';
+                }
+                if(str_contains($invoice->invoiceNo,'renew_sch') == 1) {
+                    $membership = 'Renew School';
+                }else if(str_contains($invoice->invoiceNo,'init_tec') == 1) {
+                    $membership = 'Initial Teacher';
+                }else if(str_contains($invoice->invoiceNo,'renew_tec') == 1) {
+                    $membership = 'Renew Teacher';
+                }else if(str_contains($invoice->invoiceNo,'cpaff_initial') == 1) {
+                    $membership = 'Initail CPAFF';
+                }else if(str_contains($invoice->invoiceNo,'cpaff_renew') == 1) {
+                    $membership = 'Renew CPAFF';
+                }else if(str_contains($invoice->invoiceNo,'papp_initial') == 1) {
+                    $membership = 'Initail PAPP';
+                }else if(str_contains($invoice->invoiceNo,'papp_renew') == 1) {
+                    $membership = 'Renew PAPP';
+                }else if(str_contains($invoice->invoiceNo,'qtexam') == 1) {
+                    $membership = 'Qualified Test';
+                }else if(str_contains($invoice->invoiceNo,'off_audit_renew') == 1) {
+                    $membership = 'Renew Audit';
+                }else if(str_contains($invoice->invoiceNo,'audit_renew') == 1){
+                    $membership = 'Renew Audit';
+                }else if(str_contains($invoice->invoiceNo,'off_non_audit_renew') == 1) {
+                    $membership = 'Renew Non-Audit';
+                }else if(str_contains($invoice->invoiceNo,'non_audit_renew') == 1) {
+                    $membership = 'Renew Non-Audit';
+                }else if(str_contains($invoice->invoiceNo,'audit_initital') == 1) {
+                    $membership = 'Initail Audit';
+                }else if(str_contains($invoice->invoiceNo,'non_audit_initial') == 1) {
+                    $membership = 'Initail Non-Audit';
+                }else if(str_contains($invoice->invoiceNo,'app_form') == 1 ) {
+                    $membership = 'Application DA Course';
+                }else if(str_contains($invoice->invoiceNo,'mac_reg_da_1') == 1 || str_contains($invoice->invoiceNo,'prv_reg_da_1') == 1 || str_contains($invoice->invoiceNo,'self_reg_da_1') == 1
+                         || str_contains($invoice->invoiceNo,'mac_reg_da_2') == 1 || str_contains($invoice->invoiceNo,'prv_reg_da_2') == 1 || str_contains($invoice->invoiceNo,'self_reg_da_2') == 1   ) {
+                    $membership = 'Registration DA Course';
+                }else if(str_contains($invoice->invoiceNo,'exm_da_1') == 1 || str_contains($invoice->invoiceNo,'exm_da_2') == 1 ) {
+                    $membership = 'Exam DA Course';
+                }else if(str_contains($invoice->invoiceNo,'cpa_app') == 1 ) {
+                    $membership = 'Application CPA Course';
+                }else if(str_contains($invoice->invoiceNo,'mac_reg_cpa_1') == 1 || str_contains($invoice->invoiceNo,'prv_reg_cpa_1') == 1 || str_contains($invoice->invoiceNo,'self_reg_cpa_1') == 1
+                         || str_contains($invoice->invoiceNo,'mac_reg_cpa_2') == 1 || str_contains($invoice->invoiceNo,'prv_reg_cpa_2') == 1 || str_contains($invoice->invoiceNo,'self_reg_cpa_2') == 1   ) {
+                    $membership = 'Registration CPA Course';
+                }else if(str_contains($invoice->invoiceNo,'exm_cpa_1') == 1 || str_contains($invoice->invoiceNo,'exm_cpa_2')  ) {
+                    $membership = 'Exam CPA Course';
+                }else
+
+                
+                {
+                    $membership = '-';
+                } 
+                return $membership;
+               
+            })
+            ->addColumn('payment_date',function($invoice){
+                return Carbon::createFromFormat('Y-m-d H:i:s', $invoice->updated_at)->format('d-M-Y');
+
+            });
+             
+    $datatable = $datatable->rawColumns(['total','payment_date','membership'])->make(true);
+    return $datatable;   
+    }
+
+     
+
+
+
+
 }

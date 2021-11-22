@@ -382,7 +382,7 @@ function autoLoadAudit(){
          //   $("#initial_btns").css('display','block');
          // }
 
-         if(element.offline_user == 1){
+         if(element.offline_user == 1 || element.is_renew == 1){
            $("#last_registered_year_box").css('display','block');
            $("#has_suspend_year").css('display','block');
            if(element.req_for_stop == 1){

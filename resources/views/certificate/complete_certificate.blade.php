@@ -5,15 +5,7 @@
 </head>
 <style>
 
-    @font-face {
-        font-family: 'mac';
-        /* src: url("{{ asset('/assets/fonts/NotoSansMyanmar-Regular.tff') }}"); */
-        src: url("{{ asset('assets/fonts/NotoSansMyanmar-Medium.ttf') }}")
-    }
-    body {
-        font-family: 'mac',
-        background: rgb(204, 204, 204);
-    }
+   
 
     .input {
         border-bottom: dotted;
