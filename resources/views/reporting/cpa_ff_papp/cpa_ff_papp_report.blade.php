@@ -31,16 +31,32 @@
                                     @foreach($data['cpa'] as $key => $cpa)
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ $cpa->cpaff_reg_no }}</td>
+                                            <td>{{ $cpa[0]->cpaff_reg_no }}</td>
                                             <td>{{ 
-                                                $cpa->student_info == ""
+                                                $cpa[0]->student_info == ""
                                                     ? 'error'
-                                                    : $cpa->student_info->name_mm 
+                                                    : $cpa[0]->student_info->name_mm 
                                             }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
+                                            <td>{{ $cpa[0]->total_hours }}</td>
+                                            <?php $last_one = getLastOneYearCpd($cpa[0]->student_info_id,$year); ?>
+                                            @if($last_one)
+                                                @foreach($last_one as $d)
+                                                    <td>{{ $d->total_hours }}</td>
+                                                @endforeach
+                                            @else
+                                            <td>-</td>
+                                            @endif
+
+                                            <?php $last_two = getLastTwoYearCpd($cpa[0]->student_info_id,$year); ?>
+                                            @if($last_two)
+                                                @foreach($last_two as $d)
+                                                    <td>{{ $d->total_hours }}</td>
+                                                @endforeach
+                                            @else
+                                            <td>-</td>
+                                            @endif
+
+                                            <td>{{ $cpa[0]->total_hours }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

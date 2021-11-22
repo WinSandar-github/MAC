@@ -30,17 +30,33 @@
                                     @foreach($data['papp'] as $key => $papp)
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ $papp->reg_no }}</td>
-                                            <td>{{ $papp->papp_reg_no }}</td>
+                                            <td>{{ $papp[0]->cpaff_reg_no }}</td>
+                                            <td>{{ $papp[0]->papp_reg_no }}</td>
                                             <td>{{ 
-                                                $papp->student_info == ""
+                                                $papp[0]->student_info == ""
                                                     ? 'error'
-                                                    : $papp->student_info->name_mm 
+                                                    : $papp[0]->student_info->name_mm 
                                             }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
+                                            <td>{{ $papp[0]->cpd_hours }}</td>
+                                            <?php $last_one = getPappLastOneYearCpd($papp[0]->student_id,$year); ?>
+                                            @if($last_one)
+                                                @foreach($last_one as $d)
+                                                    <td>{{ $d->cpd_hours }}</td>
+                                                @endforeach
+                                            @else
+                                            <td>-</td>
+                                            @endif
+
+                                            <?php $last_two = getPappLastTwoYearCpd($papp[0]->student_id,$year); ?>
+                                            @if($last_two)
+                                                @foreach($last_two as $d)
+                                                    <td>{{ $d->cpd_hours }}</td>
+                                                @endforeach
+                                            @else
+                                            <td>-</td>
+                                            @endif
+
+                                            <td>{{ $papp[0]->cpd_hours }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
