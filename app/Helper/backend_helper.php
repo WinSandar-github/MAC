@@ -1,6 +1,6 @@
 <?php
 use App\CPAFF;
-use App\PAPP;
+use App\Papp;
 use App\AccountancyFirmInformation;
 
 function generateCpaffNo($id){
@@ -31,7 +31,7 @@ function generatePappNo($id){
     }else{
         $reg_no = $old->papp_reg_no +1;
     }
-    $papp = PAPP::find($id);
+    $papp = Papp::find($id);
     $papp->papp_reg_no   = $reg_no;
     $papp->reg_date = date('Y-m-d');
     $papp->save();
@@ -165,4 +165,112 @@ function generateAuditNo($id){
     $audit->accountancy_firm_reg_no = $reg_no;
     $audit->register_date = date('Y-m-d');
     $audit->save();
+}
+
+function getLastOneYearCpd($id,$year){
+    // LAST ONE YEAR
+    $fmonth_initial = 1;
+    $tmonth_initial = 12;
+    $fday_initial = 1;
+    $tday_initial = 31; 
+
+    $fmonth_renewal = 1;//
+    $tmonth_renewal = 12;
+    $fday_renewal = 11;//
+    $tday_renewal = 31; //
+
+    $y = $year - 1;
+    $last_one_year = $year - 2;
+    $fdate_initial_last_one_year = strftime("%F", strtotime($y."-".$fmonth_initial."-".$fday_initial));
+    $tdate_initial_last_one_year = strftime("%F", strtotime($y."-".$tmonth_initial."-".$tday_initial));
+
+    $fdate_renewal_last_one_year = strftime("%F", strtotime($last_one_year."-".$fmonth_renewal."-".$fday_renewal));
+    $tdate_renewal_last_one_year = strftime("%F", strtotime($y."-".$tmonth_renewal."-".$tday_renewal));
+
+    $cpd_last_one_year = CPAFF::where('student_info_id', $id)
+                ->whereBetween('reg_date', [$fdate_initial_last_one_year, $tdate_initial_last_one_year])
+                ->whereBetween('reg_date', [$fdate_renewal_last_one_year, $tdate_renewal_last_one_year])
+                ->get('total_hours');
+    return $cpd_last_one_year;
+}
+
+function getLastTwoYearCpd($id,$year){
+    // LAST ONE YEAR
+    $fmonth_initial = 1;
+    $tmonth_initial = 12;
+    $fday_initial = 1;
+    $tday_initial = 31; 
+
+    $fmonth_renewal = 1;//
+    $tmonth_renewal = 12;
+    $fday_renewal = 11;//
+    $tday_renewal = 31; //
+
+    $y = $year - 2;
+    $last_two_year = $year - 3;
+    $fdate_initial_last_two_year = strftime("%F", strtotime($y."-".$fmonth_initial."-".$fday_initial));
+    $tdate_initial_last_two_year = strftime("%F", strtotime($y."-".$tmonth_initial."-".$tday_initial));
+
+    $fdate_renewal_last_two_year = strftime("%F", strtotime($last_two_year."-".$fmonth_renewal."-".$fday_renewal));
+    $tdate_renewal_last_two_year = strftime("%F", strtotime($y."-".$tmonth_renewal."-".$tday_renewal));
+
+    $cpd_last_two_year = CPAFF::where('student_info_id', $id)
+                ->whereBetween('reg_date', [$fdate_initial_last_two_year, $tdate_initial_last_two_year])
+                ->whereBetween('reg_date', [$fdate_renewal_last_two_year, $tdate_renewal_last_two_year])
+                ->get('total_hours');
+    return $cpd_last_two_year;
+}
+
+function getPappLastOneYearCpd($id,$year){
+    // LAST ONE YEAR
+    $fmonth_initial = 1;
+    $tmonth_initial = 12;
+    $fday_initial = 1;
+    $tday_initial = 31; 
+
+    $fmonth_renewal = 1;//
+    $tmonth_renewal = 12;
+    $fday_renewal = 11;//
+    $tday_renewal = 31; //
+
+    $y = $year - 1;
+    $last_one_year = $year - 2;
+    $fdate_initial_last_one_year = strftime("%F", strtotime($y."-".$fmonth_initial."-".$fday_initial));
+    $tdate_initial_last_one_year = strftime("%F", strtotime($y."-".$tmonth_initial."-".$tday_initial));
+
+    $fdate_renewal_last_one_year = strftime("%F", strtotime($last_one_year."-".$fmonth_renewal."-".$fday_renewal));
+    $tdate_renewal_last_one_year = strftime("%F", strtotime($y."-".$tmonth_renewal."-".$tday_renewal));
+
+    $cpd_last_one_year = Papp::where('student_id', $id)
+                ->whereBetween('reg_date', [$fdate_initial_last_one_year, $tdate_initial_last_one_year])
+                ->whereBetween('reg_date', [$fdate_renewal_last_one_year, $tdate_renewal_last_one_year])
+                ->get('cpd_hours');
+    return $cpd_last_one_year;
+}
+
+function getPappLastTwoYearCpd($id,$year){
+    // LAST ONE YEAR
+    $fmonth_initial = 1;
+    $tmonth_initial = 12;
+    $fday_initial = 1;
+    $tday_initial = 31; 
+
+    $fmonth_renewal = 1;//
+    $tmonth_renewal = 12;
+    $fday_renewal = 11;//
+    $tday_renewal = 31; //
+
+    $y = $year - 2;
+    $last_two_year = $year - 3;
+    $fdate_initial_last_two_year = strftime("%F", strtotime($y."-".$fmonth_initial."-".$fday_initial));
+    $tdate_initial_last_two_year = strftime("%F", strtotime($y."-".$tmonth_initial."-".$tday_initial));
+
+    $fdate_renewal_last_two_year = strftime("%F", strtotime($last_two_year."-".$fmonth_renewal."-".$fday_renewal));
+    $tdate_renewal_last_two_year = strftime("%F", strtotime($y."-".$tmonth_renewal."-".$tday_renewal));
+
+    $cpd_last_two_year = Papp::where('student_id', $id)
+                ->whereBetween('reg_date', [$fdate_initial_last_two_year, $tdate_initial_last_two_year])
+                ->whereBetween('reg_date', [$fdate_renewal_last_two_year, $tdate_renewal_last_two_year])
+                ->get('cpd_hours');
+    return $cpd_last_two_year;
 }
