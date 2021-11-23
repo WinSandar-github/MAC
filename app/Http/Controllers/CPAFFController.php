@@ -175,7 +175,8 @@ class CPAFFController extends Controller
             $cpa_ff->self_confession   = $request->self_confession;
             if(date('m')==11 || date('m')==12)
             {
-                $thisYear = date('Y')+1;
+                // $thisYear = date('Y')+1;
+                $thisYear = date('Y');
                 $cpa_ff->last_paid_year =$thisYear;
             }
             else{
