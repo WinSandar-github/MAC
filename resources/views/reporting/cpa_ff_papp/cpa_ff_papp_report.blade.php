@@ -38,25 +38,26 @@
                                                     : $cpa[0]->student_info->name_mm 
                                             }}</td>
                                             <td>{{ $cpa[0]->total_hours }}</td>
+                                            <?php $first = $cpa[0]->total_hours; 
+                                                // dd($first);
+                                            ?>
                                             <?php $last_one = getLastOneYearCpd($cpa[0]->student_info_id,$year); ?>
-                                            @if($last_one)
-                                                @foreach($last_one as $d)
-                                                    <td>{{ $d->total_hours }}</td>
-                                                @endforeach
-                                            @else
-                                            <td>-</td>
-                                            @endif
+                                            <td>
+                                                {{ empty(($last_one) != true) ? $last_one->total_hours : '-' }}
+                                            </td>
+                                            {{ empty(($last_one) != true) ? $second = $last_one->total_hours : $second = '0' }}
 
                                             <?php $last_two = getLastTwoYearCpd($cpa[0]->student_info_id,$year); ?>
-                                            @if($last_two)
-                                                @foreach($last_two as $d)
-                                                    <td>{{ $d->total_hours }}</td>
-                                                @endforeach
-                                            @else
-                                            <td>-</td>
-                                            @endif
+                                            <td>
+                                                {{ empty(($last_two) != true) ? $last_two->total_hours : '-' }}
+                                            </td>
+                                            {{ empty(($last_two) != true) ? $third = $last_two->total_hours : $third = '0' }}
 
-                                            <td>{{ $cpa[0]->total_hours }}</td>
+                                            <?php 
+                                                $total = $first + $second + $third;
+                                            ?>
+
+                                            <td>{{ $total }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

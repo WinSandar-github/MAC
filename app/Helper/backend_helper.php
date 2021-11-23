@@ -190,7 +190,7 @@ function getLastOneYearCpd($id,$year){
     $cpd_last_one_year = CPAFF::where('student_info_id', $id)
                 ->whereBetween('reg_date', [$fdate_initial_last_one_year, $tdate_initial_last_one_year])
                 ->whereBetween('reg_date', [$fdate_renewal_last_one_year, $tdate_renewal_last_one_year])
-                ->get('total_hours');
+                ->first('total_hours');
     return $cpd_last_one_year;
 }
 
@@ -217,7 +217,7 @@ function getLastTwoYearCpd($id,$year){
     $cpd_last_two_year = CPAFF::where('student_info_id', $id)
                 ->whereBetween('reg_date', [$fdate_initial_last_two_year, $tdate_initial_last_two_year])
                 ->whereBetween('reg_date', [$fdate_renewal_last_two_year, $tdate_renewal_last_two_year])
-                ->get('total_hours');
+                ->first('total_hours');
     return $cpd_last_two_year;
 }
 
@@ -244,7 +244,7 @@ function getPappLastOneYearCpd($id,$year){
     $cpd_last_one_year = Papp::where('student_id', $id)
                 ->whereBetween('reg_date', [$fdate_initial_last_one_year, $tdate_initial_last_one_year])
                 ->whereBetween('reg_date', [$fdate_renewal_last_one_year, $tdate_renewal_last_one_year])
-                ->get('cpd_hours');
+                ->first('cpd_hours');
     return $cpd_last_one_year;
 }
 
@@ -271,6 +271,6 @@ function getPappLastTwoYearCpd($id,$year){
     $cpd_last_two_year = Papp::where('student_id', $id)
                 ->whereBetween('reg_date', [$fdate_initial_last_two_year, $tdate_initial_last_two_year])
                 ->whereBetween('reg_date', [$fdate_renewal_last_two_year, $tdate_renewal_last_two_year])
-                ->get('cpd_hours');
+                ->first('cpd_hours');
     return $cpd_last_two_year;
 }
