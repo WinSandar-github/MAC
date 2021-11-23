@@ -137,15 +137,21 @@ class PaymentController extends Controller
         return response()->json($data,200);
     }
 
-    public function getPaymentByInvoiceNoForStudent($invoiceNo,$studentID)
+    // public function getPaymentByInvoiceNoForStudent($invoiceNo,$studentID)
+    // {
+    //     $data = Invoice::where('invoiceNo',$invoiceNo)->
+    //                     where('student_info_id',$studentID)->first();
+    //     return response()->json($data,200);
+    // }
+
+    public function getPaymentByInvoiceNoForStudent($invoiceNo)
     {
-        $data = Invoice::where('invoiceNo',$invoiceNo)->
-                        where('student_info_id',$studentID)->first();
+        $data = Invoice::where('invoiceNo',$invoiceNo)->first();
         return response()->json($data,200);
     }
     public function cashPayment(Request $request)
     {
-        $invoice = Invoice::where('invoiceNo',$request->invoiceNo)->latest()->first();   
+        $invoice = Invoice::where('invoiceNo',$request->invoiceNo)->first();
         $invoice->dateTime = date('Y-m-d');
         $invoice->status = 'AP';
         $invoice->save();

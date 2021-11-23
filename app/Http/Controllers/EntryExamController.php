@@ -203,7 +203,7 @@ class EntryExamController extends Controller
             $invoice->name_eng            = $student_info->name_eng;
             $invoice->email           = $student_info->email;
             $invoice->phone           = $student_info->phone;
-            $invoice->invoiceNo       = "cpa_app";
+            $invoice->invoiceNo       = "cpa_app_" . $student_info->id;
             $invoice->productDesc     = 'App Fee,Entry Exm Fee,'. $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->entry_exam_fee;
             $invoice->status          = 0;  
@@ -434,11 +434,10 @@ class EntryExamController extends Controller
 
             ->addColumn('payment_status',function ($infos){
               if($infos->exam_type_id == 2 || $infos->exam_type_id == 3){
-                $invoiceNo = 'cpa_app';
+                $invoiceNo = 'cpa_app_';
               }
 
-              $invoices = Invoice::where('invoiceNo',$invoiceNo)
-                                    ->where('student_info_id',$infos->student_info_id)->get();
+              $invoices = Invoice::where('invoiceNo',$invoiceNo.$infos->student_info_id)->get();
                                     
                 foreach($invoices as $invoice){
                     return $invoice->status == "AP" ? "Complete" : "Incomplete";

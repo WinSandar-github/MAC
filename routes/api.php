@@ -480,7 +480,7 @@ Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 Route::get('/get_payment_info/{invoiceNo}', 'PaymentController\PaymentController@getPaymentByInvoiceNo');
-Route::get('/get_payment_info_by_student/{invoiceNo}/{studentID}', 'PaymentController\PaymentController@getPaymentByInvoiceNoForStudent');
+Route::get('/get_payment_info_by_student/{invoiceNo}', 'PaymentController\PaymentController@getPaymentByInvoiceNoForStudent');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
 //Teacher card
