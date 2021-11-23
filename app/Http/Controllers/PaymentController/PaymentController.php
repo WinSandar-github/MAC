@@ -161,7 +161,7 @@ class PaymentController extends Controller
         ],200);
     }
 
-      public function filterPayment(Request $request)
+    public function filterPayment(Request $request)
     {
          
 

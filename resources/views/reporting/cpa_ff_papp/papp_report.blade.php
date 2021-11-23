@@ -30,17 +30,35 @@
                                     @foreach($data['papp'] as $key => $papp)
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ $papp->reg_no }}</td>
-                                            <td>{{ $papp->papp_reg_no }}</td>
+                                            <td>{{ $papp[0]->cpaff_reg_no }}</td>
+                                            <td>{{ $papp[0]->papp_reg_no }}</td>
                                             <td>{{ 
-                                                $papp->student_info == ""
+                                                $papp[0]->student_info == ""
                                                     ? 'error'
-                                                    : $papp->student_info->name_mm 
+                                                    : $papp[0]->student_info->name_mm 
                                             }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
-                                            <td>{{ $papp->cpd_hours }}</td>
+                                            <td>{{ $papp[0]->cpd_hours }}</td>
+                                            <?php $first = $papp[0]->cpd_hours; 
+                                                // dd($first);
+                                            ?>
+                                            <?php $last_one = getPappLastOneYearCpd($papp[0]->student_id,$year); ?>
+                                            <td>
+                                                {{ empty(($last_one) != true) ? $last_one->cpd_hours : '-' }} 
+                                                
+                                            </td>
+                                            {{ empty(($last_one) != true) ? $second = $last_one->cpd_hours : $second = '0' }}
+                                            
+                                            <?php $last_two = getPappLastTwoYearCpd($papp[0]->student_id,$year); ?>
+                                            <td>
+                                                {{ empty(($last_two) != true) ? $last_two->cpd_hours : '-' }}
+                                            </td>
+                                            {{ empty(($last_two) != true) ? $third = $last_two->cpd_hours : $third = '0' }}
+
+                                            <?php 
+                                                $total = $first + $second + $third;
+                                            ?>
+
+                                            <td>{{ $total }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
