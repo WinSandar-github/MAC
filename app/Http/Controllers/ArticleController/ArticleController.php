@@ -474,6 +474,15 @@ class ArticleController extends Controller
                 return $infos->contract_end_date;
             })
 
+            ->addColumn('mentor_attach_file', function ($infos){
+                if($infos->mentor_attach_file){
+                  return "<span class='approve'>Submited</span>";
+                }
+                else{
+                  return "<span class='pending'>Not Submited</span>";
+                }
+            })
+
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
               if(sizeof($mentor_name)){
@@ -571,7 +580,7 @@ class ArticleController extends Controller
                     </div>";
                 }
             });
-            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end','mentor_name'])->make(true);
+            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end','mentor_name','mentor_attach_file'])->make(true);
             return $datatable;
     }
 
@@ -1244,6 +1253,15 @@ class ArticleController extends Controller
                 }
             })
 
+            ->addColumn('mentor_attach_file', function ($infos){
+                if($infos->mentor_attach_file){
+                  return "<span class='approve'>Submited</span>";
+                }
+                else{
+                  return "<span class='pending'>Not Submited</span>";
+                }
+            })
+
             // ->addColumn('mentor_name', function ($infos){
             //   $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
             //   if($mentor_name){
@@ -1316,7 +1334,7 @@ class ArticleController extends Controller
                 </div>";
             }
         });
-        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end'])->make(true);
+        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status','contract_start','contract_end','mentor_attach_file'])->make(true);
         return $datatable;
     }
 
@@ -1688,7 +1706,7 @@ class ArticleController extends Controller
         }
 
         $article_type = "resign";
-        
+
         $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
                 // return "<div class='btn-group'>
@@ -1723,6 +1741,7 @@ class ArticleController extends Controller
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                 return $nrc_result;
             })
+
             ->addColumn('resign_fee', function ($infos){
                 $length = count($infos->student_info->invoice);
                 for($i=0 ; $i< $length; $i++){
@@ -1776,6 +1795,15 @@ class ArticleController extends Controller
                 return $infos->article_form_type;
             })
 
+            ->addColumn('mentor_attach_file', function ($infos){
+                if($infos->mentor_attach_file){
+                  return "<span class='approve'>Submited</span>";
+                }
+                else{
+                  return "<span class='pending'>Not Submited</span>";
+                }
+            })
+
             ->addColumn('mentor_name', function ($infos){
               $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
               if(sizeof($mentor_name)){
@@ -1792,7 +1820,7 @@ class ArticleController extends Controller
                 return $infos->resign_date;
             });
 
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status','mentor_name','contract_start_date','contract_end_date','form_type'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status','mentor_name','contract_start_date','contract_end_date','form_type','mentor_attach_file'])->make(true);
             return $datatable;
     }
 
@@ -2057,6 +2085,15 @@ class ArticleController extends Controller
             $request_papp_attach = "";
         }
 
+        if ($request->hasfile('office_order_attach')) {
+            $file = $request->file('office_order_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $office_order_attach = '/storage/student_info/'.$name;
+        }else{
+            $office_order_attach = "";
+        }
+
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name = uniqid() . '.' . $file->getClientOriginalExtension();
@@ -2090,6 +2127,7 @@ class ArticleController extends Controller
         $acc_app->request_papp = $request->request_papp;
         $acc_app->mentor_id = $request->mentor_id;
         $acc_app->request_papp_attach = $request_papp_attach;
+        $acc_app->office_order_attach = $office_order_attach;
         $acc_app->current_address = $request->current_address;
         $acc_app->m_email = $request->m_email;
         $acc_app->ex_papp = $request->ex_papp;
