@@ -232,7 +232,7 @@ function loadArticle()
             }
             else if(data.article_form_type == 'c2_pass_renew'){
               $("#previous_info_box2").css('display','block');
-            }else if(data.article_form_type == 'c2_pass/qt_pass_3yr'){
+            }else if(data.article_form_type == 'c2_pass_qt_pass_3yr'){
                 $("#previous_info_box3").css('display','block');
             }
 
@@ -257,7 +257,7 @@ function loadArticle()
                 case 'c12_renew':
                     form_type = 'CPA I,II Renew';
                     break;
-                case 'c2_pass/qt_pass_3yr':
+                case 'c2_pass_qt_pass_3yr':
                     form_type = 'CPA II Pass/QT Pass 3 yr';
                     break;
                 default:
@@ -716,8 +716,8 @@ function showPaymentInfoResign(info) {
 }
 
 function showPaymentInfoFirm(info){
-  $("#payment_detail_modal").modal('show');
-  autoLoadPaymentFirm(info.id,info.article_form_type);
+    $("#payment_detail_modal").modal('show');
+    autoLoadPaymentFirm(info.id,info.article_form_type);
 }
 
 function updateGovContractDate(info) {
@@ -1051,7 +1051,7 @@ function autoLoadPaymentFirm(firm_id,form_type){
           type: 'get',
           success: function (result) {
               console.log("firm aricle",result);
-
+               
               if(result.status==0){
                 console.log("****",result.status);
                   $('#payment_status').append("Incomplete");

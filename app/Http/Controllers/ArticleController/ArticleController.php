@@ -521,6 +521,8 @@ class ArticleController extends Controller
                     return "CPA II Pass Renew";
                 }else if($infos->article_form_type == 'c12_renew'){
                     return "CPA I,II Renew";
+                }else if($infos->article_form_type == 'c2_pass_qt_pass_3yr'){
+                    return "CPA II Pass/QT Pass 3 yr";
                 }
             });
             $datatable = $datatable->addColumn('contract_start_date', function ($infos){
@@ -620,7 +622,10 @@ class ArticleController extends Controller
                 if($request->offline_user==1){
                     $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
                 }else{
-                    $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->with('student_info')->get();
+                    $article = ApprenticeAccountant::where('offline_user',$request->offline_user)->where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')
+                    ->where('article_form_type' ,'<>', 'c2_pass_qt_pass_3yr')
+                    ->where('article_form_type' ,'<>', 'c2_pass_1yr')
+                    ->with('student_info')->get();
                 }
             //}
 
@@ -724,6 +729,8 @@ class ArticleController extends Controller
                     return "CPA II Pass Renew";
                 }else if($infos->article_form_type == 'c12_renew'){
                     return "CPA I,II Renew";
+                }else if($infos->article_form_type == 'c2_pass_qt_pass_3yr'){
+                    return "CPA II Pass/QT Pass 3 yr";
                 }
             })
             ->setRowClass(function ($infos) {
@@ -840,6 +847,8 @@ class ArticleController extends Controller
                     return "CPA I,II Renew";
                 }else if($infos->article_form_type == 'resign'){
                     return "Resign";
+                }else if($infos->article_form_type == 'c2_pass_qt_pass_3yr'){
+                    return "CPA II Pass/QT Pass 3 yr";
                 }
             });
             // ->setRowClass(function ($infos) {

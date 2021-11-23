@@ -47,13 +47,16 @@ class CpaPappReportController extends Controller
         $tdate_renewal = strftime("%F", strtotime($year."-".$tmonth_renewal."-".$tday_renewal));
         //end renewal
         
-        $initial = CPAFF::with('student_info')->whereBetween('reg_date', [$fdate_initial, $tdate_initial])->get();
-        // return $initial;
-        $renewal = CPAFF::with('student_info')->whereBetween('reg_date', [$fdate_renewal, $tdate_renewal])->get();
+        // $initial = CPAFF::with('student_info')->whereBetween('reg_date', [$fdate_initial, $tdate_initial])->get();
+        // // return $initial;
+        // $renewal = CPAFF::with('student_info')->whereBetween('reg_date', [$fdate_renewal, $tdate_renewal])->get();
         // return $renewal;
-        $merged = $renewal->merge($initial);
+        // $merged = $renewal->merge($initial);
         // $cpa = $merged->toarray();
-
+        $merged = CPAFF::with('student_info')->whereBetween('reg_date', [$fdate_initial, $tdate_initial])
+                                             ->whereBetween('reg_date', [$fdate_renewal, $tdate_renewal])
+                                             ->get()->groupBy('student_info_id');
+        // return $merged;
         $data = [
             'title' => 'CPA (Full-Fledged) တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
             'fields' => [
@@ -62,7 +65,7 @@ class CpaPappReportController extends Controller
                     ],
             'cpa' => $merged
         ];
-        return view('reporting.cpa_ff_papp.cpa_ff_papp_report', compact('data'));
+        return view('reporting.cpa_ff_papp.cpa_ff_papp_report', compact('data','year'));
     }
     
     public function cpaPAYealyList(Request $request ,$year)
@@ -76,7 +79,36 @@ class CpaPappReportController extends Controller
         $third_yr = $year - 2;
         $third_yr_str = "CPD {$third_yr}";
 
-        $papp = Papp::with('student_info')->get();
+        //initial
+        $fmonth_initial = 1;
+        $tmonth_initial = 12;
+        $fday_initial = 1;
+        $tday_initial = 31; 
+        $fdate_initial = strftime("%F", strtotime($year."-".$fmonth_initial."-".$fday_initial));
+        $tdate_initial = strftime("%F", strtotime($year."-".$tmonth_initial."-".$tday_initial));
+        //end initial
+
+        //renewal
+        $y = $year -1;
+        $fmonth_renewal = 1;//
+        $tmonth_renewal = 12;
+        $fday_renewal = 11;//
+        $tday_renewal = 31; //
+        $fdate_renewal = strftime("%F", strtotime($y."-".$fmonth_renewal."-".$fday_renewal));
+        $tdate_renewal = strftime("%F", strtotime($year."-".$tmonth_renewal."-".$tday_renewal));
+        //end renewal
+        
+        // $initial = Papp::with('student_info')->whereBetween('reg_date', [$fdate_initial, $tdate_initial])->get();
+        // // return $initial;
+        // $renewal = Papp::with('student_info')->whereBetween('reg_date', [$fdate_renewal, $tdate_renewal])->get();
+        // return $renewal;
+        // $merged = $renewal->merge($initial);
+        // $cpa = $merged->toarray();
+        $papp = Papp::with('student_info')->whereBetween('reg_date', [$fdate_initial, $tdate_initial])
+                                             ->whereBetween('reg_date', [$fdate_renewal, $tdate_renewal])
+                                             ->get()->groupBy('student_id');
+
+        // $papp = Papp::with('student_info')->get();
 
         $data = [
             'title' => 'PAPP တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
@@ -87,7 +119,7 @@ class CpaPappReportController extends Controller
             'papp' => $papp,
         ];
 
-        return view('reporting.cpa_ff_papp.papp_report', compact('data'));
+        return view('reporting.cpa_ff_papp.papp_report', compact('data','year'));
     }
 
     public function cpaFFYearlyRegList(Request $request, $year)

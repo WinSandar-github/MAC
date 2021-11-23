@@ -145,7 +145,7 @@ class PaymentController extends Controller
     }
     public function cashPayment(Request $request)
     {
-        $invoice = Invoice::where('invoiceNo',$request->invoiceNo)->first();
+        $invoice = Invoice::where('invoiceNo',$request->invoiceNo)->latest()->first();   
         $invoice->dateTime = date('Y-m-d');
         $invoice->status = 'AP';
         $invoice->save();
@@ -155,7 +155,7 @@ class PaymentController extends Controller
         ],200);
     }
 
-      public function filterPayment(Request $request)
+    public function filterPayment(Request $request)
     {
          
 
