@@ -286,6 +286,7 @@ Route::post('show_exam_list','ReportController@showExamList');
 
 Route::get('show_description','DescriptionController@showDescription');
 Route::get('show_requirement','RequirementController@showRequirement');
+Route::get('show_esign','EsignController@showEsign');
 Route::get('show_membership/{membership_name}','MembershipController@showMembership');
 Route::resource('/batch', 'BatchController');
 Route::resource('/course', 'CourseController');

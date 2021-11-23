@@ -454,6 +454,10 @@ Breadcrumbs::for('ဖော်ပြချက်', function ($trail) {
     $trail->parent('administration');
     $trail->push('ဖော်ပြချက်', route('page.index', 'description_list'));
 });
+Breadcrumbs::for('E-Sign User Management', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('E-Sign User Management', route('page.index', 'esign_list'));
+});
 Breadcrumbs::for('Membership', function ($trail) {
     $trail->parent('administration');
     $trail->push('Membership', route('page.index', 'membership_list'));
