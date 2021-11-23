@@ -65,6 +65,7 @@
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_firm_article_pending_body" class="hoverTable text-left">
@@ -88,6 +89,7 @@
                                                             <th class="bold-font-weight" >Contract Start Date</th>
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Mentor Name</th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_firm_article_approved_body" class="hoverTable text-left">
@@ -110,6 +112,7 @@
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight"  style="display:none">Duty Report Date </th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_firm_article_rejected_body" class="hoverTable text-left">
@@ -150,6 +153,7 @@
                                                             <th class="bold-font-weight" >Contract Start Date</th>
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_gov_article_pending_body" class="hoverTable text-left">
@@ -172,6 +176,7 @@
                                                             <th class="bold-font-weight" >Contract Start Date</th>
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Duty Report Date </th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_gov_article_approved_body" class="hoverTable text-left">
@@ -193,6 +198,7 @@
                                                             <th class="bold-font-weight" >Contract Start Date</th>
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" style="display:none">Duty Report Date </th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_gov_article_rejected_body" class="hoverTable text-left">
@@ -235,6 +241,7 @@
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_resign_article_pending_body" class="hoverTable text-left">
@@ -259,6 +266,7 @@
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_resign_article_approved_body" class="hoverTable text-left">
@@ -282,6 +290,7 @@
                                                             <th class="bold-font-weight" >Contract End Date</th>
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Mentor Attach Files</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_resign_article_rejected_body" class="hoverTable text-left">
@@ -693,6 +702,7 @@
                 {data: 'contract_end', name: 'contract_end'},
                 {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -732,6 +742,7 @@
                 {data: 'contract_start', name: 'contract_start'},
                 {data: 'contract_end', name: 'contract_end'},
                 {data: 'mentor_name', name: 'mentor_name'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -767,6 +778,7 @@
                 {data: 'contract_end', name: 'contract_end'},
                 {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -804,6 +816,7 @@
                 {data: 'contract_start', name: 'contract_start'},
                 {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -841,6 +854,7 @@
                 {data: 'contract_start', name: 'contract_start'},
                 {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -875,6 +889,7 @@
                 {data: 'contract_start', name: 'contract_start'},
                 {data: 'contract_end', name: 'contract_end'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -914,6 +929,7 @@
                 {data: 'contract_end_date', name: 'contract_end_date'},
                 {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -950,6 +966,7 @@
                 {data: 'contract_end_date', name: 'contract_end_date'},
                 {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -987,6 +1004,7 @@
                 {data: 'contract_end_date', name: 'contract_end_date'},
                 {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
+                {data: 'mentor_attach_file', name: 'mentor_attach_file'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
