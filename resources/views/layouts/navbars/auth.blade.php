@@ -344,6 +344,11 @@
                                 <span style="font-weight:normal;">{{ __('ဖော်ပြချက်') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'esign_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'esign_list') }}">
+                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;">{{ __('E-Sign User Management') }}</span>
+                            </a>
                         </li>
                         <li class="{{ $elementActive == 'membership_list' ? 'active' : '' }}">
                             <a href="{{ route('membership_list') }}">
