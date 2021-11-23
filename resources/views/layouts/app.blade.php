@@ -121,6 +121,14 @@
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
 
+    {{-- Academic Year Start--}}
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
+    {{-- Academic Year end--}}
+
+
+
     <script type="text/javascript">
         $(document).ready(function() {
             $(document).on('show.bs.modal', '#ApprovalModal', function(e) {
