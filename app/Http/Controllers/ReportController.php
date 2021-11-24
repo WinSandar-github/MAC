@@ -44,8 +44,8 @@ class ReportController extends Controller
         if($request->grade != 1)
         {
             $student_infos = $batch->course->course_type->course_code == "da" 
-            ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
-            : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
+            ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no) ASC')->orderBy('student_infos.personal_no','ASC')
+            : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no) ASC')->orderBy('student_infos.cpersonal_no','ASC');
         }
         else{
             

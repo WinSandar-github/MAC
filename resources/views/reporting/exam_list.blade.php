@@ -65,7 +65,7 @@
                             <div class="col-md-3">
                                 @php $currend_date =  date("Y-m-d"); @endphp
                                 
-                                @if($currend_date > $batch->exam_end_date && $currend_date < $batch->end_date  )
+                                @if($currend_date > $batch->exam_end_date && $currend_date < $batch->acdm_year_end_date  )
                                
                                     <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                 @endif

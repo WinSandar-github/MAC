@@ -15,8 +15,19 @@
                     </div>
                 </div>
 
-                @php $currend_date =  date("Y-m-d") @endphp
+                @php    $currend_date =  date("Y-m-d");
+                        $type = request()->segment(count(request()->segments()));
+                        if($type == 2){
 
+                            $end_date =   date('Y-m-d', strtotime($data['batch']->mac_reg_end_date. ' + 30 days'));
+                            $start_date = $data['batch']->mac_reg_end_date;
+                        }else{
+                            $start_date =   $data['batch']->private_reg_end_date;
+                            $end_date   =   $data['batch']->acdm_year_end_date;  
+                        }
+                         
+                         
+            @endphp
                 <div class="card-body">
 
                     <div class="row">
@@ -44,9 +55,9 @@
                         </div>
 
                         <div class="col-md-6 pl-2">
-                            @if($currend_date > $data['batch']->mac_reg_end_date && $currend_date < $data['batch']->end_date  )
+                            @if($currend_date >= $start_date && $currend_date <=  $end_date )
                                 @if($data['course']->code === "da_1" || $data['course']->code === "cpa_1" )
-                                    <button onclick="generatePersonalNo('{{$data['course']->code}}')" class="pull-right
+                                    <button onclick="generatePersonalNo('{{$data['course']->code}}',{{$type}})" class="pull-right
                                     btn btn-sm btn-success">ကိုယ်ပိုင်အမှတ် ထုတ်ပေးမည်
                                     </button>
                                 @else
