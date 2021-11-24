@@ -39,7 +39,7 @@
                                     <div class="mx-2">
                                     @php $currend_date =  date("Y-m-d"); @endphp
                                
-                                        @if($currend_date > $batch->entrance_pass_end_date && $currend_date < $batch->end_date )
+                                        @if($currend_date > $batch->entrance_pass_end_date && $currend_date < $batch->acdm_year_end_date )
                                             
                                             <button onclick="generateEntranceExamSrNo('{{$batch->id}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                         @endif

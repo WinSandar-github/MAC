@@ -31,8 +31,8 @@ class Course extends Model
     public function active_batch()
     {
         $date = Date('Y-m-d');
-        return $this->hasMany(Batch::class)->whereDate('start_date', '<=', $date)
-            ->whereDate('end_date', '>=', $date)->with('course');
+        return $this->hasMany(Batch::class)->whereDate('acdm_year_start_date', '<=', $date)
+            ->whereDate('acdm_year_end_date', '>=', $date)->with('course');
     }
 
      

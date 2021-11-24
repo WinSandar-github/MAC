@@ -39,10 +39,10 @@ function generateSrNo(code) {
 
 }
 
-function generatePersonalNo(code) {
+function generatePersonalNo(code, type) {
     show_loader();
     $.ajax({
-        url: BACKEND_URL + "/generate_personal_no/" + code,
+        url: BACKEND_URL + "/generate_personal_no/" + code + "/" + type,
         type: 'get',
         contentType: false,
         processData: false,
