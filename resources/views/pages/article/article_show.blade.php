@@ -69,7 +69,7 @@
 													</div>
 
 													<div id="previous_info_box2" style="display:none;">
-														<div class="col-md-11">လူကြီးမင်း <span class="call_gender"></span></div>
+														<div class="col-md-11">လူကြီးမင်း <span class="call_gender2"></span></div>
 														<div class="col-md-11">
 																<ul>
 																		<li>
