@@ -92,7 +92,7 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
 
 
-       $invoice->invoiceNo = 'exm_' . $std->batch->course->code ;
+       $invoice->invoiceNo       = 'exm_' . $std->batch->course->code . '_' . $exam->id;
        $invoice->productDesc     = 'App Fee,DA Exm Reg Fee,' . $std->batch->course->name;
        $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
@@ -247,7 +247,7 @@ class ExamRegisterController extends Controller
             })
 
             ->addColumn('payment_status', function ($infos){
-                // return $infos->form_type;
+               
                 switch ($infos->form_type) {
                     case '1':
                         $course_code = "da_1";
@@ -267,8 +267,11 @@ class ExamRegisterController extends Controller
 
                 }
 
-                $invoices = Invoice::where('invoiceNo','exm_'.$course_code)
-                                    ->where('student_info_id',$infos->student_info_id)->get();
+                // $invoices = Invoice::where('invoiceNo','exm_'.$course_code.'_'.$infos->id)
+                //                     ->where('student_info_id',$infos->student_info_id)->get();
+
+                $invoices = Invoice::where('invoiceNo','exm_'.$course_code.'_'.$infos->id)->get();
+                // return $invoices;                   
                                     
                 foreach($invoices as $invoice){
                     return $invoice->status == "AP" ? "Complete" : "Incomplete";
@@ -460,7 +463,7 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->orderBy('id','desc')->first();
 
 
-       $invoice->invoiceNo = 'exm_' . $std->batch->course->code;
+       $invoice->invoiceNo       = 'exm_' . $std->batch->course->code.'_'.$exam->id;
        $invoice->productDesc     = 'App Fee,CPA Exm Reg Fee,' . $std->batch->course->name;
        $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
@@ -480,7 +483,7 @@ class ExamRegisterController extends Controller
 
     public function getPassedExamByStudentID($id)
     {
-        $exam_register = ExamRegister::where('student_info_id', $id)->where('grade', 1)->with('course', 'batch')->get();
+        $exam_register = ExamRegister::where('student_info_id', $id)->where('grade','!=', 0)->with('course', 'batch')->get();
         return response()->json([
             'data' => $exam_register
         ], 200);

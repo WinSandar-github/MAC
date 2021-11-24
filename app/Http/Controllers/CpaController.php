@@ -76,7 +76,7 @@ class CpaController extends Controller
         
         $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
-        $invoice->invoiceNo = 'cpa_app';
+        $invoice->invoiceNo = 'cpa_app_'.$student_info->id;
         $invoice->productDesc     = 'App Fee,' . $std->batch->course->name;
         $invoice->amount          = $std->batch->course->form_fee ;
         $invoice->status          = 0;

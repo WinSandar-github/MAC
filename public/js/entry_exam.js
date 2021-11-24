@@ -69,7 +69,7 @@ function loadEntryDetail(id) {
     
                
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + "cpa_app" +"/"+ element.student_info_id ,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "cpa_app_" + element.student_info_id ,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
@@ -250,41 +250,125 @@ function loadEntryDetail(id) {
 
 function approveEntryExam() {
     var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            // console.log(result)
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/entry_exam_list";
-            getExam();
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/approve_exam/" + id,
+                type: 'PATCH',
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Approved!',
+                            'Approved Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/entry_exam_list";
+                                getExam();
+                            },2000);
+                        });
+                    }
+                    
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
         }
     });
+
+    // var id = $("input[name = student_id]").val();    
+    // $.ajax({
+    //     url: BACKEND_URL + "/approve_exam/" + id,
+    //     type: 'PATCH',
+    //     success: function (result) {
+    //         // console.log(result)
+    //         successMessage("You have approved that form!");
+    //         location.href = FRONTEND_URL + "/entry_exam_list";
+    //         getExam();
+    //     }
+    // });
 }
 
 function rejectEntryExam() {
-    if (!confirm('Are you sure you want to reject this student?')) {
-        return;
-    }
-    else {
-        var formData = new FormData();
-        formData.append('remark', $('#remark').val());
-        formData.append('_method', 'PATCH')
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/reject_exam/" + id,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-            // console.log('remark',result);
-                successMessage("You have rejected that form!");
-                location.href = FRONTEND_URL + "/entry_exam_list";
-                getExam();
-            }
-        });
-    }
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var formData = new FormData();
+            formData.append('remark', $('#remark').val());
+            formData.append('_method', 'PATCH')
+            var id = $("input[name = student_id]").val();
+            $.ajax({
+                url: BACKEND_URL + "/reject_exam/" + id,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Rejected!',
+                            'Rejected Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/entry_exam_list";
+                                getExam();
+                            }, 2000);
+                        });
+                    }
+                
+                },error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+    // if (!confirm('Are you sure you want to reject this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var formData = new FormData();
+    //     formData.append('remark', $('#remark').val());
+    //     formData.append('_method', 'PATCH')
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/reject_exam/" + id,
+    //         type: 'POST',
+    //         data: formData,
+    //         contentType: false,
+    //         processData: false,
+    //         success: function (result) {
+    //         // console.log('remark',result);
+    //             successMessage("You have rejected that form!");
+    //             location.href = FRONTEND_URL + "/entry_exam_list";
+    //             getExam();
+    //         }
+    //     });
+    // }
 }
 
 

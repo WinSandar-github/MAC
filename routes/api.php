@@ -355,7 +355,7 @@ Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
 
 //Generate Serial and Personal Number
-Route::get('/generate_personal_no/{code}','ApiController@generatePersonalNo');
+Route::get('/generate_personal_no/{code}/{type}','ApiController@generatePersonalNo');
 Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{code}','ApiController@generateExamSrNo');
 Route::get('/generate_entrance_exam_sr_no/{batch}','ApiController@generateEntranceExamSrNo');
@@ -484,7 +484,7 @@ Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 Route::get('/get_payment_info/{invoiceNo}', 'PaymentController\PaymentController@getPaymentByInvoiceNo');
-Route::get('/get_payment_info_by_student/{invoiceNo}/{studentID}', 'PaymentController\PaymentController@getPaymentByInvoiceNoForStudent');
+Route::get('/get_payment_info_by_student/{invoiceNo}', 'PaymentController\PaymentController@getPaymentByInvoiceNoForStudent');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
 //Teacher card

@@ -376,10 +376,11 @@ function loadDAExamData() {
                 // console.log('course_code',course_code);
 
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code + "/" + element.student_info_id,
+                    // url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code +"_"+id+ "/" + element.student_info_id,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code +"_"+element.id,
                     type: 'get',
                     success: function (result) {
-                        // console.log("papp invoice",result.productDesc);
+                        console.log("papp invoice",result.productDesc);
                         if (result.status == 0) {
                             $('#payment_status').append("Incomplete");
                         }
@@ -524,10 +525,21 @@ function loadDAExamData() {
                                 else {
                                     module_name = "-";
                                 }
+
+                                if (course.grade == 1) {
+                                    remark = "Passed";
+                                }
+                                else if (course.grade == 2) {
+                                    remark = "Failed";
+                                }
+                                else {
+                                    remark = "-";
+                                }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${module_name}</td>
+                                                    <td>${remark}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
@@ -587,75 +599,231 @@ function loadStudentDataForExamCard() {
 }
 
 function approveDAOneExam() {
-    if (!confirm('Are you sure you want to approve this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/approve_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                successMessage("You have approved that form!");
-                location.href = FRONTEND_URL + "/da_exam_one";
-                getExam();
-            }
-        });
-    }
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/approve_exam/" + id,
+                type: 'PATCH',
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Approved!',
+                            'Approved Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/da_exam_one";
+                                getExam();
+                            }, 2000);
+                        });
+                    }
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    })
+
+    // if (!confirm('Are you sure you want to approve this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/approve_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             successMessage("You have approved that form!");
+    //             location.href = FRONTEND_URL + "/da_exam_one";
+    //             getExam();
+    //         }
+    //     });
+    // }
 }
 
 function rejectDAOneExam() {
-    if (!confirm('Are you sure you want to reject this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/reject_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                successMessage("You have rejected that form!");
-                location.href = FRONTEND_URL + "/da_exam_one";
-                getExam();
-            }
-        });
-    }
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then(result => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/reject_exam/" + id,
+                type: 'patch',
+                success: function (result) {                    
+
+                    Swal.fire(
+                        'Rejected!',
+                        'Rejected Student',
+                        'success'
+                    ).then(() => {
+                        setInterval(() => {
+                            location.href = FRONTEND_URL + "/da_exam_one";
+                            getExam();
+                        }, 2000);
+                    });
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+
+    // if (!confirm('Are you sure you want to reject this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/reject_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             successMessage("You have rejected that form!");
+    //             location.href = FRONTEND_URL + "/da_exam_one";
+    //             getExam();
+    //         }
+    //     });
+    // }
 }
 
 function approveDATwoExam() {
-    if (!confirm('Are you sure you want to approve this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/approve_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                successMessage("You have approved that form!");
-                location.href = FRONTEND_URL + "/da_two_exam";
-                getExam();
-            }
-        });
-    }
+
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/approve_exam/" + id,
+                type: 'PATCH',
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Approved!',
+                            'Approved Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/da_two_exam";
+                                getExam();
+                            }, 2000);
+                        });
+                    }
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    })
+
+    // if (!confirm('Are you sure you want to approve this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/approve_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             successMessage("You have approved that form!");
+    //             location.href = FRONTEND_URL + "/da_two_exam";
+    //             getExam();
+    //         }
+    //     });
+    // }
 }
 
 function rejectDATwoExam() {
-    if (!confirm('Are you sure you want to reject this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/reject_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                successMessage("You have rejected that form!");
-                location.href = FRONTEND_URL + "/da_two_exam";
-                getExam();
-            }
-        });
-    }
+
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then(result => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/reject_exam/" + id,
+                type: 'patch',
+                success: function (result) {                    
+
+                    Swal.fire(
+                        'Rejected!',
+                        'Rejected Student',
+                        'success'
+                    ).then(() => {
+                        setInterval(() => {
+                            location.href = FRONTEND_URL + "/da_two_exam";
+                            getExam();
+                        }, 2000);
+                    });
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+
+    // if (!confirm('Are you sure you want to reject this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/reject_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             successMessage("You have rejected that form!");
+    //             location.href = FRONTEND_URL + "/da_two_exam";
+    //             getExam();
+    //         }
+    //     });
+    // }
 }
 
 function loadBatchData(course_code) {
@@ -1247,134 +1415,275 @@ function getModuleStd() {
 }
 
 function examResultSubmit() {
-    // console.log(document.activeElement.value, "e");
     var pass_fail = document.activeElement.value;
-    if (!confirm("Are you sure you want to " + pass_fail + " this student?")) {
-        return;
+    var pass_or_fail;
+    if(pass_fail=='fail'){
+        pass_or_fail="Fail";
+    }else{
+        pass_or_fail="Pass";
     }
-    else {
-        var id = localStorage.getItem("exam_register_id");
-        var course_type = localStorage.getItem("course_type");
-        var table = document.getElementById("tbl_fillmarks");
-        var result_id = $("input[name = result_id]").val();
 
-        var pass_module = $("input[type='radio'][name='is_full_module']:checked").val();
-        var count = pass_module ? 1 : 0;
+    var id = localStorage.getItem("exam_register_id");
+    var course_type = localStorage.getItem("course_type");
+    var table = document.getElementById("tbl_fillmarks");
+    var result_id = $("input[name = result_id]").val();
 
-        var totalRowCount = table.rows.length - count;
-        // var totalRowCount = $('#tbl_fillmarks >tbody >tr').length;
-        var data = new FormData();
-        for (var i = 1; i < totalRowCount; i++) {
-            data.append('subject[]', $('#subject' + i).val());
-        }
-        for (var i = 1; i < totalRowCount; i++) {
-            data.append('mark[]', $('#mark' + i).val());
-        }
-        for (var i = 1; i < totalRowCount; i++) {
-            data.append('grade[]', $('#grade' + i).val());
-        }
-        var total_mark = 0;
-        for (var i = 1; i < totalRowCount; i++) {
-            // console.log($('#mark' + i).val());
-            var mark = parseInt($('#mark' + i).val());
-            total_mark += mark;
-        }
-        data.append('total_mark', total_mark);
-        data.append('exam_register_id', id);
-        if (result_id == "") {
-            $.ajax({
-                url: BACKEND_URL + "/exam_result",
-                type: 'post',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
+    var pass_module = $("input[type='radio'][name='is_full_module']:checked").val();
+    var count = pass_module ? 1 : 0;
 
-                    //successMessage("Insert Successfully");
-                    // if (course_type == 1) {
-                    //     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                    // } else if (course_type == 2) {
-                    //     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                    // } else if (course_type == 3) {
-                    //     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-                    // } else {
-                    //     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
-                    // }
-                    if (pass_fail == "fail") {
-                        $.ajax({
-                            url: BACKEND_URL + "/fail_exam/" + id,
-                            type: 'PATCH',
-                            success: function (result) {
-                                //aggaio
-                                errorMessage(result.message);
-                                if (course_type == 1) {
-                                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                                } else if (course_type == 2) {
-                                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                                } else if (course_type == 3) {
-                                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-                                } else {
-                                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
-                                }
-                            },
-                            error: function (message) {
-                                console.log(message);
-                            }
-                        });
-                    }
-                    else {
-                        $.ajax({
-                            url: BACKEND_URL + "/pass_exam/" + id,
-                            type: 'PATCH',
-                            data: { "pass_module": pass_module },
-                            success: function (result) {
-                                //aggaio
-                                successMessage(result.message);
-                                if (course_type == 1) {
-                                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                                } else if (course_type == 2) {
-                                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                                } else if (course_type == 3) {
-                                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-                                } else {
-                                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
-                                }
-                            },
-                            error: function (message) {
-                                console.log(message);
-                            }
-                        });
-                    }
-
-                },
-                error: function (message) {
-                    console.log(message);
-                }
-            });
-        } else {
-            data.append('_method', 'PUT');
-            $.ajax({
-                url: BACKEND_URL + "/exam_result/" + result_id,
-                type: 'post',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    //successMessage("Updated Successfully");
-                    if (course_type == 1) {
-                        location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                    } else if (course_type == 2) {
-                        location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                    } else if (course_type == 3) {
-                        location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-                    } else {
-                        location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
-                    }
-                },
-                error: function (message) {
-                    console.log(message);
-                }
-            });
-        }
+    var totalRowCount = table.rows.length - count;
+    // var totalRowCount = $('#tbl_fillmarks >tbody >tr').length;
+    var data = new FormData();
+    for (var i = 1; i < totalRowCount; i++) {
+        data.append('subject[]', $('#subject' + i).val());
     }
+    for (var i = 1; i < totalRowCount; i++) {
+        data.append('mark[]', $('#mark' + i).val());
+    }
+    for (var i = 1; i < totalRowCount; i++) {
+        data.append('grade[]', $('#grade' + i).val());
+    }
+    var total_mark = 0;
+    for (var i = 1; i < totalRowCount; i++) {
+        // console.log($('#mark' + i).val());
+        var mark = parseInt($('#mark' + i).val());
+        total_mark += mark;
+    }
+    data.append('total_mark', total_mark);
+    data.append('exam_register_id', id);
+
+    Swal.fire({
+        title: pass_or_fail+" Student?",
+        text: "Are you sure to "+pass_fail+" this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "Yes, "+pass_or_fail+" it!"
+    }).then((result) => {
+        if (result.isConfirmed) { 
+            if (result_id == "") {
+                $.ajax({
+                    url: BACKEND_URL + "/exam_result",
+                    type: 'post',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        if (pass_fail == "fail") {
+                            $.ajax({
+                                url: BACKEND_URL + "/fail_exam/" + id,
+                                type: 'PATCH',
+                                success: function (result) {
+                                    if (result) {
+                                        Swal.fire(
+                                            'Failed!',
+                                            'Failed Student',
+                                            'success'
+                                        ).then(() => {
+                                            setInterval(() => {
+                                                if (course_type == 1) {
+                                                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
+                                                } else if (course_type == 2) {
+                                                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
+                                                } else if (course_type == 3) {
+                                                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+                                                } else {
+                                                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+                                                }
+                                            }, 2000);
+                                        });
+                                    } 
+                                    
+                                },error: (error) => {
+                                    Swal.fire(
+                                        'Oops..!',
+                                        'Something want wrong.',
+                                        'error'
+                                    )
+                                }
+                            });
+                        }
+                        else {
+                            $.ajax({
+                                url: BACKEND_URL + "/pass_exam/" + id,
+                                type: 'PATCH',
+                                data: { "pass_module": pass_module },
+                                success: function (result) {
+                                    if (result) {
+                                        Swal.fire(
+                                            'Passed!',
+                                            'Passed Student',
+                                            'success'
+                                        ).then(() => {
+                                            setInterval(() => {
+                                                if (course_type == 1) {
+                                                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
+                                                } else if (course_type == 2) {
+                                                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
+                                                } else if (course_type == 3) {
+                                                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+                                                } else {
+                                                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+                                                }
+                                            }, 2000);
+    
+                                        });
+                                    }                                                                     
+                                    
+                                },error: (error) => {
+                                    Swal.fire(
+                                        'Oops..!',
+                                        'Something want wrong.',
+                                        'error'
+                                    )
+                                }
+                            });
+                        }
+    
+                    },error: (error) => {
+                        Swal.fire(
+                            'Oops..!',
+                            'Something want wrong.',
+                            'error'
+                        )
+                    }
+                });
+            }
+        }
+    })
+
+    //org alert start
+    // console.log(document.activeElement.value, "e");
+    // var pass_fail = document.activeElement.value;
+    // if (!confirm("Are you sure you want to " + pass_fail + " this student?")) {
+    //     return;
+    // }
+    // else {
+    //     var id = localStorage.getItem("exam_register_id");
+    //     var course_type = localStorage.getItem("course_type");
+    //     var table = document.getElementById("tbl_fillmarks");
+    //     var result_id = $("input[name = result_id]").val();
+
+    //     var pass_module = $("input[type='radio'][name='is_full_module']:checked").val();
+    //     var count = pass_module ? 1 : 0;
+
+    //     var totalRowCount = table.rows.length - count;
+    //     // var totalRowCount = $('#tbl_fillmarks >tbody >tr').length;
+    //     var data = new FormData();
+    //     for (var i = 1; i < totalRowCount; i++) {
+    //         data.append('subject[]', $('#subject' + i).val());
+    //     }
+    //     for (var i = 1; i < totalRowCount; i++) {
+    //         data.append('mark[]', $('#mark' + i).val());
+    //     }
+    //     for (var i = 1; i < totalRowCount; i++) {
+    //         data.append('grade[]', $('#grade' + i).val());
+    //     }
+    //     var total_mark = 0;
+    //     for (var i = 1; i < totalRowCount; i++) {
+    //         // console.log($('#mark' + i).val());
+    //         var mark = parseInt($('#mark' + i).val());
+    //         total_mark += mark;
+    //     }
+    //     data.append('total_mark', total_mark);
+    //     data.append('exam_register_id', id);
+    //     if (result_id == "") {
+    //         $.ajax({
+    //             url: BACKEND_URL + "/exam_result",
+    //             type: 'post',
+    //             data: data,
+    //             contentType: false,
+    //             processData: false,
+    //             success: function (result) {
+
+    //                 //successMessage("Insert Successfully");
+    //                 // if (course_type == 1) {
+    //                 //     location.href = FRONTEND_URL + "/da1_exam_result_edit";
+    //                 // } else if (course_type == 2) {
+    //                 //     location.href = FRONTEND_URL + "/da2_exam_result_edit";
+    //                 // } else if (course_type == 3) {
+    //                 //     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+    //                 // } else {
+    //                 //     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+    //                 // }
+    //                 if (pass_fail == "fail") {
+    //                     $.ajax({
+    //                         url: BACKEND_URL + "/fail_exam/" + id,
+    //                         type: 'PATCH',
+    //                         success: function (result) {
+    //                             //aggaio
+    //                             errorMessage(result.message);
+    //                             if (course_type == 1) {
+    //                                 location.href = FRONTEND_URL + "/da1_exam_result_edit";
+    //                             } else if (course_type == 2) {
+    //                                 location.href = FRONTEND_URL + "/da2_exam_result_edit";
+    //                             } else if (course_type == 3) {
+    //                                 location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+    //                             } else {
+    //                                 location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+    //                             }
+    //                         },
+    //                         error: function (message) {
+    //                             console.log(message);
+    //                         }
+    //                     });
+    //                 }
+    //                 else {
+    //                     $.ajax({
+    //                         url: BACKEND_URL + "/pass_exam/" + id,
+    //                         type: 'PATCH',
+    //                         data: { "pass_module": pass_module },
+    //                         success: function (result) {
+    //                             //aggaio
+    //                             successMessage(result.message);
+    //                             if (course_type == 1) {
+    //                                 location.href = FRONTEND_URL + "/da1_exam_result_edit";
+    //                             } else if (course_type == 2) {
+    //                                 location.href = FRONTEND_URL + "/da2_exam_result_edit";
+    //                             } else if (course_type == 3) {
+    //                                 location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+    //                             } else {
+    //                                 location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+    //                             }
+    //                         },
+    //                         error: function (message) {
+    //                             console.log(message);
+    //                         }
+    //                     });
+    //                 }
+
+    //             },
+    //             error: function (message) {
+    //                 console.log(message);
+    //             }
+    //         });
+    //     } else {
+    //         data.append('_method', 'PUT');
+    //         $.ajax({
+    //             url: BACKEND_URL + "/exam_result/" + result_id,
+    //             type: 'post',
+    //             data: data,
+    //             contentType: false,
+    //             processData: false,
+    //             success: function (result) {
+    //                 //successMessage("Updated Successfully");
+    //                 if (course_type == 1) {
+    //                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
+    //                 } else if (course_type == 2) {
+    //                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
+    //                 } else if (course_type == 3) {
+    //                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+    //                 } else {
+    //                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+    //                 }
+    //             },
+    //             error: function (message) {
+    //                 console.log(message);
+    //             }
+    //         });
+    //     }
+    // }
+
+    //org alert end
 }
