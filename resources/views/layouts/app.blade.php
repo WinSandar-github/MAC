@@ -99,6 +99,7 @@
     <script src="{{ asset('js/membership.js') }}"></script>
     <script src="{{ asset('js/entry_exam.js') }}"></script>
     <script src="{{ asset('js/qualified_test.js') }}"></script>
+    <script src="{{ asset('js/esign.js') }}"></script>
 
     <!-- <script src="{{ asset('js/backendService.js') }}"></script> -->
     <script src="{{ asset('js/common.js') }}"></script>

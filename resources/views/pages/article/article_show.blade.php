@@ -106,9 +106,9 @@
 																<ul>
 																		<li>
 																				<input class="p-input" type="text" name="gender3" id="gender3">
-																				သည် မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင် 
-																				<input class="p-input" type="text" name="course_exam" id="course_exam"> 
-																				
+																				သည် မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင်
+																				<input class="p-input" type="text" name="course_exam" id="course_exam">
+
 																				ကိုအောင်မြင်သူတစ်ဦးဖြစ်ပါသည်။
 																		</li>
 																</ul>

@@ -74,6 +74,10 @@ Route::apiResource('/student_info','StudentInfoController');
 Route::apiResource('/requirement','RequirementController');
 Route::post('/filter_requirement','RequirementController@FilterRequirement');
 
+//Esign
+Route::apiResource('/esign','EsignController');
+Route::post('/filter_esign','EsignController@FilterEsign');
+
 //Batch
 Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
