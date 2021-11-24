@@ -99,6 +99,7 @@
     <script src="{{ asset('js/membership.js') }}"></script>
     <script src="{{ asset('js/entry_exam.js') }}"></script>
     <script src="{{ asset('js/qualified_test.js') }}"></script>
+    <script src="{{ asset('js/esign.js') }}"></script>
 
     <!-- <script src="{{ asset('js/backendService.js') }}"></script> -->
     <script src="{{ asset('js/common.js') }}"></script>
@@ -120,6 +121,14 @@
     <script src="{{ asset('js/show_da_cpa_offline_user.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
+
+    {{-- Academic Year Start--}}
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
+    {{-- Academic Year end--}}
+
+
 
     <script type="text/javascript">
         $(document).ready(function() {

@@ -62,7 +62,7 @@ function saveContractDate() {
         var year = start_date.getFullYear();
         var month = start_date.getMonth();
         var day = start_date.getDate();
-
+        console.log("article_form_type >>>",article_form_type);
         if (article_form_type == "c2_pass_3yr") {
             var contract_end_date = new Date(year + 3, month, day - 1);
         } else if (article_form_type == "c12") {
@@ -300,11 +300,11 @@ function loadArticle()
             }
             if(student_info.gender == "1"){
                 $(".call_gender3").text("ခင်ဗျာ");
-                
+
               }
               else{
                 $(".call_gender3").text("ရှင့်");
-                
+
               }
               if(student_info.gender == "1"){
                 $(".call_gender2").text("ခင်ဗျာ");
@@ -358,6 +358,8 @@ function loadArticle()
                     $('.offline_user').show();
                     $('#firm_education').hide();
                     $('#certificate_row').hide();
+                    $('#office_order_row').show();
+                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
                     loadEductaionHistoryByArticle(data.student_info_id);
                 } else {
                     $("#education").val(student_info.student_education_histroy.degree_name);
@@ -471,8 +473,9 @@ function loadArticle()
                     $('input:radio[name=experience][value=1]').attr('disabled', true);
                     $('#exp_attach_row').css('display', 'none');
                 }
-                if (data.offline_user == 1 && data.article_form_type == "c2_pass_1yr") {
 
+                //&& data.article_form_type == "c2_pass_1yr"
+                if (data.offline_user == 1 ) {
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $('#office_order_row').show();
@@ -1330,6 +1333,8 @@ function loadResignArticle() {
                 $(".resign_approve_file").append(`<a href = '${PDF_URL + data.resign_approve_file}' style = 'display:block; font-size:16px;text-decoration: none;' target = '_blank' align = "center" > View Photo</a > `);
             }
 
+            //$(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+            
             if (data.resign_status == 0) {
                 document.getElementById("approve_reject_btn").style.display = "block";
             } else {

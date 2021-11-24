@@ -183,7 +183,7 @@ function loadStudentSelfStudy() {
             let course_reg = element.student_info.student_course_regs.filter(function (v) {
                 return v.batch.course.code == element.course.code && v.batch.id == element.batch_id
             });
-            console.log(course_reg)
+            console.log('course_reg',course_reg.at(-1))
 
             let latest_course_reg = course_reg.at(-1);
 
@@ -382,10 +382,21 @@ function loadStudentSelfStudy() {
                             else {
                                 module_name = "-";
                             }
+
+                            if (course.grade == 1) {
+                                remark = "Passed";
+                            }
+                            else if (course.grade == 2) {
+                                remark = "Failed";
+                            }
+                            else {
+                                remark = "-";
+                            }
                             course_html += `<tr>
                                                 <td>${course.course.name}</td>
                                                 <td>${course.batch.name}</td>
                                                 <td>${module_name}</td>
+                                                <td>${remark}</td>
                                                 <td>${success_year.getFullYear()}</td>
                                             </tr>`
                         });
@@ -409,17 +420,17 @@ function loadStudentSelfStudy() {
             }
 
             // console.log('student_course_regs',element.student_info.student_course_regs);
-            let course_code = element.course.code == "da_1" ? 'da_1' :
-                element.course.code == "da_2" ? 'da_2' :
-                    element.course.code == "cpa_1" ? 'cpa_1' : 'cpa_2';
+            let course_code = element.course.code == "da_1" ? 'da_1_' :
+                                element.course.code == "da_2" ? 'da_2_' :
+                                element.course.code == "cpa_1" ? 'cpa_1_' : 'cpa_2_';
 
             let reg_type = element.type == 0 ? 'self_reg_' :
-                element.type == 1 ? 'prv_reg_' : 'mac_reg_';
+                            element.type == 1 ? 'prv_reg_' : 'mac_reg_';
             // console.log('reg_type',reg_type);
             // console.log('course_code',course_code);
 
             $.ajax({
-                url: BACKEND_URL + "/get_payment_info_by_student/" + reg_type + course_code + "/" + student_info_data.id,
+                url: BACKEND_URL + "/get_payment_info_by_student/" + reg_type + course_code +  element.id,
                 type: 'get',
                 success: function (result) {
                     // console.log("papp invoice",result.productDesc);

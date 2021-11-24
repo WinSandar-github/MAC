@@ -189,7 +189,7 @@ class DARegisterController extends Controller
             
             $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
             
-            $invoice->invoiceNo = 'app_form';
+            $invoice->invoiceNo = 'app_form_'.$student_info->id;
             $invoice->productDesc     = 'App Fee,' . $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee;
             $invoice->status          = 0;
@@ -361,10 +361,10 @@ class DARegisterController extends Controller
 
             ->addColumn('payment_status',function ($infos){                
                 if($infos->batch->course->course_type_id == 1){
-                    $invoices = Invoice::where('invoiceNo',"app_form")->where('student_info_id',$infos->student_info_id)->get();
+                    $invoices = Invoice::where('invoiceNo',"app_form_" . $infos->student_info_id)->get();
                     
                 }else{
-                    $invoices = Invoice::where('invoiceNo',"cpa_app")->where('student_info_id',$infos->student_info_id)->get();                    
+                    $invoices = Invoice::where('invoiceNo',"cpa_app_" . $infos->student_info_id)->get();                    
                 }
 
                 foreach($invoices as $invoice){

@@ -420,6 +420,16 @@ function loadOfflineDACPAData(){
                                 else{
                                     module_name="-";
                                 }
+
+                                if (course.grade == 1) {
+                                    remark = "Passed";
+                                }
+                                else if (course.grade == 2) {
+                                    remark = "Failed";
+                                }
+                                else {
+                                    remark = "-";
+                                }
                                 
                                 if(course.passed_date && course.updated_at){
                                     var pass_year = new Date(course.passed_date);
@@ -427,6 +437,7 @@ function loadOfflineDACPAData(){
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${module_name}</td>
+                                                    <td>${remark}</td>
                                                     <td>${pass_year.getFullYear()}</td>
                                                 </tr>`;
                                                 
@@ -435,6 +446,7 @@ function loadOfflineDACPAData(){
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${module_name}</td>
+                                                    <td>${remark}</td>
                                                     <td>-</td>
                                                 </tr>`;
                                 }                               
@@ -460,100 +472,136 @@ function loadOfflineDACPAData(){
 
 function rejectOfflineDACPAUser() {
 
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var formData = new FormData();
+            formData.append('remark', $('#remark').val());
+            formData.append('_method', 'PATCH')
+            var id = $("#student_info_id").val();
 
-    if (!confirm('Are you sure you want to reject this student?')) {
-        return;
-    }
-    else {
-        var formData = new FormData();
-        formData.append('remark', $('#remark').val());
-        formData.append('_method', 'PATCH')
-        var id = $("#student_info_id").val();
+            $.ajax({
+                url: BACKEND_URL + "/reject_offline_da_cpa/" + id,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    
+                    if (result) {
+                        
+                        Swal.fire(
+                            'Rejected!',
+                            'Rejected Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/offline_user";
+                            }, 2000);
+                        });
+                    }
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+
+    // if (!confirm('Are you sure you want to reject this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var formData = new FormData();
+    //     formData.append('remark', $('#remark').val());
+    //     formData.append('_method', 'PATCH')
+    //     var id = $("#student_info_id").val();
 
 
-        $.ajax({
-            url: BACKEND_URL + "/reject_offline_da_cpa/" + id,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-                // console.log('result',result);
-                successMessage("You have rejected that user!");
-                location.href = FRONTEND_URL + "/offline_user";
-                // let url;
-                // if (result) {
-
-                //     switch (result.code) {
-                //         case 'da_1':
-                //             url = '/da_one_app_list';
-                //             break;
-                //         case 'da_2':
-                //             url = '/da_two_app_list';
-                //             break;
-                //         case 'cpa_1':
-                //             url = '/cpa_one_app_list';
-                //             break;
-                //         case 'cpa_2':
-                //             url = '/cpa_two_app_list';
-                //             break;
-                //         default:
-                //             url = '/da_one_app_list';
-                //             break;
-
-
-
-                //     }
-                //     successMessage("You have rejected that user!");
-                //     location.href = FRONTEND_URL + url;
-                // }
-                // location.href = FRONTEND_URL + "/da_one_app_list";
-            }
-        });
-    }
+    //     $.ajax({
+    //         url: BACKEND_URL + "/reject_offline_da_cpa/" + id,
+    //         type: 'POST',
+    //         data: formData,
+    //         contentType: false,
+    //         processData: false,
+    //         success: function (result) {
+    //             // console.log('result',result);
+    //             successMessage("You have rejected that user!");
+    //             location.href = FRONTEND_URL + "/offline_user";
+                
+    //         }
+    //     });
+    // }
 }
 
 function approveOfflineDACPAUser() {
-    if (!confirm('Are you sure you want to approve this student?')) {
-        return;
-    }
-    else {
+    var id = $("input[name = student_course_id]").val();
 
-        var id = $("input[name = student_course_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/approve_offline_da_cpa/" + id,
-            type: 'patch',
-            success: function (result) {
-                // console.log('qt_entry',result[0].qt_entry)
-                successMessage("You have approved that user!");
-                location.href = FRONTEND_URL + "/offline_user";
-                // let url;
-                // if (result) {
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/approve_offline_da_cpa/" + id,
+                type: 'patch',
+                success: function (result) {
+                  
+                    if (result) {
+                        
 
-                //     switch (result.code) {
-                //         case 'da_1':
-                //             url = '/da_one_app_list';
-                //             break;
-                //         case 'da_2':
-                //             url = '/da_two_app_list';
-                //             break;
-                //         case 'cpa_1':
-                //             url = '/cpa_one_app_list';
-                //             break;
-                //         case 'cpa_2':
-                //             url = '/cpa_two_app_list';
-                //             break;
-                //         default:
-                //             url = '/da_one_app_list';
-                //             break;
+                        Swal.fire(
+                            'Approved!',
+                            'Approved Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/offline_user";
+                            }, 2000);
+                        });
+                    }
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+    // if (!confirm('Are you sure you want to approve this student?')) {
+    //     return;
+    // }
+    // else {
 
-
-
-                //     }
-                //     successMessage("You have approved that user!");
-                //     location.href = FRONTEND_URL + url;
-                // }
-            }
-        });
-    }
+    //     var id = $("input[name = student_course_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/approve_offline_da_cpa/" + id,
+    //         type: 'patch',
+    //         success: function (result) {
+    //             // console.log('qt_entry',result[0].qt_entry)
+    //             successMessage("You have approved that user!");
+    //             location.href = FRONTEND_URL + "/offline_user";
+                
+    //         }
+    //     });
+    // }
 }
