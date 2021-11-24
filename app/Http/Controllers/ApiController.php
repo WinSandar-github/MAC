@@ -94,24 +94,53 @@ class ApiController extends Controller
     }
 
     //update register sr no and personal number
-    public function generatePersonalNo($code)
+    public function generatePersonalNo($code,$type)
     {
-        
+
         $helper = new Helper;
       
        
         $current_course = Course::where('code',$code)->with('active_batch','course_type')->first();
          
-         $batch_number = $current_course->active_batch[0]->number;
+        $batch_number = $current_course->active_batch[0]->number;
+
+        if($current_course->course_type->course_code == "da" ){
+
+            $last_personal_no = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
+                            ->join('student_infos','student_infos.id','=','student_register.student_info_id')
+                            ->where('student_infos.personal_no','!=',NULL)
+                            ->orderByRaw('LENGTH(student_infos.personal_no) desc')->orderby('student_infos.personal_no','desc')
+                            ->select('student_infos.personal_no')->first();
+                            
+            $sr_no = $last_personal_no  ?  substr($last_personal_no->personal_no, strpos($last_personal_no->personal_no, "/") + 1)
+                                        : 0; 
+         
+                            
+        }else{
+
+            $last_personal_no = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
+                                ->join('student_infos','student_infos.id','=','student_register.student_info_id')
+                                ->where('student_infos.cpersonal_no','!=',NULL)
+                                ->orderByRaw('LENGTH(student_infos.cpersonal_no) desc')->orderBy('student_infos.cpersonal_no','desc')
+                                ->select('student_infos.cpersonal_no')->first();
+                               
+                                
+            $sr_no = $last_personal_no   ? substr($last_personal_no->cpersonal_no, strpos($last_personal_no->cpersonal_no, "/") + 1) 
+                                                : 0 ;
+                                
+                }
+            $student_registers = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
+            ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
+            ->where('student_register.status',1)
+            ->orderBy('student_register.type','desc')
+            ->orderBy('student_infos.name_mm','asc')
+            ->with('student_info','course')
+            ->select('student_infos.name_mm','student_register.*');  
         
-        $student_registers = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
-        ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
-        ->where('student_register.status',1)
-        ->orderBy('student_register.type','desc')
-        ->orderBy('student_infos.name_mm','asc')
-        ->with('student_info','course')
-        ->select('student_infos.name_mm','student_register.*')->get();  
-        $sr_no = 0;
+        $student_registers =  $type == 2 ? $student_registers->where('type',$type)->get() : $student_registers->where('type', '!=' , 2)->get();
+        
+
+        
         foreach($student_registers as $key => $student_register){
             
               
@@ -136,16 +165,14 @@ class ApiController extends Controller
                         ++$sr_no;
                         $student_info->cpersonal_no = $batch_number.'/'.$sr_no;
                     }
-                    } 
-                
-                 
+                } 
                 $student_info->save();
-             
-              
-             
-
-        }
-        return $student_register;
+                    
+                    
+                    
+                    
+            }
+        return $student_registers;
     }
 
     public function generateSrNo($code)

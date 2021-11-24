@@ -355,7 +355,7 @@ Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
 
 //Generate Serial and Personal Number
-Route::get('/generate_personal_no/{code}','ApiController@generatePersonalNo');
+Route::get('/generate_personal_no/{code}/{type}','ApiController@generatePersonalNo');
 Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{code}','ApiController@generateExamSrNo');
 Route::get('/generate_entrance_exam_sr_no/{batch}','ApiController@generateEntranceExamSrNo');
