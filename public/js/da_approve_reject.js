@@ -142,7 +142,6 @@ function loadData() {
         url: BACKEND_URL + "/da_register/" + id,
         success: function (data) {
             var student = data.data;
-
             student.forEach(function (student_course) {
                 if (student_course.type == 0) {
                     $("#attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
@@ -301,10 +300,21 @@ function loadData() {
                                 else {
                                     module_name = "-";
                                 }
+
+                                if (course.grade == 1) {
+                                    remark = "Passed";
+                                }
+                                else if (course.grade == 2) {
+                                    remark = "Failed";
+                                }
+                                else {
+                                    remark = "-";
+                                }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${module_name}</td>
+                                                    <td>${remark}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
@@ -327,10 +337,10 @@ function loadData() {
                 } else {
                     $("#payment_info_card").hide();
                 }
-                let invoice_no = current_course.code == "da_1" ? 'app_form' : 'cpa_app';
+                let invoice_no = current_course.code == "da_1" ? 'app_form_': 'cpa_app_';
                 // console.log('invoice_no',invoice_no)
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + invoice_no + "/" + element.id,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + invoice_no + element.id,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);

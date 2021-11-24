@@ -215,79 +215,237 @@ function loadCPAStudentDataForExamCard() {
 }
 
 function approveCPAOneExam() {
-    if (!confirm('Are you sure you want to approve this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/approve_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                // console.log(result)
-                successMessage("You have approved that form!");
-                location.href = FRONTEND_URL + "/cpa_exam_one";
-                getCPAExam();
-            }
-        });
-    }
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/approve_exam/" + id,
+                type: 'PATCH',
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Approved!',
+                            'Approved Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/cpa_exam_one";
+                                getCPAExam();
+                            },2000);
+                        });
+                    }
+                    
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+    // if (!confirm('Are you sure you want to approve this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/approve_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             // console.log(result)
+    //             successMessage("You have approved that form!");
+    //             location.href = FRONTEND_URL + "/cpa_exam_one";
+    //             getCPAExam();
+    //         }
+    //     });
+    // }
 }
 
 function rejectCPAOneExam() {
-    if (!confirm('Are you sure you want to reject this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/reject_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                // console.log(result)
-                successMessage("You have rejected that form!");
-                location.href = FRONTEND_URL + "/cpa_exam_one";
-                getCPAExam();
-            }
-        });
-    }
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then(result => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/reject_exam/" + id,
+                type: 'PATCH',
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Rejected!',
+                            'Rejected Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/cpa_exam_one";
+                                getCPAExam();
+                            }, 2000);
+                        });
+                    }
+                    
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+
+    // if (!confirm('Are you sure you want to reject this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/reject_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             // console.log(result)
+    //             successMessage("You have rejected that form!");
+    //             location.href = FRONTEND_URL + "/cpa_exam_one";
+    //             getCPAExam();
+    //         }
+    //     });
+    // }
 }
 
 function approveCPATwoExam() {
-    if (!confirm('Are you sure you want to approve this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/approve_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                // console.log(result)
-                successMessage("You have approved that form!");
-                location.href = FRONTEND_URL + "/cpa_two_exam";
-                getCPAExam();
-            }
-        });
-    }
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/approve_exam/" + id,
+                type: 'PATCH',
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Approved!',
+                            'Approved Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/cpa_exam_one";
+                                getCPAExam();
+                            },2000);
+                        });
+                    }
+                    
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+
+    // if (!confirm('Are you sure you want to approve this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/approve_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             // console.log(result)
+    //             successMessage("You have approved that form!");
+    //             location.href = FRONTEND_URL + "/cpa_two_exam";
+    //             getCPAExam();
+    //         }
+    //     });
+    // }
 }
 
 function rejectCPATwoExam() {
-    if (!confirm('Are you sure you want to reject this student?')) {
-        return;
-    }
-    else {
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/reject_exam/" + id,
-            type: 'PATCH',
-            success: function (result) {
-                // console.log(result)
-                successMessage("You have rejected that form!");
-                location.href = FRONTEND_URL + "/cpa_two_exam";
-                getCPAExam();
-            }
-        });
-    }
+    var id = $("input[name = student_id]").val();
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then(result => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/reject_exam/" + id,
+                type: 'PATCH',
+                success: function (result) {
+                    if (result) {
+                        Swal.fire(
+                            'Rejected!',
+                            'Rejected Student',
+                            'success'
+                        ).then(() => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + "/cpa_two_exam";
+                                getCPAExam();
+                            }, 2000);
+                        });
+                    }
+                    
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+    // if (!confirm('Are you sure you want to reject this student?')) {
+    //     return;
+    // }
+    // else {
+    //     var id = $("input[name = student_id]").val();
+    //     $.ajax({
+    //         url: BACKEND_URL + "/reject_exam/" + id,
+    //         type: 'PATCH',
+    //         success: function (result) {
+    //             // console.log(result)
+    //             successMessage("You have rejected that form!");
+    //             location.href = FRONTEND_URL + "/cpa_two_exam";
+    //             getCPAExam();
+    //         }
+    //     });
+    // }
 }
 
 function loadCPAExamData() {
@@ -362,9 +520,9 @@ function loadCPAExamData() {
                 }
 
                 // console.log('student_course_regs',element.student_info.student_course_regs);
-                let course_code = element.course.code == "da_1" ? 'da_1' :
-                    element.course.code == "da_2" ? 'da_2' :
-                        element.course.code == "cpa_1" ? 'cpa_1' : 'cpa_2';
+                let course_code = element.course.code == "da_1" ? 'da_1_' :
+                    element.course.code == "da_2" ? 'da_2_' :
+                        element.course.code == "cpa_1" ? 'cpa_1_' : 'cpa_2_';
 
                 // let reg_type    = element.type == 0? 'self_reg_' : 
                 //                     element.type == 1? 'prv_reg_' : 'mac_reg_';                               
@@ -372,7 +530,7 @@ function loadCPAExamData() {
                 // console.log('course_code',course_code);
 
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code + "/" + element.student_info_id,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code + element.id,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
@@ -576,10 +734,22 @@ function loadCPAExamData() {
                                 else {
                                     module_name = "-";
                                 }
+
+                                if (course.grade == 1) {
+                                    remark = "Passed";
+                                }
+                                else if (course.grade == 2) {
+                                    remark = "Failed";
+                                }
+                                else {
+                                    remark = "-";
+                                }
+                                
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${module_name}</td>
+                                                    <td>${remark}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
