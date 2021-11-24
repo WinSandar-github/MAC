@@ -17,6 +17,7 @@ class CreateCertificatesTable extends Migration
             $table->id();
             $table->string('cert_code');
             $table->text('cert_data');
+            $table->integer('esign_id')->nullable();
             $table->timestamps();
         });
     }
