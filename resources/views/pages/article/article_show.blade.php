@@ -23,6 +23,13 @@
         outline: none;
         text-align: center;
     }
+
+		@media screen and (min-width: 676px) {
+        .leave-modal-dialog {
+          max-width: 800px !important; /* New width for default modal */
+        }
+    }
+
 </style>
 @section('content')
     <div class="content">
@@ -69,7 +76,7 @@
 													</div>
 
 													<div id="previous_info_box2" style="display:none;">
-														<div class="col-md-11">လူကြီးမင်း <span class="call_gender"></span></div>
+														<div class="col-md-11">လူကြီးမင်း <span class="call_gender2"></span></div>
 														<div class="col-md-11">
 																<ul>
 																		<li>
@@ -531,6 +538,7 @@
                                             <th>End Date</th>
                                             <th>Total Date</th>
                                             <th>Status</th>
+																						<th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="leave_request_body">
@@ -697,6 +705,54 @@
         </div>
     </form>
 
+		<!-- Leave Request Model-->
+    <div class="modal fade" id="leaveRequestModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog leave-modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Leave Request Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <input type="hidden" id="article_id">
+                        <input type="hidden" id="form_name">
+                        <form action="javascript:saveUpdateLeaveRequest();" enctype="multipart/form-data" id="leave_request_form">
+                        @csrf
+                            <input type="hidden" id="leave_request_id">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label>Leave Type</label>
+                                    <input type="text"  name="remark" id="remark" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Start Date</label>
+                                    <input type="text" name="start_date" id="start_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)" >
+                                </div>
+                                <div class="col-md-3">
+                                    <label>End Date</label>
+                                    <input type="text" name="end_date" id="end_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)" >
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Total Date</label>
+                                    <input type="number" name="total_date" id="total_date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-9"></div>
+                                <div class="col-md-3" align="right">
+                                    <button type="submit" class="btn btn-success btn-hover-dark">Save Changes</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
         // get NRC Townships data from myanmarnrc.php config file
@@ -723,6 +779,17 @@
         dateFormat: "d-M-Y",
         allowInput: true
     });
+		$("input[name='start_date']").flatpickr({
+						enableTime: false,
+						dateFormat: "d-M-Y",
+						allowInput: true
+		});
+
+		$("input[name='end_date']").flatpickr({
+						enableTime: false,
+						dateFormat: "d-M-Y",
+						allowInput: true
+		});
   });
 
 </script>

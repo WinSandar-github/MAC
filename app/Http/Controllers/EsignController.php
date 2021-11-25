@@ -140,4 +140,28 @@ class EsignController extends Controller
             ->make(true);
     }
 
+    public function getEsignName()
+    {
+        $name = Esign::get('name');
+        return response()->json([
+            'data' => $name
+        ], 200);
+    }
+
+    public function getEsignPosition()
+    {
+        $position = Esign::get('position');
+        return response()->json([
+            'data' => $position
+        ], 200);
+    }
+
+    public function getEsignId($name)
+    {
+        $id = Esign::where('name', $name)->first('id');
+        return response()->json([
+            'data' => $id
+        ], 200);
+    }
+
 }

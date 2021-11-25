@@ -249,7 +249,41 @@
         </div>
     </div>
 
+    <!-- select modal -->
+    <!-- Sub Course Create Modal -->
+    <div class="modal fade esign_modal" style="padding-top:80px;">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <!-- <form method="post" action="{{ route('course.store')}}" enctype="multipart/form-data"> -->
+                <form id="choose_form" method="post" action="javascript:setSelected()" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">Choose User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
+                        <div class="row">
+                            <label class="col-md-4 form-label">Name</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <select name="select_name" class="form-control select_name" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="submit" class="btn btn-primary">Go To Card</button>
+                    </div>
+
+            </div>
+        </div>
+    </div>
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
@@ -428,6 +462,41 @@
 			// });
 
 		});
+
+
+
+	function showEsignList(id) {
+	    $('.esign_modal').modal('toggle');
+	    localStorage.setItem("id", id);
+	}
+
+	$.ajax({
+	    url: BACKEND_URL + '/get_esign_name',
+	    type: 'GET',
+	    success: function(response) {
+	        var opt = `<option value='' selected >Select</option>`;
+	        $.each(response.data, function(i, v) {
+	            opt += `<option value="${v.id}"  >${v.name}</option>`;
+	        });
+
+	        $(".select_name").append(opt);
+	    }
+	});
+
+	function setSelected(){
+	    
+	    var name = $('.select_name').find(":selected").text();
+	    $.ajax({
+	        url: BACKEND_URL + '/get_esignId/' + name,
+	        type: 'GET',
+	        success: function(data) {
+	        	var id = localStorage.getItem('id');
+	        	let esign_id = data.data.id;
+	        	location.href = FRONTEND_URL + "/get_non_audit_card/" + id + "/" + esign_id;
+	        }
+	        	
+	    });
+	}
 
 </script>
 @endpush

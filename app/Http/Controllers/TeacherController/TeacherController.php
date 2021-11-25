@@ -374,7 +374,7 @@ class TeacherController extends Controller
                 foreach($request->file('old_degrees_certificates') as $file)
                 {
                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/student_info/',$name);
+                    $file->move(public_path().'/storage/teacher_info/',$name);
                     $old_degrees_certificates_all[] = $name;
                     
                 }
@@ -386,7 +386,7 @@ class TeacherController extends Controller
                         if(sizeof($old_degrees_certificates_all)==sizeof($request->old_degrees)){
                             $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
                             $education_histroy->degree_name = $request->old_degrees[$i];
-                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_all[$i];
+                            $education_histroy->certificate     = '/storage/teacher_info/'.$old_degrees_certificates_all[$i];
                             $education_histroy->save();
                             
                         }else{
@@ -397,7 +397,7 @@ class TeacherController extends Controller
                             }
                             $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
                             $education_histroy->degree_name = $request->old_degrees[$i];
-                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_one;
+                            $education_histroy->certificate     = '/storage/teacher_info/'.$old_degrees_certificates_one;
                             $education_histroy->save();
                             
                         }
