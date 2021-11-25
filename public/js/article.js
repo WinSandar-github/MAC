@@ -62,7 +62,7 @@ function saveContractDate() {
         var year = start_date.getFullYear();
         var month = start_date.getMonth();
         var day = start_date.getDate();
-        console.log("article_form_type >>>",article_form_type);
+
         if (article_form_type == "c2_pass_3yr") {
             var contract_end_date = new Date(year + 3, month, day - 1);
         } else if (article_form_type == "c12") {
@@ -543,8 +543,17 @@ function loadArticle()
             var leave_requests = student_info.leave_requests;
             var r = 1;
             leave_requests.forEach(function (element) {
+
                 if (data.article_form_type == element.form_type) {
                     var status = element.status == 0 ? "-" : "Done";
+                    const rowData = {
+                      remark : element.remark,
+                      start_date : element.start_date,
+                      end_date: element.end_date,
+                      total_leave : element.total_leave,
+                      leave_id : element.id
+                    };
+
                     var tr = "<tr>";
                     tr += "<td class='alignright'>" + r + "</td>";
                     tr += "<td>" + element.remark + "</td>";
@@ -552,6 +561,7 @@ function loadArticle()
                     tr += "<td>" + element.end_date + "</td>";
                     tr += "<td>" + element.total_leave + "</td>";
                     tr += "<td>" + status + "</td>";
+                    tr += "<td><button class='btn btn-warning btn-sm' onclick='editLeaveRequestData("+JSON.stringify(rowData)+")'><li class='fa fa-pencil'></li></button></td>";
                     tr += "</tr>";
                     r = r + 1;
                     $("#leave_request_body").append(tr);
@@ -616,6 +626,52 @@ function loadArticle()
             }
 
             autoLoadPaymentFirm(data.id,article_form_type); // load firm payment infos
+        }
+    });
+}
+
+function editLeaveRequestData(rowData) {
+    $('#leaveRequestModel').modal('toggle');
+    $("#remark").val(rowData.remark);
+    $("#start_date").val(rowData.start_date);
+    $("#end_date").val(rowData.end_date);
+    $("#total_date").val(rowData.total_leave);
+    $("#leave_request_id").val(rowData.leave_id);
+
+    // $('#article_id').val(id);
+    // $('#form_name').val('other');
+    // getLeaveRequest();
+}
+
+function saveUpdateLeaveRequest() {
+    var data = new FormData();
+    data.append('id', $('#leave_request_id').val());
+    data.append('remark', $("input[name=remark]").val());
+    data.append('start_date', $("input[name=start_date]").val());
+    data.append('end_date', $("input[name=end_date]").val());
+    data.append('total_date', $("input[name=total_date]").val());
+
+    show_loader();
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: BACKEND_URL + "/update_leave_request",
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            EasyLoading.hide();
+            successMessage("You have successfully updated.");
+            $("#leave_request_form")[0].reset();
+            $('#leave_request_table').DataTable().destroy();
+            $('#leaveRequestModel').modal('toggle');
+            location.reload();
+            //getLeaveRequest();
+            //$("#leave_request_form").attr('action', 'javascript:saveLeaveRequest()');
+        },
+        error: function (message) {
+            EasyLoading.hide();
+            errorMessage(message);
         }
     });
 }
@@ -1091,7 +1147,7 @@ function autoLoadPaymentFirm(firm_id,form_type){
               console.log("firm aricle",result);
 
               if(result.status==0){
-                console.log("****",result.status);
+                
                   $('#payment_status').append("Incomplete");
                   $('#payment_status').addClass("text-warning");
               }
