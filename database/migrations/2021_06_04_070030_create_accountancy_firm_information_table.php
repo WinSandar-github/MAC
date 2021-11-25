@@ -48,6 +48,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->integer('status');
             $table->integer('is_renew')->default(0);
             $table->string('image')->nullable();
+            $table->integer('esign_id')->nullable();
             // $table->integer('form_fee');
             // $table->integer('nrc_fee');
             $table->date('register_date');
