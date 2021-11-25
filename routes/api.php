@@ -420,6 +420,7 @@ Route::post('/article_firm_register', 'ArticleController\ArticleController@store
 Route::post('/filter_firm_article','ArticleController\ArticleController@FilterArticle');
 Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
 Route::post('/reject_article/{id}', 'ArticleController\ArticleController@reject');
+Route::post('/article_firm_register/{id}', 'ArticleController\ArticleController@update');
 
 // Qualified Test
 Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
@@ -513,3 +514,6 @@ Route::get('/get_exam_stu_id/{id}','DaRegisterController@getExamStuId');
 
 //payment
 Route::post('/cashPayment', 'PaymentController\PaymentController@cashPayment');
+
+//article resign reject
+Route::post('/updateResignArticle/{id}', 'ArticleController\ArticleController@updateResignArticle');

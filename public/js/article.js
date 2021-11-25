@@ -311,12 +311,32 @@ function loadArticle()
                 $(".call_gender3").text("ရှင့်");
 
               }
+              if(student_info.gender == "1"){
+                $(".call_gender2").text("ခင်ဗျာ");
+
+              }
+              else{
+                $(".call_gender2").text("ရှင့်");
+
+              }
               if(data.gender == "1"){
                  $("#gender3").val("ကျွန်တော်");
               }
               else{
                 $("#gender3").val("ကျွန်မ");
               }
+            if(data.gender == "1"){
+                $("#gender").val("ကျွန်တော်");
+            }
+            else{
+               $("#gender").val("ကျွန်မ");
+            }
+            if(data.gender == "1"){
+                $("#gender2").val("ကျွန်တော်");
+            }
+            else{
+               $("#gender2").val("ကျွန်မ");
+            }
               $("#course_exam").val(data.course_exam);
             if (data.article_form_type == "qt_firm") {
                 document.getElementById("qt_row").style.display = "block";
@@ -444,12 +464,14 @@ function loadArticle()
                     $('input:radio[name=experience][value=0]').attr('disabled', true);
                     $('#exp_attach_row').css('display', 'block');
                     //let apprentice_exp_file=data.apprentice_exp_file.replace(/[\'"[\]']+/g, '');
-                    let apprentice_exp_file = JSON.parse(data.apprentice_exp_file);
-                    $.each(apprentice_exp_file, function (fileCount, fileName) {
-                        console.log("/storage/student_info/" + fileName);
-                        $(".exp_attachment").append(`<a href='${PDF_URL + "/storage/student_info/" + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                //    let apprentice_exp_file = JSON.parse(data.apprentice_exp_file);
+                //     $.each(apprentice_exp_file, function (fileCount, fileName) {
+                //         console.log("/storage/student_info/" + fileName);
+                //         $(".exp_attachment").append(`<a href='${PDF_URL + "/storage/student_info/" + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                    })
+                //     })
+                removeBracketed(data.apprentice_exp_file,"exp_attachment");
+                //$(".exp_attachment").append(`<a href='${PDF_URL + "/storage/student_info/" + data.apprentice_exp_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }
                 else {
                     $('input:radio[name=experience][value=0]').attr('checked', true);
@@ -638,10 +660,17 @@ function rejectArticle() {
         return;
     }
     else {
-        var id = $("input[name = article_id]").val();
+
         var formData = new FormData();
         formData.append('remark_firm', $('#remark_firm').val());
-
+        let result = window.location.href;
+        let url = new URL(result);
+        let offline_user = url.searchParams.get("offline_user");
+        if(offline_user=="true"){
+            var id = url.searchParams.get("id");
+        }else{
+            var id = $("input[name = article_id]").val();
+        }
         $.ajax({
             url: BACKEND_URL + "/reject_article/" + id,
             type: 'POST',
@@ -650,7 +679,11 @@ function rejectArticle() {
             processData: false,
             success: function (result) {
                 successMessage("You have rejected that user!");
-                location.href = FRONTEND_URL + "/article_list";
+                if(offline_user=="true"){
+                    location.href = FRONTEND_URL + "/offline_user";
+                }else{
+                    location.href = FRONTEND_URL + "/article_list";
+                }
             }
         });
     }
@@ -1520,4 +1553,12 @@ function loadEductaionHistoryByArticle(id) {
             createDataTableWithAsc('#tbl_degree');
         }
     });
+}
+function removeBracketed(file,divname){
+    var new_file=file.replace(/[\'"[\]']+/g, '');
+    var split_new_file=new_file.split(',');
+    for(var i=0;i<split_new_file.length;i++){
+        var file=`<a href='${BASE_URL+'/storage/student_info/'+split_new_file[i]}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'>View File</a>`;
+        $("."+divname).append(file);
+      }
 }
