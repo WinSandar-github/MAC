@@ -79,7 +79,7 @@ class ArticleController extends Controller
             $file->move(public_path() . '/storage/student_info/', $name);
             $image = '/storage/student_info/' . $name;
         }else{
-            $image = "";
+            $image = $request->image;
         }
 
         if ($request->hasfile('nrc_front')) {
@@ -88,7 +88,7 @@ class ArticleController extends Controller
             $file->move(public_path().'/storage/student_info/',$name);
             $nrc_front = '/storage/student_info/'.$name;
         }else{
-            $nrc_front = "";
+            $nrc_front = $request->nrc_front;
         }
 
         if ($request->hasfile('nrc_back')) {
@@ -97,7 +97,7 @@ class ArticleController extends Controller
             $file->move(public_path().'/storage/student_info/',$name);
             $nrc_back = '/storage/student_info/'.$name;
         }else{
-            $nrc_back = "";
+            $nrc_back = $request->nrc_back;
         }
         if ($request->hasfile('degrees_certificates')) {
             foreach($request->file('degrees_certificates') as $file)
@@ -135,32 +135,51 @@ class ArticleController extends Controller
             //array_push($total_experience,$request->exp_year,$request->exp_month,$request->exp_days);
 
             //Student Info
-            $std_info = new StudentInfo();
-            $std_info->email = $request->email;
-            $std_info->password = Hash::make($request->password);
-            $std_info->name_mm = $request->name_mm;
-            $std_info->name_eng = $request->name_eng;
-            $std_info->father_name_mm = $request->father_name_mm;
-            $std_info->father_name_eng = $request->father_name_eng;
-            $std_info->phone = $request->phone;
-            $std_info->nrc_state_region = $request->nrc_state_region;
-            $std_info->nrc_township = $request->nrc_township;
-            $std_info->nrc_citizen = $request->nrc_citizen;
-            $std_info->nrc_number = $request->nrc_number;
-            $std_info->cpersonal_no = $request->personal_no;
-            $std_info->nrc_front = $nrc_front;
-            $std_info->nrc_back = $nrc_back;
-            $std_info->image = $image;
-            $std_info->race = $request->race;
-            $std_info->religion = $request->religion;
-            $std_info->date_of_birth = $request->date_of_birth;
-            $std_info->address = $request->address;
-            $std_info->current_address = $request->current_address;
-            $std_info->gender = $request->gender;
-            $std_info->save();
+            if($request->student_info_id==null){
+                $std_info = new StudentInfo();
+                $std_info->email = $request->email;
+                $std_info->password = Hash::make($request->password);
+                $std_info->name_mm = $request->name_mm;
+                $std_info->name_eng = $request->name_eng;
+                $std_info->father_name_mm = $request->father_name_mm;
+                $std_info->father_name_eng = $request->father_name_eng;
+                $std_info->phone = $request->phone;
+                $std_info->nrc_state_region = $request->nrc_state_region;
+                $std_info->nrc_township = $request->nrc_township;
+                $std_info->nrc_citizen = $request->nrc_citizen;
+                $std_info->nrc_number = $request->nrc_number;
+                $std_info->cpersonal_no = $request->personal_no;
+                $std_info->nrc_front = $nrc_front;
+                $std_info->nrc_back = $nrc_back;
+                $std_info->image = $image;
+                $std_info->race = $request->race;
+                $std_info->religion = $request->religion;
+                $std_info->date_of_birth = $request->date_of_birth;
+                $std_info->address = $request->address;
+                $std_info->current_address = $request->current_address;
+                $std_info->gender = $request->gender;
+                $std_info->save();
+            }else{
+                $std_info = StudentInfo::find($request->student_info_id);
+                $std_info->password = Hash::make($request->update_password);
+                $std_info->phone = $request->phone;
+                $std_info->image = $image;
+                $std_info->nrc_front = $nrc_front;
+                $std_info->nrc_back = $nrc_back;
+                $std_info->current_address = $request->current_address;
+                $std_info->address = $request->address;
+                $std_info->save();
+            }
+            
             //article
             $acc_app = new ApprenticeAccountant();
-            $acc_app->student_info_id = $std_info->id;
+            if($request->student_info_id==null){
+                $acc_app->student_info_id = $std_info->id;
+                
+            }else{
+                $acc_app->student_info_id = $request->student_info_id;
+                
+            }
             $acc_app->article_form_type = $request->article_form_type;
             $acc_app->apprentice_exp = $request->experience == "undefined" ? null : $request->experience ;
             $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
@@ -350,8 +369,8 @@ class ArticleController extends Controller
         }else{
             $apprentice_exp_file=$request->exp_attach;
         }
-        if ($request->hasfile('update_office_order_attach')) {
-            $file = $request->file('update_office_order_attach');
+        if ($request->hasfile('office_order_attach')) {
+            $file = $request->file('office_order_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $office_order_attach = '/storage/student_info/'.$name;
