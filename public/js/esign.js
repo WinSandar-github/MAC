@@ -24,7 +24,6 @@ function getEsign(){
     destroyDatatable("#tbl_esign", "#tbl_esign_body");
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
-    // send_data.append('course_name',$('#filter_course_id').val());
     $.ajax({
         url: BACKEND_URL+"/filter_esign",
         type: 'post',
@@ -35,7 +34,6 @@ function getEsign(){
             
             var esign_data=data.data;
             esign_data.forEach(function (element) {  
-                // console.log('esign',element); 
                 
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
@@ -45,7 +43,6 @@ function getEsign(){
                 tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteEsignInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
                 tr += "<td>" + element.name + "</td>";
                 tr += "<td>" + element.position + "</td>";
-                // tr += "<td>" + element.course.name + "</td>"; 
     
                 tr += "</tr>";
                 $("#tbl_esign_body").append(tr);         
@@ -76,8 +73,7 @@ function showEsignInfo(id) {
           
             $('input[name=name]').val(esign_data.name);                    
             $('input[name=position]').val(esign_data.position);  
-            document.getElementById('esign_file').src=BASE_URL + esign_data.esign_file;                  
-            // $('input[name=esign_file]').val(esign_data.esign_file);                    
+            document.getElementById('esign_file').src=BASE_URL + esign_data.esign_file;                   
             
             $('#create_esign_model').modal('toggle');
         },

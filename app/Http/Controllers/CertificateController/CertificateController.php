@@ -9,6 +9,7 @@ use App\QualifiedTest;
 use App\SchoolRegister;
 use App\TeacherRegister;
 use App\tbl_branch_school;
+use App\Esign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\AccountancyFirmInformation;
@@ -422,7 +423,11 @@ class CertificateController extends Controller
         return view('certificate.complete_certificate', compact('template', 'className'));
     }
 
-    public function getNonAuditCard(Request $req, $id){
+    public function getNonAuditCard(Request $req, $id ,$esignId){
+        $esign_data = Esign::where('id', $esignId)->first();
+        $name = $esign_data->name;
+        $position = $esign_data->position;
+        $esign_file = $esign_data->esign_file;
         
         $audit = AccountancyFirmInformation::where('id', '=', $id)->first();
         $tos = json_decode($audit->type_of_service_provided_id);
@@ -472,7 +477,9 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $audit->dir_passport_csc . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ expDate }}', "<strong>". ($exp_date + 1) .'-'.'12'.'-'.'31'."</strong>", $template->cert_data);
-        $template->cert_data = str_replace('{{ officerName }}', "<strong>Me Me Thet</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>" . $name ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ position }}', "<strong>" . $position ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ userImage }}', $esign_file, $template->cert_data);
 
         $className = '';
 

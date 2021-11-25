@@ -4513,9 +4513,10 @@ class AccFirmInfController extends Controller
                                       <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
                                       <li class='fa fa-eye fa-sm'></li>
                                       </a>
-                                      <a href='" . route('get_non_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
-                                          <li class='fa fa-id-card-o fa-sm'></li>
-                                      </a>
+                                      <button type='button' class='btn btn-primary btn-xs' onclick='showEsignList($infos->id)'>
+                                          <li class='fa fa-edit fa-sm'></li>
+                                      </button>
+                                   
 
                                 </div>";
                     }else if($infos->status == 1 && $invoice->status != 'AP'){

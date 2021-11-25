@@ -29,9 +29,10 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable text-center">
+                                <?php $index = 1; ?>
                                 @foreach($data['papp'] as $key => $papp)
                                         <tr>
-                                            <td>{{ ++$key }}</td>
+                                            <td>{{ $index ++ }}</td>
                                             <td>{{ $papp->cpaff_reg_no }}</td>
                                             <td>{{ $papp->papp_reg_no }}</td>
                                             <td>{{ 
