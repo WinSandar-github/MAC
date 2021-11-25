@@ -45,7 +45,7 @@ function loadEntryDetail(id) {
             var exam_data = data.data;
 
             exam_data.forEach(function (element) {
-                // console.log('exam_data', element)
+                console.log('exam_data', element)
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -69,7 +69,7 @@ function loadEntryDetail(id) {
     
                
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + "cpa_app_" + element.student_info_id ,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_cpa_1_" + element.id ,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);
@@ -155,6 +155,7 @@ function loadEntryDetail(id) {
                 let student_info = element.student_info;
 
                 var education_history = student_info.student_education_histroy;
+                console.log(student_info)
                 var job = student_info.student_job;
                 $("#id").append(student_info.id);
                 document.getElementById('image').src = PDF_URL + student_info.image;
@@ -186,7 +187,12 @@ function loadEntryDetail(id) {
                 }
 
                 $("#university_name").append(education_history.university_name);
-                $("#degree_name").append(education_history.degree_name);
+                // $("#degree_name").append(education_history.degree_name);
+                if(education_history.degree_id == 40){
+                    $("#degree_name").append(education_history.degree_name);
+                }else{
+                    $("#degree_name").append(education_history.degree?.degree_name);
+                }
                 $("#qualified_date").append(education_history.qualified_date);
                 $("#roll_number").append(education_history.roll_number);
 

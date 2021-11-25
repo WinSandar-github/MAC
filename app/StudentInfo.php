@@ -22,7 +22,7 @@ class StudentInfo extends Model
     public function student_education_histroy()
     {
         return $this->hasOne(EducationHistroy::class,'student_info_id','id')
-            ->withDefault(['university_name' => 'N/A', 'degree_name' => 'N/A', 'qualified_date' => 'N/A', 'roll_number' => 'N/A', 'certificate' => array() ]);
+            ->withDefault(['university_name' => 'N/A', 'degree_name' => 'N/A', 'qualified_date' => 'N/A', 'roll_number' => 'N/A', 'certificate' => array() ])->with('degree');
     }
 
     public function student_course()

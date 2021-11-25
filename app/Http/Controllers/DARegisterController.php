@@ -32,7 +32,6 @@ class DARegisterController extends Controller
 
     public function store(Request $request)
     {
-        //$nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
             ->where('nrc_township', '=', $request['nrc_township'])
             ->where('nrc_citizen', '=', $request['nrc_citizen'])
@@ -158,10 +157,14 @@ class DARegisterController extends Controller
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $student_info->id;
             $education_histroy->university_name = $request->university_name;
-            $education_histroy->degree_name     = $request->degree_name;
-            // $education_histroy->certificate     = $certificate;
+            $education_histroy->degree_id       = $request->degree_id;
+
+            if($request->degree_id == 40){
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;    
+            }
             $education_histroy->certificate     = json_encode($certificate);
-            // $education_histroy->qualified_date  = date('Y-m-d',strtotime($request->qualified_date));
             $education_histroy->qualified_date  = $qualified_date;
             $education_histroy->roll_number     = $request->roll_number;
             $education_histroy->save();
@@ -189,7 +192,7 @@ class DARegisterController extends Controller
             
             $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
             
-            $invoice->invoiceNo = 'app_form_'.$student_info->id;
+            $invoice->invoiceNo = 'app_form_'.$student_course->id;
             $invoice->productDesc     = 'App Fee,' . $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee;
             $invoice->status          = 0;
@@ -359,12 +362,12 @@ class DARegisterController extends Controller
                 return $nrc_result;
             })
 
-            ->addColumn('payment_status',function ($infos){                
+            ->addColumn('payment_status',function ($infos){               
                 if($infos->batch->course->course_type_id == 1){
-                    $invoices = Invoice::where('invoiceNo',"app_form_" . $infos->student_info_id)->get();
+                    $invoices = Invoice::where('invoiceNo',"app_form_" . $infos->id)->get();
                     
                 }else{
-                    $invoices = Invoice::where('invoiceNo',"cpa_app_" . $infos->student_info_id)->get();                    
+                    $invoices = Invoice::where('invoiceNo',"cpa_app_" . $infos->id)->get();                    
                 }
 
                 foreach($invoices as $invoice){
@@ -508,7 +511,13 @@ class DARegisterController extends Controller
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $student_info->id;
             $education_histroy->university_name = $request->university_name;
-            $education_histroy->degree_name     = $request->degree_name;
+            $education_histroy->degree_id       = $request->degree_id;
+
+            if($request->degree_id == 40){
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;    
+            }
             $education_histroy->certificate     = json_encode($certificate);
             $education_histroy->qualified_date  = $request->qualified_date;
             $education_histroy->roll_number     = $request->roll_number;
@@ -788,7 +797,13 @@ class DARegisterController extends Controller
             $education_histroy  =   EducationHistroy::where('student_info_id',$request->student_info_id)->first();
             $education_histroy->student_info_id = $student_info->id;
             $education_histroy->university_name = $request->university_name;
-            $education_histroy->degree_name     = $request->degree_name;
+            $education_histroy->degree_id       = $request->degree_id;
+
+            if($request->degree_id == 40){
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;    
+            }
             $education_histroy->certificate     = json_encode($certificate);
             $education_histroy->qualified_date  = $request->qualified_date;
             $education_histroy->roll_number     = $request->roll_number;
