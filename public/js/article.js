@@ -359,7 +359,7 @@ function loadArticle()
                     $('#firm_education').hide();
                     $('#certificate_row').hide();
                     $('#office_order_row').show();
-                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                    //$(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
                     loadEductaionHistoryByArticle(data.student_info_id);
                 } else {
                     $("#education").val(student_info.student_education_histroy.degree_name);
@@ -429,6 +429,7 @@ function loadArticle()
                     $("#previous_papp_name").val(data.ex_papp);
                     $("#previous_papp_start_date").val(data.exp_start_date);
                     $("#previous_papp_end_date").val(data.exp_end_date);
+                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
                 }else{
 
                         $('#exp_row').css('display','none');
@@ -457,6 +458,7 @@ function loadArticle()
                 if (data.apprentice_exp == 1) {
                     $('input:radio[name=experience][value=1]').attr('checked', true);
                     $('input:radio[name=experience][value=0]').attr('disabled', true);
+                    $('#exp_row').css('display','block');
                     $('#exp_attach_row').css('display', 'block');
                     //let apprentice_exp_file=data.apprentice_exp_file.replace(/[\'"[\]']+/g, '');
                 //    let apprentice_exp_file = JSON.parse(data.apprentice_exp_file);
@@ -486,7 +488,7 @@ function loadArticle()
                     else{
                         $("#c2_mentor_name").val(data.mentor_id);
                     }
-                    $('#exp_row').hide();
+                    //$('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
                     $('#address_label').text('၁၀။');
