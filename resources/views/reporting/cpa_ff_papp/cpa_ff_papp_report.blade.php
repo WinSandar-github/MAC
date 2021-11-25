@@ -28,9 +28,10 @@
                                 </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable">
+                                    <?php $index = 1; ?>
                                     @foreach($data['cpa'] as $key => $cpa)
                                         <tr>
-                                            <td>{{ ++$key }}</td>
+                                            <td>{{ $index ++ }}</td>
                                             <td>{{ $cpa[0]->cpaff_reg_no }}</td>
                                             <td>{{ 
                                                 $cpa[0]->student_info == ""
@@ -38,20 +39,18 @@
                                                     : $cpa[0]->student_info->name_mm 
                                             }}</td>
                                             <td>{{ $cpa[0]->total_hours }}</td>
-                                            <?php $first = $cpa[0]->total_hours; 
-                                                // dd($first);
-                                            ?>
+                                            <?php $first = $cpa[0]->total_hours; ?>
                                             <?php $last_one = getLastOneYearCpd($cpa[0]->student_info_id,$year); ?>
                                             <td>
                                                 {{ empty(($last_one) != true) ? $last_one->total_hours : '-' }}
                                             </td>
-                                            {{ empty(($last_one) != true) ? $second = $last_one->total_hours : $second = '0' }}
+                                            <?php empty(($last_one) != true) ? $second = $last_one->total_hours : $second = '0' ?>
 
                                             <?php $last_two = getLastTwoYearCpd($cpa[0]->student_info_id,$year); ?>
                                             <td>
                                                 {{ empty(($last_two) != true) ? $last_two->total_hours : '-' }}
                                             </td>
-                                            {{ empty(($last_two) != true) ? $third = $last_two->total_hours : $third = '0' }}
+                                            <?php empty(($last_two) != true) ? $third = $last_two->total_hours : $third = '0' ?>
 
                                             <?php 
                                                 $total = $first + $second + $third;

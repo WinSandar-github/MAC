@@ -30,9 +30,10 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable text-center">
+                                    <?php $index = 1; ?>
                                     @foreach($data['cpaff'] as $key => $cpaff)
                                         <tr>
-                                            <td>{{ ++$key }}</td>
+                                            <td>{{ $index ++ }}</td>
                                             <td>{{ $cpaff->cpaff_reg_no }}</td>
                                             <td>{{ 
                                                 $cpaff->student_info == ""

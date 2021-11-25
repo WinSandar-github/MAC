@@ -515,5 +515,10 @@ Route::get('/get_exam_stu_id/{id}','DaRegisterController@getExamStuId');
 //payment
 Route::post('/cashPayment', 'PaymentController\PaymentController@cashPayment');
 
+//ESIGN
+Route::get('/get_esign_name','EsignController@getEsignName');
+Route::get('/get_esign_position','EsignController@getEsignPosition');
+Route::get('/get_esignId/{name}','EsignController@getEsignId');
+
 //article resign reject
 Route::post('/updateResignArticle/{id}', 'ArticleController\ArticleController@updateResignArticle');

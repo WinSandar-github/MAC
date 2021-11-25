@@ -191,11 +191,11 @@ class PaymentController extends Controller
                 }else if(str_contains($invoice->invoiceNo,'renew_tec') == 1) {
                     $membership = 'Renew Teacher';
                 }else if(str_contains($invoice->invoiceNo,'cpaff_initial') == 1) {
-                    $membership = 'Initail CPAFF';
+                    $membership = 'Initial CPAFF';
                 }else if(str_contains($invoice->invoiceNo,'cpaff_renew') == 1) {
                     $membership = 'Renew CPAFF';
                 }else if(str_contains($invoice->invoiceNo,'papp_initial') == 1) {
-                    $membership = 'Initail PAPP';
+                    $membership = 'Initial PAPP';
                 }else if(str_contains($invoice->invoiceNo,'papp_renew') == 1) {
                     $membership = 'Renew PAPP';
                 }else if(str_contains($invoice->invoiceNo,'qtexam') == 1) {
@@ -209,9 +209,9 @@ class PaymentController extends Controller
                 }else if(str_contains($invoice->invoiceNo,'non_audit_renew') == 1) {
                     $membership = 'Renew Non-Audit';
                 }else if(str_contains($invoice->invoiceNo,'audit_initital') == 1) {
-                    $membership = 'Initail Audit';
+                    $membership = 'Initial Audit';
                 }else if(str_contains($invoice->invoiceNo,'non_audit_initial') == 1) {
-                    $membership = 'Initail Non-Audit';
+                    $membership = 'Initial Non-Audit';
                 }else if(str_contains($invoice->invoiceNo,'app_form') == 1 ) {
                     $membership = 'Application DA Course';
                 }else if(str_contains($invoice->invoiceNo,'mac_reg_da_1') == 1 || str_contains($invoice->invoiceNo,'prv_reg_da_1') == 1 || str_contains($invoice->invoiceNo,'self_reg_da_1') == 1

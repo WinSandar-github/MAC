@@ -467,8 +467,9 @@ class CertificateSeeder extends Seeder
                     </tr>
                     <tr>
                         <td style="text-align: right;" colspan="2">
-                            မှတ်ပုံတင်အရာရှိ<br>
-                            (Registrar)
+                            {{ position }} <br><br><br>
+                            <img src="{{ userImage }}" alt="user-image" width="100px" height="50px"
+                            style="float: right; position: relative; bottom: 50px;right: 20px; padding-top:20px;">
                         </td>
                     </tr>
                 </tbody>
