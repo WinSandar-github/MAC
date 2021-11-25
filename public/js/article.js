@@ -283,7 +283,12 @@ function loadArticle()
             $("#exp_year").val(exp_year);
             $("#exp_month").val(exp_month);
             $("#exp_days").val(exp_days);
-            $("#gender").val(data.gender);
+            if(data.gender == 0){
+              $("#gender").val("ကျွန်မ");
+            }
+            else{
+              $("#gender").val("ကျွန်တော်");
+            }
             $("#gender2").val(data.gender);
             $("#course_part").val(data.course_part);
             $("#exam_pass_batch").val(data.exam_pass_batch);
@@ -1051,7 +1056,7 @@ function autoLoadPaymentFirm(firm_id,form_type){
           type: 'get',
           success: function (result) {
               console.log("firm aricle",result);
-               
+
               if(result.status==0){
                 console.log("****",result.status);
                   $('#payment_status').append("Incomplete");
@@ -1301,7 +1306,7 @@ function loadResignArticle() {
             }
 
             //$(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-            
+
             if (data.resign_status == 0) {
                 document.getElementById("approve_reject_btn").style.display = "block";
             } else {
