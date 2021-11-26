@@ -283,18 +283,38 @@ function getTeacherInfos(){
                     }
                 }
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),data.payment[0].status,"#tbl_certificate",value.initial_status,value.offline_user);
+                    if(data.payment.length==0){
+                        loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),"AP","#tbl_certificate",value.initial_status,value.offline_user);
+                    }else{
+                        loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),data.payment[0].status,"#tbl_certificate",value.initial_status,value.offline_user);
+                    }
+                    
                     loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
-                    loadCertificates(value.certificates,data.payment[0].status,"#tbl_certificate",value.initial_status,value.offline_user);
+                    if(data.payment.length==0){
+                        loadCertificates(value.certificates,"AP","#tbl_certificate",value.initial_status,value.offline_user);
+                    }else{
+                        loadCertificates(value.certificates,data.payment[0].status,"#tbl_certificate",value.initial_status,value.offline_user);
+                    }
+                    
                     loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),data.payment[0].status,"#tbl_diploma",value.initial_status,value.offline_user);
+                    if(data.payment.length==0){
+                        loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),"AP","#tbl_diploma",value.initial_status,value.offline_user);
+                    }else{
+                        loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),data.payment[0].status,"#tbl_diploma",value.initial_status,value.offline_user);
+                    }
+                    
                     loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
-                    loadCertificates(value.diplomas,data.payment[0].status,"#tbl_diploma",value.initial_status,value.offline_user);
+                    if(data.payment.length==0){
+                        loadCertificates(value.diplomas,"AP","#tbl_diploma",value.initial_status,value.offline_user);
+                    }else{
+                        loadCertificates(value.diplomas,data.payment[0].status,"#tbl_diploma",value.initial_status,value.offline_user);
+                    }
+                    
                     loadCard(value.diplomas);
                 }
                 
@@ -507,14 +527,9 @@ function loadCertificates(name,payment_status,tbody,is_renew,offline_user){
     
     var payment_status;
     if(offline_user==1){
-        if(payment_status!=null){
-        
-            payment_status="ပြီး";
-        }else{
-            payment_status="ပြီး";
-        }
+        payment_status="ပြီး";
     }else{
-        if(payment_status!=null){
+        if(payment_status=="AP"){
         
             payment_status="ပြီး";
         }else{
