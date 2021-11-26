@@ -297,13 +297,13 @@ function loadArticle()
             $("#attend_or_fail").val(data.attend_or_fail);
             $("#exam_pass_date").val(data.exam_pass_date);
 
-            if(student_info.gender == "ကျွန်တော်"){
+            if(student_info.gender == "ကျွန်တော်" ||student_info.gender == "Male"){
               $(".call_gender").text("ခင်ဗျာ");
             }
             else{
               $(".call_gender").text("ရှင့်");
             }
-            if(student_info.gender == "1"){
+            if(student_info.gender == "1" ||student_info.gender == "Male"){
                 $(".call_gender3").text("ခင်ဗျာ");
 
               }
@@ -311,7 +311,7 @@ function loadArticle()
                 $(".call_gender3").text("ရှင့်");
 
               }
-              if(student_info.gender == "1"){
+              if(student_info.gender == "1" ||student_info.gender == "Male"){
                 $(".call_gender2").text("ခင်ဗျာ");
 
               }
@@ -319,19 +319,19 @@ function loadArticle()
                 $(".call_gender2").text("ရှင့်");
 
               }
-              if(data.gender == "1"){
+              if(data.gender == "1" ||student_info.gender == "Male"){
                  $("#gender3").val("ကျွန်တော်");
               }
               else{
                 $("#gender3").val("ကျွန်မ");
               }
-            if(data.gender == "1"){
+            if(data.gender == "1" ||student_info.gender == "Male"){
                 $("#gender").val("ကျွန်တော်");
             }
             else{
                $("#gender").val("ကျွန်မ");
             }
-            if(data.gender == "1"){
+            if(data.gender == "1" ||student_info.gender == "Male"){
                 $("#gender2").val("ကျွန်တော်");
             }
             else{
@@ -436,7 +436,6 @@ function loadArticle()
                     $("#previous_papp_end_date").val(data.exp_end_date);
                     $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
                 }else{
-
                         $('#exp_row').css('display','none');
                         $('#exp_attach_row').css('display','none');
                         $("#gov_lab").text('၈။');
@@ -455,7 +454,11 @@ function loadArticle()
                         else{
                             $("#mentor_name").val(data.mentor_id);
                         }
-
+                        if(data.office_order_attach!=null){
+                            $('#office_order_row').show();
+                            $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                        }
+                        
                 }
 
 
