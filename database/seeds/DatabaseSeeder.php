@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
             MembershipSeeder::class,
             SubjectSeeder::class,
             ExamTypeSeeder::class,
-            CertificateSeeder::class
+            CertificateSeeder::class,
+            DegreeSeeder::class
         ]);
     }
 }

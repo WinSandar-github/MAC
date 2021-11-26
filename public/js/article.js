@@ -62,7 +62,7 @@ function saveContractDate() {
         var year = start_date.getFullYear();
         var month = start_date.getMonth();
         var day = start_date.getDate();
-        console.log("article_form_type >>>",article_form_type);
+
         if (article_form_type == "c2_pass_3yr") {
             var contract_end_date = new Date(year + 3, month, day - 1);
         } else if (article_form_type == "c12") {
@@ -283,8 +283,13 @@ function loadArticle()
             $("#exp_year").val(exp_year);
             $("#exp_month").val(exp_month);
             $("#exp_days").val(exp_days);
-            //$("#gender").val(data.gender);
-            //$("#gender2").val(data.gender);
+            if(data.gender == 0){
+              $("#gender").val("ကျွန်မ");
+            }
+            else{
+              $("#gender").val("ကျွန်တော်");
+            }
+            $("#gender2").val(data.gender);
             $("#course_part").val(data.course_part);
             $("#exam_pass_batch").val(data.exam_pass_batch);
             $("#exam_pass_batch_2").val(data.exam_pass_batch);
@@ -292,13 +297,13 @@ function loadArticle()
             $("#attend_or_fail").val(data.attend_or_fail);
             $("#exam_pass_date").val(data.exam_pass_date);
 
-            if(student_info.gender == "ကျွန်တော်"){
+            if(student_info.gender == "ကျွန်တော်" ||student_info.gender == "Male"){
               $(".call_gender").text("ခင်ဗျာ");
             }
             else{
               $(".call_gender").text("ရှင့်");
             }
-            if(student_info.gender == "1"){
+            if(student_info.gender == "1" ||student_info.gender == "Male"){
                 $(".call_gender3").text("ခင်ဗျာ");
 
               }
@@ -306,27 +311,27 @@ function loadArticle()
                 $(".call_gender3").text("ရှင့်");
 
               }
-              if(student_info.gender == "1"){
+              if(student_info.gender == "1" ||student_info.gender == "Male"){
                 $(".call_gender2").text("ခင်ဗျာ");
-                
+
               }
               else{
                 $(".call_gender2").text("ရှင့်");
-                
+
               }
-              if(data.gender == "1"){
+              if(data.gender == "1" ||student_info.gender == "Male"){
                  $("#gender3").val("ကျွန်တော်");
               }
               else{
                 $("#gender3").val("ကျွန်မ");
               }
-            if(data.gender == "1"){
+            if(data.gender == "1" ||student_info.gender == "Male"){
                 $("#gender").val("ကျွန်တော်");
             }
             else{
                $("#gender").val("ကျွန်မ");
             }
-            if(data.gender == "1"){
+            if(data.gender == "1" ||student_info.gender == "Male"){
                 $("#gender2").val("ကျွန်တော်");
             }
             else{
@@ -359,7 +364,7 @@ function loadArticle()
                     $('#firm_education').hide();
                     $('#certificate_row').hide();
                     $('#office_order_row').show();
-                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                    //$(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
                     loadEductaionHistoryByArticle(data.student_info_id);
                 } else {
                     $("#education").val(student_info.student_education_histroy.degree_name);
@@ -429,8 +434,8 @@ function loadArticle()
                     $("#previous_papp_name").val(data.ex_papp);
                     $("#previous_papp_start_date").val(data.exp_start_date);
                     $("#previous_papp_end_date").val(data.exp_end_date);
+                    $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
                 }else{
-
                         $('#exp_row').css('display','none');
                         $('#exp_attach_row').css('display','none');
                         $("#gov_lab").text('၈။');
@@ -449,7 +454,11 @@ function loadArticle()
                         else{
                             $("#mentor_name").val(data.mentor_id);
                         }
-
+                        if(data.office_order_attach!=null){
+                            $('#office_order_row').show();
+                            $(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                        }
+                        
                 }
 
 
@@ -457,6 +466,7 @@ function loadArticle()
                 if (data.apprentice_exp == 1) {
                     $('input:radio[name=experience][value=1]').attr('checked', true);
                     $('input:radio[name=experience][value=0]').attr('disabled', true);
+                    $('#exp_row').css('display','block');
                     $('#exp_attach_row').css('display', 'block');
                     //let apprentice_exp_file=data.apprentice_exp_file.replace(/[\'"[\]']+/g, '');
                 //    let apprentice_exp_file = JSON.parse(data.apprentice_exp_file);
@@ -486,7 +496,7 @@ function loadArticle()
                     else{
                         $("#c2_mentor_name").val(data.mentor_id);
                     }
-                    $('#exp_row').hide();
+                    //$('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
                     $('#address_label').text('၁၀။');
@@ -538,8 +548,17 @@ function loadArticle()
             var leave_requests = student_info.leave_requests;
             var r = 1;
             leave_requests.forEach(function (element) {
+
                 if (data.article_form_type == element.form_type) {
                     var status = element.status == 0 ? "-" : "Done";
+                    const rowData = {
+                      remark : element.remark,
+                      start_date : element.start_date,
+                      end_date: element.end_date,
+                      total_leave : element.total_leave,
+                      leave_id : element.id
+                    };
+
                     var tr = "<tr>";
                     tr += "<td class='alignright'>" + r + "</td>";
                     tr += "<td>" + element.remark + "</td>";
@@ -547,6 +566,7 @@ function loadArticle()
                     tr += "<td>" + element.end_date + "</td>";
                     tr += "<td>" + element.total_leave + "</td>";
                     tr += "<td>" + status + "</td>";
+                    tr += "<td><button class='btn btn-warning btn-sm' onclick='editLeaveRequestData("+JSON.stringify(rowData)+")'><li class='fa fa-pencil'></li></button></td>";
                     tr += "</tr>";
                     r = r + 1;
                     $("#leave_request_body").append(tr);
@@ -615,6 +635,52 @@ function loadArticle()
     });
 }
 
+function editLeaveRequestData(rowData) {
+    $('#leaveRequestModel').modal('toggle');
+    $("#remark").val(rowData.remark);
+    $("#start_date").val(rowData.start_date);
+    $("#end_date").val(rowData.end_date);
+    $("#total_date").val(rowData.total_leave);
+    $("#leave_request_id").val(rowData.leave_id);
+
+    // $('#article_id').val(id);
+    // $('#form_name').val('other');
+    // getLeaveRequest();
+}
+
+function saveUpdateLeaveRequest() {
+    var data = new FormData();
+    data.append('id', $('#leave_request_id').val());
+    data.append('remark', $("input[name=remark]").val());
+    data.append('start_date', $("input[name=start_date]").val());
+    data.append('end_date', $("input[name=end_date]").val());
+    data.append('total_date', $("input[name=total_date]").val());
+
+    show_loader();
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: BACKEND_URL + "/update_leave_request",
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            EasyLoading.hide();
+            successMessage("You have successfully updated.");
+            $("#leave_request_form")[0].reset();
+            $('#leave_request_table').DataTable().destroy();
+            $('#leaveRequestModel').modal('toggle');
+            location.reload();
+            //getLeaveRequest();
+            //$("#leave_request_form").attr('action', 'javascript:saveLeaveRequest()');
+        },
+        error: function (message) {
+            EasyLoading.hide();
+            errorMessage(message);
+        }
+    });
+}
+
 function approveArticle() {
     if (!confirm('Are you sure you want to approve this article?')) {
         return;
@@ -655,7 +721,7 @@ function rejectArticle() {
         return;
     }
     else {
-        
+
         var formData = new FormData();
         formData.append('remark_firm', $('#remark_firm').val());
         let result = window.location.href;
@@ -1084,9 +1150,9 @@ function autoLoadPaymentFirm(firm_id,form_type){
           type: 'get',
           success: function (result) {
               console.log("firm aricle",result);
-               
+
               if(result.status==0){
-                console.log("****",result.status);
+                
                   $('#payment_status').append("Incomplete");
                   $('#payment_status').addClass("text-warning");
               }
@@ -1334,7 +1400,7 @@ function loadResignArticle() {
             }
 
             //$(".office_order_attach").append(`<a href='${PDF_URL + data.office_order_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-            
+
             if (data.resign_status == 0) {
                 document.getElementById("approve_reject_btn").style.display = "block";
             } else {

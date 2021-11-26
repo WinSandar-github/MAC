@@ -82,6 +82,9 @@ Route::post('/filter_esign','EsignController@FilterEsign');
 Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
 
+//Degree
+Route::resource('/degrees', 'DegreeController');
+
 //Get Batch for Offline Student
 Route::get('/get_current_batch/{course_id}','BatchController@getCurrentBatch');
 Route::get('/get_passed_batch/{course_id}','BatchController@getPassedBatch');

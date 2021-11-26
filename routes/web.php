@@ -274,23 +274,36 @@ Route::group(['middleware' => 'auth'], function () {
     // Payment Report
     Route::post('show_payment_list','ReportController\PaymentReportController@showPaymentList');
     
-    
+    Route::post('/filter_payment','PaymentController\PaymentController@filterPayment');
+
+    Route::post('show_qualifiedtest_list','QualifiedTest\QualifiedTestController@showPublishQTList');
+
+    Route::post('show_registration_list','ReportController@showRegistrationList');
+    Route::post('show_exam_list','ReportController@showExamList');
+
+
+    Route::get('show_description','DescriptionController@showDescription');
+    Route::get('show_requirement','RequirementController@showRequirement');
+    Route::get('show_esign','EsignController@showEsign');
+    Route::get('show_membership/{membership_name}','MembershipController@showMembership');
+    Route::resource('/batch', 'BatchController');
+    Route::resource('/course', 'CourseController');
+    Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
+    // Certificate Controller
+    Route::get('/certificate/{id}', 'CertificateController\CertificateController@index')->name('certificate');
+    Route::get('/get_certificate/{id}', 'CertificateController\CertificateController@getCertificate')->name('get_certificate');
+
+    Route::get('/get_teacher_card/{id}', 'CertificateController\CertificateController@getTeacherCard')->name('get_teacher_card');
+    Route::get('/get_audit_card/{id}/{esignId}', 'CertificateController\CertificateController@getAuditCard')->name('get_audit_card');
+    Route::get('/get_non_audit_card/{id}/{esignId}', 'CertificateController\CertificateController@getNonAuditCard')->name('get_non_audit_card');
+    Route::get('/get_non_audit_foreign_card/{id}/{esignId}', 'CertificateController\CertificateController@getNonAuditForeignCard')->name('get_non_audit_foreign_card');
+    Route::get('/get_qt_card/{id}', 'CertificateController\CertificateController@getQtCard')->name('get_qt_card');
+    Route::get('/get_school_card/{id}', 'CertificateController\CertificateController@getSchoolCard')->name('get_school_card');
+
+    Route::get('/show_non_audit_firm_info/{id}','ShowNonAuditFirmInfoController@showNonAuditFirmInfo');
+    Route::get('/show_non_audit_reconnect_info/{id}','ShowNonAuditFirmInfoController@showReconnectNonAuditFirmInfo');
 });
-Route::post('/filter_payment','PaymentController\PaymentController@filterPayment');
 
-Route::post('show_qualifiedtest_list','QualifiedTest\QualifiedTestController@showPublishQTList');
-
-Route::post('show_registration_list','ReportController@showRegistrationList');
-Route::post('show_exam_list','ReportController@showExamList');
-
-
-Route::get('show_description','DescriptionController@showDescription');
-Route::get('show_requirement','RequirementController@showRequirement');
-Route::get('show_esign','EsignController@showEsign');
-Route::get('show_membership/{membership_name}','MembershipController@showMembership');
-Route::resource('/batch', 'BatchController');
-Route::resource('/course', 'CourseController');
-Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
 
 
 //Mentor
@@ -298,19 +311,7 @@ Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
 // Teacher
 // Route::get('teacher_registration', 'TeacherController@FilterTeacher');
 
-// Certificate Controller
-Route::get('/certificate/{id}', 'CertificateController\CertificateController@index')->name('certificate');
-Route::get('/get_certificate/{id}', 'CertificateController\CertificateController@getCertificate')->name('get_certificate');
 
-Route::get('/get_teacher_card/{id}', 'CertificateController\CertificateController@getTeacherCard')->name('get_teacher_card');
-Route::get('/get_audit_card/{id}/{esignId}', 'CertificateController\CertificateController@getAuditCard')->name('get_audit_card');
-Route::get('/get_non_audit_card/{id}/{esignId}', 'CertificateController\CertificateController@getNonAuditCard')->name('get_non_audit_card');
-Route::get('/get_non_audit_foreign_card/{id}/{esignId}', 'CertificateController\CertificateController@getNonAuditForeignCard')->name('get_non_audit_foreign_card');
-Route::get('/get_qt_card/{id}', 'CertificateController\CertificateController@getQtCard')->name('get_qt_card');
-Route::get('/get_school_card/{id}', 'CertificateController\CertificateController@getSchoolCard')->name('get_school_card');
-
-Route::get('/show_non_audit_firm_info/{id}','ShowNonAuditFirmInfoController@showNonAuditFirmInfo');
-Route::get('/show_non_audit_reconnect_info/{id}','ShowNonAuditFirmInfoController@showReconnectNonAuditFirmInfo');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');

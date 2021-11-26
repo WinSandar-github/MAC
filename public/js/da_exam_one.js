@@ -481,7 +481,12 @@ function loadDAExamData() {
 
 
                 $("#university_name").append(education_history.university_name);
-                $("#degree_name").append(education_history.degree_name);
+                // $("#degree_name").append(education_history.degree_name);
+                if(education_history.degree_id == 40){
+                    $("#degree_name").append(education_history.degree_name);
+                }else{
+                    $("#degree_name").append(education_history.degree.degree_name);
+                }
                 $("#qualified_date").append(education_history.qualified_date);
                 $("#roll_number").append(education_history.roll_number);
 
@@ -1210,7 +1215,12 @@ function getModuleStd() {
                 }
 
                 $("#university_name").append(education_history.university_name);
-                $("#degree_name").append(education_history.degree_name);
+                // $("#degree_name").append(education_history.degree_name);
+                if(education_history.degree_id == 40){
+                    $("#degree_name").append(education_history.degree_name);
+                }else{
+                    $("#degree_name").append(education_history.degree?.degree_name);
+                }
                 $("#qualified_date").append(education_history.qualified_date);
                 $("#roll_number").append(education_history.roll_number);
 
