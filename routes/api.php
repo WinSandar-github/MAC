@@ -517,8 +517,12 @@ Route::post('/cashPayment', 'PaymentController\PaymentController@cashPayment');
 
 //ESIGN
 Route::get('/get_esign_name','EsignController@getEsignName');
-Route::get('/get_esign_position','EsignController@getEsignPosition');
+// Route::get('/get_esign_position','EsignController@getEsignPosition');
 Route::get('/get_esignId/{name}','EsignController@getEsignId');
+Route::get('/check_esignId/{id}','EsignController@checkEsignId');
+Route::patch('/setEsign/{id}/{esign_id}', 'AccFirmInfController@esignAdd');
+Route::patch('/approveEsign/{id}', 'AccFirmInfController@approveEsign');
+Route::get('/check_firm/{id}', 'AccFirmInfController@getFirmData');
 
 //article resign reject
 Route::post('/updateResignArticle/{id}', 'ArticleController\ArticleController@updateResignArticle');

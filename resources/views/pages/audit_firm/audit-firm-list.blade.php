@@ -235,7 +235,60 @@
         </form>
     </div>
 
+        <div class="modal fade" id="esign_modal" style="padding-top:80px;">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <!-- <form method="post" action="{{ route('course.store')}}" enctype="multipart/form-data"> -->
+                    <form id="choose_form" method="post" action="javascript:setSelected()" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="">Choose User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
 
+                            <div class="row">
+                                <label class="col-md-4 form-label">Name</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <select name="select_name" class="form-control select_name" required>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="position_div" style="display:none;">
+    	                        <div class="row">
+    	                            <label class="col-md-4 form-label">Position</label>
+    	                            <div class="col-md-7">
+    	                                <div class="form-group">
+    	                                	<input type="text" class="form-control" id="position">
+    	                                </div>
+    	                            </div>
+    	                        </div>
+    	                    </div>
+
+    	                    <div id="image_div" style="display:none;">
+    	                        <div class="col-md-12 text-center">
+    	                            <div class="fileinput fileinput-new text-center mt-4" data-provides="fileinput">
+    	                                <div class="fileinput-new thumbnail shadow">
+    	                                    <img src="{{ asset('assets/images/image_placeholder.png') }}" alt="Upload Photo" id="esign_file" style="width:250px; height: 250px;">
+    	                                </div>
+    	                            </div>
+    	                        </div>
+    	                    </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                            <button type="submit" class="btn btn-primary">Go To Card</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
@@ -407,8 +460,10 @@ $(document).ready(function(){
 	// 		});
 	// });
 
+
 });
 
-</script>
 
+</script>
+<script src="{{ asset('js/certificate.js') }}"></script>
 @endpush

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Esign;
-
+use App\AccountancyFirmInformation;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -158,9 +158,16 @@ class EsignController extends Controller
 
     public function getEsignId($name)
     {
-        $id = Esign::where('name', $name)->first('id');
+        $data = Esign::where('name', $name)->first();
         return response()->json([
-            'data' => $id
+            'data' => $data
+        ], 200);
+    }
+
+    public function checkEsignId($id){
+        $data = AccountancyFirmInformation::where('id',$id)->get();
+        return response()->json([
+            'data' => $data
         ], 200);
     }
 

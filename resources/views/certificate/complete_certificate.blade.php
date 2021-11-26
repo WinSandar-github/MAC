@@ -2,6 +2,7 @@
 
 <head>
     <title>MAC Certificate</title>
+    <!-- <link href="{{ asset('paper/css/bootstrap.min.css') }}" rel="stylesheet" /> -->
 </head>
 <style>
 
@@ -119,4 +120,40 @@
 
     @endif
 </body>
+<script src="{{ asset('js/certificate.js') }}"></script>
+<script src="{{ asset('plugins/jquery/jquery.js') }}"></script>
+<script src="{{ asset('js/common.js') }}"></script>
+<script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+<!-- <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script> -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        var Status = localStorage.getItem("Status");
+        // console.log(status)
+        if(Status == 1){
+            $('#save_btn').css("display","none");
+            $('#approve_btn').css("display","block");
+            $('#print_btn').css("display","block");
+        }else if(Status == 2){
+            $('#approve_btn').css("display","none");
+            $('#save_btn').css("display","block");
+            $('#print_btn').css("display","none");
+        }else{
+            $('#approve_btn').css("display","none");
+            $('#save_btn').css("display","none");
+        }
+
+        var id = localStorage.getItem("id");
+        $.ajax({
+            url: BACKEND_URL + '/check_esignId/' + id,
+            type: 'GET',
+            success: function(data) {
+                var firm_data = data.data[0];
+                if(firm_data.esign_status == 1){
+                    $('#approve_btn').css("display","none");
+                }
+            }
+        });
+    });
+</script>
 </html>
+

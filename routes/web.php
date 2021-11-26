@@ -303,9 +303,9 @@ Route::get('/certificate/{id}', 'CertificateController\CertificateController@ind
 Route::get('/get_certificate/{id}', 'CertificateController\CertificateController@getCertificate')->name('get_certificate');
 
 Route::get('/get_teacher_card/{id}', 'CertificateController\CertificateController@getTeacherCard')->name('get_teacher_card');
-Route::get('/get_audit_card/{id}', 'CertificateController\CertificateController@getAuditCard')->name('get_audit_card');
+Route::get('/get_audit_card/{id}/{esignId}', 'CertificateController\CertificateController@getAuditCard')->name('get_audit_card');
 Route::get('/get_non_audit_card/{id}/{esignId}', 'CertificateController\CertificateController@getNonAuditCard')->name('get_non_audit_card');
-Route::get('/get_non_audit_foreign_card/{id}', 'CertificateController\CertificateController@getNonAuditForeignCard')->name('get_non_audit_foreign_card');
+Route::get('/get_non_audit_foreign_card/{id}/{esignId}', 'CertificateController\CertificateController@getNonAuditForeignCard')->name('get_non_audit_foreign_card');
 Route::get('/get_qt_card/{id}', 'CertificateController\CertificateController@getQtCard')->name('get_qt_card');
 Route::get('/get_school_card/{id}', 'CertificateController\CertificateController@getSchoolCard')->name('get_school_card');
 
