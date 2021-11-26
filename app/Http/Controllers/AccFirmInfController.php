@@ -4370,10 +4370,9 @@ class AccFirmInfController extends Controller
                     <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
                         <li class='fa fa-eye fa-sm'></li>
                     </button>
-
-                    <a href='" . route('get_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
-                        <li class='fa fa-id-card-o fa-sm'></li>
-                    </a>
+                    <button type='button' class='btn btn-primary btn-xs' onclick='showEsignList($infos->id)'>
+                        <li class='fa fa-id-card-o fa-xs'></li>
+                    </button>
 
                 </div>";
                 }else if($infos->status == 1 && $invoice->status != 'AP'){
@@ -4514,9 +4513,8 @@ class AccFirmInfController extends Controller
                                       <li class='fa fa-eye fa-sm'></li>
                                       </a>
                                       <button type='button' class='btn btn-primary btn-xs' onclick='showEsignList($infos->id)'>
-                                          <li class='fa fa-edit fa-sm'></li>
+                                          <li class='fa fa-id-card-o fa-xs'></li>
                                       </button>
-                                   
 
                                 </div>";
                     }else if($infos->status == 1 && $invoice->status != 'AP'){
@@ -4540,9 +4538,9 @@ class AccFirmInfController extends Controller
                                   <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
                                   <li class='fa fa-eye fa-sm'></li>
                                   </a>
-                                  <a href='" . route('get_non_audit_foreign_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
-                                      <li class='fa fa-id-card-o fa-sm'></li>
-                                  </a>
+                                  <button type='button' class='btn btn-primary btn-xs' onclick='showEsignList($infos->id)'>
+                                      <li class='fa fa-id-card-o fa-xs'></li>
+                                  </button>
 
                             </div>";
                         }else if($infos->status == 1 && $invoice->status != 'AP'){
@@ -4985,5 +4983,32 @@ class AccFirmInfController extends Controller
       ]);
     }
 
+    public function esignAdd($id, $esignId){
+        // return $id;
+        $non_audit = AccountancyFirmInformation::find($id);
+        $non_audit->esign_id = $esignId;
+        $non_audit->save();
+        return response()->json([
+            'data' => $non_audit,
+        ],200);
+    }
+
+    public function approveEsign($id){
+        // return $id;
+        $non_audit = AccountancyFirmInformation::find($id);
+        $non_audit->esign_status = 1;
+        $non_audit->save();
+        return response()->json([
+            'data' => $non_audit,
+        ],200);
+    }
+
+    public function getFirmData($id){
+        // return $id;
+        $non_audit = AccountancyFirmInformation::where('id', $id)->first();
+        return response()->json([
+            'data' => $non_audit,
+        ],200);
+    }
 
 }

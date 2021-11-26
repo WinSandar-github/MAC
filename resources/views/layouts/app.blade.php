@@ -116,6 +116,7 @@
     <script src="{{ asset('js/chart.js') }}"></script>
     <script src="{{ asset('js/report.js') }}"></script>
     <script src="{{ asset('js/exam.js') }}"></script>
+    <script src="{{ asset('js/certificate.js') }}"></script>
 
     <!-- da / cpa offline user -->
     <script src="{{ asset('js/show_da_cpa_offline_user.js') }}"></script>

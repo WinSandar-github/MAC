@@ -216,7 +216,12 @@ class CertificateSeeder extends Seeder
             ],
             [
                 'cert_code' => 'audit_card',
-                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                'cert_data' => htmlspecialchars('<button onclick="setFirmId({{ id }},{{ esignId }})" style="float:right;margin-right:-150px;padding:15px 25px 15px 25px;margin-top:50px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="save_btn">Save</button>
+
+            <button onclick="window.print()" style="float:right;margin-right:-150px;margin-top:50px;padding:15px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="print_btn">PRINT</button>
+
+            <button onclick="approveEsign()" style="float:right;margin-right:-250px;margin-top:50px;padding:15px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="approve_btn">APPROVE</button>
+            <table style="margin-right: 100px; margin-left: 100px;">
                 <tbody>
                     <tr>
                         <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
@@ -330,8 +335,9 @@ class CertificateSeeder extends Seeder
                     </tr>
                     <tr>
                         <td style="text-align: right;" colspan="2">
-                            မှတ်ပုံတင်အရာရှိ<br>
-                            (Registrar)
+                            {{ position }} <br><br><br>
+                            <img src="{{ userImage }}" alt="user-image" width="100px" height="50px"
+                            style="float: right; position: relative; bottom: 50px;right: 20px; padding-top:20px;">
                         </td>
                     </tr>
                 </tbody>
@@ -339,7 +345,13 @@ class CertificateSeeder extends Seeder
             ],
             [
                 'cert_code' => 'non_audit_card',
-                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                'cert_data' => htmlspecialchars('<button onclick="setFirmId({{ id }},{{ esignId }})" style="float:right;margin-right:-150px;padding:15px 25px 15px 25px;margin-top:50px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="save_btn">Save</button>
+
+            <button onclick="window.print()" style="float:right;margin-right:-150px;margin-top:50px;padding:15px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="print_btn">PRINT</button>
+
+            <button onclick="approveEsign()" style="float:right;margin-right:-250px;margin-top:50px;padding:15px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="approve_btn">APPROVE</button>
+
+            <table style="margin-right: 100px; margin-left: 100px;">
                 <tbody>
                     <tr>
                         <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
@@ -477,7 +489,13 @@ class CertificateSeeder extends Seeder
             ],
             [
                 'cert_code' => 'non_audit_foreign_card',
-                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                'cert_data' => htmlspecialchars('<button onclick="setFirmId({{ id }},{{ esignId }})" style="float:right;margin-right:-150px;padding:15px 25px 15px 25px;margin-top:50px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="save_btn">Save</button>
+
+                    <button onclick="window.print()" style="float:right;margin-right:-150px;margin-top:50px;padding:15px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="print_btn">PRINT</button>
+
+                    <button onclick="approveEsign()" style="float:right;margin-right:-250px;margin-top:50px;padding:15px;border:0px;border-radius:5px;background-color:#198754;color:white;" id="approve_btn">APPROVE</button>
+
+                <table style="margin-right: 100px; margin-left: 100px;">
                 <tbody>
                     <tr>
                         <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
@@ -599,14 +617,15 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: right; padding-top: 5%; vertical-align: middle;" colspan="2">
+                        <td style="text-align: right; vertical-align: middle;" colspan="2">
                             {{ officerName }}
                         </td>
                     </tr>
                     <tr>
                         <td style="text-align: right;" colspan="2">
-                            မှတ်ပုံတင်အရာရှိ<br>
-                            (Registrar)
+                            {{ position }} <br><br><br>
+                            <img src="{{ userImage }}" alt="user-image" width="100px" height="50px"
+                            style="float: right; position: relative; bottom: 50px;right: 20px; padding-top:20px;">
                         </td>
                     </tr>
                 </tbody>
