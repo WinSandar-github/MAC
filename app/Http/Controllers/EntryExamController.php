@@ -163,7 +163,13 @@ class EntryExamController extends Controller
             $education_histroy->student_info_id = $student_info->id;
            
             $education_histroy->university_name = $request->university_name;
-            $education_histroy->degree_name     =$request->degree_name;
+            $education_histroy->degree_id       = $request->degree_id;
+
+            if($request->degree_id == 40){
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;    
+            }
             $education_histroy->certificate     = json_encode($certificate);
             
     
@@ -203,7 +209,7 @@ class EntryExamController extends Controller
             $invoice->name_eng            = $student_info->name_eng;
             $invoice->email           = $student_info->email;
             $invoice->phone           = $student_info->phone;
-            $invoice->invoiceNo       = "cpa_app_" . $student_info->id;
+            $invoice->invoiceNo       = "exm_cpa_1_" . $entry_exam->id;
             $invoice->productDesc     = 'App Fee,Entry Exm Fee,'. $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->entry_exam_fee;
             $invoice->status          = 0;  
@@ -335,7 +341,14 @@ class EntryExamController extends Controller
       $education_histroy->student_info_id = $student_info->id;
     
       $education_histroy->university_name = $request->university_name;
-      $education_histroy->degree_name     =$request->degree_name;
+      // $education_histroy->degree_name     =$request->degree_name;
+      $education_histroy->degree_id       = $request->degree_id;
+
+            if($request->degree_id == 40){
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;    
+            }
       $education_histroy->certificate     = json_encode($certificate);
       
 
@@ -402,7 +415,7 @@ class EntryExamController extends Controller
         $exam_register = ExamRegister::with('student_info','course:id,code,name_mm', 'batch:id,name_mm')
             ->where('status','=',$request->status)
             ->where('exam_type_id','=',3)
-            ->get();
+            ->orderBy('id','desc')->get();
 
             
       
@@ -433,12 +446,13 @@ class EntryExamController extends Controller
             })
 
             ->addColumn('payment_status',function ($infos){
+              // return $infos;
               if($infos->exam_type_id == 2 || $infos->exam_type_id == 3){
-                $invoiceNo = 'cpa_app_';
+                $invoiceNo = 'exm_cpa_1_';
               }
 
-              $invoices = Invoice::where('invoiceNo',$invoiceNo.$infos->student_info_id)->get();
-                                    
+              $invoices = Invoice::where('invoiceNo',$invoiceNo.$infos->id)->get();
+              // return $invoices;                          
                 foreach($invoices as $invoice){
                     return $invoice->status == "AP" ? "Complete" : "Incomplete";
                 }

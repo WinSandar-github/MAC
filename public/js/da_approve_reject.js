@@ -255,7 +255,12 @@ function loadData() {
 
 
                 $("#university_name").append(education_history.university_name);
-                $("#degree_name").append(education_history.degree_name);
+                if(education_history.degree_id == 40){
+                    $("#degree_name").append(education_history.degree_name);
+                }else{
+                    $("#degree_name").append(education_history.degree?.degree_name);
+                }
+               
                 $("#qualified_date").append(education_history.qualified_date);
                 $("#roll_number").append(education_history.roll_number);
 
@@ -340,7 +345,7 @@ function loadData() {
                 let invoice_no = current_course.code == "da_1" ? 'app_form_': 'cpa_app_';
                 // console.log('invoice_no',invoice_no)
                 $.ajax({
-                    url: BACKEND_URL + "/get_payment_info_by_student/" + invoice_no + element.id,
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + invoice_no + student_course.id,
                     type: 'get',
                     success: function (result) {
                         // console.log("papp invoice",result.productDesc);

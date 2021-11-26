@@ -47,9 +47,7 @@ class CpaTraAddmissionDirectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        
-        
+    {       
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
         ->where('nrc_citizen', '=', $request['nrc_citizen'])
@@ -251,10 +249,15 @@ class CpaTraAddmissionDirectController extends Controller
         // $education_histroy->certificate     = json_encode($certificates);
         // $education_histroy->roll_number     = json_encode($roll_no);
         $education_histroy->university_name = $request->university_name;
-        $education_histroy->degree_name     =$request->degree_name;
-        $education_histroy->certificate     = json_encode($certificate);
-        // $education_histroy->certificate     = json_encode($certificates);
+        $education_histroy->degree_id       = $request->degree_id;
 
+        if($request->degree_id == 40){
+            $education_histroy->degree_name     = $request->degree_name;
+        }else{
+            $education_histroy->degree_name     = NULL;    
+        }
+
+        $education_histroy->certificate     = json_encode($certificate);
         $education_histroy->qualified_date  = $request->qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
@@ -298,7 +301,7 @@ class CpaTraAddmissionDirectController extends Controller
         // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
         // $invoice->invoiceNo       = $invNo;
 
-        $invoice->invoiceNo       = 'cpa_app_' . $student_info->id;
+        $invoice->invoiceNo       = 'cpa_app_' . $student_course->id;
         
         $invoice->name_eng        = $request->name_eng;
         $invoice->email           = $request->email;
@@ -510,7 +513,14 @@ class CpaTraAddmissionDirectController extends Controller
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
-        $education_histroy->degree_name     = $request->degree_name;
+        // $education_histroy->degree_name     = $request->degree_name;
+        $education_histroy->degree_id       = $request->degree_id;
+
+        if($request->degree_id == 40){
+            $education_histroy->degree_name     = $request->degree_name;
+        }else{
+            $education_histroy->degree_name     = NULL;    
+        }
         // $education_histroy->certificate     = $certificates;
         $education_histroy->qualified_date  = $request->qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
@@ -711,7 +721,13 @@ class CpaTraAddmissionDirectController extends Controller
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $student_info->id;
             $education_histroy->university_name = $request->university_name;
-            $education_histroy->degree_name     = $request->degree_name;
+            $education_histroy->degree_id       = $request->degree_id;
+
+            if($request->degree_id == 40){
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;    
+            }
             $education_histroy->certificate     = json_encode($certificate);
             $education_histroy->qualified_date  = $request->qualified_date;
             $education_histroy->roll_number     = $request->roll_number;
@@ -1038,7 +1054,13 @@ class CpaTraAddmissionDirectController extends Controller
             $education_histroy  =   EducationHistroy::where('student_info_id',$request->student_info_id)->first();
             $education_histroy->student_info_id = $student_info->id;
             $education_histroy->university_name = $request->university_name;
-            $education_histroy->degree_name     = $request->degree_name;
+            $education_histroy->degree_id       = $request->degree_id;
+
+            if($request->degree_id == 40){
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;    
+            }
             $education_histroy->certificate     = json_encode($certificate);
             $education_histroy->qualified_date  = $request->qualified_date;
             $education_histroy->roll_number     = $request->roll_number;
