@@ -178,14 +178,14 @@ class TeacherController extends Controller
         $teacher->save();
 
         if($degrees_certificates!=null){
-            $degrees_certificates=implode(',', $degrees_certificates);
-            $new_degrees_certificates= explode(',',$degrees_certificates);
+            // $degrees_certificates=implode(',', $degrees_certificates);
+            // $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $std_info->id;
                 $education_histroy->degree_name = $request->degrees[$i];
-                $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/teacher_info/'.$degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                 $education_histroy->save();
             }
@@ -357,14 +357,14 @@ class TeacherController extends Controller
 
        
         if($request->degrees!=null){
-            $degrees_certificates=implode(',', $degrees_certificates);
-            $new_degrees_certificates= explode(',',$degrees_certificates);
+            // $degrees_certificates=implode(',', $degrees_certificates);
+            // $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->degree_name = $request->degrees[$i];
-                $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/teacher_info/'.$degrees_certificates[$i];
                 $education_histroy->teacher_id       = $teacher->id;
                 $education_histroy->save();
             }
@@ -1019,14 +1019,14 @@ class TeacherController extends Controller
         
         
         if($degrees_certificates!=null){
-            $degrees_certificates=implode(',', $degrees_certificates);
-            $new_degrees_certificates= explode(',',$degrees_certificates);
+            // $degrees_certificates=implode(',', $degrees_certificates);
+            // $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->degree_name = $request->degrees[$i];
-                $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/teacher_info/'.$degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                 $education_histroy->save();
             }
@@ -1162,14 +1162,14 @@ class TeacherController extends Controller
         
         
         if($degrees_certificates!=null){
-            $degrees_certificates=implode(',', $degrees_certificates);
-            $new_degrees_certificates= explode(',',$degrees_certificates);
+            // $degrees_certificates=implode(',', $degrees_certificates);
+            // $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->degree_name = $request->degrees[$i];
-                $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/teacher_info/'.$degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                
                 $education_histroy->save();

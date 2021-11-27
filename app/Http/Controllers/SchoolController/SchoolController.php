@@ -280,7 +280,7 @@ class SchoolController extends Controller
             }
             $school->attend_course= rtrim($attend_course, ',');
         }
-        $school->save();
+        //$school->save();
         
         
        
@@ -301,14 +301,14 @@ class SchoolController extends Controller
         $school->student_info_id  = $std_info->id;
         $school->save();
 
-        $degrees_certificates=implode(',', $degrees_certificates);
-        $new_degrees_certificates= explode(',',$degrees_certificates);
+        // $degrees_certificates=implode(',', $degrees_certificates);
+        // $new_degrees_certificates= explode(',',$degrees_certificates);
         for($i=0;$i < sizeof($request->degrees);$i++){
        
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $std_info->id;
             $education_histroy->degree_name = $request->degrees[$i];
-            $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
+            $education_histroy->certificate     ='/storage/student_info/'.$degrees_certificates[$i];
             $education_histroy->school_id       = $school->id;
             $education_histroy->save();
         }
@@ -358,8 +358,8 @@ class SchoolController extends Controller
         
 
         //teacher list
-        $teacher_reg_copy=implode(',', $teacher_reg_copy);
-        $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
+        // $teacher_reg_copy=implode(',', $teacher_reg_copy);
+        // $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
         
         for($i=0;$i<sizeof($request->teacher_registration_no);$i++){
             
@@ -372,13 +372,13 @@ class SchoolController extends Controller
             $teacher->ph_number        = $request->teacher_ph_number[$i];
             $teacher->email            = $request->teacher_email[$i];
             $teacher->school_id        = $school->id;
-            $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
+            $teacher->teacher_reg_copy = '/storage/student_info/'.$teacher_reg_copy[$i];
             $teacher->save();
         }
         //branch_school
         if($branch_school_attach!=null){
-            $branch_school_attach=implode(',', $branch_school_attach);
-            $new_branch_school_attach= explode(',',$branch_school_attach);
+            // $branch_school_attach=implode(',', $branch_school_attach);
+            // $new_branch_school_attach= explode(',',$branch_school_attach);
             
         }
         
@@ -386,16 +386,16 @@ class SchoolController extends Controller
             
             if($branch_sch_letter!=null){
                 
-                $branch_sch_letter=implode(',', $branch_sch_letter);
-                $new_branch_sch_letter= explode(',',$branch_sch_letter);
+                // $branch_sch_letter=implode(',', $branch_sch_letter);
+                // $new_branch_sch_letter= explode(',',$branch_sch_letter);
                 
             }
             for($i=0;$i<sizeof($request->branch_school_address);$i++){
                 $branch_school = new tbl_branch_school();
                 $branch_school->branch_school_address= $request->branch_school_address[$i];
-                $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                $branch_school->branch_school_attach = '/storage/student_info/'.$branch_school_attach[$i];
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$branch_sch_letter[$i];//'/storage/student_info/'.
                 $branch_school->school_id       = $school->id;
                 $branch_school->student_info_id       =$std_info->id;
                 $branch_school->save();
@@ -403,49 +403,49 @@ class SchoolController extends Controller
         }
         
         //bulding_type
-        $school_building_attach=implode(',', $school_building_attach);
-        $new_school_building_attach= explode(',',$school_building_attach);
+        // $school_building_attach=implode(',', $school_building_attach);
+        // $new_school_building_attach= explode(',',$school_building_attach);
         for($i=0;$i<sizeof($request->bulding_type);$i++){
             $bulding_type = new tbl_bulding_type();
             $bulding_type->bulding_type= $request->bulding_type[$i];
             $bulding_type->building_measurement = $request->building_measurement[$i];
             $bulding_type->floor_numbers= $request->floor_numbers[$i];
-            $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
+            $bulding_type->school_building_attach= '/storage/student_info/'.$school_building_attach[$i];
             $bulding_type->school_id       = $school->id;
             $bulding_type->save();
         }
         //classroom_number
-        $classroom_attach=implode(',', $classroom_attach);
-        $new_classroom_attach= explode(',',$classroom_attach);
+        // $classroom_attach=implode(',', $classroom_attach);
+        // $new_classroom_attach= explode(',',$classroom_attach);
         for($i=0;$i<sizeof($request->classroom_number);$i++){
             $classroom_number = new tbl_classroom();
             $classroom_number->classroom_number= $request->classroom_number[$i];
             $classroom_number->classroom_measurement = $request->classroom_measurement[$i];
             $classroom_number->student_num_limit= $request->student_num_limit[$i];
             $classroom_number->air_con= $request->air_con[$i];
-            $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
+            $classroom_number->classroom_attach= '/storage/student_info/'.$classroom_attach[$i];
             $classroom_number->school_id       = $school->id;
             $classroom_number->save();
         }
         //toilet_type
-        $toilet_attach=implode(',', $toilet_attach);
-        $new_toilet_attach= explode(',',$toilet_attach);
+        // $toilet_attach=implode(',', $toilet_attach);
+        // $new_toilet_attach= explode(',',$toilet_attach);
         for($i=0;$i<sizeof($request->toilet_type);$i++){
             $toilet_type = new tbl_toilet_type();
             $toilet_type->toilet_type= $request->toilet_type[$i];
             $toilet_type->toilet_number = $request->toilet_number[$i];
-            $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
+            $toilet_type->toilet_attach= '/storage/student_info/'.$toilet_attach[$i];
             $toilet_type->school_id       = $school->id;
             $toilet_type->save();
         }
         //manage_room_numbers
-        $manage_room_attach=implode(',', $manage_room_attach);
-        $new_manage_room_attach= explode(',',$manage_room_attach);
+        // $manage_room_attach=implode(',', $manage_room_attach);
+        // $new_manage_room_attach= explode(',',$manage_room_attach);
         for($i=0;$i<sizeof($request->manage_room_numbers);$i++){
             $manage_room_numbers = new tbl_manage_room_numbers();
             $manage_room_numbers->manage_room_numbers= $request->manage_room_numbers[$i];
             $manage_room_numbers->manage_room_measurement = $request->manage_room_measurement[$i];
-            $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
+            $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$manage_room_attach[$i];
             $manage_room_numbers->school_id       = $school->id;
             $manage_room_numbers->save();
         }
@@ -771,14 +771,14 @@ class SchoolController extends Controller
         //education
         //education
         if($request->degrees!=null){
-            $degrees_certificates=implode(',', $degrees_certificates);
-            $new_degrees_certificates= explode(',',$degrees_certificates);
+            // $degrees_certificates=implode(',', $degrees_certificates);
+            // $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->degree_name = $request->degrees[$i];
-                $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/student_info/'.$degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
             }
@@ -923,8 +923,8 @@ class SchoolController extends Controller
         }
         //teacher list
         if($request->teacher_name!=null){
-            $teacher_reg_copy=implode(',', $teacher_reg_copy);
-            $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
+            // $teacher_reg_copy=implode(',', $teacher_reg_copy);
+            // $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
             for($i=0;$i<sizeof($request->teacher_name);$i++){
                 $teacher = new SchoolTeacher();
                 $teacher->name             = $request->teacher_name[$i];
@@ -934,7 +934,7 @@ class SchoolController extends Controller
                 $teacher->subject          = $request->teaching_subject[$i];
                 $teacher->ph_number        = $request->teacher_ph_number[$i];
                 $teacher->email            = $request->teacher_email[$i];
-                $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
+                $teacher->teacher_reg_copy = '/storage/student_info/'.$teacher_reg_copy[$i];
                 $teacher->school_id        = $school->id;
                 $teacher->save();
             }
@@ -1002,22 +1002,22 @@ class SchoolController extends Controller
         //branch_school
         if($request->branch_school_address!=null){
             if($branch_school_attach!=null){
-                $branch_school_attach=implode(',', $branch_school_attach);
-                $new_branch_school_attach= explode(',',$branch_school_attach);
+                // $branch_school_attach=implode(',', $branch_school_attach);
+                // $new_branch_school_attach= explode(',',$branch_school_attach);
                 
             }
             if($branch_sch_letter!=null){
                 
-                $branch_sch_letter=implode(',', $branch_sch_letter);
-                $new_branch_sch_letter= explode(',',$branch_sch_letter);
+                // $branch_sch_letter=implode(',', $branch_sch_letter);
+                // $new_branch_sch_letter= explode(',',$branch_sch_letter);
                 
             }
             for($i=0;$i<sizeof($request->branch_school_address);$i++){
                 $branch_school = new tbl_branch_school();
                 $branch_school->branch_school_address= $request->branch_school_address[$i];
-                $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                $branch_school->branch_school_attach = '/storage/student_info/'.$branch_school_attach[$i];
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$branch_sch_letter[$i];
                 $branch_school->school_id       = $school->id;
                 $branch_school->student_info_id       =$request->student_info_id;
                 $branch_school->save();
@@ -1149,14 +1149,14 @@ class SchoolController extends Controller
         
         //bulding_type
         if($request->bulding_type!=null){
-            $school_building_attach=implode(',', $school_building_attach);
-            $new_school_building_attach= explode(',',$school_building_attach);
+            // $school_building_attach=implode(',', $school_building_attach);
+            // $new_school_building_attach= explode(',',$school_building_attach);
             for($i=0;$i<sizeof($request->bulding_type);$i++){
                 $bulding_type = new tbl_bulding_type();
                 $bulding_type->bulding_type= $request->bulding_type[$i];
                 $bulding_type->building_measurement = $request->building_measurement[$i];
                 $bulding_type->floor_numbers= $request->floor_numbers[$i];
-                $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
+                $bulding_type->school_building_attach= '/storage/student_info/'.$school_building_attach[$i];
                 $bulding_type->school_id       = $school->id;
                 $bulding_type->save();
             }
@@ -1211,15 +1211,15 @@ class SchoolController extends Controller
         }
         //classroom_number
         if($request->classroom_number!=null){
-            $classroom_attach=implode(',', $classroom_attach);
-            $new_classroom_attach= explode(',',$classroom_attach);
+            // $classroom_attach=implode(',', $classroom_attach);
+            // $new_classroom_attach= explode(',',$classroom_attach);
             for($i=0;$i<sizeof($request->classroom_number);$i++){
                 $classroom_number = new tbl_classroom();
                 $classroom_number->classroom_number= $request->classroom_number[$i];
                 $classroom_number->classroom_measurement = $request->classroom_measurement[$i];
                 $classroom_number->student_num_limit= $request->student_num_limit[$i];
                 $classroom_number->air_con= $request->air_con[$i];
-                $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
+                $classroom_number->classroom_attach= '/storage/student_info/'.$classroom_attach[$i];
                 $classroom_number->school_id       = $school->id;
                 $classroom_number->save();
             }
@@ -1278,13 +1278,13 @@ class SchoolController extends Controller
         }
         //toilet_type
         if($request->toilet_type!=null){
-            $toilet_attach=implode(',', $toilet_attach);
-            $new_toilet_attach= explode(',',$toilet_attach);
+            // $toilet_attach=implode(',', $toilet_attach);
+            // $new_toilet_attach= explode(',',$toilet_attach);
             for($i=0;$i<sizeof($request->toilet_type);$i++){
                 $toilet_type = new tbl_toilet_type();
                 $toilet_type->toilet_type= $request->toilet_type[$i];
                 $toilet_type->toilet_number = $request->toilet_number[$i];
-                $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
+                $toilet_type->toilet_attach= '/storage/student_info/'.$toilet_attach[$i];
                 $toilet_type->school_id       = $school->id;
                 $toilet_type->save();
             }
@@ -1336,13 +1336,13 @@ class SchoolController extends Controller
         }
         //manage_room_numbers
         if($request->manage_room_numbers!=null){
-            $manage_room_attach=implode(',', $manage_room_attach);
-            $new_manage_room_attach= explode(',',$manage_room_attach);
+            // $manage_room_attach=implode(',', $manage_room_attach);
+            // $new_manage_room_attach= explode(',',$manage_room_attach);
             for($i=0;$i<sizeof($request->manage_room_numbers);$i++){
                 $manage_room_numbers = new tbl_manage_room_numbers();
                 $manage_room_numbers->manage_room_numbers= $request->manage_room_numbers[$i];
                 $manage_room_numbers->manage_room_measurement = $request->manage_room_measurement[$i];
-                $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
+                $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$manage_room_attach[$i];
                 $manage_room_numbers->school_id       = $school->id;
                 $manage_room_numbers->save();
             }
@@ -2153,14 +2153,14 @@ class SchoolController extends Controller
         $school->save();
         
         if($degrees_certificates!=null){
-            $degrees_certificates=implode(',', $degrees_certificates);
-            $new_degrees_certificates= explode(',',$degrees_certificates);
+            // $degrees_certificates=implode(',', $degrees_certificates);
+            // $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->degree_name = $request->degrees[$i];
-                $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/student_info/'.$degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
             }
@@ -2223,8 +2223,8 @@ class SchoolController extends Controller
 
         //teacher list
         if($teacher_reg_copy!=null){
-            $teacher_reg_copy=implode(',', $teacher_reg_copy);
-            $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
+            // $teacher_reg_copy=implode(',', $teacher_reg_copy);
+            // $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
             
             for($i=0;$i<sizeof($request->teacher_registration_no);$i++){
                 
@@ -2237,15 +2237,15 @@ class SchoolController extends Controller
                 $teacher->ph_number        = $request->teacher_ph_number[$i];
                 $teacher->email            = $request->teacher_email[$i];
                 $teacher->school_id        = $school->id;
-                $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
+                $teacher->teacher_reg_copy = '/storage/student_info/'.$teacher_reg_copy[$i];
                 $teacher->save();
             }
         }
         
         //branch_school
         if($branch_school_attach!=null){
-            $branch_school_attach=implode(',', $branch_school_attach);
-            $new_branch_school_attach= explode(',',$branch_school_attach);
+            // $branch_school_attach=implode(',', $branch_school_attach);
+            // $new_branch_school_attach= explode(',',$branch_school_attach);
             
         }
         
@@ -2253,17 +2253,17 @@ class SchoolController extends Controller
             
             if($branch_sch_letter!=null){
                 
-                $branch_sch_letter=implode(',', $branch_sch_letter);
-                $new_branch_sch_letter= explode(',',$branch_sch_letter);
+                // $branch_sch_letter=implode(',', $branch_sch_letter);
+                // $new_branch_sch_letter= explode(',',$branch_sch_letter);
                 
             }
             for($i=0;$i<sizeof($request->branch_school_address);$i++){
                 $branch_school = new tbl_branch_school();
                 $branch_school->branch_school_address= $request->branch_school_address[$i];
                 //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
-                $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                $branch_school->branch_school_attach = '/storage/student_info/'.$branch_school_attach[$i];
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$branch_sch_letter[$i];//'/storage/student_info/'.
                 $branch_school->school_id       = $school->id;
                 $branch_school->student_info_id       =$request->student_info_id;
                 $branch_school->save();
@@ -2286,14 +2286,14 @@ class SchoolController extends Controller
         
         //bulding_type
         if($school_building_attach!=null){
-            $school_building_attach=implode(',', $school_building_attach);
-            $new_school_building_attach= explode(',',$school_building_attach);
+            // $school_building_attach=implode(',', $school_building_attach);
+            // $new_school_building_attach= explode(',',$school_building_attach);
             for($i=0;$i<sizeof($request->bulding_type);$i++){
                 $bulding_type = new tbl_bulding_type();
                 $bulding_type->bulding_type= $request->bulding_type[$i];
                 $bulding_type->building_measurement = $request->building_measurement[$i];
                 $bulding_type->floor_numbers= $request->floor_numbers[$i];
-                $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
+                $bulding_type->school_building_attach= '/storage/student_info/'.$school_building_attach[$i];
                 $bulding_type->school_id       = $school->id;
                 $bulding_type->save();
             }
@@ -2301,15 +2301,15 @@ class SchoolController extends Controller
         
         //classroom_number
         if($classroom_attach!=null){
-            $classroom_attach=implode(',', $classroom_attach);
-            $new_classroom_attach= explode(',',$classroom_attach);
+            // $classroom_attach=implode(',', $classroom_attach);
+            // $new_classroom_attach= explode(',',$classroom_attach);
             for($i=0;$i<sizeof($request->classroom_number);$i++){
                 $classroom_number = new tbl_classroom();
                 $classroom_number->classroom_number= $request->classroom_number[$i];
                 $classroom_number->classroom_measurement = $request->classroom_measurement[$i];
                 $classroom_number->student_num_limit= $request->student_num_limit[$i];
                 $classroom_number->air_con= $request->air_con[$i];
-                $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
+                $classroom_number->classroom_attach= '/storage/student_info/'.$classroom_attach[$i];
                 $classroom_number->school_id       = $school->id;
                 $classroom_number->save();
             }
@@ -2317,13 +2317,13 @@ class SchoolController extends Controller
         
         //toilet_type
         if($toilet_attach!=null){
-            $toilet_attach=implode(',', $toilet_attach);
-            $new_toilet_attach= explode(',',$toilet_attach);
+            // $toilet_attach=implode(',', $toilet_attach);
+            // $new_toilet_attach= explode(',',$toilet_attach);
             for($i=0;$i<sizeof($request->toilet_type);$i++){
                 $toilet_type = new tbl_toilet_type();
                 $toilet_type->toilet_type= $request->toilet_type[$i];
                 $toilet_type->toilet_number = $request->toilet_number[$i];
-                $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
+                $toilet_type->toilet_attach= '/storage/student_info/'.$toilet_attach[$i];
                 $toilet_type->school_id       = $school->id;
                 $toilet_type->save();
             }
@@ -2331,13 +2331,13 @@ class SchoolController extends Controller
         
         //manage_room_numbers
         if($manage_room_attach!=null){
-            $manage_room_attach=implode(',', $manage_room_attach);
-            $new_manage_room_attach= explode(',',$manage_room_attach);
+            // $manage_room_attach=implode(',', $manage_room_attach);
+            // $new_manage_room_attach= explode(',',$manage_room_attach);
             for($i=0;$i<sizeof($request->manage_room_numbers);$i++){
                 $manage_room_numbers = new tbl_manage_room_numbers();
                 $manage_room_numbers->manage_room_numbers= $request->manage_room_numbers[$i];
                 $manage_room_numbers->manage_room_measurement = $request->manage_room_measurement[$i];
-                $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
+                $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$manage_room_attach[$i];
                 $manage_room_numbers->school_id       = $school->id;
                 $manage_room_numbers->save();
             }
@@ -2840,14 +2840,14 @@ class SchoolController extends Controller
         
         //education
         if($request->degrees!=null){
-            $degrees_certificates=implode(',', $degrees_certificates);
-            $new_degrees_certificates= explode(',',$degrees_certificates);
+            // $degrees_certificates=implode(',', $degrees_certificates);
+            // $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->degree_name = $request->degrees[$i];
-                $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/student_info/'.$degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
             }
@@ -2992,8 +2992,8 @@ class SchoolController extends Controller
         }
         //teacher list
         if($request->teacher_name!=null){
-            $teacher_reg_copy=implode(',', $teacher_reg_copy);
-            $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
+            // $teacher_reg_copy=implode(',', $teacher_reg_copy);
+            // $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
             for($i=0;$i<sizeof($request->teacher_name);$i++){
                 $teacher = new SchoolTeacher();
                 $teacher->name             = $request->teacher_name[$i];
@@ -3003,7 +3003,7 @@ class SchoolController extends Controller
                 $teacher->subject          = $request->teaching_subject[$i];
                 $teacher->ph_number        = $request->teacher_ph_number[$i];
                 $teacher->email            = $request->teacher_email[$i];
-                $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
+                $teacher->teacher_reg_copy = '/storage/student_info/'.$teacher_reg_copy[$i];
                 $teacher->school_id        = $school->id;
                 $teacher->save();
             }
@@ -3071,22 +3071,22 @@ class SchoolController extends Controller
         //branch_school
         if($request->branch_school_address!=null){
             if($branch_school_attach!=null){
-                $branch_school_attach=implode(',', $branch_school_attach);
-                $new_branch_school_attach= explode(',',$branch_school_attach);
+                // $branch_school_attach=implode(',', $branch_school_attach);
+                // $new_branch_school_attach= explode(',',$branch_school_attach);
                 
             }
             if($branch_sch_letter!=null){
                 
-                $branch_sch_letter=implode(',', $branch_sch_letter);
-                $new_branch_sch_letter= explode(',',$branch_sch_letter);
+                // $branch_sch_letter=implode(',', $branch_sch_letter);
+                // $new_branch_sch_letter= explode(',',$branch_sch_letter);
                 
             }
             for($i=0;$i<sizeof($request->branch_school_address);$i++){
                 $branch_school = new tbl_branch_school();
                 $branch_school->branch_school_address= $request->branch_school_address[$i];
-                $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                $branch_school->branch_school_attach = '/storage/student_info/'.$branch_school_attach[$i];
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$branch_sch_letter[$i];
                 $branch_school->school_id       = $school->id;
                 $branch_school->student_info_id       =$request->student_info_id;
                 $branch_school->save();
@@ -3218,14 +3218,14 @@ class SchoolController extends Controller
         
         //bulding_type
         if($request->bulding_type!=null){
-            $school_building_attach=implode(',', $school_building_attach);
-            $new_school_building_attach= explode(',',$school_building_attach);
+            // $school_building_attach=implode(',', $school_building_attach);
+            // $new_school_building_attach= explode(',',$school_building_attach);
             for($i=0;$i<sizeof($request->bulding_type);$i++){
                 $bulding_type = new tbl_bulding_type();
                 $bulding_type->bulding_type= $request->bulding_type[$i];
                 $bulding_type->building_measurement = $request->building_measurement[$i];
                 $bulding_type->floor_numbers= $request->floor_numbers[$i];
-                $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
+                $bulding_type->school_building_attach= '/storage/student_info/'.$school_building_attach[$i];
                 $bulding_type->school_id       = $school->id;
                 $bulding_type->save();
             }
@@ -3280,15 +3280,15 @@ class SchoolController extends Controller
         }
         //classroom_number
         if($request->classroom_number!=null){
-            $classroom_attach=implode(',', $classroom_attach);
-            $new_classroom_attach= explode(',',$classroom_attach);
+            // $classroom_attach=implode(',', $classroom_attach);
+            // $new_classroom_attach= explode(',',$classroom_attach);
             for($i=0;$i<sizeof($request->classroom_number);$i++){
                 $classroom_number = new tbl_classroom();
                 $classroom_number->classroom_number= $request->classroom_number[$i];
                 $classroom_number->classroom_measurement = $request->classroom_measurement[$i];
                 $classroom_number->student_num_limit= $request->student_num_limit[$i];
                 $classroom_number->air_con= $request->air_con[$i];
-                $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
+                $classroom_number->classroom_attach= '/storage/student_info/'.$classroom_attach[$i];
                 $classroom_number->school_id       = $school->id;
                 $classroom_number->save();
             }
@@ -3347,13 +3347,13 @@ class SchoolController extends Controller
         }
         //toilet_type
         if($request->toilet_type!=null){
-            $toilet_attach=implode(',', $toilet_attach);
-            $new_toilet_attach= explode(',',$toilet_attach);
+            // $toilet_attach=implode(',', $toilet_attach);
+            // $new_toilet_attach= explode(',',$toilet_attach);
             for($i=0;$i<sizeof($request->toilet_type);$i++){
                 $toilet_type = new tbl_toilet_type();
                 $toilet_type->toilet_type= $request->toilet_type[$i];
                 $toilet_type->toilet_number = $request->toilet_number[$i];
-                $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
+                $toilet_type->toilet_attach= '/storage/student_info/'.$toilet_attach[$i];
                 $toilet_type->school_id       = $school->id;
                 $toilet_type->save();
             }
@@ -3404,13 +3404,13 @@ class SchoolController extends Controller
         }
         //manage_room_numbers
         if($request->manage_room_numbers!=null){
-            $manage_room_attach=implode(',', $manage_room_attach);
-            $new_manage_room_attach= explode(',',$manage_room_attach);
+            // $manage_room_attach=implode(',', $manage_room_attach);
+            // $new_manage_room_attach= explode(',',$manage_room_attach);
             for($i=0;$i<sizeof($request->manage_room_numbers);$i++){
                 $manage_room_numbers = new tbl_manage_room_numbers();
                 $manage_room_numbers->manage_room_numbers= $request->manage_room_numbers[$i];
                 $manage_room_numbers->manage_room_measurement = $request->manage_room_measurement[$i];
-                $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
+                $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$manage_room_attach[$i];
                 $manage_room_numbers->school_id       = $school->id;
                 $manage_room_numbers->save();
             }

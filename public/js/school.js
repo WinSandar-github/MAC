@@ -239,7 +239,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_branch_school_body").append(tr);
                 });
-                createDataTable('.tbl_branch_school');
+                createDataTableWithAsc('.tbl_branch_school');
             }
             if(data.data.business_license!=null && data.data.sch_establish_notes_attach!=null){
                 $('.all_file').show();
@@ -272,7 +272,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_sch_established_persons_body").append(tr);
                 });
-                createDataTable('.tbl_sch_established_persons');
+                createDataTableWithAsc('.tbl_sch_established_persons');
             }
             var school_governs=data.data.school_governs;
             if(school_governs.length!=0){
@@ -290,7 +290,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_sch_governs_body").append(tr);
                 });
-                createDataTable('.tbl_sch_governs');
+                createDataTableWithAsc('.tbl_sch_governs');
             }
             var school_members=data.data.school_members;
             if(data.data.type!=null){
@@ -310,7 +310,7 @@ function getSchoolInfos(){
                         tr += "</tr>";
                         $(".tbl_member_list_biography_body").append(tr);
                     });
-                    createDataTable('.tbl_member_list_biography');
+                    createDataTableWithAsc('.tbl_member_list_biography');
                 }
             }
             var school_teachers=data.data.school_teachers;
@@ -330,7 +330,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_teacher_list_biography_body").append(tr);
                 });
-                createDataTable('.tbl_teacher_list_biography');
+                createDataTableWithAsc('.tbl_teacher_list_biography');
             }
             
             var bulding_type=data.data.bulding_type;
@@ -346,7 +346,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_bulding_type_body").append(tr);
                 });
-                createDataTable('.tbl_bulding_type');
+                createDataTableWithAsc('.tbl_bulding_type');
             }
             var classroom=data.data.classroom;
             if(classroom.length!=0){
@@ -362,7 +362,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_classroom_body").append(tr);
                 });
-                createDataTable('.tbl_classroom');
+                createDataTableWithAsc('.tbl_classroom');
             }
             var toilet_type=data.data.toilet_type;
             if(toilet_type.length!=0){
@@ -376,7 +376,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_toilet_type_body").append(tr);
                 });
-                createDataTable('.tbl_toilet_type');
+                createDataTableWithAsc('.tbl_toilet_type');
             }
             
             var manage_room_numbers=data.data.manage_room_numbers;
@@ -391,7 +391,7 @@ function getSchoolInfos(){
                     tr += "</tr>";
                     $(".tbl_manage_room_numbers_body").append(tr);
                 });
-                createDataTable('.tbl_manage_room_numbers');
+                createDataTableWithAsc('.tbl_manage_room_numbers');
             }
             
             if(data.data.type!=null){
